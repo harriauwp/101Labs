@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Lab Study Guide - MCAT Prep</title>
+    <style>
+        :root {
+            --primary-grad-start: #667eea;
+            --primary-grad-end: #764ba2;
+            --text-dark: #2d3748;
+            --text-gray: #4a5568;
+            --purple-header: #6b46c1;
+            --lab-bg: #fffbeb;
+            --lab-border: #fbd38d;
+            --lab-text: #744210;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary-grad-start) 0%, var(--primary-grad-end) 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .intro {
+            padding: 40px;
+            background: linear-gradient(to right, #f7fafc, #edf2f7);
+            border-bottom: 3px solid var(--primary-grad-start);
+        }
+
+        /* Exercise Section Styles */
+        .exercise-section {
+            padding: 30px 40px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .exercise-section:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-grad-start) 0%, var(--primary-grad-end) 100%);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .exercise-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-right: 20px;
+            background: white;
+            color: var(--primary-grad-start);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Grid Layout */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Card Styles */
+        .topic-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            height: fit-content;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-grad-start), var(--primary-grad-end));
+            transition: width 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: #cbd5e0;
+        }
+
+        /* Expanded State Styles */
+        .topic-card.expanded {
+            border-color: var(--primary-grad-start);
+            background-color: #f8fbff;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .topic-card.expanded::before {
+            width: 8px;
+        }
+
+        .topic-name {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1.15em;
+            padding-left: 15px;
+        }
+
+        .topic-description {
+            color: var(--text-gray);
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            line-height: 1.5;
+        }
+
+        .topic-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-left: 15px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mcat-tag {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .lab-tag {
+            background: #feebc8;
+            color: #c05621;
+        }
+
+        /* Details Section (Hidden by default) */
+        .card-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.4s ease-in;
+            padding-left: 15px;
+            padding-right: 5px;
+        }
+
+        .topic-card.expanded .card-details {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+        }
+
+        .detail-block {
+            margin-bottom: 15px;
+        }
+
+        .detail-header {
+            color: var(--purple-header);
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Lab Activity Box */
+        .lab-box {
+            background-color: var(--lab-bg);
+            border-left: 4px solid var(--lab-border);
+            padding: 12px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+            color: var(--lab-text);
+            font-size: 0.9em;
+        }
+        
+        .click-hint {
+            font-size: 0.8em;
+            color: #a0aec0;
+            text-align: right;
+            margin-top: 10px;
+            font-style: italic;
+            padding-right: 10px;
+            display: block;
+        }
+        
+        .topic-card.expanded .click-hint {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .topics-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8em; }
+            .exercise-number { width: 50px; height: 50px; font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧬 BIOS101 Lab Guide</h1>
+            <p>Interactive Study Roadmap</p>
+        </header>
+
+        <div class="intro">
+            <h2>📚 Course Overview</h2>
+            <p>This guide maps directly to specific competencies. Click on any topic card below to reveal the specific <strong>Purpose</strong>, <strong>Goal</strong>, and <strong>Lab Activities</strong> associated with it.</p>
+        </div>
+
+        <!-- EXERCISE 1 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">1</div>
+                <div class="exercise-title">
+                    <h2>Nature of Science & Microscopy</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Nature of Science</h3>
+                    <p class="topic-description">Understanding how scientific knowledge is generated, revised, and validated.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">All Sections</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Nature of Science / "Science as a Way of Knowing" to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Nature of Science / "Science as a Way of Knowing" so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Science vs. Pseudoscience</h3>
+                    <p class="topic-description">Distinguishing valid methodology from unsupported claims.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">CARS, Psych/Soc</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Science vs. Nonscience / Pseudoscience to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Science vs. Nonscience / Pseudoscience so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Scientific Method</h3>
+                    <p class="topic-description">Observations → hypotheses → experiments → conclusions.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">All Science Sections</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Scientific Method (observations → hypotheses → experiments → conclusions) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Scientific Method (observations → hypotheses → experiments → conclusions) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Hypotheses, Theories, & Laws</h3>
+                    <p class="topic-description">Interpreting evidence strength and experimental justification.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">CARS, Sci Reasoning</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Hypotheses, Theories, and Laws to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Hypotheses, Theories, and Laws so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Experimental Design</h3>
+                    <p class="topic-description">Independent, dependent, and control variables.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B, C/P, P/S</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Experimental Design: independent, dependent, control variables to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Experimental Design: independent, dependent, control variables so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Controlled Experiments</h3>
+                    <p class="topic-description">Evaluating study design, experimental flaws, sample groups, placebo controls.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B, P/S, Experimental Analysis</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Controlled Experiments (plant magnesium & cinnamon example) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Controlled Experiments (plant magnesium & cinnamon example) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Qualitative vs. Quantitative Observations</h3>
+                    <p class="topic-description">Interpretation of descriptive vs. numerical data, assessing figure types.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">All Sections</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Qualitative vs. Quantitative Observations to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Qualitative vs. Quantitative Observations so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Metric System & Unit Conversions</h3>
+                    <p class="topic-description">Unit conversions (nm, μm, mm) and scientific notation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P, B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Metric System & Unit Conversions (nm, μm, mm, etc.) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Metric System & Unit Conversions (nm, μm, mm, etc.) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Microscopy Fundamentals</h3>
+                    <p class="topic-description">LM vs. EM, resolution, magnification, contrast.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Microscopy (LM vs. EM, resolution, magnification, contrast) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Microscopy (LM vs. EM, resolution, magnification, contrast) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Use & Parts of the Light Microscope</h3>
+                    <p class="topic-description">Supports understanding of how biological structures are visualized.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Use & Parts of the Light Microscope to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Use & Parts of the Light Microscope so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Working Distance, Field of View, Size Estimation</h3>
+                    <p class="topic-description">MCAT applies scaling principles to cell size and microscopy setups.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B, C/P</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Working Distance, Field of View, Size Estimation to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Working Distance, Field of View, Size Estimation so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Slide Types</h3>
+                    <p class="topic-description">w.m., wet mount, longitudinal vs. cross section.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Slide Types: w.m., wet mount, longitudinal vs. cross section to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Slide Types: w.m., wet mount, longitudinal vs. cross section so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Prokaryotic vs. Eukaryotic Cells</h3>
+                    <p class="topic-description">Core MCAT knowledge: membranes, organelles, nucleoid vs. nucleus.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Prokaryotic vs. Eukaryotic Cells to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Prokaryotic vs. Eukaryotic Cells so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Bacteria & Cyanobacteria</h3>
+                    <p class="topic-description">Relevant to MCAT topics: nitrogen fixation, bacterial nutrition.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Bacteria & Cyanobacteria (Anabaena, heterocysts) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Bacteria & Cyanobacteria (Anabaena, heterocysts) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Human Epithelial Cells (cheek cells)</h3>
+                    <p class="topic-description">Connects to MCAT discussion of tissues, cell structure, cellular organelles.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Human Epithelial Cells (cheek cells) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Human Epithelial Cells (cheek cells) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Stains & Dyes (methylene blue)</h3>
+                    <p class="topic-description">Relates to MCAT questions on polarity, binding interactions, cell visualization.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B, C/P</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Stains & Dyes (methylene blue) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Stains & Dyes (methylene blue) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Estimating Cell Size</h3>
+                    <p class="topic-description">MCAT emphasizes orders of magnitude, scaling, and interpreting cellular dimension data.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P, B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Estimating Cell Size (prokaryotic vs. eukaryotic) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Estimating Cell Size (prokaryotic vs. eukaryotic) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Proper Scientific Practice</h3>
+                    <p class="topic-description">MCAT often assesses understanding of peer review, reproducibility, fraud detection.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">CARS, Scientific Inquiry, P/S</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Proper Scientific Practice (replicability, reproducibility, honesty, ethics) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Proper Scientific Practice (replicability, reproducibility, honesty, ethics) so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 2 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">2</div>
+                <div class="exercise-title">
+                    <h2>Cell Structure & Organelles</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Cell Size & SA:V Ratio</h3>
+                    <p class="topic-description">Why cell size is limited; impact on transport and metabolism.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Cell Size & Surface Area-to-Volume (SA:V) Ratio to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Cell Size & Surface Area-to-Volume (SA:V) Ratio so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Measure and calculate SA, volume, and SA:V for small, medium, and large cubes; complete summary table and guided questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Onion Epidermal Cells</h3>
+                    <p class="topic-description">Nucleus, nucleolus, chromatin in plant tissue.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Onion Epidermal Cells: Nucleus, Nucleolus, Chromatin to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Onion Epidermal Cells: Nucleus, Nucleolus, Chromatin so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare a wet mount of onion epidermis; add stain; observe at 10X and 40X; sketch and label cell wall, plasma membrane, nucleus, nucleoli.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Parenchyma Cells (Carrot Root)</h3>
+                    <p class="topic-description">Chromoplasts & pigments; distinguish plastids beyond chloroplasts.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Parenchyma Cells (Carrot Root): Chromoplasts & Pigments to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Parenchyma Cells (Carrot Root): Chromoplasts & Pigments so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe instructor-prepared thin section of carrot root on demo scopes (40X); sketch and label cell wall, plasma membrane, chromoplasts; answer pigment questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Parenchyma Cells (Leaf)</h3>
+                    <p class="topic-description">Chloroplasts & cytoplasmic streaming; organelle counts.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Parenchyma Cells (Leaf): Chloroplasts & Cytoplasmic Streaming to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Parenchyma Cells (Leaf): Chloroplasts & Cytoplasmic Streaming so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> View leaf parenchyma image; record chloroplast shape, color, pigment type; estimate chloroplast number; explain cytoplasmic streaming.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Protist Complexity vs. Multicellularity</h3>
+                    <p class="topic-description">Comparing unicellular protists to division of labor in multicellular organisms.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Protist Complexity vs. Multicellularity to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Protist Complexity vs. Multicellularity so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Read and discuss passage; relate observed protists to specialized cell types in animals and plants.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Euglena: Chloroplasts & Flagellum</h3>
+                    <p class="topic-description">Protist locomotion and photosynthetic organelles.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Euglena: Chloroplasts & Flagellum (Wet Mount) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Euglena: Chloroplasts & Flagellum (Wet Mount) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare wet mount of Euglena; adjust light and optionally add methyl cellulose to slow movement; observe at 10X/40X; sketch chloroplasts and flagellum.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Flagella: Euglena vs. Sperm Cells</h3>
+                    <p class="topic-description">Contrast flagella placement and function in protists vs. animal gametes.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Flagella: Euglena vs. Sperm Cells (Animal) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Flagella: Euglena vs. Sperm Cells (Animal) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe demo slide of bull sperm cells at 40X; sketch and label head and flagellum; compare to Euglena observations.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Cilia: Paramecium</h3>
+                    <p class="topic-description">Identify cilia-based motility and nuclear organization in ciliates.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Cilia: Paramecium (Stained Slide) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Cilia: Paramecium (Stained Slide) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe stained Paramecium slide on demonstration microscope (40X); sketch and label cilia and macronucleus.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Cilia: Stentor</h3>
+                    <p class="topic-description">Observe Stentor morphology changes, ciliary currents, and vacuoles.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Cilia: Stentor (Depression Slide) – Motile & Sessile to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Cilia: Stentor (Depression Slide) – Motile & Sessile so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Instructor-prepared wet mount on depression slide; observe at 10X; sketch and label cilia, macronucleus, contractile and food vacuoles.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Ciliated Pseudostratified Columnar Epithelium</h3>
+                    <p class="topic-description">Understand mucociliary clearance in airway epithelium.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Ciliated Pseudostratified Columnar Epithelium (Trachea) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Ciliated Pseudostratified Columnar Epithelium (Trachea) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe demo microscopes set up with tracheal epithelium (40X); sketch and label ciliated border, mucus-secreting cells, lumen, and underlying connective tissue.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Amoeba: Pseudopodia & Phagocytosis</h3>
+                    <p class="topic-description">Actin–myosin cytoskeleton and phagocytosis.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Amoeba: Pseudopodia & Phagocytosis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Amoeba: Pseudopodia & Phagocytosis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe living amoeba (10X) for pseudopodia and cytoplasmic streaming; observe stained amoeba (40X) for nucleus and vacuoles; sketch both.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Neutrophils: Amoeboid Motion & Phagocytosis</h3>
+                    <p class="topic-description">Recognize neutrophils in blood smear; understand role in innate immunity.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Neutrophils: Amoeboid Motion & Phagocytosis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Neutrophils: Amoeboid Motion & Phagocytosis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe blood smear at 100X oil immersion; identify neutrophil with lobed nucleus; sketch RBCs, platelets, and neutrophil.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Osmoregulation in Freshwater Protists</h3>
+                    <p class="topic-description">Water balance in hypotonic environments and contractile vacuole function.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Osmoregulation in Freshwater Protists: Contractile Vacuole to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Osmoregulation in Freshwater Protists: Contractile Vacuole so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> From Stentor/Paramecium observations, identify contractile vacuoles and relate to hypotonic conditions; answer guided review questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Organelle Presence Comparison</h3>
+                    <p class="topic-description">Compare presence/absence of membranes and organelles in plant vs. animal cells.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Organelle Presence Comparison: Plant vs. Animal Cells to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Organelle Presence Comparison: Plant vs. Animal Cells so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Complete comparison table marking organelles present in plant vs. animal cells; discuss differences.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 3 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">3</div>
+                <div class="exercise-title">
+                    <h2>Carbohydrates & Plant Tissues</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Water: Polarity & Covalent Bonding</h3>
+                    <p class="topic-description">Polar covalent bonds, partial charges, universal solvent.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P, B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Water: Polarity & Covalent Bonding to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Water: Polarity & Covalent Bonding so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Identify water's formula and polarity; relate polarity to solvent properties; reference textbook figure.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Organic Chemistry Basics</h3>
+                    <p class="topic-description">Key biological elements, functional groups, macromolecule classes.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Organic Chemistry Basics: Elements & Functional Groups to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Organic Chemistry Basics: Elements & Functional Groups so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Draw functional groups and simple molecules; define core terms; list macromolecule classes.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Carbohydrates Overview</h3>
+                    <p class="topic-description">Sugars, starch, cellulose; roles in energy and structure.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Carbohydrates Overview to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Carbohydrates Overview so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer guided questions on carbohydrate categories and functions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Monosaccharides: Glucose & Fructose</h3>
+                    <p class="topic-description">Structural isomers; carbon count; H:O ratio; functional group polarity.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Monosaccharides: Glucose & Fructose (Isomers) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Monosaccharides: Glucose & Fructose (Isomers) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Study model structures; answer isomer and formula questions; build alpha vs. beta glucose awareness.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Photosynthesis Link: Chloroplast Role</h3>
+                    <p class="topic-description">Connects glucose synthesis to chloroplast function in photosynthesis.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Photosynthesis Link: Chloroplast Role to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Photosynthesis Link: Chloroplast Role so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Identify organelle responsible for photosynthesis in leaf parenchyma cells.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Glucose Transport/Storage in Plants</h3>
+                    <p class="topic-description">Phloem transport, sugar sources and sinks, seasonal shifts.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Glucose Transport/Storage in Plants (Phloem, Source-Sink) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Glucose Transport/Storage in Plants (Phloem, Source-Sink) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Explain source/sink dynamics and seasonal changes using guided prompts.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Glucose Transport/Storage in Animals</h3>
+                    <p class="topic-description">Intestinal absorption, glycogen storage in liver & muscle.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Glucose Transport/Storage in Animals (Glycogen) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Glucose Transport/Storage in Animals (Glycogen) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer review questions on glycogen storage locations and duration.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Disaccharides: Sucrose & Maltose</h3>
+                    <p class="topic-description">Glycosidic linkages, dehydration vs. hydrolysis, enzyme specificity.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">C/P, B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Disaccharides: Sucrose & Maltose (Linkages) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Disaccharides: Sucrose & Maltose (Linkages) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Construct sucrose and maltose models; perform conceptual dehydration/hydrolysis steps; instructor check/initial.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Polysaccharides: Starch, Glycogen, Cellulose</h3>
+                    <p class="topic-description">Storage vs. structural roles; alpha vs. beta glucose polymers.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Polysaccharides: Starch, Glycogen, Cellulose to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Polysaccharides: Starch, Glycogen, Cellulose so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Join maltose models to visualize starch chains; answer guided questions on polymer types and digestibility.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Iodine Test: Starch vs. Cellulose</h3>
+                    <p class="topic-description">Distinguishing starch (blue/black) from cellulose.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Iodine Test: Starch vs. Cellulose to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Iodine Test: Starch vs. Cellulose so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Add iodine to starch and cellulose samples; record color change; clean up per instructions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Potato Parenchyma: Amyloplasts</h3>
+                    <p class="topic-description">Observes amyloplasts in potato cells; tests iodine penetration.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Potato Parenchyma: Amyloplasts & Starch Localization to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Potato Parenchyma: Amyloplasts & Starch Localization so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare wet mount (4X→10X); sketch before/after iodine; label cell wall, amyloplasts, starch location; instructor check.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Plant Cell Walls & Support Cells</h3>
+                    <p class="topic-description">Parenchyma, collenchyma, sclerenchyma tissue types.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Plant Cell Walls & Support Cells to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Plant Cell Walls & Support Cells so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Identify support cell types; relate to tissue function; reference textbook figures.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Vascular Tissue: Xylem & Phloem</h3>
+                    <p class="topic-description">Long-distance transport (xylem water/minerals; phloem sugars).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Vascular Tissue: Xylem & Phloem to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Vascular Tissue: Xylem & Phloem so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Identify xylem/phloem in prepared slides; reference figure; discuss bundle arrangement.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Sunflower Stem Structure</h3>
+                    <p class="topic-description">Epidermis, cortex, vascular bundles, pith; detailed sketches.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Sunflower Stem (Helianthus): Structure & Regions to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Sunflower Stem (Helianthus): Structure & Regions so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch at 4X for regions; detailed 10X/40X pie-wedge sketch with labels; instructor initials; optional model identification.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Pear Fruit Sclereids</h3>
+                    <p class="topic-description">Thick-walled support cells; gritty texture; focus challenges.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Pear Fruit Sclereids: Thick-Walled Support Cells to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Pear Fruit Sclereids: Thick-Walled Support Cells so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare wet mount; 4X→10X sketch of parenchyma vs. sclereids; 40X bracket sclereid wall thickness; instructor initials.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Guided Review: Transport & Support</h3>
+                    <p class="topic-description">Consolidates phloem function, sources/sinks, support cell types.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Guided Review: Transport & Support Summary to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Guided Review: Transport & Support Summary so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer structured review questions tying together transport, storage, and support tissues.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 4 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">4</div>
+                <div class="exercise-title">
+                    <h2>Proteins & Enzymes</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Amino Acid Structure</h3>
+                    <p class="topic-description">Carboxyl, amino groups, alpha carbon, R group variability.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Amino Acids: Structure & Functional Groups to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Amino Acids: Structure & Functional Groups so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Copy general amino acid structure; identify functional groups; shade R groups; build models of glycine, alanine, valine.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Protein Formation: Peptide Bonds</h3>
+                    <p class="topic-description">Dehydration reaction forming peptide bonds; dipeptide and polypeptide models.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Protein Formation: Peptide Bonds & Polypeptides to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Protein Formation: Peptide Bonds & Polypeptides so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Link amino acids to form dipeptide and polypeptide; identify backbone and side chains; demonstrate hydrolysis; instructor check.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Levels of Protein Structure</h3>
+                    <p class="topic-description">Primary, secondary, tertiary, and quaternary structures; folding to function.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Levels of Protein Structure to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Levels of Protein Structure so I can apply it confidently during MCAT-style problems.</p></div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Enzyme Activity: Catalysis & Specificity</h3>
+                    <p class="topic-description">Enzyme-substrate complex, activation energy, induced fit, denaturation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Enzyme Activity: Catalysis & Specificity to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Enzyme Activity: Catalysis & Specificity so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer guided questions on enzyme function, specificity, environmental factors, and inhibition types.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Lipase Experiment: Hydrolysis of Lipids</h3>
+                    <p class="topic-description">Enzymatic hydrolysis of triglycerides; monitors pH change via color indicator.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Lipase Experiment: Hydrolysis of Lipids to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Lipase Experiment: Hydrolysis of Lipids so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare water baths (0°C, 21°C, 100°C); mix milk, alkaline solution, enzyme; add inhibitor to one tube; record color change every 5 min; complete Table 4-1.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Effect of Temperature on Enzyme Activity</h3>
+                    <p class="topic-description">Tests lipase activity at different temperatures; determines optimum temperature.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Effect of Temperature on Enzyme Activity to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Effect of Temperature on Enzyme Activity so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Compare color changes at 0°C, 21°C, and 100°C; interpret enzyme activity; answer analysis questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Pineapple & Gelatin: Enzyme Heat Sensitivity</h3>
+                    <p class="topic-description">Why fresh pineapple prevents gelatin setting (protease activity).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Pineapple & Gelatin: Enzyme Heat Sensitivity to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Pineapple & Gelatin: Enzyme Heat Sensitivity so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer conceptual questions on enzyme denaturation and food processing.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Structural Proteins in Animal Tissues</h3>
+                    <p class="topic-description">Collagen, elastin, keratin; roles in connective tissue and epithelium.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Structural Proteins in Animal Tissues to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Structural Proteins in Animal Tissues so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe cat tongue slide; sketch epithelial (keratinized), connective (collagen/elastin), and muscle layers at 10X and 40X; label proteins.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Contractile Proteins: Actin & Myosin</h3>
+                    <p class="topic-description">Muscle fiber structure, striations, and role in contraction.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Contractile Proteins: Actin & Myosin to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Contractile Proteins: Actin & Myosin so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch skeletal muscle cells (cross-section and longitudinal); label nuclei, striations, actin, myosin.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Transport Protein: Hemoglobin</h3>
+                    <p class="topic-description">Quaternary structure, heme group, oxygen transport, sickle-cell mutation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Transport Protein: Hemoglobin to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Transport Protein: Hemoglobin so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer questions on hemoglobin subunits, oxygen binding, sickle-cell mutation, and genetic basis; sketch normal vs. sickled RBCs at 100X.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Genetic Basis of Sickle-Cell Disease</h3>
+                    <p class="topic-description">Point mutation in hemoglobin gene, codon changes, amino acid substitution.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Genetic Basis of Sickle-Cell Disease to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Genetic Basis of Sickle-Cell Disease so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Complete codon and amino acid sequence comparisons; discuss heterozygote advantage and malaria resistance.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Blood Smear Observation</h3>
+                    <p class="topic-description">Compares normal and sickled erythrocytes; identifies leukocytes.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Blood Smear Observation to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Blood Smear Observation so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch blood smear at 100X; label RBCs, sickled cells, and WBC.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Review of Protein Types</h3>
+                    <p class="topic-description">Summarizes contractile, structural, transport, and enzymatic proteins.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Review of Protein Types to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Review of Protein Types so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Fill in examples for each protein category; complete enzyme-substrate-product table.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Experimental Design Concepts</h3>
+                    <p class="topic-description">Identifies independent, dependent, and control variables in lipase experiment.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Experimental Design Concepts to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Experimental Design Concepts so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Record variables; interpret blue vs. yellow color change; relate to lipid hydrolysis.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 5 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">5</div>
+                <div class="exercise-title">
+                    <h2>Lipids & Membranes</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Lipids: Structure & Properties</h3>
+                    <p class="topic-description">Hydrophobic molecules; fats, phospholipids, steroids; energy storage.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Lipids: Structure & Properties to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Lipids: Structure & Properties so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Review lipid types; answer conceptual questions on hydrophobicity and polarity.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Glycerol & Fatty Acids</h3>
+                    <p class="topic-description">Subunits of fats; saturated vs. unsaturated fatty acids; polarity.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Glycerol & Fatty Acids to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Glycerol & Fatty Acids so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Build glycerol and fatty acid models; compare saturated and unsaturated fatty acids; answer guided questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Constructing a Fat (Dehydration Reaction)</h3>
+                    <p class="topic-description">Ester linkage formation between glycerol and fatty acids.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Constructing a Fat (Dehydration Reaction) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Constructing a Fat (Dehydration Reaction) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Build fat model; write word equations for dehydration and hydrolysis; instructor check.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Adipose Tissue: Fat Storage</h3>
+                    <p class="topic-description">Observes adipose cells specialized for fat storage; energy reserve.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Adipose Tissue: Fat Storage to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Adipose Tissue: Fat Storage so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch adipose tissue at 10X and 40X; label plasma membrane, nucleus, fat droplet space.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Phospholipids & Membrane Structure</h3>
+                    <p class="topic-description">Amphipathic nature; lipid bilayer organization; selective permeability.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Phospholipids & Membrane Structure to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Phospholipids & Membrane Structure so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch lipid bilayer with hydrophilic heads, hydrophobic tails, proteins; label extracellular and cytoplasmic sides.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Diffusion & Passive Transport</h3>
+                    <p class="topic-description">Diffusion, osmosis, dialysis; concentration gradients and equilibrium.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Diffusion & Passive Transport to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Diffusion & Passive Transport so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe dye diffusion in water; classify as diffusion vs. osmosis vs. dialysis.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Osmosis & Dialysis Experiment</h3>
+                    <p class="topic-description">Simulates plasma membrane using dialysis tubing; tests water and solute movement.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Osmosis & Dialysis Experiment (Dialysis Tubing "Cells") to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Osmosis & Dialysis Experiment (Dialysis Tubing "Cells") so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare two dialysis "cells" with different solutions; weigh before and after; test for NaCl using silver nitrate; record data in Table 5-1.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">NaCl Movement Test</h3>
+                    <p class="topic-description">Detects solute transport using silver nitrate precipitation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in NaCl Movement Test to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master NaCl Movement Test so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Perform silver nitrate test on beaker and cell solutions; record observations and explain results.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Egg in Distilled Water</h3>
+                    <p class="topic-description">Shows osmosis across egg membrane; hypotonic vs. hypertonic environments.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Demonstration A: Egg in Distilled Water to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Demonstration A: Egg in Distilled Water so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe egg before and after immersion; answer questions on water movement and tonicity.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Dye Diffusion</h3>
+                    <p class="topic-description">Observes potassium permanganate diffusion in water; molecular movement.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Demonstration B: Dye Diffusion to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Demonstration B: Dye Diffusion so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Record time and distribution of dye; classify transport type; explain reasoning.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Starch & Iodine</h3>
+                    <p class="topic-description">Tests dialysis membrane permeability; explains color change and solute movement.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Demonstration C: Starch & Iodine to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Demonstration C: Starch & Iodine so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Observe color change in dialysis bags; hypothesize why starch cannot cross membrane.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Potato in Salt vs. Water</h3>
+                    <p class="topic-description">Shows plasmolysis and turgor pressure changes in plant cells.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Demonstration D: Potato in Salt vs. Water to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Demonstration D: Potato in Salt vs. Water so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Compare texture of potato slices in distilled water vs. NaCl solution; answer questions on osmosis and plasmolysis.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Onion Cells & Plasmolysis</h3>
+                    <p class="topic-description">Observes plasmolysis microscopically; compares onion cells in distilled water vs. salt solution.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Demonstration E: Onion Cells & Plasmolysis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Demonstration E: Onion Cells & Plasmolysis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch onion cells at 40X in both conditions; label cell wall, plasma membrane, cytoplasm; interpret water movement and turgor pressure.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Water Balance in Plant vs. Animal Cells</h3>
+                    <p class="topic-description">Hypotonic, hypertonic, isotonic environments; turgor pressure vs. lysis/shriveling.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Water Balance in Plant vs. Animal Cells to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Water Balance in Plant vs. Animal Cells so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer guided questions on water balance, plasmolysis, and turgidity; relate to cell wall presence.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 6 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">6</div>
+                <div class="exercise-title">
+                    <h2>Photosynthesis</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Photosynthetic Pigments Overview</h3>
+                    <p class="topic-description">Chlorophyll a, b, carotenoids, anthocyanins; light absorption and reflection.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Photosynthetic Pigments Overview to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Photosynthetic Pigments Overview so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Review pigment types and their roles in photosynthesis.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Paper Chromatography of Leaf Pigments</h3>
+                    <p class="topic-description">Separates pigments using chromatography; explains polarity and migration differences.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Paper Chromatography of Leaf Pigments to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Paper Chromatography of Leaf Pigments so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare pigment extract; apply to chromatography paper; develop strip; identify pigment bands; sketch and label.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Pigment Polarity Analysis</h3>
+                    <p class="topic-description">Compares polarity of pigments based on oxygen count; predicts migration order.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Pigment Polarity Analysis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Pigment Polarity Analysis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Count oxygens in pigment structures; predict polarity; verify predictions after chromatography.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Absorption Spectrum of Chlorophyll</h3>
+                    <p class="topic-description">Measures absorbance at different wavelengths; identifies peaks for chlorophyll.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Absorption Spectrum of Chlorophyll to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Absorption Spectrum of Chlorophyll so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Use spectrophotometer; record data; plot graph; analyze wavelength-color relationships.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Absorption Spectrum of Carotene</h3>
+                    <p class="topic-description">Measures absorbance for carotene; compares to chlorophyll.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Absorption Spectrum of Carotene to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Absorption Spectrum of Carotene so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Collect data; plot spectrum; interpret absorbance in yellow/orange range.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Absorption Spectrum of Anthocyanin</h3>
+                    <p class="topic-description">Measures absorbance for anthocyanin; explains role as "sunscreen" pigment.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Absorption Spectrum of Anthocyanin to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Absorption Spectrum of Anthocyanin so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Collect data; plot spectrum; analyze peak wavelengths; answer questions.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Hypothesis Testing: Pigment Absorption</h3>
+                    <p class="topic-description">Tests hypothesis that chlorophyll absorbs violet/blue and red wavelengths most effectively.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Hypothesis Testing: Pigment Absorption to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Hypothesis Testing: Pigment Absorption so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Identify independent/dependent variables; control variables; interpret results; confirm or falsify hypothesis.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Leaf Structure & Function</h3>
+                    <p class="topic-description">Relates leaf anatomy to photosynthesis; mesophyll layers and stomata function.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Leaf Structure & Function to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Leaf Structure & Function so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch leaf model; label epidermis, mesophyll, vascular tissues; observe lily leaf epidermis under microscope; sketch stomata and guard cells.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 7 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">7</div>
+                <div class="exercise-title">
+                    <h2>Nucleic Acids</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Nucleic Acids: DNA & RNA Basics</h3>
+                    <p class="topic-description">Nucleotide components; complementary base pairing; hydrogen bonding.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Nucleic Acids: DNA & RNA Basics to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Nucleic Acids: DNA & RNA Basics so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Complete DNA replication worksheet; answer questions on nucleotide structure and bonding.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Building a DNA Model</h3>
+                    <p class="topic-description">Demonstrates DNA double helix structure; antiparallel strands; complementary base pairing.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Building a DNA Model to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Building a DNA Model so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Construct DNA ladder model; twist into helix; instructor check.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Semiconservative DNA Replication</h3>
+                    <p class="topic-description">Replication mechanism; leading vs. lagging strand; role of DNA polymerase.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Semiconservative DNA Replication to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Semiconservative DNA Replication so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Unzip DNA model; pair new nucleotides; demonstrate replication; instructor observation.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Genetic Code: Transcription & Translation</h3>
+                    <p class="topic-description">Triplet codons; transcription and translation processes; mutations.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Genetic Code: Transcription & Translation to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Genetic Code: Transcription & Translation so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer guided questions on genetic code, transcription, translation, and mutation effects.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Chromatin Packing & Chromosome Structure</h3>
+                    <p class="topic-description">DNA-histone interaction; chromatin organization; progressive levels of packing.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Chromatin Packing & Chromosome Structure to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Chromatin Packing & Chromosome Structure so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer questions on chromatin structure; interpret textbook figures; discuss histone function.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Spinach DNA Extraction</h3>
+                    <p class="topic-description">Demonstrates DNA isolation using detergent, salt, and ethanol; polarity and precipitation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Spinach DNA Extraction to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Spinach DNA Extraction so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Perform extraction; observe DNA precipitate; answer calculation questions on DNA length and body-wide totals.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Genomics & Bioinformatics</h3>
+                    <p class="topic-description">Introduces genomics, proteomics, and bioinformatics; computational analysis.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Genomics & Bioinformatics to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Genomics & Bioinformatics so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer conceptual questions on genomics and bioinformatics applications.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Human Karyotypes</h3>
+                    <p class="topic-description">Defines karyotype; explains preparation and uses; chromosomal abnormalities.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Human Karyotypes to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Human Karyotypes so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare magnetic chromosome karyotype; identify abnormalities; answer syndrome-specific questions; sketch chromosomes.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Abnormal Karyotypes</h3>
+                    <p class="topic-description">Identifies trisomy and monosomy conditions; links to syndromes (Down, Turner, etc.).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Abnormal Karyotypes to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Abnormal Karyotypes so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Arrange chromosomes on magnetic board; diagnose condition; record symptoms and frequency.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Multicellular Complexity & Cell Communication</h3>
+                    <p class="topic-description">Explains cell signaling, apoptosis, and morphogenesis; relates to development and disease.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Multicellular Complexity & Cell Communication to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Multicellular Complexity & Cell Communication so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer questions on apoptosis mechanisms; discuss examples (digit formation, metamorphosis).</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Cell Division: Mitosis & Meiosis</h3>
+                    <p class="topic-description">Compares diploid vs. haploid cells; mitosis for growth and meiosis for gamete formation.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Cell Division: Mitosis & Meiosis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Cell Division: Mitosis & Meiosis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer review questions on chromosome sets, division types, and genetic variation.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 8 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">8</div>
+                <div class="exercise-title">
+                    <h2>Mitosis</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Mitosis and Cytokinesis</h3>
+                    <p class="topic-description">Cell cycle phases (G1, S, G2, M); mitosis stages (prophase, metaphase, anaphase, telophase).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Mitosis and Cytokinesis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Mitosis and Cytokinesis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Use bead models to demonstrate chromosome movements; prepare onion root tip squash; observe onion, whitefish, and nematode slides; sketch stages; label structures.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Cell Cycle & Interphase</h3>
+                    <p class="topic-description">Interphase subphases; DNA replication timing; centrosome duplication; chromatin state.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Cell Cycle & Interphase to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Cell Cycle & Interphase so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Answer pre-lab questions; demonstrate interphase using bead strands; identify homologous chromosomes.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Microscopic Identification of Mitosis</h3>
+                    <p class="topic-description">Observes dividing cells in onion root tip, whitefish embryo, and nematode eggs; identifies mitotic stages.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Microscopic Identification of Mitosis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Microscopic Identification of Mitosis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch interphase, prophase, metaphase, anaphase, telophase/cytokinesis; label chromatin, spindle fibers, centrioles, metaphase plate.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Wet Mount Preparation: Onion Root Tip</h3>
+                    <p class="topic-description">Demonstrates staining and squash technique for observing mitosis in plant cells.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Wet Mount Preparation: Onion Root Tip to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Wet Mount Preparation: Onion Root Tip so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Prepare onion root tip squash; stain with toluidine blue; observe and sketch mitotic stages.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 9 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">9</div>
+                <div class="exercise-title">
+                    <h2>Meiosis</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Life Cycles: Asexual vs. Sexual Reproduction</h3>
+                    <p class="topic-description">Compares asexual and sexual reproduction; introduces alternation of generations in plants.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Life Cycles: Asexual vs. Sexual Reproduction to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Life Cycles: Asexual vs. Sexual Reproduction so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch Hydra budding; draw animal and plant life cycles; label meiosis, fertilization, gametes, spores.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Sexual Life Cycles in Plants & Animals</h3>
+                    <p class="topic-description">Explains alternation of generations; contrasts gametes vs. spores; diploid vs. haploid stages.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Sexual Life Cycles in Plants & Animals to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Sexual Life Cycles in Plants & Animals so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Draw diagrams of plant and animal life cycles; answer review questions on haploid/diploid stages.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Meiosis: Stages and Genetic Variation</h3>
+                    <p class="topic-description">Details meiosis I and II; crossing over, independent assortment, random fertilization; compares to mitosis.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Meiosis: Stages and Genetic Variation to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Meiosis: Stages and Genetic Variation so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Assign stages to descriptions; demonstrate meiosis with bead models; answer questions on genetic variation mechanisms.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Meiosis in Animals (Spermatogenesis)</h3>
+                    <p class="topic-description">Observes meiosis in testes; identifies seminiferous tubules, sperm cells, Leydig cells.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Meiosis in Animals (Spermatogenesis) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Meiosis in Animals (Spermatogenesis) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch testis section at 10X and 40X; label tubules, sperm, Leydig cells.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Meiosis in Plants (Anther)</h3>
+                    <p class="topic-description">Observes meiosis in anther compartments; identifies microspores and Prophase I cells.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Meiosis in Plants (Anther) to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Meiosis in Plants (Anther) so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Sketch entire anther at 4X; sketch compartment at 10X; sketch Prophase I cells at 40X; label chromosomes.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Nondisjunction Errors</h3>
+                    <p class="topic-description">Explains chromosomal segregation errors in meiosis I and II; links to aneuploidy conditions.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Nondisjunction Errors to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Nondisjunction Errors so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Demonstrate nondisjunction with bead models; sketch errors in anaphase I and II; indicate gamete chromosome numbers.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCISE 10 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-number">10</div>
+                <div class="exercise-title">
+                    <h2>Genetics</h2>
+                </div>
+            </div>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <h3 class="topic-name">Mendelian Genetics & Punnett Squares</h3>
+                    <p class="topic-description">Laws of segregation and independent assortment; solves monohybrid and dihybrid crosses.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Mendelian Genetics & Punnett Squares to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Mendelian Genetics & Punnett Squares so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Complete genotype/phenotype problems; draw Punnett squares; calculate ratios; analyze corn seed data for inheritance patterns.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Degrees of Dominance</h3>
+                    <p class="topic-description">Incomplete dominance and codominance; introduces multiple alleles (ABO blood group).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Degrees of Dominance to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Degrees of Dominance so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Solve problems on snapdragon color and blood types; draw Punnett squares; predict phenotypic ratios.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">X-Linked Inheritance</h3>
+                    <p class="topic-description">Explains sex-linked traits; uses Punnett squares for color blindness scenarios.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in X-Linked Inheritance to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master X-Linked Inheritance so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Solve X-linked genetics problems; calculate probabilities for sons and daughters.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Pedigree Analysis</h3>
+                    <p class="topic-description">Teaches pedigree interpretation for autosomal and X-linked traits; includes Tay-Sachs, achondroplasia.</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Pedigree Analysis to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Pedigree Analysis so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Draw pedigrees; assign genotypes; shade appropriately; analyze inheritance patterns.</div>
+                    </div>
+                </div>
+
+                <div class="topic-card">
+                    <h3 class="topic-name">Genotypes & Phenotypes Using Chromosome Models</h3>
+                    <p class="topic-description">Uses bead strands to identify alleles for traits (tongue rolling, cystic fibrosis, blood type).</p>
+                    <div class="topic-meta"><span class="tag mcat-tag">B/B</span> <span class="tag lab-tag">Lab</span></div>
+                    <span class="click-hint">Click to expand details...</span>
+                    <div class="card-details">
+                        <div class="detail-block"><div class="detail-header">Purpose</div><p>Build a strong conceptual foundation in Genotypes & Phenotypes Using Chromosome Models to support MCAT readiness.</p></div>
+                        <div class="detail-block"><div class="detail-header">Goal</div><p>Master Genotypes & Phenotypes Using Chromosome Models so I can apply it confidently during MCAT-style problems.</p></div>
+                        <div class="lab-box"><strong>🧪 Lab Activity:</strong> Determine genotype for six traits; record complete genotype; answer questions on phenotype and dominance.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.topic-card');
+
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    // Don't toggle if clicking inside the details (allows text selection)
+                    if (e.target.closest('.card-details')) return;
+
+                    const isExpanded = card.classList.contains('expanded');
+
+                    // Accordion behavior: Close all other cards
+                    cards.forEach(c => c.classList.remove('expanded'));
+
+                    // Toggle clicked card
+                    if (!isExpanded) {
+                        card.classList.add('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
