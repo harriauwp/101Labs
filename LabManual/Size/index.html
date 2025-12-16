@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Advanced Size Calculator – Microscopy & Scientific Notation</title>
+<style>
+  :root{
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --accent:#2563eb;
+    --muted:#64748b;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#d97706;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    --max-width:1100px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:#0f172a;padding:10px;display:flex;justify-content:center;}
+  .container{width:100%;max-width:var(--max-width);}
+  
+  /* Header */
+  header{margin-bottom:8px; border-bottom:1px solid #e2e8f0; padding-bottom:8px;}
+  h1{font-size:20px;margin:0;color:#1e40af;}
+  
+  /* Goals */
+  .goals-container{background:#eff6ff; padding:6px 10px; border-radius:6px; border-left:4px solid var(--accent); margin-top:6px; font-size:13px;}
+  .goals-title{font-weight:700; color:#1e40af; display:inline-block; margin-right:5px;}
+  
+  .top-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap; margin-top:8px;}
+  
+  /* Layout */
+  .layout{display:grid;grid-template-columns:1fr 340px;gap:10px;align-items:start;}
+  
+  /* Panel Styling */
+  .panel{background:var(--card);padding:10px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1); border:1px solid #e2e8f0;}
+  
+  /* Specific Question Styling */
+  .question-banner{
+      background:#fff7ed; color:#9a3412; border:1px solid #ffedd5; 
+      padding:8px; border-radius:6px; font-weight:600; font-size:15px; text-align:center;
+      transition: all 0.2s; 
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  }
+  
+  /* Final Answer Box in Banner */
+  .answer-feedback-box {
+      font-size: 14px;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      display: none; /* Hidden by default */
+      margin-top: 4px;
+      font-family: 'Times New Roman', serif;
+  }
+  .answer-feedback-box.correct {
+      background-color: #dcfce7;
+      color: #166534;
+      border-color: #22c55e;
+  }
+  .answer-feedback-box.incorrect {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border-color: #ef4444;
+  }
+
+  svg{width:100%;max-width:750px;height:420px;border-radius:6px;margin:0 auto;display:block; user-select: none; background:#fff; border:1px solid #cbd5e1;}
+  
+  /* Info Bar */
+  .info-bar{
+    display:flex; justify-content:space-between; align-items:center; 
+    background:#f1f5f9; padding:8px 12px; border-radius:6px; font-size:14px;
+    border:1px solid #e2e8f0;
+  }
+  .info-bar strong{color:var(--accent);}
+  
+  /* Sidebar */
+  .sidebar{display:flex;flex-direction:column;gap:6px;} 
+  .controls-group{
+    background:#fff; 
+    padding:8px 10px;
+    border:1px solid #e2e8f0; border-radius:6px;
+  }
+  .controls-group h3{
+    margin:0 0 6px 0;
+    padding-bottom:4px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size:13px;color:#334155;text-transform:uppercase;letter-spacing:0.5px;
+  }
+  
+  /* Inputs & Buttons */
+  input[type="text"]{padding:4px;border-radius:4px;border:1px solid #cbd5e1;font-family:monospace;font-size:13px; text-align: center;}
+  input[type="text"]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(37,99,235,0.1);}
+  input[type="text"].valid{border-color:var(--success);background:#f0fdf4;}
+  input[type="text"].incorrect{border-color:var(--danger);background:#fee2e2;}
+  
+  .btn{padding:6px 10px;border-radius:4px;border:0;background:var(--accent);color:white;font-weight:600;cursor:pointer;font-size:12px;transition:opacity 0.2s;}
+  .btn.secondary{background:#e2e8f0;color:#334155;}
+  .btn.auto-fit{background:#7c3aed; color:white;}
+  .btn:disabled{opacity:0.5;cursor:not-allowed;}
+  
+  .row{display:flex;gap:6px;align-items:center;flex-wrap:wrap; justify-content:center;}
+  
+  /* Formula Steps */
+  .formula-stage{ padding:4px; border-radius:4px; border:1px solid #f1f5f9; margin:2px 0; }
+  .formula-label{font-weight:600;font-size:11px;color:#0f172a; margin-bottom: 4px;}
+  
+  .status{padding:6px;border-radius:4px;font-size:12px;font-weight:500;margin-top:4px;}
+  .status.good{background:#dcfce7;color:#166534;}
+  .status.warning{background:#fffbeb;color:#92400e;}
+  .status.danger{background:#fee2e2;color:#991b1b;}
+
+  .micro-info{font-size:11px; color:#475569; margin-top:4px; line-height:1.4;}
+
+  .sn-display { 
+      font-family: 'Times New Roman', serif; 
+      font-size:14px; 
+      color:#334155;
+  }
+  
+  /* NEW SN INPUT STYLES */
+  .sn-input-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 6px 0;
+      background: #f8fafc;
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+  }
+  .sn-input-container span { font-family: 'Times New Roman', serif; font-size: 15px; }
+  
+  input.sn-mantissa { width: 50px; font-weight: bold; }
+  input.sn-exp { width: 35px; vertical-align: super; font-size: 11px; margin-bottom: 8px; }
+  input.sn-denom { width: 40px; }
+  
+  /* TRAIN TRACK STYLING */
+  .conversion-box {
+      border: 1px solid #cbd5e1;
+      padding: 8px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      margin-bottom: 6px;
+      line-height: 1.6;
+  }
+  .train-track-block {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      min-width: 60px; 
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 11px;
+      font-family: 'Times New Roman', serif;
+      background: #fff;
+      justify-content: center;
+  }
+  .train-track-block:first-child {
+      border-color: #3b82f6; 
+  }
+  .train-track-numerator {
+      border-bottom: 1px solid #0f172a; 
+      padding-bottom: 2px;
+  }
+  .train-track-denominator { 
+      padding-top: 2px; 
+  }
+  
+  /* Ruler Styles (for the draggable layer) */
+  #rulerLayer {
+      cursor: grab;
+      pointer-events: all;
+  }
+
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔬 Advanced Size Calculator – Scientific Notation</h1>
+      <div class="goals-container">
+        <span class="goals-title">Goals:</span>
+        <span class="goals-list" id="goalsText">1) Apply the Formula. 2) Master Scientific Notation.</span>
+      </div>
+      <div class="top-controls">
+        <button id="newBtn" class="btn secondary">New Scenario</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <main class="panel" style="padding-bottom:0;">
+        <div id="playArea">
+            <div id="questionBanner" class="question-banner">
+                <span id="questionText">Loading Question...</span>
+                <span id="finalAnswerBox" class="answer-feedback-box"></span>
+            </div>
+
+            <svg id="fovSvg" viewBox="0 0 750 420" role="img" aria-label="Field of view with draggable organisms and ruler">
+                <defs>
+                <filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.2"/></filter>
+                <radialGradient id="waterGrad"><stop offset="0%" stop-color="#bae6fd"/><stop offset="100%" stop-color="#0ea5e9"/></radialGradient>
+                </defs>
+                <rect width="750" height="420" fill="#fafafa" id="svgBg"/>
+                <g id="sceneLayer"></g>
+                <g id="tokensLayer"></g>
+                <g id="rulerLayer"></g> <g id="measureLayer"></g>
+            </svg>
+            
+            <div class="info-bar">
+                <div><strong>Scenario:</strong> <span id="scenarioText">—</span></div>
+                <div>
+                    <strong>Diameter:</strong> 
+                    <span id="diameterText" class="sn-display" style="font-size:15px; color:#c05621;">—</span>
+                </div>
+            </div>
+
+            <div id="microInfoBox" class="micro-info" style="background:#f0fdf4; padding:6px; border-radius:4px; border:1px solid #dcfce7;">
+                <strong>🔬 Microscope Specs:</strong> <span id="magDetails"></span>
+            </div>
+
+            <div class="row" style="padding:8px 0;">
+                <button id="addTokenBtn" class="btn secondary">➕ Add 1 Item</button>
+                <button id="removeTokenBtn" class="btn secondary">➖ Remove</button>
+                <button id="rotateBtn" class="btn secondary">🔄 Rotate Item</button>
+                <button id="autoFitBtn" class="btn auto-fit">↔️ Auto-Fit</button>
+                <button id="clearBtn" class="btn secondary" style="background:#fee2e2;color:#991b1b;">Clear</button>
+                <div style="margin-left:auto; font-size:13px;">Items Aligned (N): <strong id="placedCount" style="color:var(--accent); font-size:16px;">0</strong></div>
+            </div>
+        </div>
+      </main>
+
+      <aside class="sidebar">
+        <div class="controls-group">
+          <h3>1. Learn Formula</h3>
+          <div class="status warning" style="padding:4px;">
+            <strong style="color:#b45309" id="learnFormulaText">Size = Diameter / Number (S = D / N)</strong>
+          </div>
+        </div>
+
+        <div class="controls-group">
+          <h3>2. Symbolic Formula</h3>
+          <div class="formula-stage" id="stage3">
+            <div class="formula-label" id="symbolicInstruction">Type "S = D / N"</div>
+            <input type="text" id="symbFormula" placeholder="S = D / N" style="width:100%" />
+          </div>
+        </div>
+
+        <div class="controls-group">
+          <h3 id="calcHeader">3. Calculate Size (in &micro;m)</h3>
+          <div style="font-size:11px;color:#666;">Plug in Scientific Notation values:</div>
+          <div style="font-size:10px; color:#c05621; margin-top:2px; font-weight:600;">
+              *Format: X.X &times; 10<sup>Y</sup>
+          </div>
+          
+          <div class="sn-input-container">
+             <span id="calcSymbol">S = </span>
+             <input type="text" id="calcDMan" placeholder="X.X" class="sn-mantissa" disabled>
+             <span>&times; 10</span>
+             <input type="text" id="calcDExp" placeholder="Y" class="sn-exp" disabled>
+             <span style="font-size:18px; margin:0 4px;">/</span>
+             <input type="text" id="calcN" placeholder="N" class="sn-denom" disabled>
+          </div>
+          
+          <button id="calculateBtn" class="btn" style="margin-top:6px;width:100%;" disabled>Calculate</button>
+          
+          <div id="calcError" class="status danger" style="display:none;"></div>
+
+          <div id="sizeResult" style="margin-top:8px; font-weight:600; font-size:15px; display:none; background:#ecfccb; padding:4px; border-radius:4px; border:1px solid #84cc16; text-align:center;">
+             <span id="resSymbol">S</span> = <span id="finalSizeUM" class="sn-display"></span> &micro;m
+          </div>
+        </div>
+        
+        <div class="controls-group">
+            <h3>4. Convert Unit (Train Track)</h3>
+            <div id="conversionInstructions" style="font-size:11px; color:#666; margin-bottom: 6px;">
+                Input Rate exponent & Final Answer:
+            </div>
+            
+            <div class="conversion-box">
+                <div style="display:flex; align-items:center; justify-content:center; gap: 4px;">
+                    <div id="initialValueBox" class="train-track-block" style="min-width:70px;">
+                        <span id="initialValueText" class="sn-display">Size (&micro;m)</span>
+                    </div>
+                    
+                    <span style="font-size: 18px; font-weight: bold;"> &times; </span>
+                    
+                    <div class="train-track-block" style="min-width:85px; padding: 2px 4px;">
+                        <div id="numerator" class="train-track-numerator sn-display">1 mm</div>
+                        <div class="train-track-denominator sn-display" style="display:flex; align-items:center; justify-content:center; gap:1px;">
+                            10<sup style="display:flex; flex-direction:column-reverse; margin-bottom:8px;"><input type="text" id="rateExpInput" style="width:25px; height:18px; font-size:10px; padding:0; text-align:center;" disabled></sup>&micro;m
+                        </div>
+                    </div>
+                    
+                    <span style="font-size: 18px; font-weight: bold;"> = </span>
+                    
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+                        <div style="display:flex; align-items:center; gap:2px;">
+                           <input type="text" id="convMan" placeholder="X.X" class="sn-mantissa" style="width:45px;" disabled />
+                           <span class="sn-display" style="font-size:14px;">&times;10</span>
+                           <input type="text" id="convExp" placeholder="Y" class="sn-exp" style="width:30px;" disabled />
+                        </div>
+                        
+                        <select id="targetUOMSelect" class="small-mono" style="width: 50px; padding: 2px;" disabled>
+                            <option value="m">m</option>
+                            <option value="cm">cm</option>
+                            <option value="mm" selected>mm</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="conversionStatus" class="status" style="display:none; margin-top:4px;"></div>
+            </div>
+            <button id="checkConversionBtn" class="btn secondary" style="width:100%;" disabled>Check Conversion</button>
+        </div>
+        
+        <div class="controls-group">
+          <h3>5. Submit</h3>
+          <button id="submitBtn" class="btn" style="width:100%;background:#059669;" disabled>Submit Final Answer</button>
+          <div id="feedback" class="status" style="display:none;"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+<script>
+// --- CORE DATA ---
+const ANABAENA_CELLS = 35;
+// Added 'dim' (dimension) property to scenarios
+const MICRO_SCENARIOS = [
+  {label:'Anabaena (filament)', type:'anabaena', size:30, dim:'Length', question:'What is the length of one Anabaena cell?'}, 
+  {label:'Hydra', type:'hydra', size:1200, dim:'Length', question:'What is the length of a Hydra body (excluding tentacles)?'},
+  {label:'Onion Cells', type:'onion', size:250, dim:'Width', question:'What is the width of an onion cell?'},
+  {label:'Paramecium', type:'paramecium', size:200, dim:'Length', question:'What is the length of a paramecium?'},
+  {label:'Stentor', type:'stentor', size:800, dim:'Length', question:'What is the length of a Stentor?'}
+];
+
+// DATA STRUCTURE: d_real (Precise), d_math (Rounded)
+const MAGNIFICATIONS = [
+  // 40x: Real 4.55mm -> Rounded 5.0mm 
+  {
+      total: 40, 
+      d_real_um: 4550, d_real_mm: 4.55, 
+      d_math_um: 5000, d_math_mm: 5.0,
+      man: "5.0", exp: "3" 
+  }, 
+  // 100x: Real ~1.8mm -> Rounded 2.0mm
+  {
+      total: 100, 
+      d_real_um: 1800, d_real_mm: 1.8, 
+      d_math_um: 2000, d_math_mm: 2.0,
+      man: "2.0", exp: "3"
+  }, 
+  // 400x: Real ~0.45mm -> Rounded 0.5mm
+  {
+      total: 400, 
+      d_real_um: 450, d_real_mm: 0.45, 
+      d_math_um: 500, d_math_mm: 0.5,
+      man: "5.0", exp: "2"
+  }  
+];
+
+let state = {
+  scenario: null, 
+  magInfo: null, 
+  diameter: 0,
+  lastSelected: null,
+  calculatedSizeUM: 0, 
+  conversionTargetExp: 0, 
+  placedN: 0,
+  dimensionSymbol: 'S' 
+};
+
+const $ = id => document.getElementById(id);
+const sceneLayer = $('sceneLayer'), tokensLayer = $('tokensLayer'), rulerLayer = $('rulerLayer');
+
+// --- SCIENTIFIC NOTATION & CONVERSION HELPERS ---
+function formatSN(num) {
+    if (num === 0) return '0';
+    const sign = Math.sign(num);
+    const absNum = Math.abs(num);
+    const exponent = Math.floor(Math.log10(absNum));
+    let mantissa = absNum / Math.pow(10, exponent);
+    
+    let mantissaStr = mantissa.toFixed(3).replace(/(\.0+|0+)$/, ''); 
+    if(mantissaStr.indexOf('.') === -1) mantissaStr += ".0"; 
+    
+    if (exponent === 0 && num === 0) return "0";
+    
+    return `${sign < 0 ? '-' : ''}${mantissaStr} &times; 10<sup>${exponent}</sup>`;
+}
+
+function getConversionDetails(targetUnit) {
+    const unitMap = {
+        'm': {exponent: 6, text: "1 m"},    
+        'cm': {exponent: 4, text: "1 cm"},   
+        'mm': {exponent: 3, text: "1 mm"}   
+    };
+    return unitMap[targetUnit] || {exponent: 0, text: "1 µm"};
+}
+
+function newScenario() {
+  resetUI();
+  setupMicro();
+  initialSpawn();
+}
+
+// --- Warning/Size Check Logic ---
+function checkItemSize(organismSize, fieldDiameter, scenarioType) {
+    let objectLength = organismSize;
+    if(scenarioType === 'anabaena') {
+        objectLength = organismSize * ANABAENA_CELLS;
+    }
+    // Check against the REAL diameter to ensure visual fit
+    if (scenarioType === 'hydra' && fieldDiameter !== 4550) return 'too_large';
+    if (objectLength / fieldDiameter > 1.10) return 'too_large';
+    
+    return 'ok';
+}
+
+function displayWarning(type, diameter) {
+    const mag = MAGNIFICATIONS.find(m => m.d_real_um === diameter);
+    const d_val = mag.d_real_um; // Show real value in warning
+    const unit = 'µm';
+    
+    const itemName = state.scenario.label; 
+    
+    let message = '';
+    if (type === 'too_large') {
+        message = `🛑 **${itemName} too large!** The Field Diameter is ${formatSN(d_val)} ${unit}. You need to use a larger diameter (lower magnification).`;
+        $('questionBanner').style.backgroundColor = '#fee2e2';
+        $('questionBanner').style.color = '#991b1b';
+    } else if (type === 'too_small') {
+        message = `🤏 **${itemName} too small!** The Field Diameter is ${formatSN(d_val)} ${unit}. You need to use a smaller diameter (higher magnification).`;
+        $('questionBanner').style.backgroundColor = '#fff7ed';
+        $('questionBanner').style.color = '#b45309';
+    }
+    $('questionText').innerHTML = message;
+    $('finalAnswerBox').style.display = 'none'; 
+    
+    $('addTokenBtn').disabled = true;
+    $('autoFitBtn').disabled = true;
+    $('removeTokenBtn').disabled = true;
+    $('rotateBtn').disabled = true;
+}
+
+function clearWarning() {
+    $('addTokenBtn').disabled = false;
+    $('autoFitBtn').disabled = false;
+    $('removeTokenBtn').disabled = false;
+    $('rotateBtn').disabled = false;
+    if(state.scenario) {
+        $('questionText').textContent = state.scenario.question;
+    }
+    $('questionBanner').style.backgroundColor = '#fff7ed';
+    $('questionBanner').style.color = '#9a3412';
+}
+
+// --- Setup Functions ---
+function setupMicro() {
+  const m = MAGNIFICATIONS[Math.floor(Math.random()*MAGNIFICATIONS.length)];
+  const s = MICRO_SCENARIOS[Math.floor(Math.random()*MICRO_SCENARIOS.length)];
+  state.scenario = s;
+  state.magInfo = m;
+  state.diameter = m.d_real_um; // Visuals track REAL diameter
+  
+  const dim = s.dim || 'Size'; 
+  const symbol = dim.charAt(0); 
+  state.dimensionSymbol = symbol;
+
+  $('goalsText').textContent = `1) Apply the ${dim} Formula. 2) Master Scientific Notation.`;
+  $('learnFormulaText').innerHTML = `${dim} = Diameter / Number (${symbol} = D / N)`;
+  $('symbolicInstruction').textContent = `Type "${symbol} = D / N"`;
+  $('symbFormula').placeholder = `${symbol} = D / N`;
+  
+  $('calcHeader').innerHTML = `3. Calculate ${dim} (in &micro;m)`;
+  $('calcSymbol').textContent = `${symbol} = `;
+  $('resSymbol').textContent = symbol;
+  
+  $('scenarioText').textContent = s.label;
+  
+  // Display the REAL precise measurement on the Info Bar
+  $('diameterText').innerHTML = `${formatSN(m.d_real_um)} µm`; 
+  
+  // INSTRUCTIONAL TEXT: Show Real -> Round to Rounded
+  $('magDetails').innerHTML = `
+    Total Mag: <strong>${m.total}×</strong> 
+    (Field Diameter: ${m.d_real_um} µm &rarr; ${m.d_real_mm} mm. <span style="color:#b45309; font-weight:bold;">Round to ${m.d_math_mm} mm for calculation</span>)
+  `;
+  
+  clearWarning(); 
+  
+  const sizeCheck = checkItemSize(s.size, state.diameter, s.type);
+  if (sizeCheck !== 'ok') {
+      displayWarning(sizeCheck, m.d_real_um); 
+  }
+  
+  drawMicroBackground();
+  drawRuler(); 
+}
+
+// --- VISUAL RULER (REVERTED TO PRECISE SCALING) ---
+function drawRuler() {
+    rulerLayer.innerHTML = ''; 
+    rulerLayer.style.pointerEvents = 'none'; 
+    
+    if (state.magInfo.total !== 40) return;
+
+    rulerLayer.style.pointerEvents = 'all'; 
+    rulerLayer.style.cursor = 'grab';
+
+    // SCALING LOGIC: 360px (FOV Width) = 4.55 mm (REAL)
+    const visualDiameterPX = 360; 
+    const realDiameterMM = state.magInfo.d_real_mm; // 4.55
+    const pxPerMM = visualDiameterPX / realDiameterMM; 
+    
+    // Draw ticks up to the Rounded Value (5.0), which will extend PAST the circle
+    const maxDrawMM = state.magInfo.d_math_mm; 
+    const rulerDrawWidth = maxDrawMM * pxPerMM;
+    const strokeColor = '#0f172a';
+    
+    // Base Line
+    const baseLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    baseLine.setAttribute('x1', 0);
+    baseLine.setAttribute('y1', 0);
+    baseLine.setAttribute('x2', rulerDrawWidth);
+    baseLine.setAttribute('y2', 0);
+    baseLine.setAttribute('stroke', strokeColor);
+    baseLine.setAttribute('stroke-width', 2);
+    rulerLayer.appendChild(baseLine);
+
+    // Draw Ticks (0, 1, 2, 3, 4, 5)
+    for (let mm = 0; mm <= maxDrawMM; mm++) { 
+        const x = mm * pxPerMM; 
+        
+        // Major Tick
+        const majorTick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        majorTick.setAttribute('x1', x);
+        majorTick.setAttribute('y1', 0);
+        majorTick.setAttribute('x2', x);
+        majorTick.setAttribute('y2', 15);
+        majorTick.setAttribute('stroke', strokeColor);
+        majorTick.setAttribute('stroke-width', 2);
+        rulerLayer.appendChild(majorTick);
+        
+        // Label
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', x);
+        label.setAttribute('y', 28);
+        label.setAttribute('fill', strokeColor);
+        label.setAttribute('font-size', '12px');
+        label.setAttribute('text-anchor', 'middle');
+        label.textContent = mm;
+        rulerLayer.appendChild(label);
+        
+        // Minor Ticks
+        if (mm < maxDrawMM) {
+            for (let i = 1; i < 10; i++) {
+                const minorX = x + (i/10 * pxPerMM);
+                const minorTick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                minorTick.setAttribute('x1', minorX);
+                minorTick.setAttribute('y1', 0);
+                minorTick.setAttribute('x2', minorX);
+                minorTick.setAttribute('y2', 8);
+                minorTick.setAttribute('stroke', strokeColor);
+                minorTick.setAttribute('stroke-width', 1);
+                rulerLayer.appendChild(minorTick);
+            }
+        }
+    }
+    
+    // Draw the 4.55mm Limit Tick (Visual Edge of FOV)
+    // This aligns with 360px
+    const limitX = visualDiameterPX;
+    
+    const limitTick = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    limitTick.setAttribute('x1', limitX);
+    limitTick.setAttribute('y1', 0);
+    limitTick.setAttribute('x2', limitX);
+    limitTick.setAttribute('y2', 20); 
+    limitTick.setAttribute('stroke', '#ef4444'); 
+    limitTick.setAttribute('stroke-width', 2);
+    rulerLayer.appendChild(limitTick);
+    
+    const limitLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    limitLabel.setAttribute('x', limitX);
+    limitLabel.setAttribute('y', 42); 
+    limitLabel.setAttribute('fill', '#ef4444');
+    limitLabel.setAttribute('font-size', '11px');
+    limitLabel.setAttribute('font-weight', 'bold');
+    limitLabel.setAttribute('text-anchor', 'middle');
+    limitLabel.textContent = `${realDiameterMM} mm`; 
+    rulerLayer.appendChild(limitLabel);
+    
+    // Initial placement
+    const initialX = 375 - (visualDiameterPX / 2); 
+    const initialY = 210 + 40; 
+    rulerLayer.setAttribute('transform', `translate(${initialX}, ${initialY})`);
+    rulerLayer.addEventListener('pointerdown', startRulerDrag);
+}
+
+// --- Token Creation (Scaled to REAL Diameter) ---
+function addToken(suppressRegister) {
+    const sizeCheck = checkItemSize(state.scenario.size, state.diameter, state.scenario.type);
+    if (sizeCheck !== 'ok') { return null; }
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.style.cursor = 'grab';
+  g.dataset.rotation = 0;
+  
+    // Scale items so they fit the REAL field correctly
+    const pxPerUm = 360 / state.magInfo.d_real_um; 
+    let baseSize = 20; 
+    
+    if(state.scenario.type === 'anabaena') {
+        const anabaenaLengthUM = state.scenario.size * ANABAENA_CELLS;
+        baseSize = 350; 
+        var scale = (anabaenaLengthUM * pxPerUm) / baseSize;
+        
+    } else if (state.scenario.type === 'hydra') {
+        baseSize = 80; 
+        var scale = (state.scenario.size * pxPerUm) / baseSize; 
+    } else if (state.scenario.type === 'stentor') { // NEW STENTOR BASE SIZE
+        baseSize = 100; 
+        var scale = (state.scenario.size * pxPerUm) / baseSize; 
+    } else {
+        baseSize = 20;
+        var scale = (state.scenario.size * pxPerUm) / baseSize;
+    }
+    
+    if(state.scenario.type === 'anabaena') {
+      g.dataset.val = ANABAENA_CELLS; 
+      const fil = document.createElementNS('http://www.w3.org/2000/svg','g');
+      let len = ANABAENA_CELLS;
+      for(let i=0; i<len; i++) {
+         const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+         const cx = (i*10) - ((len-1)*5); 
+         const yOff = Math.sin(i*0.15) * 5; 
+         c.setAttribute('cx', cx); 
+         c.setAttribute('cy', yOff);
+         if(i % 10 === 0) { 
+             c.setAttribute('r', 8); c.setAttribute('fill', '#facc15'); 
+         } else {
+             c.setAttribute('r', 6); c.setAttribute('fill', '#4ade80');
+         }
+         c.setAttribute('stroke', '#166534'); c.setAttribute('stroke-width', 1.5);
+         fil.appendChild(c);
+      }
+      fil.setAttribute('transform', `scale(${scale})`);
+      g.appendChild(fil);
+      g.dataset.widthFactor = baseSize; 
+    } 
+    else if(state.scenario.type === 'hydra') {
+      g.dataset.val = 1;
+      const h = document.createElementNS('http://www.w3.org/2000/svg','path');
+      h.setAttribute('d', 'M-30,0 Q-10,5 30,0'); 
+      h.setAttribute('stroke', '#9ad187'); h.setAttribute('stroke-width', 6);
+      h.setAttribute('fill', 'none'); h.setAttribute('stroke-linecap','round');
+      const t = document.createElementNS('http://www.w3.org/2000/svg','g');
+      for(let k=-2;k<=2;k++){
+          const tent = document.createElementNS('http://www.w3.org/2000/svg','path');
+          tent.setAttribute('d', `M30,0 Q40,${k*5} 50,${k*15}`);
+          tent.setAttribute('stroke', '#9ad187'); tent.setAttribute('fill','none');
+          t.appendChild(tent);
+      }
+      const grp = document.createElementNS('http://www.w3.org/2000/svg','g');
+      grp.appendChild(h); grp.appendChild(t);
+      grp.setAttribute('transform', `scale(${scale})`);
+      g.appendChild(grp);
+      g.dataset.widthFactor = 80; 
+     }
+    else if (state.scenario.type === 'onion') { // Specific Onion Cell SVG
+      g.dataset.val = 1;
+      const cell = document.createElementNS('http://www.w3.org/2000/svg','g');
+      
+      // 1. Cell Wall (Polygonal Shape)
+      const wall = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+      // Using a hexagon for a rigid, geometric look
+      wall.setAttribute('points', '100,0 50,86.6 -50,86.6 -100,0 -50,-86.6 50,-86.6');
+      wall.setAttribute('fill', '#fef2f2'); // Very light pink/off-white
+      wall.setAttribute('stroke', '#dc2626'); // Red cell wall
+      wall.setAttribute('stroke-width', 8);
+      cell.appendChild(wall);
+
+      // 2. Nucleus (Central Circle)
+      const nucleus = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      nucleus.setAttribute('cx', 0);
+      nucleus.setAttribute('cy', 0);
+      nucleus.setAttribute('r', 18);
+      nucleus.setAttribute('fill', '#991b1b'); // Dark Red nucleus
+      cell.appendChild(nucleus);
+
+      cell.setAttribute('transform', `scale(${scale / 5})`); // Scale needs adjustment for polygon
+      g.appendChild(cell);
+      g.dataset.widthFactor = 200; // Adjusted for polygon size (approx 200x200)
+    }
+    else if (state.scenario.type === 'stentor') {
+      // NEW: Stentor-specific trumpet shape
+      g.dataset.val = 1;
+      const st = document.createElementNS('http://www.w3.org/2000/svg','g');
+
+      // Main trumpet body (simplified path approximating the provided image)
+      const body = document.createElementNS('http://www.w3.org/2000/svg','path');
+      body.setAttribute(
+        'd',
+        'M-22,-42 Q0,-50 22,-42 Q18,-20 12,-5 Q6,10 2,28 Q0,40 -4,55 Q-8,40 -10,28 Q-14,10 -20,-5 Q-24,-20 -22,-42 Z'
+      );
+      body.setAttribute('fill', '#60a5fa');    // blue fill
+      body.setAttribute('stroke', '#1d4ed8');  // darker outline
+      body.setAttribute('stroke-width', 2);
+      st.appendChild(body);
+
+      // Oral cilia (short white strokes along rim)
+      for (let i = -14; i <= 14; i += 7) {
+        const cil = document.createElementNS('http://www.w3.org/2000/svg','line');
+        cil.setAttribute('x1', i);
+        cil.setAttribute('y1', -44);
+        cil.setAttribute('x2', i + 2);
+        cil.setAttribute('y2', -52);
+        cil.setAttribute('stroke', '#e5f4ff');
+        cil.setAttribute('stroke-width', 2);
+        cil.setAttribute('stroke-linecap','round');
+        st.appendChild(cil);
+      }
+
+      // Contractile vacuole / macronucleus row (dark circles down side)
+      const vacGroup = document.createElementNS('http://www.w3.org/2000/svg','g');
+      for (let j = 0; j < 5; j++) {
+        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        c.setAttribute('cx', -6);
+        c.setAttribute('cy', -18 + j*12);
+        c.setAttribute('r', 3);
+        c.setAttribute('fill', '#1f2937');
+        vacGroup.appendChild(c);
+      }
+      st.appendChild(vacGroup);
+
+      // Small highlight near base
+      const highlight = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      highlight.setAttribute('cx', 5);
+      highlight.setAttribute('cy', 30);
+      highlight.setAttribute('r', 2.5);
+      highlight.setAttribute('fill', '#e0f2fe');
+      st.appendChild(highlight);
+
+      st.setAttribute('transform', `scale(${scale})`);
+      g.appendChild(st);
+      g.dataset.widthFactor = baseSize;
+    }
+    else { // Fallback for Paramecium only (Ellipse)
+      g.dataset.val = 1;
+      const el = document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+      el.setAttribute('rx', 10); el.setAttribute('ry', 6);
+      el.setAttribute('fill', '#93c5fd');
+      el.setAttribute('transform', `scale(${scale})`);
+      g.appendChild(el);
+      g.dataset.widthFactor = 20;
+    }
+  
+  const hit = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  hit.setAttribute('r', 25); hit.setAttribute('fill','transparent');
+  g.appendChild(hit);
+
+  tokensLayer.appendChild(g);
+  
+  if(!suppressRegister) {
+      registerToken(g);
+      const isTop = Math.random() > 0.5;
+      const safeY = isTop ? (Math.random() * 100 + 50) : (Math.random() * 100 + 270);
+      const safeX = (Math.random() * 350) + 200;
+      g.setAttribute('transform', `translate(${safeX},${safeY})`);
+      updateCount(); 
+  } else {
+      registerToken(g);
+  }
+  return g;
+}
+
+function initialSpawn() {
+  const visualDiameter = 360; 
+  const targetPixels = visualDiameter * 0.75;
+  let currentWidth = 0;
+  let safety = 0;
+  while(currentWidth < targetPixels && safety < 50) {
+    const t = addToken(true); 
+    if(!t) break; 
+    
+    let itemLengthUM = state.scenario.size;
+    if(state.scenario.type === 'anabaena') itemLengthUM *= ANABAENA_CELLS;
+    
+    const pxPerUm = 360 / state.diameter;
+    const width = itemLengthUM * pxPerUm;
+    currentWidth += width;
+    safety++;
+  }
+  randomizePositions();
+  updateCount();
+}
+function randomizePositions() {
+  Array.from(tokensLayer.children).forEach(t => {
+      const cx = 375, cy = 210;
+      const angle = Math.random() * 6.28;
+      const r = Math.random() * 100;
+      const x = cx + Math.cos(angle)*r;
+      const y = cy + Math.sin(angle)*r;
+      t.setAttribute('transform', `translate(${x},${y})`);
+  });
+}
+function drawMicroBackground() {
+  sceneLayer.innerHTML = '';
+  const cx = 375, cy = 210, r = 180;
+  const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', r);
+  c.setAttribute('fill', '#fff'); c.setAttribute('stroke', '#cbd5e1'); c.setAttribute('stroke-width', 4);
+  sceneLayer.appendChild(c);
+  
+  const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1', cx-r); line.setAttribute('y1', cy);
+  line.setAttribute('x2', cx+r); line.setAttribute('y2', cy);
+  line.setAttribute('stroke', '#94a3b8');
+  line.setAttribute('stroke-dasharray', '6,4');
+  sceneLayer.appendChild(line);
+}
+
+// --- DRAG LOGIC ---
+let dragged = null;
+function registerToken(g) { g.addEventListener('pointerdown', startDrag); }
+
+function startDrag(e) {
+    const el = e.currentTarget;
+    const isRuler = el.id === 'rulerLayer';
+    let currentX = 0, currentY = 0;
+    const currentTf = el.getAttribute('transform');
+    if (currentTf) {
+        const parts = /translate\(([^,]+),([^)]+)\)/.exec(currentTf);
+        if (parts) { currentX = parseFloat(parts[1]); currentY = parseFloat(parts[2]); }
+    }
+    dragged = {
+        el: el, 
+        startX_client: e.clientX, startY_client: e.clientY, 
+        startX_svg: currentX, startY_svg: currentY,
+        isRuler: isRuler
+    };
+    state.lastSelected = el;
+    el.style.cursor = 'grabbing';
+    if(!isRuler) el.parentNode.appendChild(el); 
+    document.addEventListener('pointermove', onMove);
+    document.addEventListener('pointerup', onUp);
+}
+
+function startRulerDrag(e) { e.stopPropagation(); startDrag(e); }
+
+function onMove(e) {
+    if(!dragged) return;
+    const svgRect = $('fovSvg').getBoundingClientRect();
+    const scale = 750 / svgRect.width; 
+    const dx_total = (e.clientX - dragged.startX_client) * scale;
+    const dy_total = (e.clientY - dragged.startY_client) * scale;
+    const nx = dragged.startX_svg + dx_total;
+    const ny = dragged.startY_svg + dy_total;
+    
+    if(dragged.isRuler) {
+        dragged.el.setAttribute('transform', `translate(${nx},${ny})`);
+    } else {
+        const rot = dragged.el.dataset.rotation || 0;
+        dragged.el.setAttribute('transform', `translate(${nx},${ny}) rotate(${rot})`);
+    }
+}
+
+function onUp(e) {
+    if(dragged) {
+        dragged.el.style.cursor = 'grab';
+        dragged = null;
+        document.removeEventListener('pointermove', onMove);
+        document.removeEventListener('pointerup', onUp);
+        updateCount();
+    }
+}
+$('rotateBtn').onclick = () => {
+    if(state.lastSelected && state.lastSelected.id !== 'rulerLayer') {
+        let cur = parseFloat(state.lastSelected.dataset.rotation || 0);
+        cur += 45;
+        state.lastSelected.dataset.rotation = cur;
+        const tf = state.lastSelected.getAttribute('transform');
+        const tParts = /translate\(([^)]+)\)/.exec(tf);
+        if(tParts) {
+            state.lastSelected.setAttribute('transform', `translate(${tParts[1]}) rotate(${cur})`);
+        }
+    }
+};
+
+// --- COUNTING (Visual check against REAL diameter) ---
+function updateCount() {
+    let fractionalCount = 0;
+    const tokens = Array.from(tokensLayer.children);
+    const cy = 210;
+    const FOV_RADIUS = 180;
+    const FOV_CENTER_X = 375;
+    const FOV_LEFT = FOV_CENTER_X - FOV_RADIUS; 
+    const FOV_RIGHT = FOV_CENTER_X + FOV_RADIUS; 
+    
+    // Use Real Diameter for visual calculations
+    const pxPerUm = 360 / state.diameter; 
+
+    tokens.forEach(t => {
+        const tf = t.getAttribute('transform');
+        const parts = /translate\(([^,]+),([^)]+)\)/.exec(tf);
+        if(!parts) return;
+
+        const x_center = parseFloat(parts[1]);
+        const y_center = parseFloat(parts[2]);
+        
+        if(Math.abs(y_center - cy) < 20) {
+            let n_units_per_token = parseInt(t.dataset.val); 
+            let item_size_um = state.scenario.size;
+            let itemLengthUM = item_size_um * (state.scenario.type === 'anabaena' ? ANABAENA_CELLS : 1);
+            const W_item = itemLengthUM * pxPerUm; 
+            const x_item_left = x_center - W_item / 2;
+            const x_item_right = x_center + W_item / 2;
+            const overlap_start = Math.max(x_item_left, FOV_LEFT);
+            const overlap_end = Math.min(x_item_right, FOV_RIGHT);
+            const visibleLength = overlap_end - overlap_start;
+            
+            if (visibleLength > 0 && W_item > 0) {
+                const fractionVisible = visibleLength / W_item;
+                fractionalCount += (n_units_per_token * fractionVisible);
+            }
+        }
+    });
+    
+    const displayCount = fractionalCount.toFixed(2);
+    $('placedCount').textContent = displayCount;
+    state.placedN = fractionalCount; 
+
+    $('sizeResult').style.display = 'none'; 
+    $('calcError').style.display='none';
+    $('finalAnswerBox').style.display = 'none'; 
+}
+
+$('autoFitBtn').onclick = () => {
+    const tokens = Array.from(tokensLayer.children);
+    if(!tokens.length) return;
+    const startX = 375 - 180; 
+    const endX = 375 + 180;   
+    let curX = startX + 10;
+    const pxPerUm = 360 / state.diameter;
+
+    tokens.forEach(t => {
+        let itemLengthUM = state.scenario.size;
+        if(state.scenario.type === 'anabaena') itemLengthUM *= ANABAENA_CELLS;
+        const width = itemLengthUM * pxPerUm;
+        const halfWidth = width / 2;
+        const tokenCenter = curX + halfWidth;
+        if(tokenCenter + halfWidth > endX) { return; }
+        t.setAttribute('transform', `translate(${tokenCenter}, 210) rotate(0)`);
+        t.dataset.rotation = 0;
+        curX += (width + 5);
+    });
+    updateCount();
+};
+
+$('addTokenBtn').onclick = () => addToken(false);
+$('removeTokenBtn').onclick = () => { if(tokensLayer.lastChild) tokensLayer.lastChild.remove(); updateCount(); };
+$('clearBtn').onclick = () => { tokensLayer.innerHTML = ''; updateCount(); };
+$('newBtn').onclick = newScenario;
+
+// --- RESET & INPUTS ---
+function resetUI() {
+    tokensLayer.innerHTML = ''; 
+    $('symbFormula').value=''; 
+    $('calcDMan').value=''; $('calcDExp').value=''; $('calcN').value='';
+    $('calcDMan').disabled=true; $('calcDExp').disabled=true; $('calcN').disabled=true;
+    $('calculateBtn').disabled=true; $('submitBtn').disabled=true; $('checkConversionBtn').disabled=true;
+    $('feedback').style.display='none';
+    $('sizeResult').style.display='none';
+    $('calcError').style.display='none';
+    $('finalAnswerBox').style.display = 'none';
+    rulerLayer.innerHTML = ''; 
+    $('symbFormula').classList.remove('valid');
+    $('convMan').value = ''; $('convExp').value = ''; $('rateExpInput').value = ''; 
+    $('convMan').disabled = true; $('convExp').disabled = true; $('rateExpInput').disabled = true;
+    $('conversionStatus').style.display='none';
+    $('initialValueText').innerHTML = '—';
+    $('targetUOMSelect').disabled = true;
+    state.calculatedSizeUM = 0;
+    state.placedN = 0;
+}
+
+$('symbFormula').oninput = e => { 
+    // Accept S, W, or L based on context
+    const val = e.target.value.toUpperCase().replace(/\s/g,'');
+    const validStart = ['S','L','W'].some(char => val.startsWith(char));
+    
+    if(validStart && val.includes('=') && val.includes('D') && val.includes('N') && val.includes('/')) { 
+        e.target.classList.add('valid'); 
+        $('calcDMan').disabled=false; $('calcDExp').disabled=false; $('calcN').disabled=false;
+        $('calculateBtn').disabled = false;
+    } else {
+        e.target.classList.remove('valid'); 
+        $('calcDMan').disabled=true; $('calcDExp').disabled=true; $('calcN').disabled=true;
+        $('calculateBtn').disabled = true;
+    }
+};
+
+$('calculateBtn').onclick = () => {
+    const uMan = $('calcDMan').value.trim();
+    const uExp = $('calcDExp').value.trim();
+    const uN = $('calcN').value.trim();
+    const realN = state.placedN; 
+    
+    // EXPECTED INPUTS: ROUNDED VALUES (d_math_um)
+    const correctMan = state.magInfo.man;
+    const correctExp = state.magInfo.exp;
+    let errorMsg = "";
+
+    const uNFloat = parseFloat(uN);
+    const n_tolerance = Math.abs(realN * 0.05); // slightly looser tolerance as rounding introduces gaps
+    
+    if(isNaN(uNFloat) || Math.abs(uNFloat - realN) > n_tolerance) {
+        errorMsg = `Number error: You aligned ${realN.toFixed(2)} items. Enter this value.`;
+    }
+    
+    // Check against the rounded values in state.magInfo
+    if(Math.abs(parseFloat(uMan) - parseFloat(correctMan)) > 0.01 || parseInt(uExp) !== parseInt(correctExp)) {
+        errorMsg = `Diameter error: The REAL diameter is ${state.magInfo.d_real_um}µm, but you must enter the ROUNDED value (${state.magInfo.d_math_um}µm).`;
+    }
+    
+    if(realN < 0.01) errorMsg = "Please align items on the diameter line first.";
+
+    if(errorMsg) {
+        $('calcError').textContent = errorMsg; $('calcError').style.display = 'block'; $('sizeResult').style.display='none';
+        return;
+    }
+    $('calcError').style.display = 'none';
+    
+    // Calculate Size = Rounded Diameter / Real N
+    // This implies result is Approximate
+    const calcDiameter = state.magInfo.d_math_um;
+    state.calculatedSizeUM = calcDiameter / realN;
+    
+    const snResult = formatSN(state.calculatedSizeUM);
+    $('finalSizeUM').innerHTML = snResult;
+    $('sizeResult').style.display='block';
+    
+    $('targetUOMSelect').disabled = false;
+    $('convMan').disabled = false; $('convExp').disabled = false; $('rateExpInput').disabled = false;
+    $('checkConversionBtn').disabled = false;
+    
+    updateTrainTrackDisplay();
+};
+
+$('targetUOMSelect').onchange = updateTrainTrackDisplay;
+
+function updateTrainTrackDisplay() {
+    const uom = $('targetUOMSelect').value;
+    const sizeSN = formatSN(state.calculatedSizeUM);
+    const conversionDetails = getConversionDetails(uom);
+    
+    state.conversionTargetExp = conversionDetails.exponent; 
+    
+    $('initialValueText').innerHTML = state.calculatedSizeUM > 0 ? `${state.dimensionSymbol} (${sizeSN} &micro;m)` : `${state.dimensionSymbol} (&micro;m)`;
+    $('numerator').innerHTML = conversionDetails.text;
+    
+    $('rateExpInput').value = ''; $('rateExpInput').classList.remove('valid', 'incorrect');
+    $('conversionStatus').style.display='none';
+    $('convMan').classList.remove('valid', 'incorrect');
+    $('convExp').classList.remove('valid', 'incorrect');
+    
+    $('submitBtn').disabled = false;
+}
+
+$('checkConversionBtn').onclick = () => {
+    const userRateExp = parseInt($('rateExpInput').value.trim());
+    if(userRateExp !== state.conversionTargetExp) {
+        $('rateExpInput').classList.add('incorrect');
+        $('conversionStatus').className = 'status danger';
+        $('conversionStatus').textContent = `❌ Incorrect rate. 1 ${$('targetUOMSelect').value} = 10^? µm?`;
+        $('conversionStatus').style.display = 'block';
+        return; 
+    }
+    $('rateExpInput').classList.add('valid'); $('rateExpInput').classList.remove('incorrect');
+    
+    const uMan = parseFloat($('convMan').value.trim());
+    const uExp = parseInt($('convExp').value.trim());
+    const expectedValue = state.calculatedSizeUM / Math.pow(10, state.conversionTargetExp);
+    const userInputVal = uMan * Math.pow(10, uExp);
+    const diff = Math.abs(userInputVal - expectedValue);
+    
+    if (diff < (expectedValue * 0.001) || diff < 0.0000001) {
+        $('conversionStatus').className = 'status good';
+        $('conversionStatus').innerHTML = `✅ Math correct! Click Submit.`;
+        $('conversionStatus').style.display = 'block';
+        $('convMan').classList.add('valid'); $('convExp').classList.add('valid');
+        $('submitBtn').disabled = false;
+    } else {
+        $('conversionStatus').className = 'status danger';
+        $('conversionStatus').textContent = "❌ Incorrect final answer.";
+        $('conversionStatus').style.display = 'block';
+        $('convMan').classList.add('incorrect');
+    }
+};
+
+$('submitBtn').onclick = () => {
+    const uMan = parseFloat($('convMan').value.trim());
+    const uExp = parseInt($('convExp').value.trim());
+    const finalUOM = $('targetUOMSelect').value;
+    
+    const expectedValue = state.calculatedSizeUM / Math.pow(10, state.conversionTargetExp);
+    const userInputVal = uMan * Math.pow(10, uExp);
+    const diff = Math.abs(userInputVal - expectedValue);
+    const isCorrect = (diff < (expectedValue * 0.001) || diff < 0.0000001);
+
+    const answerBox = $('finalAnswerBox');
+    const answerText = `${$('convMan').value} &times; 10<sup>${$('convExp').value}</sup> ${finalUOM}`;
+
+    answerBox.style.display = 'block';
+    answerBox.innerHTML = `Answer: ${answerText}`;
+    
+    if (isCorrect) {
+        answerBox.className = 'answer-feedback-box correct';
+    } else {
+        answerBox.className = 'answer-feedback-box incorrect';
+    }
+};
+
+newScenario();
+</script>
+</body>
+</html>
