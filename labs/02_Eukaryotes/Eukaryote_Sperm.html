@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flagella Laboratory Investigation - Euglena & Bull Sperm</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fff3e0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #f57c00;
+            color: #f57c00;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #fff3e0;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #f57c00;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #f57c00;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #f57c00;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #e65100;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #f57c00;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #f57c00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #e65100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #ffe0b2;
+            color: #e65100;
+        }
+
+        .btn-secondary:hover {
+            background: #ffcc80;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #1565c0;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #f57c00;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #fff8f0;
+            border: 2px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #f57c00;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #f57c00;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffe0b2;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #ffe0b2;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #66bb6a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #2e7d32;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #f57c00;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border-left: 4px solid #0277bd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #01579b;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Flagella Laboratory Investigation</h1>
+            <p><strong>Euglena (Protist) and Bull Sperm (Animal Cells): Shared Locomotion Structures</strong></p>
+            <p>This investigation explores flagella—whip-like cellular appendages used for locomotion in both protists and animal reproductive cells. Students will observe living Euglena demonstrating rapid flagellar movement, then compare these structures with the flagella of bull sperm cells, revealing evolutionary conservation of fundamental cellular machinery.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Protist-Animal Comparison</button>
+            <button class="nav-btn" onclick="switchTab('review')">Review Questions</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Observe</strong> living Euglena demonstrating rapid flagellar locomotion</li>
+                    <li><strong>Identify</strong> flagella, chloroplasts, and other cellular structures in protists</li>
+                    <li><strong>Explain</strong> how flagella function in cell locomotion through whip-like movements</li>
+                    <li><strong>Compare</strong> flagellar structure and function in protists with flagella in animal sperm cells</li>
+                    <li><strong>Describe</strong> the internal structure of flagella (9+2 microtubule arrangement)</li>
+                    <li><strong>Analyze</strong> how the same cellular machinery serves different purposes across kingdoms</li>
+                    <li><strong>Recognize</strong> that flagella in protists and animals share identical structural composition despite different orientations</li>
+                </ul>
+
+                <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+                <ul>
+                    <li><strong>Foundational Concept 1:</strong> Structure and Function of Proteins and Their Constituent Amino Acids
+                        <ul>
+                            <li><strong>1A: Structure and Function of Proteins</strong>
+                                <ul>
+                                    <li><strong>Tubulin and Dynein:</strong> Understanding the role of motor proteins in flagellar beating and cellular locomotion.</li>
+                                    <li><strong>Cytoskeletal Elements:</strong> Recognition of microtubules as the structural basis of flagella.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 2:</strong> Structure and Function of Eukaryotic Cells
+                        <ul>
+                            <li><strong>2A: Assembly of Molecules and Organelles</strong>
+                                <ul>
+                                    <li><strong>Flagellar Structure:</strong> Understanding the 9+2 microtubule arrangement and its role in movement.</li>
+                                    <li><strong>Chloroplasts:</strong> Recognition of photosynthetic organelles in Euglena and their evolutionary significance.</li>
+                                </ul>
+                            </li>
+                            <li><strong>2B: Structure and Function of Systems</strong>
+                                <ul>
+                                    <li><strong>Cellular Locomotion:</strong> Understanding how flagellar beating generates propulsion in aqueous environments.</li>
+                                    <li><strong>Energy Requirements:</strong> Recognizing that flagellar movement requires ATP from mitochondria.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 3:</strong> Reproduction and Development
+                        <ul>
+                            <li><strong>Gamete Function:</strong> Understanding how sperm flagella enable fertilization by facilitating movement through reproductive tracts.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Scientific Inquiry and Reasoning Skills (SIRS)</strong>
+                        <ul>
+                            <li><strong>Skill 1: Knowledge of Scientific Concepts</strong>
+                                <ul>
+                                    <li>Identifying flagellar structures under magnification (10X and 40X).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skill 4: Data-Based and Statistical Reasoning</strong>
+                                <ul>
+                                    <li>Comparing structural similarities between protist and animal flagella.</li>
+                                    <li>Observing and documenting differences in flagellar orientation (anterior vs. posterior).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Chapter Context: Building on the Template</h3>
+                <p><strong>Connection to Previous Investigations:</strong> This investigation continues the theme established in the onion cell and amoeba labs—demonstrating shared cellular structures across eukaryotic kingdoms. Key features include:</p>
+                <ul>
+                    <li><strong>Living specimens:</strong> Euglena are observed alive and moving rapidly</li>
+                    <li><strong>Dynamic processes:</strong> Students observe active flagellar beating rather than static structures</li>
+                    <li><strong>Comparative analysis:</strong> Direct comparison with animal sperm cells demonstrates identical structures serving similar functions</li>
+                    <li><strong>Dual characteristics:</strong> Euglena possess both plant-like (chloroplasts) and animal-like (flagella) features</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>🎯 Unity of Life Theme:</strong> This investigation demonstrates that protists and animals use identical flagellar machinery for locomotion. The 9+2 microtubule arrangement found in Euglena flagella is structurally identical to that in bull sperm flagella, showcasing evolutionary conservation of cellular components across vast phylogenetic distances.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What are Flagella?</h3>
+                <p><strong>Flagella</strong> (singular: flagellum) are long, whip-like cellular appendages used for locomotion. They are structurally similar to cilia but are distinguished by being longer and fewer in number. If a cell has only one or a few long appendages, they are called flagella; if the appendages are short and numerous, they are called cilia.</p>
+
+                <h3>The 9+2 Microtubule Arrangement</h3>
+                <p>All eukaryotic flagella share an identical internal structure consisting of microtubules arranged in a specific pattern:</p>
+                <ul>
+                    <li><strong>9 outer doublets:</strong> Nine pairs of microtubules arranged in a circle</li>
+                    <li><strong>2 central singlets:</strong> Two single microtubules in the center</li>
+                    <li><strong>Dynein arms:</strong> Motor proteins that cause sliding of microtubules, generating the whip-like motion</li>
+                    <li><strong>ATP requirement:</strong> Flagellar movement requires energy from ATP</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> The 9+2 microtubule arrangement is universally conserved across all eukaryotic flagella and cilia—from protists to plants to animals. This structural identity demonstrates that these organelles evolved once in early eukaryotic history and have been maintained for over a billion years.
+                </div>
+
+                <h3>Euglena: A Protist with Dual Characteristics</h3>
+                <p><strong>Euglena</strong> is a fascinating unicellular protist that exhibits characteristics of both plants and animals:</p>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Plant-Like Features</h4>
+                        <p>Contains chloroplasts with chlorophyll pigment, enabling photosynthesis in the presence of light.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Animal-Like Features</h4>
+                        <p>Possesses a long flagellum for rapid locomotion and can consume organic matter heterotrophically in darkness.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Anterior Flagellum</h4>
+                        <p>The flagellum is attached at the anterior (front) end and pulls the cell forward through water.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Rapid Movement</h4>
+                        <p>Euglena swim very quickly, making observation of the flagellum challenging without special techniques.</p>
+                    </div>
+                </div>
+
+                <h3>Key Structures in Euglena</h3>
+
+                <h4>Flagellum</h4>
+                <p>A long, thin, whip-like structure extending from the anterior end. It rapidly whips back and forth, propelling the cell forward. The flagellum is extremely thin and flexible, making it difficult to observe even at 400X magnification.</p>
+
+                <h4>Chloroplasts</h4>
+                <p>Numerous green organelles containing chlorophyll, the photosynthetic pigment. These give Euglena their characteristic green color and enable them to produce their own food from sunlight.</p>
+
+                <h4>Nucleus</h4>
+                <p>Contains the cell's genetic material but is very difficult to see in living Euglena without staining.</p>
+
+                <h4>Eyespot (Stigma)</h4>
+                <p>A light-sensitive organelle that helps Euglena detect light and swim toward it (phototaxis). This enables them to find optimal light conditions for photosynthesis.</p>
+
+                <h3>Bull Sperm: Animal Cells with Flagella</h3>
+                <p>Mammalian sperm cells use flagella for locomotion through the female reproductive tract. Key features include:</p>
+
+                <h4>Posterior Flagellum</h4>
+                <p>Unlike Euglena, sperm have their flagellum attached at the posterior (rear) end, pushing the cell forward rather than pulling it.</p>
+
+                <h4>Head</h4>
+                <p>Contains the nucleus with tightly packed DNA. In prepared slides, the head appears as a distinct oval structure.</p>
+
+                <h4>Midpiece</h4>
+                <p>Contains mitochondria that produce ATP to power flagellar movement.</p>
+
+                <h4>Tail (Flagellum)</h4>
+                <p>A long flagellum with the same 9+2 microtubule structure as Euglena, but oriented posteriorly.</p>
+
+                <div class="info-box">
+                    <strong>💡 Functional Similarity:</strong> Despite the difference in orientation (anterior vs. posterior), both Euglena flagella and sperm flagella serve the same basic function: propelling the cell through a fluid environment. Both require ATP, both use the 9+2 microtubule structure, and both employ dynein motor proteins to generate movement.
+                </div>
+
+                <h3>Why Flagella are Difficult to Observe</h3>
+                <p>Observing flagella presents several challenges:</p>
+                <ul>
+                    <li><strong>Extreme thinness:</strong> Flagella are only about 0.2 micrometers in diameter—near the resolution limit of light microscopy</li>
+                    <li><strong>Rapid movement:</strong> Flagella beat hundreds of times per second, creating a blur</li>
+                    <li><strong>Transparency:</strong> Flagella are transparent and don't stain well in living specimens</li>
+                    <li><strong>Speed of the organism:</strong> Euglena swim so fast that tracking individual cells is difficult</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Observation Tip:</strong> To improve your chances of seeing flagella, use the iris diaphragm to reduce light intensity (increasing contrast) and be patient. You may only catch brief glimpses of the flagellum as it whips by. Using methyl cellulose to slow down the organisms can help, but timing is critical—too much slowing stops movement entirely.
+                </div>
+
+                <h3>Connection to Other Investigations</h3>
+                <p>This investigation builds on patterns observed in previous labs:</p>
+                <ul>
+                    <li><strong>Onion cells:</strong> Demonstrated fundamental eukaryotic structures (nucleus, membrane)</li>
+                    <li><strong>Amoeba:</strong> Showed pseudopodia as a locomotion mechanism shared by protists and animal cells</li>
+                    <li><strong>Flagella (this lab):</strong> Reveals another conserved locomotion mechanism found in protists and animals</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Unity of Life Connection:</strong> The structural identity of flagella in Euglena and bull sperm demonstrates that the same molecular machinery has been conserved across enormous evolutionary distances. Whether propelling a unicellular protist through pond water or enabling fertilization in mammals, flagella operate on identical principles—a testament to the unity of life at the cellular level.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Learning Objectives for Preparation</h3>
+                <p>Before beginning the investigation, you should understand:</p>
+                <ul>
+                    <li>The difference between observing rapidly moving vs. slowed organisms</li>
+                    <li>Proper wet mount preparation for living protists</li>
+                    <li>How to use methyl cellulose as a slowing agent</li>
+                    <li>The importance of light adjustment for viewing transparent structures</li>
+                    <li>Safety procedures for handling live cultures</li>
+                </ul>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🦠 For Living Euglena Observation</h4>
+                    <ul>
+                        <li>Live Euglena culture</li>
+                        <li>Methyl cellulose (slowing reagent)</li>
+                        <li>Disposable plastic pipette or dropper</li>
+                        <li>Glass microscope slides (clean and dry)</li>
+                        <li>Glass cover slips</li>
+                        <li>Paper towels</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🐂 For Bull Sperm Observation</h4>
+                    <ul>
+                        <li>Prepared permanent slide of bull sperm cells</li>
+                        <li>Demonstration microscope (set up by instructor at 40X)</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Light microscope with 4X, 10X, and 40X objectives</li>
+                        <li>Lens paper (for cleaning lenses)</li>
+                        <li>Iris diaphragm for light control</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>📝 For Documentation</h4>
+                    <ul>
+                        <li>Pencils or pens (for sketches)</li>
+                        <li>Blank paper or observation sheets</li>
+                        <li>Colored pencils (optional, for highlighting structures)</li>
+                    </ul>
+                </div>
+
+                <h3>Preparing the Culture</h3>
+                <p><strong>Note:</strong> The instructor will maintain live Euglena cultures. These cultures contain Euglena living in pond water or culture medium with nutrients. Do not add stains or fixatives to living Euglena—this will kill them and stop flagellar movement.</p>
+
+                <h3>Understanding Methyl Cellulose</h3>
+                <p>Methyl cellulose is a thickening agent that increases the viscosity of the culture medium, slowing down protist movement without killing the organisms. However, timing is critical:</p>
+                <ul>
+                    <li><strong>Too little:</strong> Organisms still move too fast to observe</li>
+                    <li><strong>Just right:</strong> Organisms slow enough to see flagellar movement</li>
+                    <li><strong>Too much/too long:</strong> Organisms stop moving completely</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Critical Timing:</strong> After adding methyl cellulose, observe the slide IMMEDIATELY. The slowing effect increases rapidly, and you may only have 2-3 minutes of optimal viewing time before movement stops completely. If you miss this window, prepare a fresh slide.
+                </div>
+
+                <h3>Preparing Your Workstation</h3>
+
+                <h4>Step 1: Organize Your Space</h4>
+                <ul>
+                    <li>Arrange materials in a logical order on your lab bench</li>
+                    <li>Place microscope at a comfortable height with good lighting</li>
+                    <li>Keep paper towels readily accessible</li>
+                    <li>Locate both the Euglena culture container and methyl cellulose bottle</li>
+                </ul>
+
+                <h4>Step 2: Clean Your Microscope</h4>
+                <ul>
+                    <li>Use lens paper (never paper towels) to clean objective lenses</li>
+                    <li>Clean the eyepiece last</li>
+                    <li>Wipe the stage clean</li>
+                    <li>Confirm the 4X objective lens is in place</li>
+                    <li>Adjust the iris diaphragm to about 50% open</li>
+                </ul>
+
+                <h4>Step 3: Pre-Lab Safety Review</h4>
+                <ul>
+                    <li><strong>Live Cultures:</strong> Avoid contact with culture water; wash hands if exposure occurs</li>
+                    <li><strong>Microscope:</strong> Never use coarse focus at 10X or 40X magnification</li>
+                    <li><strong>Glass:</strong> Report any broken slides or cover slips to instructor immediately</li>
+                    <li><strong>Permanent Slides:</strong> Do not touch demonstration slides directly; they are valuable teaching resources</li>
+                </ul>
+
+                <h3>Demonstration Microscope</h3>
+                <p>The instructor will set up a demonstration microscope with a permanent slide of bull sperm cells at 40X magnification. Do NOT adjust the coarse focus on this microscope—use only the fine focus if needed.</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD & STUDENT ACTIVITY -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part A: Observing Living Euglena WITHOUT Slowing Agent</h3>
+
+                <h4>Step 1: Prepare the Initial Wet Mount</h4>
+                <ol>
+                    <li>Locate the Euglena culture container</li>
+                    <li>Gently swirl the culture to distribute organisms evenly</li>
+                    <li>Using a clean dropper, place 2-3 drops of culture onto a clean microscope slide</li>
+                    <li>Carefully place a cover slip over the drops at a 45-degree angle to minimize air bubbles</li>
+                    <li>Blot excess water with a paper towel if needed</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Do NOT add methyl cellulose yet:</strong> First observe the natural speed of Euglena movement to appreciate how fast they swim.
+                </div>
+
+                <h4>Step 2: Initial Observation at 10X Magnification</h4>
+                <ol>
+                    <li>Place the prepared slide on the microscope stage</li>
+                    <li>Start with the 10X objective (total magnification = 100X)</li>
+                    <li>Use the coarse focus knob to bring the specimen into view</li>
+                    <li><strong>Reduce light intensity:</strong> Use the iris diaphragm to close down the light—this increases contrast</li>
+                    <li>Scan the slide by moving it gently on the stage</li>
+                    <li>Look for small green organisms swimming rapidly across the field</li>
+                    <li>Notice how quickly they move—they appear as green blurs darting across your view</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 What You're Seeing:</strong> Euglena typically swim in a spiral pattern, rotating as they move forward. Their small size and rapid movement make them appear as tiny green dots or streaks zipping through the water. This demonstrates why we need a slowing agent to observe their flagella.
+                </div>
+
+                <h3>Part B: Observing Euglena WITH Methyl Cellulose</h3>
+
+                <h4>Step 1: Add the Slowing Agent</h4>
+                <ol>
+                    <li>Carefully lift one edge of the cover slip using forceps or your fingernail</li>
+                    <li>Add ONE drop of methyl cellulose to the edge of the cover slip</li>
+                    <li>The methyl cellulose will flow under the cover slip by capillary action</li>
+                    <li>Gently lower the cover slip back down</li>
+                    <li>Blot any excess liquid with a paper towel</li>
+                    <li><strong>OBSERVE IMMEDIATELY—you have only 2-3 minutes of optimal viewing time</strong></li>
+                </ol>
+
+                <h4>Step 2: Observe Slowed Euglena at 10X</h4>
+                <ol>
+                    <li>Return the slide to the microscope stage</li>
+                    <li>Focus at 10X magnification</li>
+                    <li>Reduce light with the iris diaphragm for maximum contrast</li>
+                    <li>Watch for Euglena that are still moving but at a slower pace</li>
+                    <li>Select one organism that is moving slowly enough to track</li>
+                    <li>Observe its overall shape and green color from chloroplasts</li>
+                </ol>
+
+                <h4>Step 3: Attempt to Observe the Flagellum at 40X</h4>
+                <ol>
+                    <li>Center a slowly-moving Euglena in your field of view at 10X</li>
+                    <li>Carefully rotate to the 40X objective</li>
+                    <li>Use ONLY the fine focus knob to sharpen the image</li>
+                    <li>Close the iris diaphragm significantly to reduce light and increase contrast</li>
+                    <li>Look at the more pointed anterior (front) end of the Euglena</li>
+                    <li>Watch for a thin, whip-like structure extending from the anterior end</li>
+                    <li>You may only see brief glimpses as the flagellum rapidly whips about</li>
+                    <li>Be patient—observing the flagellum is challenging even under ideal conditions</li>
+                </ol>
+
+                <div class="reflection-box">
+                    <strong>📝 Observation Tip:</strong> The flagellum appears as a very thin, flexible thread that whips back and forth rapidly. It may be easier to see when the Euglena is moving slowly or momentarily pauses. Don't be discouraged if you can't see it clearly—even experienced microscopists find flagella difficult to observe in living cells.
+                </div>
+
+                <h4>Step 4: Identify Other Structures</h4>
+                <p>While observing at 40X, look for these additional structures:</p>
+                <ul>
+                    <li><strong>Chloroplasts:</strong> Numerous small green organelles distributed throughout the cell</li>
+                    <li><strong>Cell shape:</strong> Euglena are elongated and somewhat spindle-shaped</li>
+                    <li><strong>Anterior end:</strong> The more pointed end where the flagellum emerges</li>
+                    <li><strong>Eyespot (if visible):</strong> A small red-orange spot near the anterior end</li>
+                </ul>
+
+                <div class="observation-box">
+                    <h4>Sketch of Living Euglena - 40X Magnification</h4>
+                    <p><strong>Labels to include:</strong> Chloroplasts, Flagellum (if visible), Anterior end, General cell shape</p>
+                    <div class="sketch-area">
+                        Your sketch: Living Euglena showing chloroplasts and flagellum (if observed)
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 If You Cannot See the Flagellum:</strong> Don't worry! Flagella are extremely difficult to observe in living cells. If you were unable to see it, be sure to look at the poster in the lab and the textbook images (pp. 114-116 and p. 601, Figure 28.10). The important concept is understanding that the flagellum is there and serves as the locomotion organelle.
+                </div>
+
+                <h3>Part C: Observing Bull Sperm Cells (Demonstration Slide)</h3>
+
+                <h4>Step 1: Locate the Demonstration Microscope</h4>
+                <p>Find the demonstration microscope that the instructor has set up with a permanent stained slide of bull sperm. This slide is already focused at 40X magnification.</p>
+
+                <h4>Step 2: Observe at 40X Magnification</h4>
+                <ol>
+                    <li>Look through the eyepiece—the slide is already focused</li>
+                    <li>Use ONLY the fine focus knob if you need to sharpen the image</li>
+                    <li>Locate individual sperm cells in the field of view</li>
+                    <li>Identify the following structures on multiple sperm cells:</li>
+                </ol>
+
+                <ul>
+                    <li><strong>Head:</strong> Oval or teardrop-shaped structure containing the nucleus with tightly packed DNA</li>
+                    <li><strong>Midpiece:</strong> Short region immediately behind the head (contains mitochondria, though not visible)</li>
+                    <li><strong>Flagellum (tail):</strong> Long, thin structure extending from the posterior end—this is what propels the sperm</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ IMPORTANT:</strong> Do NOT touch the coarse focus adjustment knob on the demonstration microscope. Use ONLY the fine focus knob, and only make minor adjustments if needed.
+                </div>
+
+                <div class="observation-box">
+                    <h4>Sketch of Bull Sperm - 40X Magnification</h4>
+                    <p><strong>Labels to include:</strong> Head (containing nucleus), Flagellum (tail)</p>
+                    <div class="sketch-area">
+                        Your sketch: Bull sperm showing head and flagellum clearly
+                    </div>
+                </div>
+
+                <h3>Comparative Analysis Activity</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Analysis Question:</strong>
+                    <p>Based on your observations of Euglena and bull sperm, what key structural feature do these cells share? How does the ORIENTATION of this structure differ between the two cell types?</p>
+                </div>
+
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Write your response here..."></textarea>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>Living Euglena (10X and 40X Magnification)</h4>
+                <ul>
+                    <li><strong>Without methyl cellulose:</strong> Rapid swimming movement; organisms appear as green blurs or streaks darting across the field</li>
+                    <li><strong>With methyl cellulose:</strong> Slowed movement allowing observation of individual cells</li>
+                    <li><strong>Green color:</strong> Distinctive bright green color from numerous chloroplasts</li>
+                    <li><strong>Elongated shape:</strong> Spindle-shaped or cigar-shaped body</li>
+                    <li><strong>Chloroplasts:</strong> Multiple small green organelles distributed throughout the cell</li>
+                    <li><strong>Anterior end:</strong> More pointed end from which the flagellum emerges</li>
+                    <li><strong>Flagellum (if visible):</strong> Thin, whip-like structure at the anterior end, rapidly beating</li>
+                    <li><strong>Spiral swimming pattern:</strong> Rotation while moving forward</li>
+                </ul>
+
+                <h4>Bull Sperm (40X Magnification)</h4>
+                <ul>
+                    <li><strong>Head:</strong> Oval or teardrop-shaped structure, densely stained, containing the nucleus</li>
+                    <li><strong>Midpiece:</strong> Short, slightly thicker region immediately behind the head</li>
+                    <li><strong>Flagellum:</strong> Long, thin tail extending from the posterior end of the cell</li>
+                    <li><strong>Overall shape:</strong> Tadpole-like appearance with distinct head and tail regions</li>
+                    <li><strong>Length:</strong> Total length approximately 50-60 micrometers (head ~5 µm, flagellum ~50 µm)</li>
+                    <li><strong>Orientation:</strong> Flagellum positioned posteriorly (unlike Euglena's anterior flagellum)</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ If your observations were successful, you should have:</strong>
+                    <ul>
+                        <li>Observed multiple Euglena swimming rapidly before adding methyl cellulose</li>
+                        <li>Successfully slowed Euglena movement to allow detailed observation</li>
+                        <li>Identified chloroplasts clearly in Euglena cells</li>
+                        <li>Attempted to observe the Euglena flagellum (success rate varies due to difficulty)</li>
+                        <li>Clearly identified the head and flagellum of bull sperm cells</li>
+                        <li>Recognized that both cell types use flagella for locomotion</li>
+                        <li>Noted the difference in flagellar orientation (anterior vs. posterior)</li>
+                    </ul>
+                </div>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cannot find any Euglena</td>
+                            <td>Organisms settled to bottom of culture; sample taken from top layer only</td>
+                            <td>Gently swirl culture before sampling; try sampling from middle or bottom of container</td>
+                        </tr>
+                        <tr>
+                            <td>Euglena not moving</td>
+                            <td>Too much methyl cellulose; organisms completely immobilized</td>
+                            <td>Prepare fresh slide with less methyl cellulose; observe immediately after adding</td>
+                        </tr>
+                        <tr>
+                            <td>Euglena still too fast to observe</td>
+                            <td>Insufficient methyl cellulose; not enough time for slowing effect</td>
+                            <td>Add one more drop of methyl cellulose; wait 30-60 seconds; observe again</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot see flagellum in Euglena</td>
+                            <td>Normal—flagella are extremely thin and transparent; rapid movement creates blur</td>
+                            <td>This is expected; refer to textbook diagrams and lab posters for reference images</td>
+                        </tr>
+                        <tr>
+                            <td>Euglena appear brown or colorless</td>
+                            <td>Culture maintained in darkness; chloroplasts degraded due to lack of light</td>
+                            <td>Ask instructor for fresh culture; this is a culture maintenance issue</td>
+                        </tr>
+                        <tr>
+                            <td>Bull sperm structures unclear</td>
+                            <td>Microscope not properly focused; slide may be dirty</td>
+                            <td>Use fine focus only; ask instructor to check slide quality</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Understanding Flagellar Function</h3>
+
+                <div class="info-box">
+                    <strong>💡 What You're Seeing:</strong> When a flagellum beats, it creates a wave-like motion that propagates from the base to the tip. This whip-like action generates thrust, propelling the cell through water. The flagellum doesn't simply rotate like a propeller—it undulates in a complex three-dimensional pattern. This movement requires ATP and is powered by dynein motor proteins that cause microtubules within the flagellum to slide past each other.
+                </div>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    
+                    <p><strong>Euglena Observations:</strong></p>
+                    <ul>
+                        <li>Speed before methyl cellulose: 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="very-fast">Very fast - difficult to track</option>
+                                <option value="fast">Fast - can track briefly</option>
+                                <option value="moderate">Moderate speed</option>
+                            </select>
+                        </li>
+                        <li>Speed after methyl cellulose: 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="slowed">Successfully slowed</option>
+                                <option value="stopped">Completely stopped</option>
+                                <option value="still-fast">Still too fast</option>
+                            </select>
+                        </li>
+                        <li>Chloroplasts visible? 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - clearly visible</option>
+                                <option value="partial">Partially visible</option>
+                                <option value="no">No - not visible</option>
+                            </select>
+                        </li>
+                        <li>Flagellum observed? 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - clearly observed</option>
+                                <option value="glimpse">Brief glimpses only</option>
+                                <option value="no">No - not visible</option>
+                            </select>
+                        </li>
+                        <li>Swimming pattern: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;" placeholder="Describe pattern">
+                        </li>
+                    </ul>
+
+                    <p><strong>Bull Sperm Observations:</strong></p>
+                    <ul>
+                        <li>Head clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Flagellum clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - entire length</option>
+                                <option value="partial">Partial - some sections</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Approximate length of flagellum compared to head: 
+                            <input type="text" style="width: 150px; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;" placeholder="e.g., 10x longer">
+                        </li>
+                        <li>Number of complete sperm cells observed: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 2px 5px;" min="0">
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Protist-Animal Comparison →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: PROTIST-ANIMAL COMPARISON -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔄 Protist-Animal Comparison: Shared Locomotion Structures</h2>
+
+                <h3>Flagella: A Universally Conserved Structure</h3>
+                <p>The investigation you just completed reveals another profound example of evolutionary conservation: both protists (Euglena) and animal reproductive cells (sperm) use structurally identical flagella for locomotion.</p>
+
+                <h3>Comparative Analysis Table</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Euglena (Protist)</th>
+                            <th>Bull Sperm (Animal Cell)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cell Type</strong></td>
+                            <td>Unicellular protist (complete organism)</td>
+                            <td>Specialized reproductive cell (gamete)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Locomotion Structure</strong></td>
+                            <td>Flagellum (long, whip-like)</td>
+                            <td>Flagellum (long, whip-like tail)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal Structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement (identical)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motor Proteins</strong></td>
+                            <td>Dynein arms cause microtubule sliding</td>
+                            <td>Dynein arms cause microtubule sliding (same mechanism)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy Source</strong></td>
+                            <td>ATP from mitochondria</td>
+                            <td>ATP from mitochondria (in midpiece)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flagellar Orientation</strong></td>
+                            <td>Anterior (front) attachment—pulls cell forward</td>
+                            <td>Posterior (rear) attachment—pushes cell forward</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Movement Pattern</strong></td>
+                            <td>Spiral swimming with rotation</td>
+                            <td>Forward propulsion through fluid</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary Function</strong></td>
+                            <td>General locomotion (finding light and nutrients)</td>
+                            <td>Reaching and fertilizing egg cell</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Additional Features</strong></td>
+                            <td>Chloroplasts (photosynthesis), eyespot (light detection)</td>
+                            <td>Acrosome (enzyme packet for penetrating egg)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lifespan</strong></td>
+                            <td>Can live indefinitely (reproduces by fission)</td>
+                            <td>Short-lived (hours to days after release)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Why This Similarity Matters</h3>
+
+                <div class="key-concept">
+                    <strong>🎯 Evolutionary Significance:</strong> The structural identity of flagella in Euglena and bull sperm—both using the exact same 9+2 microtubule arrangement, both powered by dynein motor proteins, both requiring ATP—is compelling evidence that these structures evolved once in an ancient common ancestor and have been conserved for over a billion years. Despite the enormous differences between a free-living photosynthetic protist and a highly specialized mammalian reproductive cell, they share fundamental cellular machinery.
+                </div>
+
+                <h3>The 9+2 Pattern: A Universal Blueprint</h3>
+                <p>The 9+2 microtubule arrangement is found in:</p>
+                <ul>
+                    <li>Protist flagella (Euglena, Chlamydomonas, dinoflagellates)</li>
+                    <li>Animal sperm flagella (all animals, from insects to mammals)</li>
+                    <li>Cilia in animal tissues (respiratory tract, oviducts)</li>
+                    <li>Protist cilia (Paramecium, Stentor)</li>
+                    <li>Even some plant cells (sperm of mosses and ferns)</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Prokaryotic Flagella Are Different:</strong> It's important to note that bacterial flagella are completely different structures with a completely different mechanism. Bacterial flagella rotate like propellers and are made of the protein flagellin, not microtubules. Eukaryotic flagella evolved separately and use a fundamentally different design. This investigation focuses only on eukaryotic flagella.
+                </div>
+
+                <h3>Key Differences: Orientation and Purpose</h3>
+
+                <h4>Euglena: Anterior Flagellum</h4>
+                <p>Euglena have their flagellum attached at the <strong>anterior (front) end</strong>:</p>
+                <ul>
+                    <li><strong>Pulling motion:</strong> The flagellum extends forward and pulls the cell through water</li>
+                    <li><strong>Purpose:</strong> General locomotion for finding optimal light conditions (phototaxis)</li>
+                    <li><strong>Flexibility:</strong> Can change direction readily to respond to environmental cues</li>
+                    <li><strong>Context:</strong> Free-living organism that must navigate complex aquatic environments</li>
+                </ul>
+
+                <h4>Bull Sperm: Posterior Flagellum</h4>
+                <p>Sperm cells have their flagellum attached at the <strong>posterior (rear) end</strong>:</p>
+                <ul>
+                    <li><strong>Pushing motion:</strong> The flagellum propels the cell forward from behind</li>
+                    <li><strong>Purpose:</strong> Directional swimming through reproductive tract to reach egg</li>
+                    <li><strong>Streamlined:</strong> Head-first orientation reduces drag during forward swimming</li>
+                    <li><strong>Context:</strong> Highly specialized cell with one specific mission—fertilization</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Functional Adaptation:</strong> The different orientations (anterior vs. posterior) represent adaptations to different functional requirements. Euglena need maneuverability to explore their environment, while sperm need efficient forward propulsion through a specific medium. Despite this difference, the underlying molecular machinery is identical—demonstrating how the same structure can be oriented differently to serve varied functions.
+                </div>
+
+                <h3>Euglena: Plant-Like AND Animal-Like</h3>
+                <p>Euglena are fascinating organisms that blur the traditional boundaries between plant and animal kingdoms:</p>
+
+                <h4>Plant-Like Characteristics:</h4>
+                <ul>
+                    <li><strong>Chloroplasts:</strong> Contain chlorophyll and perform photosynthesis</li>
+                    <li><strong>Autotrophic capability:</strong> Can produce own food from sunlight</li>
+                    <li><strong>Green coloration:</strong> Due to chlorophyll content</li>
+                </ul>
+
+                <h4>Animal-Like Characteristics:</h4>
+                <ul>
+                    <li><strong>Flagellum:</strong> Active locomotion structure</li>
+                    <li><strong>Heterotrophic capability:</strong> Can consume organic matter when light is unavailable</li>
+                    <li><strong>Lack of cell wall:</strong> Flexible pellicle instead (like animal cell membrane)</li>
+                    <li><strong>Contractile vacuole:</strong> For osmoregulation (like other protists)</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Evolutionary Lesson:</strong> Euglena demonstrate that the traditional categories of "plant" and "animal" are human constructs that don't always fit natural organisms neatly. Protists like Euglena possess characteristics of both kingdoms, reminding us that evolution doesn't follow our classification systems—organisms evolve whatever features help them survive.
+                </div>
+
+                <h3>Reflection Questions</h3>
+
+                <div class="challenge-box">
+                    <strong>Question 1:</strong> Both Euglena and bull sperm use flagella for locomotion, but the orientation differs (anterior vs. posterior). Explain why this difference makes functional sense given the lifestyle and purpose of each cell type.
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Your answer..."></textarea>
+
+                <div class="challenge-box">
+                    <strong>Question 2:</strong> The 9+2 microtubule arrangement is found in flagella across protists, animals, and even some plants. What does this universal structure tell us about when flagella likely evolved?
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Your answer..."></textarea>
+
+                <div class="challenge-box">
+                    <strong>Question 3:</strong> Euglena possess both chloroplasts (plant-like) and flagella (animal-like). How does this challenge traditional classification systems? What does it suggest about the relationship between plants and animals?
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Your answer..."></textarea>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn" onclick="switchTab('review')">Next: Review Questions →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: REVIEW QUESTIONS -->
+        <div id="review" class="section">
+            <div class="card">
+                <h2>📝 Review Questions</h2>
+
+                <p>These questions are based on the laboratory manual and your observations. Answer each question completely, providing evidence from your lab work where applicable.</p>
+
+                <h3>Questions About Euglena Structure and Function</h3>
+
+                <div class="observation-box">
+                    <h4>Question 1: Protist with Flagellum</h4>
+                    <p>The specific <strong>protist</strong> organism that you observed which uses a flagellum to move is called:</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 8px; margin: 10px 0; font-family: inherit;" placeholder="Type the organism name...">
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 2: Animal Cells with Flagella</h4>
+                    <p>The specific <strong>animal</strong> cells that also use flagella for locomotion are called:</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 8px; margin: 10px 0; font-family: inherit;" placeholder="Type the cell name...">
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 3: Flagellar Orientation in Euglena</h4>
+                    <p>In Euglena, is the flagellum located at the <strong>anterior (front)</strong> or <strong>posterior (rear)</strong> end of the cell?</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 5px 10px; margin: 10px 0;">
+                        <option value="">Select your answer...</option>
+                        <option value="anterior">Anterior (front)</option>
+                        <option value="posterior">Posterior (rear)</option>
+                    </select>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 4: Flagellar Orientation in Sperm</h4>
+                    <p>In sperm cells, is the flagellum located at the <strong>anterior (front)</strong> or <strong>posterior (rear)</strong> end of the cell?</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 5px 10px; margin: 10px 0;">
+                        <option value="">Select your answer...</option>
+                        <option value="anterior">Anterior (front)</option>
+                        <option value="posterior">Posterior (rear)</option>
+                    </select>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 5: Plant-Like Organelles in Euglena</h4>
+                    <p>Name the <strong>plant organelles</strong> that are present in Euglena cells and contain chlorophyll pigment molecules:</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 8px; margin: 10px 0; font-family: inherit;" placeholder="Type the organelle name...">
+                </div>
+
+                <h3>Questions About Flagellar Structure</h3>
+
+                <div class="observation-box">
+                    <h4>Question 6: Internal Structure of Flagella</h4>
+                    <p>The inside structure of the cilia of a <strong>Paramecium</strong> is the <strong>(same or different)</strong> compared to the inside structure of cilia of animal cells that line the human trachea.</p>
+                    
+                    <p><strong>Your answer:</strong></p>
+                    <select style="border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 5px 10px; margin: 10px 0;">
+                        <option value="">Select your answer...</option>
+                        <option value="same">Same</option>
+                        <option value="different">Different</option>
+                    </select>
+                    
+                    <p style="margin-top: 20px;">Explain your answer by describing the internal structure that both share:</p>
+                    <textarea style="width: 100%; border: none; border-bottom: 2px solid #f57c00; background: #f9f9f9; padding: 10px; margin: 10px 0; min-height: 100px; font-family: inherit; font-size: inherit;" placeholder="Describe the shared structure..."></textarea>
+                </div>
+
+                <h3>Conceptual Understanding Questions</h3>
+
+                <div class="observation-box">
+                    <h4>Question 7: Comparing Cellular Structures</h4>
+                    <p>Complete the following table based on your observations in this lab and previous labs:</p>
+                    
+                    <table class="comparison-table" style="margin-top: 15px;">
+                        <thead>
+                            <tr>
+                                <th>Cell structures/organelles</th>
+                                <th>Present in Euglena (protist cells)?</th>
+                                <th>Present in animal cells?</th>
+                                <th>Present in plant cells?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Plasma membrane</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td>Cell wall</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td>Nucleus</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td>Chloroplast</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td>Flagella</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td>Mitochondria</td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                                <td><input type="text" style="width: 60px; text-align: center; border: 1px solid #ddd; padding: 4px;"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 13px; color: #666;"><em>Fill in "yes" or "no" for each cell. For animal cells, consider sperm cells specifically.</em></p>
+                </div>
+
+                <h3>Higher-Order Thinking Questions</h3>
+
+                <div class="challenge-box">
+                    <strong>Challenge Question 1: Evolutionary Conservation</strong>
+                    <p>The flagella of Euglena (a protist) and bull sperm (animal cells) have the same internal structure (9+2 microtubule arrangement). Explain what this structural identity tells us about the evolutionary relationship between protists and animals.</p>
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Write your answer here..."></textarea>
+
+                <div class="challenge-box">
+                    <strong>Challenge Question 2: Functional Orientation</strong>
+                    <p>Euglena have an anterior (front) flagellum while sperm have a posterior (rear) flagellum. Despite this difference in orientation, both structures serve the same basic function. Explain how different orientations can both result in forward locomotion.</p>
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Write your answer here..."></textarea>
+
+                <div class="challenge-box">
+                    <strong>Challenge Question 3: Euglena as a Transitional Form</strong>
+                    <p>Euglena possess both chloroplasts (like plants) and flagella (like animals). Some scientists have argued that studying organisms like Euglena can provide insights into the evolutionary origins of multicellular plants and animals. Explain this reasoning.</p>
+                </div>
+
+                <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ffe0b2; font-family: inherit; font-size: inherit;" placeholder="Write your answer here..."></textarea>
+
+                <h3>Answer Key (For Self-Check)</h3>
+                
+                <div class="success-box">
+                    <h4>Expected Answers:</h4>
+                    <ul>
+                        <li><strong>Question 1:</strong> Euglena</li>
+                        <li><strong>Question 2:</strong> Sperm cells (or bull sperm cells)</li>
+                        <li><strong>Question 3:</strong> Anterior (front)</li>
+                        <li><strong>Question 4:</strong> Posterior (rear)</li>
+                        <li><strong>Question 5:</strong> Chloroplasts</li>
+                        <li><strong>Question 6:</strong> Same. Both cilia and flagella share the 9+2 microtubule arrangement—nine outer doublets surrounding two central singlets, powered by dynein motor proteins.</li>
+                        <li><strong>Question 7:</strong> Table answers—Plasma membrane: yes/yes/yes; Cell wall: no/no/yes; Nucleus: yes/yes/yes; Chloroplast: yes/no/yes; Flagella: yes/yes (sperm)/yes (some plant sperm); Mitochondria: yes/yes/yes</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <strong>📚 Study Tip:</strong> Review the key terms from this lab: flagellum/flagella, 9+2 microtubule arrangement, dynein motor proteins, anterior vs. posterior orientation, Euglena, chloroplast, photosynthesis, phototaxis, eyespot. Make sure you can define each term and explain how flagella demonstrate evolutionary conservation across eukaryotic kingdoms.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('comparison')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Flagella Investigation: Euglena (Protist) and Bull Sperm (Animal Cells)</strong></p>
+        <p>This investigation demonstrates shared locomotion structures across protists and animals, revealing evolutionary conservation of the 9+2 microtubule arrangement and flagellar mechanics.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

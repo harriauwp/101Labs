@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Cell Investigation: Carrot Parenchyma Cells</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f4c3d;
+            background-color: #f5f5f5;
+        }
+        
+        /* Header Banner */
+        .header-banner {
+            background: linear-gradient(135deg, #1b6b4e 0%, #1a5c44 100%);
+            color: white;
+            padding: 30px 20px;
+            margin-bottom: 0;
+            border-radius: 8px 8px 0 0;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .header-banner h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header-banner p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+        
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            background-color: white;
+            padding: 16px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .nav-tabs button {
+            padding: 10px 16px;
+            border: 2px solid #1b6b4e;
+            background-color: white;
+            color: #1b6b4e;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs button:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .nav-tabs button.active {
+            background-color: #1b6b4e;
+            color: white;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Icon for header */
+        .icon {
+            font-size: 24px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            color: #1b6b4e;
+            border-bottom: 3px solid #1b6b4e;
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            color: #1b6b4e;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-icon {
+            font-size: 20px;
+        }
+        
+        h3 {
+            font-size: 18px;
+            color: #1f4c3d;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 16px;
+            color: #555;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #1b6b4e;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #666;
+        }
+        
+        /* Section Boxes */
+        .section-box {
+            background-color: white;
+            border-left: 4px solid #1b6b4e;
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .instructions {
+            background-color: #e8f8f5;
+            border: 1px solid #1b6b4e;
+            border-left: 4px solid #1b6b4e;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 16px 0;
+            border-radius: 4px;
+            font-style: italic;
+            font-size: 14px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #1b6b4e;
+            color: white;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        
+        tr:hover {
+            background-color: #eff5f3;
+        }
+        
+        /* Blank Lines */
+        .blank-line {
+            border-bottom: 1px solid #999;
+            display: inline-block;
+            width: 300px;
+            height: 1.2em;
+        }
+        
+        .answer-space {
+            border-bottom: 1px solid #999;
+            display: block;
+            height: 60px;
+            margin: 16px 0;
+        }
+        
+        .answer-space-lg {
+            border-bottom: 1px solid #999;
+            display: block;
+            height: 120px;
+            margin: 16px 0;
+        }
+        
+        /* Sketch Area */
+        .sketch-area {
+            border: 1px solid #999;
+            height: 200px;
+            background-color: white;
+            margin: 20px 0;
+            border-radius: 4px;
+            padding: 12px;
+        }
+        
+        .sketch-label {
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+            margin-top: 8px;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 2px solid #1b6b4e;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        /* MCAT Section */
+        .mcat-box {
+            background-color: #f0f8f6;
+            border-left: 4px solid #1b6b4e;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .mcat-box h4 {
+            color: #1b6b4e;
+            margin-top: 0;
+        }
+        
+        .concept-level {
+            margin-left: 16px;
+            margin-top: 8px;
+        }
+        
+        .concept-level p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tabs button {
+                width: 100%;
+                text-align: left;
+            }
+            
+            .header-banner h1 {
+                font-size: 24px;
+            }
+            
+            table {
+                font-size: 12px;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER BANNER -->
+<div class="header-banner">
+    <h1><span class="icon">🔬</span> Plant Cell Investigation: Carrot Parenchyma Cells</h1>
+    <p><strong>Eukaryotic Cells: Chapter Template</strong><br>
+    This investigation demonstrates the characteristic features of storage cells in plants and serves as the comparative template for tissue specialization. Students will observe parenchyma cells from different plant organs, compare them with epidermal cells from the onion investigation, and discover how cell structure adapts to function. This investigation builds on foundational microscopy skills and introduces comparative cell biology.</p>
+</div>
+
+<!-- NAVIGATION TABS -->
+<div class="nav-tabs">
+    <button class="active">Curriculum Alignment</button>
+    <button>Background</button>
+    <button>Preparation</button>
+    <button>Method & Activity</button>
+    <button>Observation & Results</button>
+    <button>Challenge Question</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<!-- SECTION 1: CURRICULUM ALIGNMENT -->
+<h2><span class="section-icon">📋</span> Curriculum Alignment</h2>
+
+<div class="section-box">
+    <h3>Learning Outcomes</h3>
+    <p>Upon completion of this investigation, students will be able to:</p>
+    <ul>
+        <li><strong>Observe and identify</strong> specialized plant cell structures (chromoplasts, vacuoles) using a microscope at multiple magnifications</li>
+        <li><strong>Distinguish between</strong> different plant cell types (parenchyma vs. epidermal) based on structure and function</li>
+        <li><strong>Compare parenchyma cells</strong> with epidermal cells to understand the principle of tissue specialization</li>
+        <li><strong>Explain</strong> how cell structure relates to tissue function across different plant organs</li>
+        <li><strong>Apply microscopy techniques</strong> learned in the onion investigation to a different plant tissue</li>
+        <li><strong>Recognize</strong> that parenchyma cells vary structurally depending on their organ location and function</li>
+    </ul>
+    
+    <h3>Template Role</h3>
+    <p>This carrot parenchyma investigation builds directly on the foundational procedures you mastered in the onion epidermal cell investigation but introduces you to a <strong>DIFFERENT CELL TYPE with DIFFERENT FUNCTION</strong>. Students apply and extend foundational skills by:</p>
+    <ul>
+        <li>Applying standard microscopy techniques to a new plant tissue type (ground tissue vs. dermal tissue)</li>
+        <li>Comparing structural features across plant cell types to understand tissue specialization</li>
+        <li>Analyzing how cell structure relates to tissue function in different plant organs</li>
+        <li>Understanding the principle of tissue specialization within a single organism</li>
+        <li>Recognizing that parenchyma cells are "least specialized" yet perform diverse functions in different locations</li>
+    </ul>
+    
+    <p>These foundational microscopy skills and comparative analysis methods will be applied directly to understanding other specialized plant tissues (xylem, phloem, sclerenchyma), animal cell types, and protist cells in subsequent investigations. This investigation demonstrates that even within a single organism (plants), different tissues have evolved distinct structural features to perform specialized roles, revealing the organizing principle of <strong>tissue specialization</strong> and the underlying <strong>unity of cellular organization</strong>.</p>
+    
+    <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+    <div class="mcat-box">
+        <h4>Foundational Concept 2: Structure and Function of Eukaryotic Cells</h4>
+        <div class="concept-level">
+            <p><strong>2A: Assembly of Molecules and Organelles</strong></p>
+            <ul>
+                <li>Membrane bound organelles: structure and function (chromoplasts, central vacuole)</li>
+                <li>Relationship between organelle structure and cellular function</li>
+            </ul>
+        </div>
+        <div class="concept-level">
+            <p><strong>2B: Functional Properties of Prokaryotic and Eukaryotic Cells</strong></p>
+            <ul>
+                <li>Unique properties of eukaryotic cells (membrane-bound nucleus, organelles)</li>
+                <li>Structural features that distinguish plant cells from animal cells</li>
+            </ul>
+        </div>
+        <div class="concept-level">
+            <p><strong>2C: Cellular Components, Processes, and their Interactions</strong></p>
+            <ul>
+                <li>The plasma membrane: structure and function in all cell types</li>
+                <li>The cell wall: plant cell structure and protective function</li>
+            </ul>
+        </div>
+        <div class="concept-level">
+            <p><strong>2D: Cell Division, Differentiation, and Specialization</strong></p>
+            <ul>
+                <li>Cellular differentiation: how cells with identical genomes develop specialized structures for specialized functions</li>
+                <li>Tissue specialization: how cell structure varies based on function</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 2: BACKGROUND -->
+<h2><span class="section-icon">📖</span> Background</h2>
+
+<div class="section-box">
+    <h3>Plant Cells: Understanding Diversity and Specialization</h3>
+    <p>A cell is the smallest unit that can carry out all life activities. Cells provide strong evidence for the underlying unity of all living things. When we examine a wide range of seemingly diverse organisms—from unicellular protists to the most complex plants and animals—we find striking similarities at the cellular level. The unity of life is evident in the universal genetic code shared by all organisms.</p>
+    
+    <p>However, within plants themselves, we see remarkable diversity. <strong>Parenchyma cells</strong> are the most abundant and least specialized cells in plants. Unlike the epidermal cells you observed in the onion investigation (which form a protective outer layer), parenchyma cells make up the <strong>ground tissue</strong> that fills the interior spaces of roots, stems, leaves, and fruits. These cells perform diverse metabolic functions including photosynthesis (in leaves), storage of starch and water (in roots and stems), and ripening processes (in fruits). The same cell type—parenchyma—performs different functions depending on its location and contents.</p>
+    
+    <h3>The Defining Features of Eukaryotic Cells</h3>
+    <p>The defining feature of a <strong>eukaryotic cell</strong> is the presence of a <strong>membrane-bound nucleus</strong> that contains the cell's DNA. Plant cells, animal cells, and protist cells are all eukaryotic. In contrast, prokaryotic cells (bacteria and archaea) lack a nucleus and have their DNA floating freely in the nucleoid region.</p>
+    
+    <h3>Plant Cell Structures</h3>
+    <p>Plant cells are eukaryotic cells that have additional structures not found in animal cells:</p>
+    <ul>
+        <li><strong>Cell wall:</strong> A rigid outer layer made of cellulose that surrounds the plasma membrane, providing structural support and protection. Plant cells can withstand greater internal pressure due to the cell wall.</li>
+        <li><strong>Central vacuole:</strong> A large, fluid-filled organelle that maintains turgor pressure and stores nutrients or waste products. In mature plant cells, the central vacuole can occupy 80-90% of the cell volume.</li>
+        <li><strong>Plastids:</strong> Membrane-bound organelles for synthesis and storage, including Chloroplasts (photosynthesis in green tissues), Amyloplasts (starch storage), and Chromoplasts (pigment storage—orange, red, yellow pigments).</li>
+        <li><strong>Nitroplasts:</strong> A recently discovered organelle (2024) found in some eukaryotic algae that enables nitrogen fixation, similar to cyanobacteria.</li>
+    </ul>
+    
+    <p><strong>Important:</strong> Nitroplasts are <em>not observable</em> in carrot parenchyma cells or in this lab. This example is included to show that cell biology is an evolving field and that new organelles and cellular processes are still being discovered.</p>
+    
+    <h3>Why Carrot Parenchyma Cells?</h3>
+    <p>Carrot root parenchyma cells are ideal for this investigation because they display the characteristic features of storage cells:</p>
+    <ul>
+        <li>They contain clearly visible <strong>chromoplasts</strong> with orange carotenoid pigments, making plastids easy to observe without special stains</li>
+        <li>They display <strong>large central vacuoles</strong> characteristic of cells specialized for nutrient storage, occupying most of the cell volume</li>
+        <li>They allow direct comparison with onion epidermal cells to understand how structure relates to tissue function</li>
+        <li>They demonstrate tissue specialization: carrot root parenchyma cells are optimized for <strong>storage</strong>, while onion epidermal cells are optimized for <strong>protection</strong></li>
+        <li>As you examine carrot parenchyma cells, you'll notice they contain structures identical to those found in onion cells and other eukaryotic organisms: a nucleus, cell wall, cytoplasm, and mitochondria. This demonstrates that despite functional specialization, plant cells maintain fundamental eukaryotic characteristics</li>
+    </ul>
+</div>
+
+<!-- SECTION 3: PREPARATION -->
+<h2><span class="section-icon">🧪</span> Preparation</h2>
+
+<div class="section-box">
+    <h3>Before Beginning the Investigation, You Should Understand:</h3>
+    
+    <p>Like all eukaryotic cells, plant cells have distinct nuclei yet they are very difficult to see in living cells. They contain many of the same organelles as animal cells like mitochondria, endoplasmic reticulum, ribosomes, and Golgi apparatus. Plant cells also contain some organelles and structures that animal cells lack such as plastids (chloroplasts, amyloplasts, chromoplasts), central vacuole, and a cell wall that surrounds the cell membrane. Very recently (2024), a new type of plastid was discovered in some eukaryotic algae. This new organelle is called a <strong>nitroplast</strong>, for it allows these algae to obtain nitrogen directly from the air, similar to the bacteria these plastids evolved from.</p>
+    
+    <h3>Parenchyma Cells: The "Typical" Plant Cell</h3>
+    <p><strong>Parenchyma cells</strong> are often depicted as the "typical" plant cell since they are the least specialized of all plant cells and retain the greatest metabolic versatility. (Refer to textbook: p. 764, Figure 35.10)</p>
+    
+    <p>Parenchyma cells synthesize and store various organic products for metabolic functions of the plant. The parenchyma cells in a leaf contain chloroplasts; the primary function of these cells is photosynthesis. Other parenchyma cells in stems and roots lack chloroplasts and function mainly in the storage of starch and water. The fleshy tissue of most fruit is composed primarily of parenchyma cells. In carrots, the parenchyma cells of the root accumulate carotenoid pigments and sugars, making them an excellent food storage organ.</p>
+    
+    <p>In this investigation, you will observe two examples of <strong>parenchyma cells</strong> taken from different plant organs: one from a carrot root (storage function) and one from a leaf (photosynthetic function). These examples demonstrate how parenchyma cells adapt their structure to perform different functions in different locations.</p>
+    
+    <div class="note">
+        <p><strong>Important:</strong> Prepare fresh cell samples immediately before observation. Carrot parenchyma cells are particularly susceptible to plasmolysis in hypertonic solutions, so use only distilled water for wet mounts.</p>
+    </div>
+    
+    <h3>Labels for Carrot Root Cells (Chromoplasts)</h3>
+    <p><strong>Labels to include:</strong> Cell wall (outline the shape of one complete cell), Plasma membrane (the membrane inside the cell wall), Chromoplasts (indicate the orange color), Central vacuole (the large clear area in the center)</p>
+    
+    <h3>Labels for Leaf Parenchyma Cells (Chloroplasts)</h3>
+    <p><strong>Labels to include:</strong> Cell wall, Plasma membrane, Chloroplasts (green structures), Central vacuole, Nucleus</p>
+    
+    <h3>Structural Comparison: Onion Epidermal vs. Carrot Parenchyma Cells</h3>
+    <table>
+        <tr>
+            <th>Characteristic</th>
+            <th>Onion Epidermal Cells<br>(Protective Tissue)</th>
+            <th>Carrot Parenchyma Cells<br>(Storage Tissue)</th>
+        </tr>
+        <tr>
+            <td><strong>Cell Shape</strong></td>
+            <td>Rectangular, brick-like, uniform</td>
+            <td>Round or polygonal, irregular</td>
+        </tr>
+        <tr>
+            <td><strong>Cell Arrangement</strong></td>
+            <td>Tightly packed in organized rows; no intercellular spaces</td>
+            <td>Loosely arranged with intercellular air spaces; more three-dimensional arrangement</td>
+        </tr>
+        <tr>
+            <td><strong>Cell Size</strong></td>
+            <td>Moderate (300-500 μm length)</td>
+            <td>Smaller diameter (50-150 μm); more uniform around</td>
+        </tr>
+        <tr>
+            <td><strong>Plastids</strong></td>
+            <td>Absent (no chloroplasts or chromoplasts)</td>
+            <td>Chromoplasts present (orange, contain carotenoids)</td>
+        </tr>
+        <tr>
+            <td><strong>Central Vacuole Size</strong></td>
+            <td>Moderate size; nucleus easily visible in center</td>
+            <td>Very large (80-90% of cell volume); dominates cell</td>
+        </tr>
+        <tr>
+            <td><strong>Nuclear Position</strong></td>
+            <td>Typically centered in cell</td>
+            <td>Often pushed to cell periphery by large vacuole</td>
+        </tr>
+        <tr>
+            <td><strong>Storage Function</strong></td>
+            <td>Limited (some oil droplets)</td>
+            <td>High (starch granules, sugars, water, pigments)</td>
+        </tr>
+        <tr>
+            <td><strong>Starch Granules</strong></td>
+            <td>Absent or minimal</td>
+            <td>Present and abundant (visible with iodine stain)</td>
+        </tr>
+        <tr>
+            <td><strong>Primary Function</strong></td>
+            <td>Protection and barrier formation</td>
+            <td>Storage and metabolic support</td>
+        </tr>
+        <tr>
+            <td><strong>Tissue Type</strong></td>
+            <td>Dermal tissue</td>
+            <td>Ground tissue</td>
+        </tr>
+        <tr>
+            <td><strong>Specialization Level</strong></td>
+            <td>Specialized for protection</td>
+            <td>Least specialized (generalized function)</td>
+        </tr>
+    </table>
+</div>
+
+<!-- SECTION 4: METHOD & STUDENT ACTIVITY -->
+<h2><span class="section-icon">🔬</span> Method & Student Activity</h2>
+
+<div class="section-box">
+    <h3>Observation Procedures</h3>
+    
+    <h3>1. Observing Carrot Root Parenchyma Cells (Chromoplasts)</h3>
+    
+    <div class="instructions">
+        <p><strong>Setup:</strong> The instructor has prepared two wet mounts of <strong>parenchyma cells of a carrot root</strong> which are set up on demonstration microscopes. This slide preparation is rather difficult because the carrot section must be cut extremely thin. Ideally, the section has only a couple of cell layers so that light can pass through clearly.</p>
+        
+        <p><strong>Procedure:</strong></p>
+        <ol>
+            <li>Go to one of the demonstration microscopes with prepared carrot root slides</li>
+            <li>Observe the cells at 10X magnification first to locate cell clusters</li>
+            <li>Switch to 40X magnification to observe individual cells and chromoplasts</li>
+            <li>Note the orange color, size, and shape of chromoplasts</li>
+            <li>Look for the nucleus—it may be pushed to the cell edge by the large vacuole</li>
+            <li>Proceed to Section 5 to record your observations and make a sketch</li>
+        </ol>
+    </div>
+    
+    <h3>2. Observing Leaf Parenchyma Cells (Chloroplasts)</h3>
+    
+    <div class="instructions">
+        <p><strong>Setup:</strong> The second example of <strong>parenchyma cells is from a leaf</strong>. Observe the provided demonstration photographic image or micrograph (or see the online image on Canvas).</p>
+        
+        <p><strong>Procedure:</strong></p>
+        <ol>
+            <li>Observe the demonstrated image of leaf parenchyma cells</li>
+            <li>Note the appearance and arrangement of chloroplasts</li>
+            <li>Observe the central vacuole and nucleus if visible</li>
+            <li>Look for cytoplasmic streaming if the image shows movement or directional arrangement</li>
+            <li>Make observations and record data in Section 5 below</li>
+        </ol>
+    </div>
+    
+    <h3>Safety & Equipment Notes</h3>
+    <div class="note">
+        <p><strong>Important:</strong> Prepare fresh cell samples immediately before observation. Always use gentle handling techniques with biological specimens. When preparing carrot slides, cut sections thin enough to allow light transmission—too thick and the chromoplasts will obscure the nucleus and vacuole structure.</p>
+    </div>
+</div>
+
+<!-- SECTION 5: OBSERVATION & RESULTS -->
+<h2><span class="section-icon">📊</span> Observation & Results</h2>
+
+<div class="section-box">
+    <h3>Part A: Carrot Root Parenchyma Cells - Magnification: 40X</h3>
+    
+    <p><strong>Sketch of carrot root parenchyma cells (40X lens):</strong></p>
+    <div class="sketch-area"></div>
+    <div class="sketch-label">Space for student sketch - Label: Cell wall (outline shape of one cell), Plasma membrane (inside the cell wall), Chromoplasts (indicate color), Central vacuole</div>
+    
+    <h3>Questions on Carrot Root Cells:</h3>
+    
+    <p><strong>1) The chromoplast organelles (p. 111), which are plastids with pigments other than chlorophyll, are not all perfectly round in shape; what chromoplast shapes do you observe?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>2) What color are these carrot root chromoplasts?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>3) What specific type of pigment molecules (that are present within these chromoplasts) are responsible for the orange color?</strong><br>
+    (Choose: <strong>carotene</strong> or <strong>xanthophyll</strong> or <strong>both</strong>)</p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>4) Based on your observations, estimate the size of one chromoplast: ________ μm</strong></p>
+    
+    <p><strong>5) Approximately how many chromoplasts can you count in one cell? ________ chromoplasts</strong></p>
+    
+    <h3>Part B: Leaf Parenchyma Cells - Magnification: 40X</h3>
+    
+    <p><strong>Observe the provided demonstration for this photographic image (or see the online image on Canvas).</strong></p>
+    
+    <p><strong>Sketch of leaf parenchyma cells (photographic image or 40X lens):</strong></p>
+    <div class="sketch-area"></div>
+    <div class="sketch-label">Space for student notes or sketch - Label: Cell wall, Plasma membrane, Chloroplasts, Central vacuole, Nucleus</div>
+    
+    <h3>Questions on Leaf Cells:</h3>
+    
+    <p><strong>1) What shape are the chloroplast organelles?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>2) What color are these leaf chloroplasts?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>3) What specific type of pigment molecules (present within these chloroplasts) are responsible for the green color?</strong><br>
+    (Choose: <strong>chlorophyll a</strong> or <strong>chlorophyll b</strong> or <strong>both</strong>)</p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>4) Estimate how many chloroplasts are present within these leaf parenchyma cells:</strong><br>
+    (Choose two cells that you can observe clearly, count the approximate number of chloroplasts in each cell and then calculate the average of the two)<br>
+    Cell 1: ________ chloroplasts<br>
+    Cell 2: ________ chloroplasts<br>
+    Average: ________ chloroplasts</p>
+    
+    <p><strong>5) Refer to the textbook (p. 189) to answer: How many chloroplasts does a typical leaf parenchyma cell have?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>6) And what is the typical size of a chloroplast organelle in micrometers?</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>7) If you observe carefully, you may see a phenomenon called cytoplasmic streaming (p. 117). Explain in detail what it is and how it helps large plant cells:</strong></p>
+    <div class="answer-space"></div>
+    
+    <p><strong>8) Small chloroplasts have a (larger / smaller) surface area to volume ratio compared to one very large chloroplast. Explain why it is advantageous for this plant cell to contain numerous small chloroplasts instead of one huge chloroplast that fills most of the cell:</strong></p>
+    <div class="answer-space-lg"></div>
+    <p><em>(Hint: think back to why small cell size is advantageous compared to large cell size)</em></p>
+    
+    <h3>Understanding Cell Components</h3>
+    
+    <p><strong>Chromatin</strong> is made of DNA + proteins (called histones). It appears as dark-staining threads or granules within the nucleus and contains the cell's genetic instructions. In parenchyma cells, chromatin may be difficult to distinguish due to the large vacuole pushing the nucleus to the periphery.</p>
+    
+    <p><strong>Carotenoids</strong> are pigment molecules (including carotene and xanthophyll) found in chromoplasts. These pigments give carrots, peppers, and other vegetables their orange, red, and yellow colors. They are important in human nutrition as a source of vitamin A precursors.</p>
+    
+    <p><strong>Typical carrot root parenchyma cells</strong> display prominent chromoplasts that occupy much of the cytoplasm space. The vacuole stores water, sugars, and other compounds. Your observation of cell components:
+    <ul>
+        <li>Nucleus visible? (yes/no): __________</li>
+        <li>Cell wall visible? (yes/no): __________</li>
+        <li>Chromoplasts visible? (yes/no): __________</li>
+        <li>Central vacuole visible? (yes/no): __________</li>
+    </ul>
+    </p>
+    
+    <h3>Part C: Data Collection Table</h3>
+    
+    <p><strong>Cell structures/organelles present in carrot parenchyma cells - mark yes or no based on your observations:</strong></p>
+    <table>
+        <tr>
+            <th>Cell Structures/Organelles</th>
+            <th>Present in Carrot Parenchyma Cells? (yes/no)</th>
+            <th>Observations</th>
+        </tr>
+        <tr>
+            <td>Plasma membrane</td>
+            <td></td>
+            <td>Inner boundary of cell, between cell wall and cytoplasm</td>
+        </tr>
+        <tr>
+            <td>Cell wall</td>
+            <td></td>
+            <td>Outer rigid layer visible as cell outline</td>
+        </tr>
+        <tr>
+            <td>Central vacuole / tonoplast</td>
+            <td></td>
+            <td>Large clear central area; vacuole membrane = tonoplast</td>
+        </tr>
+        <tr>
+            <td>Mitochondrion</td>
+            <td></td>
+            <td>Too small to observe with light microscope</td>
+        </tr>
+        <tr>
+            <td>Nucleus</td>
+            <td></td>
+            <td>May appear as light spot at cell edge (pushed by vacuole)</td>
+        </tr>
+        <tr>
+            <td>Chromatin</td>
+            <td></td>
+            <td>Dark-staining material within nucleus if visible</td>
+        </tr>
+        <tr>
+            <td>Chloroplast</td>
+            <td></td>
+            <td>Green plastids; absent in carrot root cells</td>
+        </tr>
+        <tr>
+            <td>Chromoplast</td>
+            <td></td>
+            <td>Orange plastids; prominent in carrot root cells</td>
+        </tr>
+        <tr>
+            <td>Amyloplast</td>
+            <td></td>
+            <td>Colorless starch storage plastids; may be visible</td>
+        </tr>
+        <tr>
+            <td>Starch granules</td>
+            <td></td>
+            <td>Visible with iodine stain (turns blue-black)</td>
+        </tr>
+        <tr>
+            <td>Carotenoid pigments</td>
+            <td></td>
+            <td>Orange color within chromoplasts; very visible</td>
+        </tr>
+    </table>
+    
+    <h3>Troubleshooting Guide</h3>
+    
+    <p>If you encounter any of the following problems during observation, use this guide:</p>
+    <table>
+        <tr>
+            <th>Problem</th>
+            <th>Likely Cause</th>
+            <th>Solution</th>
+        </tr>
+        <tr>
+            <td>Cells appear too pale</td>
+            <td>Insufficient stain or stain not yet penetrated</td>
+            <td>Add 1-2 more drops of stain (if using stain); wait additional 2 minutes</td>
+        </tr>
+        <tr>
+            <td>Cells appear too dark (cannot see detail)</td>
+            <td>Too much stain or cell tissue too thick</td>
+            <td>Blot excess stain with paper towel; prepare new slide with thinner tissue layer</td>
+        </tr>
+        <tr>
+            <td>Image is blurry at 40X</td>
+            <td>Objective lens not properly focused or dirty</td>
+            <td>Use ONLY fine focus knob at 40X; clean lens with lens paper if dirty</td>
+        </tr>
+        <tr>
+            <td>Large air bubbles present</td>
+            <td>Cover slip lowered too quickly</td>
+            <td>Prepare new slide; lower cover slip slowly at 45-degree angle</td>
+        </tr>
+        <tr>
+            <td>Chromoplasts obscure nucleus</td>
+            <td>Orange pigments dominate the cell, nucleus pushed to periphery by vacuole</td>
+            <td>Focus carefully on cell edges; nucleus may appear as a light spot at the periphery</td>
+        </tr>
+        <tr>
+            <td>Wrinkles in tissue</td>
+            <td>Tissue layer too thick or forceps handled roughly</td>
+            <td>Prepare new slide; handle tissue gently with forceps</td>
+        </tr>
+        <tr>
+            <td>Cell appears plasmolyzed (vacuole shrunk from cell wall)</td>
+            <td>Hypertonic solution used for wet mount</td>
+            <td>Prepare new slide using only distilled water; re-mount specimen</td>
+        </tr>
+    </table>
+</div>
+
+<!-- SECTION 6: CHALLENGE QUESTION -->
+<h2><span class="section-icon">🎯</span> Challenge Question - Tissue Specialization Analysis</h2>
+
+<div class="section-box">
+    <h3>Analysis: Structure and Function in Plant Tissues</h3>
+    
+    <p>Based on your observations of <strong>carrot parenchyma cells</strong> and the onion epidermal cells from your previous investigation, answer the following questions to demonstrate your understanding of tissue specialization:</p>
+    
+    <h3>1. Identify ONE Structural Difference and Explain Its Function</h3>
+    <p><strong>Identify ONE structural difference you observe between carrot parenchyma cells and onion epidermal cells. Explain WHY this difference exists based on the different functions these tissues perform in their respective plants.</strong></p>
+    
+    <div class="instructions">
+        <p><em>Important: This difference should demonstrate how structure relates to function, and should NOT be present in animal cells or protist cells, showing that plant tissue specialization requires specific structural adaptations.</em></p>
+        
+        <p><strong>Your answer should include:</strong></p>
+        <ul>
+            <li>Clear description of the structural difference you selected</li>
+            <li>Function of onion epidermal tissue in onion plant</li>
+            <li>Function of carrot parenchyma tissue in carrot plant</li>
+            <li>Explanation of WHY this structural difference exists (connect structure to function)</li>
+            <li>Evidence from your observations</li>
+        </ul>
+        
+        <p><em>Consider these possibilities: cell shape, cell arrangement, vacuole size, presence of chromoplasts, presence of starch granules, nuclear position, cell size, intercellular spaces</em></p>
+    </div>
+    
+    <p><strong>Your response:</strong></p>
+    <div class="answer-space-lg"></div>
+    
+    <h3>2. List Multiple Structural Differences</h3>
+    <p><strong>List at least THREE structural differences between carrot parenchyma cells and onion epidermal cells:</strong></p>
+    <ol>
+        <li><span class="blank-line"></span></li>
+        <li><span class="blank-line"></span></li>
+        <li><span class="blank-line"></span></li>
+    </ol>
+    
+    <h3>3. Tissue Specialization Analysis</h3>
+    
+    <p><strong>Categorize cell structures based on specialization:</strong></p>
+    
+    <p><strong>Hint:</strong> Think about structures that storage cells need that protective cells don't.</p>
+    <p><strong>Unique to storage (parenchyma) cells:</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>Hint:</strong> Think about how tight packing and rectangular shape help with the protective function.</p>
+    <p><strong>Unique to protective (epidermal) cells:</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>Hint:</strong> These are the structures that all eukaryotic cells must have for basic life functions.</p>
+    <p><strong>Shared structures (in both cell types):</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <h3>4. Structure-Function Connection</h3>
+    <p><strong>WHY these structural differences exist (connect structure to function):</strong></p>
+    
+    <p><strong>Why would a storage cell (carrot parenchyma) need a larger vacuole than a protective cell (onion epidermis)?</strong></p>
+    <div class="answer-space"></div>
+    
+    <p><strong>Why would storage cells contain chromoplasts with carotenoid pigments?</strong></p>
+    <div class="answer-space"></div>
+    
+    <p><strong>Why would protective cells be rectangular and tightly packed?</strong></p>
+    <div class="answer-space"></div>
+    
+    <h3>5. Plant Tissue Specialization (Unique to Plants)</h3>
+    <p><strong>Consider: Do animal cells have cell walls? Do animal cells have chromoplasts? Do animal cells have large central vacuoles? Do protist cells have these structures?</strong></p>
+    <div class="answer-space-lg"></div>
+    
+    <p><em>This question demonstrates that the structural adaptations you observe are specific to plant tissues and not found in other eukaryotes.</em></p>
+    
+    <h3>6. Synthesis: The Bigger Picture - Unity of Eukaryotic Life</h3>
+    <p><strong>Based on your observations of carrot parenchyma cells, onion epidermal cells, and your knowledge of animal cells and protist cells, WHY does this demonstrate the unity of eukaryotic life?</strong></p>
+    
+    <p><strong>Consider these fundamental structures shared by ALL eukaryotes:</strong> nucleus, nuclear membrane, chromatin, cell wall (in some), plasma membrane, cytoplasm, mitochondria</p>
+    
+    <p>Your answer:</p>
+    <div class="answer-space-lg"></div>
+    
+    <h3>Review Questions</h3>
+    
+    <p><strong>13) Name the plant organelles that are present in carrot parenchyma cells and contain carotenoid pigment molecules:</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>14) Name the plant organelles that are present in leaf parenchyma cells and contain chlorophyll pigment molecules:</strong></p>
+    <p><span class="blank-line"></span></p>
+    
+    <p><strong>15) Parenchyma cells in different plant organs have adapted to perform different functions. Describe how the parenchyma cells in a carrot root differ from those in a leaf, and explain how these differences relate to their different functions:</strong></p>
+    <div class="answer-space-lg"></div>
+    
+    <p><strong>16) Based on your observations, explain WHY parenchyma cells are considered the "least specialized" plant cells, yet they are also the most abundant. What does this tell us about plant tissue organization and plant body construction?</strong></p>
+    <div class="answer-space-lg"></div>
+    
+    <p><strong>17) EXTENSION: If you were examining a cross-section of a potato tuber (which is also storage tissue made of parenchyma cells), what structures would you expect to see? How would they be similar to and different from carrot root parenchyma cells?</strong></p>
+    <div class="answer-space-lg"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>Plant Cell Investigation: Carrot Parenchyma Cells</strong></p>
+    <p>University of Wisconsin-Parkside Biology Laboratory</p>
+    <p>Eukaryotic Cells Chapter Investigation Series</p>
+    <p>Last updated: December 18, 2025</p>
+</footer>
+
+</div>
+
+</body>
+</html>

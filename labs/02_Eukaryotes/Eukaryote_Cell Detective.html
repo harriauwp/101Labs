@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eukaryotic Cell Detective Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #3949ab 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .challenge-number {
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            float: left;
+            margin-right: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #ff6f00;
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #1a237e;
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .clue-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff6f00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .mystery-box {
+            background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+            border-left: 4px solid #3949ab;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .evidence-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .answer-area {
+            background: #f5f5f5;
+            border: 2px dashed #ff6f00;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 100px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ff6f00;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 16px;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff6f00;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .checkbox-group {
+            margin: 15px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 8px 0;
+            background: #f9f9f9;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: #fff3e0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:hover {
+            background: #fff3e0;
+        }
+
+        .diagram-space {
+            background: white;
+            border: 3px solid #ff6f00;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 20px 0;
+            min-height: 300px;
+            text-align: center;
+            color: #999;
+            font-style: italic;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff6f00 0%, #ff8f00 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .scoring-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border: 2px solid #ab47bc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .points {
+            color: #6a1b9a;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            
+            .challenge-number {
+                float: none;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 The Eukaryotic Cell Detective Challenge</h1>
+            <p>Can you solve these mysteries using evidence from your lab observations?</p>
+            <p style="margin-top: 10px; font-size: 16px;">⏱️ Time Limit: 45-60 minutes | 🎯 Total Points: 100</p>
+        </header>
+
+        <!-- CHALLENGE 1: WHO AM I? -->
+        <div class="challenge-card">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Challenge</th>
+                            <th>Points</th>
+                            <th>Self-Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Challenge 1: Mystery Cell Identity</td>
+                            <td>15</td>
+                            <td><input type="number" min="0" max="15" style="width: 80px;" placeholder="0-15"></td>
+                        </tr>
+                        <tr>
+                            <td>Challenge 2: Locomotion Evolution Map</td>
+                            <td>20</td>
+                            <td><input type="number" min="0" max="20" style="width: 80px;" placeholder="0-20"></td>
+                        </tr>
+                        <tr>
+                            <td>Challenge 3: Surface Area Mystery</td>
+                            <td>15</td>
+                            <td><input type="number" min="0" max="15" style="width: 80px;" placeholder="0-15"></td>
+                        </tr>
+                        <tr>
+                            <td>Challenge 4: Organelle Function Mystery</td>
+                            <td>15</td>
+                            <td><input type="number" min="0" max="15" style="width: 80px;" placeholder="0-15"></td>
+                        </tr>
+                        <tr>
+                            <td>Challenge 5: Phagocytosis Comparison</td>
+                            <td>15</td>
+                            <td><input type="number" min="0" max="15" style="width: 80px;" placeholder="0-15"></td>
+                        </tr>
+                        <tr>
+                            <td>Challenge 6: Classification System</td>
+                            <td>20</td>
+                            <td><input type="number" min="0" max="20" style="width: 80px;" placeholder="0-20"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>BONUS: Medical Mystery</strong></td>
+                            <td>10</td>
+                            <td><input type="number" min="0" max="10" style="width: 80px;" placeholder="0-10"></td>
+                        </tr>
+                        <tr>
+                            <td><strong>BONUS: Crossword Puzzle</strong></td>
+                            <td>10</td>
+                            <td><input type="number" min="0" max="10" style="width: 80px;" placeholder="0-10"></td>
+                        </tr>
+                        <tr style="background: #fff3e0; font-weight: bold; font-size: 18px;">
+                            <td>TOTAL SCORE</td>
+                            <td>100 (+20)</td>
+                            <td><input type="number" min="0" max="120" style="width: 80px; font-weight: bold;" placeholder="Total"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="alert('Great work, Detective! Review your answers with your instructor.')">Submit Challenge</button>
+                <button class="btn" style="background: linear-gradient(135deg, #757575 0%, #616161 100%);" onclick="if(confirm('Are you sure you want to reset all answers?')) location.reload();">Reset All</button>
+            </div>
+        </div>
+
+        <!-- INSTRUCTOR NOTES -->
+        <div class="challenge-card" style="background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%); border: 3px solid #3949ab;">
+            <h2 style="color: #1a237e;">📚 Instructor Notes</h2>
+            
+            <h3>Learning Objectives Assessed:</h3>
+            <ul>
+                <li><strong>Challenge 1:</strong> Cell identification, structural recognition, function-structure relationships</li>
+                <li><strong>Challenge 2:</strong> Evolutionary relationships, homologous structures, molecular mechanisms</li>
+                <li><strong>Challenge 3:</strong> Surface area to volume ratio, cell size limits, organelle optimization</li>
+                <li><strong>Challenge 4:</strong> Organelle diversity, environmental adaptations, comparative cell biology</li>
+                <li><strong>Challenge 5:</strong> Unity of life principle, conserved mechanisms, functional convergence</li>
+                <li><strong>Challenge 6:</strong> Classification skills, dichotomous keys, systematic thinking</li>
+                <li><strong>Bonus:</strong> Application to medicine, critical thinking, diagnostic reasoning</li>
+            </ul>
+
+            <h3>Answer Key Highlights:</h3>
+            <div class="evidence-box">
+                <p><strong>Mystery Cell #1:</strong> Amoeba</p>
+                <p><strong>Mystery Cell #2:</strong> Neutrophil</p>
+                <p><strong>Mystery Cell #3:</strong> Euglena</p>
+                <p><strong>Mystery Cell #4:</strong> Ciliated pseudostratified columnar epithelium</p>
+                <p><strong>Mystery Cell #5:</strong> Stentor</p>
+            </div>
+
+            <h3>Recommended Use:</h3>
+            <ul>
+                <li><strong>Timing:</strong> End-of-unit assessment or review activity</li>
+                <li><strong>Format:</strong> Individual work or pairs</li>
+                <li><strong>Grading:</strong> Use rubric based on completeness, accuracy, and depth of explanation</li>
+                <li><strong>Modifications:</strong> Can assign specific challenges as homework, use some in class</li>
+                <li><strong>Extension:</strong> Have students present their dichotomous keys to the class</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 30px; color: white; margin-top: 40px;">
+        <p style="font-size: 18px; font-weight: 600;">University of Wisconsin-Parkside</p>
+        <p style="font-size: 14px; margin-top: 10px;">Eukaryotic Cell Detective Challenge</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Testing comprehensive understanding through multi-modal problem-solving</p>
+    </footer>
+</body>
+</html>challenge-number">1</div>
+            <div>
+                <h2>Mystery Cell Identity Game</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 15 Points</span> - Identify 5 mystery cells based on visual clues
+                </div>
+
+                <p><strong>Instructions:</strong> Read each set of clues and identify which cell/organism from your lab matches the description. Be as specific as possible!</p>
+
+                <div class="mystery-box">
+                    <h3>Mystery Cell #1</h3>
+                    <p><strong>Clues:</strong></p>
+                    <ul>
+                        <li>I'm a single-celled organism living in freshwater</li>
+                        <li>I have NO fixed shape—I'm constantly changing</li>
+                        <li>I move by extending "false feet" from my cell surface</li>
+                        <li>I can capture food by surrounding it with these extensions</li>
+                        <li>I have a contractile vacuole to pump out excess water</li>
+                    </ul>
+                    <input type="text" placeholder="Your answer: This cell is...">
+                </div>
+
+                <div class="mystery-box">
+                    <h3>Mystery Cell #2</h3>
+                    <p><strong>Clues:</strong></p>
+                    <ul>
+                        <li>I'm a specialized animal cell in your blood</li>
+                        <li>My nucleus has 3-5 distinct lobes</li>
+                        <li>I use the same movement mechanism as amoeba</li>
+                        <li>I'm the first responder when you get an infection</li>
+                        <li>I can squeeze between blood vessel cells to reach tissues</li>
+                    </ul>
+                    <input type="text" placeholder="Your answer: This cell is...">
+                </div>
+
+                <div class="mystery-box">
+                    <h3>Mystery Cell #3</h3>
+                    <p><strong>Clues:</strong></p>
+                    <ul>
+                        <li>I'm a unicellular protist that swims VERY fast</li>
+                        <li>I have both plant-like AND animal-like features</li>
+                        <li>My chloroplasts make me look green</li>
+                        <li>I have a long whip-like structure at my anterior end</li>
+                        <li>You needed methyl cellulose to slow me down</li>
+                    </ul>
+                    <input type="text" placeholder="Your answer: This cell is...">
+                </div>
+
+                <div class="mystery-box">
+                    <h3>Mystery Cell #4</h3>
+                    <p><strong>Clues:</strong></p>
+                    <ul>
+                        <li>I'm part of an animal tissue lining the trachea</li>
+                        <li>I have tiny hair-like projections on my surface</li>
+                        <li>These projections beat in coordinated waves</li>
+                        <li>I help trap and move mucus upward</li>
+                        <li>I protect your lungs from inhaled particles</li>
+                    </ul>
+                    <input type="text" placeholder="Your answer: This cell is...">
+                </div>
+
+                <div class="mystery-box">
+                    <h3>Mystery Cell #5</h3>
+                    <p><strong>Clues:</strong></p>
+                    <ul>
+                        <li>I'm a protist that can be both sessile AND motile</li>
+                        <li>When attached, I look like a long funnel</li>
+                        <li>I have a macronucleus shaped like a string of beads</li>
+                        <li>My cilia are easiest to see at my funnel-shaped end</li>
+                        <li>You observed me with a dual-viewing microscope</li>
+                    </ul>
+                    <input type="text" placeholder="Your answer: This cell is...">
+                </div>
+            </div>
+        </div>
+
+        <!-- CHALLENGE 2: BUILD A PHYLOGENETIC MOVEMENT TREE -->
+        <div class="challenge-card">
+            <div class="challenge-number">2</div>
+            <div>
+                <h2>The Locomotion Evolution Map</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 20 Points</span> - Create an evolutionary tree showing how three types of movement are distributed across kingdoms
+                </div>
+
+                <p><strong>Challenge:</strong> Create a diagram showing the evolutionary relationships between organisms based on their movement mechanisms. Your tree should show which organisms use flagella, cilia, or pseudopodia.</p>
+
+                <div class="clue-box">
+                    <h3>Organisms to Include:</h3>
+                    <ul>
+                        <li><strong>Protists:</strong> Euglena, Paramecium, Stentor, Amoeba</li>
+                        <li><strong>Animal Cells:</strong> Bull sperm, Ciliated columnar epithelium, Neutrophils</li>
+                    </ul>
+                </div>
+
+                <div class="diagram-space">
+                    <p>Draw your evolutionary tree here showing:</p>
+                    <ul style="text-align: left; max-width: 600px; margin: 20px auto;">
+                        <li>Which organisms share flagella</li>
+                        <li>Which organisms share cilia</li>
+                        <li>Which organisms share pseudopodia</li>
+                        <li>Label the molecular basis (actin-myosin vs. microtubules-dynein)</li>
+                        <li>Indicate which structures are homologous (same evolutionary origin)</li>
+                    </ul>
+                </div>
+
+                <h3>Key Questions to Answer:</h3>
+                <textarea placeholder="1. Which movement mechanism appears in BOTH protists and animal cells? What does this tell you about evolution?"></textarea>
+                <textarea placeholder="2. Do flagella in Euglena and sperm cells have the same internal structure? Explain the significance."></textarea>
+                <textarea placeholder="3. Why is it remarkable that neutrophils and amoeba use the same movement mechanism despite being in different kingdoms?"></textarea>
+            </div>
+        </div>
+
+        <!-- CHALLENGE 3: CELL SIZE DETECTIVE -->
+        <div class="challenge-card">
+            <div class="challenge-number">3</div>
+            <div>
+                <h2>The Surface Area Mystery</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 15 Points</span> - Apply surface area to volume principles to real cell observations
+                </div>
+
+                <p><strong>Scenario:</strong> You're a cell biologist studying why different cells have different sizes. Use what you learned about surface area to volume ratios to solve these problems.</p>
+
+                <div class="evidence-box">
+                    <h3>Cell Size Data from Your Observations:</h3>
+                    <ul>
+                        <li><strong>Onion epidermal cell:</strong> ~300-500 μm length</li>
+                        <li><strong>Amoeba:</strong> 200-600 μm diameter (large!)</li>
+                        <li><strong>Neutrophil:</strong> 10-12 μm diameter (small)</li>
+                        <li><strong>Red blood cell:</strong> 7-8 μm diameter (smaller)</li>
+                        <li><strong>Chloroplast in leaf cell:</strong> ~5 μm (tiny organelle)</li>
+                    </ul>
+                </div>
+
+                <h3>Problem 1: Why Multiple Chloroplasts?</h3>
+                <p>You observed that leaf parenchyma cells contain 30-40 SMALL chloroplasts instead of one HUGE chloroplast.</p>
+                <textarea placeholder="Explain why having many small chloroplasts is more advantageous than one large chloroplast. Use surface area to volume ratio in your answer."></textarea>
+
+                <h3>Problem 2: Amoeba vs. Neutrophil Size</h3>
+                <p>Amoeba are 50 times larger than neutrophils, yet both use amoeboid motion.</p>
+                <textarea placeholder="How can amoeba function despite being so large? (Hint: Consider their environment, movement speed, and metabolic needs compared to neutrophils)"></textarea>
+
+                <h3>Problem 3: Cytoplasmic Streaming Advantage</h3>
+                <p>You observed cytoplasmic streaming in large plant cells and in amoeba.</p>
+                <textarea placeholder="Explain why cytoplasmic streaming is especially important for large cells. What problem does it solve?"></textarea>
+            </div>
+        </div>
+
+        <!-- CHALLENGE 4: STRUCTURE FUNCTION MATCHING -->
+        <div class="challenge-card">
+            <div class="challenge-number">4</div>
+            <div>
+                <h2>The Organelle Function Mystery</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 15 Points</span> - Match structures to their functions across different organisms
+                </div>
+
+                <p><strong>Challenge:</strong> Complete this comparative organelle table based on your lab observations.</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Organelle/Structure</th>
+                                <th>Found in Which Cells?</th>
+                                <th>Primary Function</th>
+                                <th>Why Unique/Important?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Contractile Vacuole</strong></td>
+                                <td><input type="text" placeholder="List cells..."></td>
+                                <td><input type="text" placeholder="Function..."></td>
+                                <td><input type="text" placeholder="Why important..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chromoplasts</strong></td>
+                                <td><input type="text" placeholder="List cells..."></td>
+                                <td><input type="text" placeholder="Function..."></td>
+                                <td><input type="text" placeholder="Contains what pigment..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Macronucleus</strong></td>
+                                <td><input type="text" placeholder="List cells..."></td>
+                                <td><input type="text" placeholder="Function..."></td>
+                                <td><input type="text" placeholder="Shape/appearance..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Lobed Nucleus</strong></td>
+                                <td><input type="text" placeholder="List cells..."></td>
+                                <td><input type="text" placeholder="Function..."></td>
+                                <td><input type="text" placeholder="How many lobes..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cell Wall</strong></td>
+                                <td><input type="text" placeholder="List cells..."></td>
+                                <td><input type="text" placeholder="Function..."></td>
+                                <td><input type="text" placeholder="Made of what..."></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Critical Thinking Question:</h3>
+                <textarea placeholder="Why do freshwater protists (Paramecium, Stentor, Amoeba) all need contractile vacuoles, but neutrophils (which also move by amoeboid motion) do NOT need them? Explain in terms of their environments."></textarea>
+            </div>
+        </div>
+
+        <!-- CHALLENGE 5: PHAGOCYTOSIS COMPARISON -->
+        <div class="challenge-card">
+            <div class="challenge-number">5</div>
+            <div>
+                <h2>Phagocytosis: Feeding vs. Fighting</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 15 Points</span> - Compare phagocytosis in amoeba and neutrophils
+                </div>
+
+                <p><strong>Scenario:</strong> Both amoeba and neutrophils use phagocytosis, but for completely different purposes. Create a detailed comparison.</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Amoeba Phagocytosis</th>
+                                <th>Neutrophil Phagocytosis</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Primary Purpose</strong></td>
+                                <td><input type="text" placeholder="Why does amoeba do it?"></td>
+                                <td><input type="text" placeholder="Why does neutrophil do it?"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>What Gets Engulfed?</strong></td>
+                                <td><input type="text" placeholder="Types of particles..."></td>
+                                <td><input type="text" placeholder="Types of particles..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Molecular Mechanism</strong></td>
+                                <td><input type="text" placeholder="What proteins are involved?"></td>
+                                <td><input type="text" placeholder="Same or different?"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>What Happens After?</strong></td>
+                                <td><input type="text" placeholder="Digestion process..."></td>
+                                <td><input type="text" placeholder="Destruction process..."></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Benefit to Organism</strong></td>
+                                <td><input type="text" placeholder="How does it help?"></td>
+                                <td><input type="text" placeholder="How does it help?"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Unity of Life Connection:</h3>
+                <textarea placeholder="The fact that a pond-dwelling single-celled protist and a human immune cell use the EXACT SAME cellular mechanism (actin-myosin-based pseudopodia) demonstrates what principle of evolutionary biology? Explain fully."></textarea>
+            </div>
+        </div>
+
+        <!-- CHALLENGE 6: THE ULTIMATE CLASSIFICATION CHALLENGE -->
+        <div class="challenge-card">
+            <div class="challenge-number">6</div>
+            <div>
+                <h2>Create Your Own Classification System</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ 20 Points</span> - Design a classification key for all cells observed in lab
+                </div>
+
+                <p><strong>Challenge:</strong> Create a dichotomous key (a series of yes/no questions) that would allow someone to identify ANY of the cells you observed in lab. Your key should be logical and based on observable features.</p>
+
+                <div class="clue-box">
+                    <h3>Cells to Include in Your Key:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px;">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="onion">
+                            <label for="onion">Onion epidermal cells</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="carrot">
+                            <label for="carrot">Carrot parenchyma cells</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="leaf">
+                            <label for="leaf">Leaf parenchyma cells</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="euglena">
+                            <label for="euglena">Euglena</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="paramecium">
+                            <label for="paramecium">Paramecium</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="stentor">
+                            <label for="stentor">Stentor</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="amoeba">
+                            <label for="amoeba">Amoeba</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="sperm">
+                            <label for="sperm">Bull sperm cells</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="neutrophil">
+                            <label for="neutrophil">Neutrophils</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="ciliated">
+                            <label for="ciliated">Ciliated epithelium</label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Example Dichotomous Key Format:</h3>
+                <div class="evidence-box">
+                    <p><strong>1a.</strong> Cell has a cell wall → Go to 2</p>
+                    <p><strong>1b.</strong> Cell does NOT have a cell wall → Go to 5</p>
+                    <p><strong>2a.</strong> Cell contains chloroplasts → Go to 3</p>
+                    <p><strong>2b.</strong> Cell does NOT contain chloroplasts → Go to 4</p>
+                    <p style="margin-top: 15px; font-style: italic;">Continue this pattern until all cells are identified...</p>
+                </div>
+
+                <div class="answer-area">
+                    <h3>Your Dichotomous Key:</h3>
+                    <textarea placeholder="Create your complete dichotomous key here. Start with broad categories and narrow down to specific cell types. Use observable features like: presence of cell wall, color, movement type, organelles present, nuclear shape, etc." style="min-height: 300px;"></textarea>
+                </div>
+
+                <h3>Justification:</h3>
+                <textarea placeholder="Explain why you chose to organize your key in this way. What features did you prioritize and why?"></textarea>
+            </div>
+        </div>
+
+        <!-- BONUS CHALLENGE -->
+        <div class="challenge-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border: 3px solid #ab47bc;">
+            <div class="challenge-number" style="background: linear-gradient(135deg, #ab47bc 0%, #8e24aa 100%);">💎</div>
+            <div>
+                <h2>BONUS: The Medical Mystery Challenge</h2>
+                <div class="clear"></div>
+                
+                <div class="scoring-box">
+                    <span class="points">⭐ +10 Bonus Points</span> - Apply lab knowledge to solve a medical case
+                </div>
+
+                <div class="mystery-box" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);">
+                    <h3>Patient Case Study:</h3>
+                    <p><strong>Patient:</strong> 45-year-old male</p>
+                    <p><strong>Symptoms:</strong> Recurring bacterial infections, slow wound healing, frequent pneumonia</p>
+                    <p><strong>Lab Results:</strong> Blood test shows normal red blood cell count, but white blood cell analysis reveals:</p>
+                    <ul>
+                        <li>Normal total WBC count</li>
+                        <li>Neutrophils present in correct numbers (60% of WBCs)</li>
+                        <li>BUT: Time-lapse microscopy shows neutrophils cannot form pseudopodia properly</li>
+                        <li>Further testing reveals defective actin polymerization in these cells</li>
+                    </ul>
+                </div>
+
+                <h3>Questions to Answer:</h3>
+                <textarea placeholder="1. Based on what you learned about neutrophils in lab, explain WHY this patient gets frequent bacterial infections. Be specific about what neutrophils normally do."></textarea>
+                
+                <textarea placeholder="2. The defect is in actin polymerization. Explain the connection between actin, pseudopodia, and the neutrophil's ability to fight infection."></textarea>
+                
+                <textarea placeholder="3. Would this patient also have problems with viral infections? Why or why not? (Hint: Think about what type of immune response neutrophils are part of)"></textarea>
+                
+                <textarea placeholder="4. If you observed this patient's neutrophils under the microscope, what would you expect to see differently compared to normal neutrophils? What would you NOT see?"></textarea>
+
+                <div class="evidence-box">
+                    <h3>Connection to Lab:</h3>
+                    <p>This bonus challenge tests your understanding of:</p>
+                    <ul>
+                        <li>Neutrophil structure and function from your blood smear observations</li>
+                        <li>The role of actin-myosin in amoeboid motion from amoeba observations</li>
+                        <li>Phagocytosis mechanism from comparing amoeba and neutrophils</li>
+                        <li>The importance of pseudopodia for immune function</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CROSSWORD CHALLENGE -->
+        <div class="challenge-card">
+        <div class="challenge-number">🧩</div>
+    <div>
+        <h2>Bonus Crossword Puzzle</h2>
+        <div class="clear"></div>
+        
+        <div class="scoring-box">
+            <span class="points">⭐ +10 Bonus Points</span> - Complete the crossword using terms from the lab
+        </div>
+
+        <div id="crossword-grid" style="margin: 20px auto; display: flex; justify-content: center;"></div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+            <div class="clue-box">
+                <h3>Across</h3>
+                <ol id="across-clues"></ol>
+            </div>
+            <div class="clue-box">
+                <h3>Down</h3>
+                <ol id="down-clues"></ol>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="btn" onclick="checkCrossword()">Check Answers</button>
+            <button class="btn" onclick="revealCrossword()">Reveal Answers</button>
+            <button class="btn" style="background: linear-gradient(135deg, #757575 0%, #616161 100%);" onclick="resetCrossword()">Reset</button>
+        </div>
+
+        <div id="crossword-result" style="margin-top: 20px; text-align: center; font-size: 18px; font-weight: bold;"></div>
+    </div>
+</div>
+        
+        <!-- SCORING AND SUBMISSION -->
+        <div class="challenge-card" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);">
+            <h2 style="text-align: center;">📊 Scoring Summary</h2>
+            
+            <div class="grade-scale">
+                <h3>Grading Scale:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div style="background: #c8e6c9; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #4caf50;">
+                        <strong style="font-size: 24px; color: #2e7d32;">A</strong>
+                        <p style="margin-top: 5px; color: #2e7d32;">90-100+ points</p>
+                        <p style="font-size: 14px; margin-top: 5px;">Excellent!</p>
+                    </div>
+                    <div style="background: #bbdefb; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #2196f3;">
+                        <strong style="font-size: 24px; color: #1565c0;">B</strong>
+                        <p style="margin-top: 5px; color: #1565c0;">80-89 points</p>
+                        <p style="font-size: 14px; margin-top: 5px;">Very Good!</p>
+                    </div>
+                    <div style="background: #fff9c4; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #fbc02d;">
+                        <strong style="font-size: 24px; color: #f57c00;">C</strong>
+                        <p style="margin-top: 5px; color: #f57c00;">70-79 points</p>
+                        <p style="font-size: 14px; margin-top: 5px;">Good</p>
+                    </div>
+                    <div style="background: #ffccbc; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #ff5722;">
+                        <strong style="font-size: 24px; color: #d84315;">D/F</strong>
+                        <p style="margin-top: 5px; color: #d84315;">&lt;70 points</p>
+                        <p style="font-size: 14px; margin-top: 5px;">Review Needed</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 20px; background: white; border-radius: 8px; border: 2px solid #ff6f00;">
+                <h3 style="text-align: center; color: #ff6f00;">Final Reflection</h3>
+                <textarea placeholder="What was the most challenging part of this activity? What did you learn about the unity of life across different kingdoms?" style="min-height: 120px;"></textarea>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn" onclick="calculateTotal()">Calculate My Total Score</button>
+                <button class="btn" onclick="window.print()">Print My Answers</button>
+            </div>
+
+            <div id="total-score-display" style="margin-top: 20px; text-align: center; font-size: 24px; font-weight: bold; color: #ff6f00;"></div>
+        </div>
+
+        <!-- ANSWER KEY (FOR INSTRUCTOR) -->
+        <div class="challenge-card" style="background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border: 3px solid #f44336;">
+            <h2 style="color: #c62828; text-align: center;">🔐 Answer Key (Instructor Only)</h2>
+            
+            <div class="evidence-box">
+                <h3>Challenge 1 Answers:</h3>
+                <ul>
+                    <li><strong>Mystery Cell #1:</strong> Amoeba</li>
+                    <li><strong>Mystery Cell #2:</strong> Neutrophil (or neutrophils)</li>
+                    <li><strong>Mystery Cell #3:</strong> Euglena</li>
+                    <li><strong>Mystery Cell #4:</strong> Ciliated pseudostratified columnar epithelium (or ciliated columnar epithelium)</li>
+                    <li><strong>Mystery Cell #5:</strong> Stentor</li>
+                </ul>
+            </div>
+
+            <div class="evidence-box">
+                <h3>Challenge 2 Key Points:</h3>
+                <ul>
+                    <li><strong>Question 1:</strong> All three mechanisms (flagella, cilia, pseudopodia) appear in both protists and animal cells, demonstrating evolutionary conservation</li>
+                    <li><strong>Question 2:</strong> Yes, same 9+2 microtubule structure with dynein motors—shows homology (common evolutionary origin)</li>
+                    <li><strong>Question 3:</strong> Shows that fundamental cellular mechanisms are conserved across kingdoms; actin-myosin system evolved once and was maintained</li>
+                </ul>
+            </div>
+
+            <div class="evidence-box">
+                <h3>Challenge 3 Key Points:</h3>
+                <ul>
+                    <li><strong>Problem 1:</strong> Many small chloroplasts have greater total surface area than one large chloroplast, allowing faster CO₂ uptake and better light capture</li>
+                    <li><strong>Problem 2:</strong> Amoeba are slower-moving, have lower metabolic rate, live in environments with abundant oxygen and nutrients; cytoplasmic streaming helps transport materials</li>
+                    <li><strong>Problem 3:</strong> Cytoplasmic streaming reduces diffusion distances in large cells, moving materials faster than diffusion alone</li>
+                </ul>
+            </div>
+
+            <div class="evidence-box">
+                <h3>Challenge 4 Key Points:</h3>
+                <table>
+                    <tr>
+                        <th>Organelle</th>
+                        <th>Found In</th>
+                        <th>Function</th>
+                    </tr>
+                    <tr>
+                        <td>Contractile Vacuole</td>
+                        <td>Paramecium, Stentor, Amoeba</td>
+                        <td>Osmoregulation - pumps out excess water</td>
+                    </tr>
+                    <tr>
+                        <td>Chromoplasts</td>
+                        <td>Carrot parenchyma</td>
+                        <td>Store carotene pigments (orange color)</td>
+                    </tr>
+                    <tr>
+                        <td>Macronucleus</td>
+                        <td>Paramecium, Stentor</td>
+                        <td>Controls daily cell functions</td>
+                    </tr>
+                    <tr>
+                        <td>Lobed Nucleus</td>
+                        <td>Neutrophils</td>
+                        <td>3-5 lobes; allows cell to squeeze through tight spaces</td>
+                    </tr>
+                    <tr>
+                        <td>Cell Wall</td>
+                        <td>All plant cells</td>
+                        <td>Structural support; made of cellulose</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px;"><strong>Critical thinking:</strong> Freshwater protists live in hypotonic environment (water enters by osmosis); neutrophils live in isotonic blood (no net water movement)</p>
+            </div>
+
+            <div class="evidence-box">
+                <h3>Challenge 5 Key Points:</h3>
+                <ul>
+                    <li><strong>Purpose:</strong> Amoeba = nutrition/feeding; Neutrophils = immune defense</li>
+                    <li><strong>Engulfed:</strong> Amoeba = bacteria, algae, organic matter; Neutrophils = bacteria, pathogens</li>
+                    <li><strong>Mechanism:</strong> Both use actin-myosin-based pseudopodia (identical)</li>
+                    <li><strong>After:</strong> Both form food vacuole/phagosome, fuse with lysosome, digest contents</li>
+                    <li><strong>Unity of Life:</strong> Demonstrates conservation of cellular mechanisms; same molecular machinery serves different purposes in different kingdoms</li>
+                </ul>
+            </div>
+
+            <div class="evidence-box">
+                <h3>Challenge 6 Sample Dichotomous Key:</h3>
+                <p><strong>1a.</strong> Cell has a cell wall → Go to 2</p>
+                <p><strong>1b.</strong> Cell does NOT have a cell wall → Go to 6</p>
+                <p><strong>2a.</strong> Cell contains chloroplasts → Go to 3</p>
+                <p><strong>2b.</strong> Cell does NOT contain chloroplasts → Go to 5</p>
+                <p><strong>3a.</strong> Cell contains chlorophyll (green) → Go to 4</p>
+                <p><strong>3b.</strong> Cell contains carotene (orange) → <strong>Carrot parenchyma</strong></p>
+                <p><strong>4a.</strong> Cell is rectangular/brick-shaped → <strong>Onion epidermal cell</strong></p>
+                <p><strong>4b.</strong> Cell is irregular with many chloroplasts → <strong>Leaf parenchyma</strong></p>
+                <p><strong>5a.</strong> Cell has cilia on surface → Go to 7</p>
+                <p><strong>5b.</strong> Cell has NO visible movement structures → Go to 8</p>
+                <p><strong>6a.</strong> Cell is unicellular (protist) → Go to 9</p>
+                <p><strong>6b.</strong> Cell is part of multicellular organism (animal) → Go to 12</p>
+                <p><strong>7a.</strong> Cilia cover entire cell surface → <strong>Paramecium</strong></p>
+                <p><strong>7b.</strong> Cilia concentrated at one end (funnel-shaped) → <strong>Stentor</strong></p>
+                <p><strong>8a.</strong> Has flagellum and chloroplasts → <strong>Euglena</strong></p>
+                <p><strong>8b.</strong> No fixed shape, uses pseudopodia → <strong>Amoeba</strong></p>
+                <p><strong>9a.</strong> Part of tissue lining airways → <strong>Ciliated epithelium</strong></p>
+                <p><strong>9b.</strong> Individual cells → Go to 10</p>
+                <p><strong>10a.</strong> Has flagellum (tail) → <strong>Bull sperm</strong></p>
+                <p><strong>10b.</strong> Has lobed nucleus → <strong>Neutrophil</strong></p>
+            </div>
+
+            <div class="evidence-box">
+                <h3>BONUS Challenge Answers:</h3>
+                <ol>
+                    <li><strong>Why infections?</strong> Neutrophils normally use pseudopodia to migrate to infection sites and engulf/destroy bacteria through phagocytosis. Without functional pseudopodia, they cannot reach bacteria or perform phagocytosis effectively.</li>
+                    <li><strong>Actin connection:</strong> Actin polymerizes to form microfilaments that extend pseudopodia. Myosin motors pull on actin to generate movement. Without proper actin polymerization, neutrophils cannot form pseudopodia, cannot migrate, and cannot engulf bacteria.</li>
+                    <li><strong>Viral infections:</strong> May still have some problems because neutrophils participate in early antiviral response, but the main antiviral defense (NK cells, T cells, B cells) would still function. Bacterial infections would be much more severe.</li>
+                    <li><strong>Microscope observation:</strong> Would see neutrophils with normal lobed nuclei BUT would NOT see pseudopodia formation or amoeboid motion. Cells would appear static/round instead of actively crawling.</li>
+                </ol>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 20px; border: 2px solid #c62828;">
+                <h3 style="color: #c62828;">Grading Rubric Suggestions:</h3>
+                <ul>
+                    <li><strong>Challenge 1 (15 pts):</strong> 3 points per correct cell identification</li>
+                    <li><strong>Challenge 2 (20 pts):</strong> 10 pts for diagram quality, 10 pts for question responses</li>
+                    <li><strong>Challenge 3 (15 pts):</strong> 5 points per problem (must explain SA:V ratio)</li>
+                    <li><strong>Challenge 4 (15 pts):</strong> 2 pts per table row (10 pts) + 5 pts for critical thinking</li>
+                    <li><strong>Challenge 5 (15 pts):</strong> 2 pts per table row (10 pts) + 5 pts for unity of life explanation</li>
+                    <li><strong>Challenge 6 (20 pts):</strong> 15 pts for complete, logical key + 5 pts for justification</li>
+                    <li><strong>BONUS (10 pts):</strong> 2.5 points per question (must show understanding of neutrophil function and actin role)</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; padding: 30px; color: white; margin-top: 40px;">
+        <p style="font-size: 18px; font-weight: 600;">University of Wisconsin-Parkside</p>
+        <p style="font-size: 14px; margin-top: 10px;">Eukaryotic Cell Detective Challenge</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">Testing comprehensive understanding through multi-modal problem-solving</p>
+    </footer>
+
+    <script>
+        // Crossword puzzle data
+        const crosswordData = {
+            grid: [
+                ['', '', '', '', '', 'P', 'S', 'E', 'U', 'D', 'O', 'P', 'O', 'D', 'I', 'A'],
+                ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+                ['N', 'E', 'U', 'T', 'R', 'O', 'P', 'H', 'I', 'L', 'S', '', '', '', '', ''],
+                ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', 'P', 'H', 'A', 'G', 'O', 'C', 'Y', 'T', 'O', 'S', 'I', 'S', '', ''],
+                ['', '', '', '', 'C', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'T', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'I', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'N', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', 'M', 'Y', 'O', 'S', 'I', 'N', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'O', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'F', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'I', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'L', '', '', '', '', '', '', '', '', '', '', ''],
+                ['C', 'H', 'E', 'M', 'O', 'T', 'A', 'X', 'I', 'S', '', '', '', '', '', ''],
+                ['', '', '', '', 'N', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'T', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'R', '', '', '', '', '', '', '', '', '', '', ''],
+                ['C', 'O', 'N', 'T', 'R', 'A', 'C', 'T', 'I', 'L', 'E', '', '', '', '', ''],
+                ['', '', '', '', 'A', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'C', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'T', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'I', '', '', '', '', '', '', '', '', '', '', ''],
+                ['', '', 'A', 'M', 'O', 'E', 'B', 'A', '', '', '', '', '', '', '', ''],
+                ['', '', '', '', 'N', '', '', '', '', '', '', '', '', '', '', '']
+            ],
+            acrossClues: [
+                {num: 1, clue: 'Temporary "false feet" projections used for movement and feeding'},
+                {num: 2, clue: 'White blood cells that use amoeboid motion to fight infection'},
+                {num: 3, clue: 'Process of engulfing solid particles like bacteria (cell eating)'},
+                {num: 4, clue: 'Motor protein that pulls on actin filaments to generate movement'},
+                {num: 5, clue: 'Directed movement toward chemical signals'},
+                {num: 6, clue: 'Type of vacuole that pumps excess water out of freshwater protists'},
+                {num: 7, clue: 'Single-celled protist that uses pseudopodia for locomotion'}
+            ],
+            downClues: [
+                {num: 1, clue: 'Protein filaments forming the cytoskeleton network (starts with ACTIN)'}
+            ]
+        };
+
+        let userAnswers = {};
+
+        function initCrossword() {
+            const grid = document.getElementById('crossword-grid');
+            if (grid.hasChildNodes()) return; // Already initialized
+            
+            grid.innerHTML = '';
+            
+            const cellSize = 35;
+            const gridDiv = document.createElement('div');
+            gridDiv.style.display = 'grid';
+            gridDiv.style.gridTemplateColumns = `repeat(${crosswordData.grid[0].length}, ${cellSize}px)`;
+            gridDiv.style.gap = '1px';
+            gridDiv.style.background = '#ddd';
+            gridDiv.style.padding = '1px';
+            
+            crosswordData.grid.forEach((row, i) => {
+                row.forEach((cell, j) => {
+                    const cellDiv = document.createElement('div');
+                    cellDiv.style.width = cellSize + 'px';
+                    cellDiv.style.height = cellSize + 'px';
+                    cellDiv.style.display = 'flex';
+                    cellDiv.style.alignItems = 'center';
+                    cellDiv.style.justifyContent = 'center';
+                    cellDiv.style.position = 'relative';
+                    cellDiv.dataset.row = i;
+                    cellDiv.dataset.col = j;
+                    
+                    if (cell === '') {
+                        cellDiv.style.background = '#333';
+                    } else {
+                        cellDiv.style.background = 'white';
+                        cellDiv.style.cursor = 'pointer';
+                        cellDiv.style.border = '1px solid #ccc';
+                        
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = 1;
+                        input.style.width = '100%';
+                        input.style.height = '100%';
+                        input.style.border = 'none';
+                        input.style.textAlign = 'center';
+                        input.style.fontSize = '18px';
+                        input.style.fontWeight = 'bold';
+                        input.style.textTransform = 'uppercase';
+                        input.style.background = 'transparent';
+                        input.dataset.row = i;
+                        input.dataset.col = j;
+                        
+                        input.addEventListener('input', function(e) {
+                            if (e.target.value) {
+                                const key = `${i}-${j}`;
+                                userAnswers[key] = e.target.value.toUpperCase();
+                                moveToNextCell(i, j);
+                            }
+                        });
+                        
+                        input.addEventListener('keydown', function(e) {
+                            if (e.key === 'Backspace' && !e.target.value) {
+                                moveToPrevCell(i, j);
+                            }
+                        });
+                        
+                        cellDiv.appendChild(input);
+                    }
+                    
+                    gridDiv.appendChild(cellDiv);
+                });
+            });
+            
+            grid.appendChild(gridDiv);
+            
+            // Populate clues
+            const acrossCluesList = document.getElementById('across-clues');
+            const downCluesList = document.getElementById('down-clues');
+            
+            acrossCluesList.innerHTML = crosswordData.acrossClues.map(c => 
+                `<li style="margin-bottom: 12px; line-height: 1.5;"><strong>${c.num}.</strong> ${c.clue}</li>`
+            ).join('');
+            
+            downCluesList.innerHTML = crosswordData.downClues.map(c => 
+                `<li style="margin-bottom: 12px; line-height: 1.5;"><strong>${c.num}.</strong> ${c.clue}</li>`
+            ).join('');
+        }
+
+        function moveToNextCell(row, col) {
+            const inputs = document.querySelectorAll('#crossword-grid input');
+            let nextInput = null;
+            
+            for (let input of inputs) {
+                const r = parseInt(input.dataset.row);
+                const c = parseInt(input.dataset.col);
+                if (r === row && c > col) {
+                    nextInput = input;
+                    break;
+                }
+            }
+            
+            if (!nextInput) {
+                for (let input of inputs) {
+                    const r = parseInt(input.dataset.row);
+                    if (r > row) {
+                        nextInput = input;
+                        break;
+                    }
+                }
+            }
+            
+            if (nextInput) nextInput.focus();
+        }
+
+        function moveToPrevCell(row, col) {
+            const inputs = Array.from(document.querySelectorAll('#crossword-grid input')).reverse();
+            let prevInput = null;
+            
+            for (let input of inputs) {
+                const r = parseInt(input.dataset.row);
+                const c = parseInt(input.dataset.col);
+                if (r === row && c < col) {
+                    prevInput = input;
+                    break;
+                }
+            }
+            
+            if (!prevInput) {
+                for (let input of inputs) {
+                    const r = parseInt(input.dataset.row);
+                    if (r < row) {
+                        prevInput = input;
+                        break;
+                    }
+                }
+            }
+            
+            if (prevInput) prevInput.focus();
+        }
+
+        function checkCrossword() {
+            let correct = 0;
+            let total = 0;
+            
+            const inputs = document.querySelectorAll('#crossword-grid input');
+            inputs.forEach(input => {
+                const row = parseInt(input.dataset.row);
+                const col = parseInt(input.dataset.col);
+                const correctLetter = crosswordData.grid[row][col];
+                const userLetter = input.value.toUpperCase();
+                
+                if (correctLetter !== '') {
+                    total++;
+                    if (userLetter === correctLetter) {
+                        correct++;
+                        input.style.background = '#c8e6c9';
+                    } else if (userLetter !== '') {
+                        input.style.background = '#ffcdd2';
+                    }
+                }
+            });
+            
+            const result = document.getElementById('crossword-result');
+            const percentage = Math.round((correct / total) * 100);
+            
+            if (percentage === 100) {
+                result.innerHTML = '🎉 Perfect! You got all answers correct! Add 10 bonus points to your score.';
+                result.style.color = '#2e7d32';
+            } else if (percentage >= 70) {
+                result.innerHTML = `Great job! You got ${correct} out of ${total} correct (${percentage}%). Add ${Math.round(percentage/10)} bonus points.`;
+                result.style.color = '#ff6f00';
+            } else {
+                result.innerHTML = `Keep trying! You got ${correct} out of ${total} correct (${percentage}%)`;
+                result.style.color = '#c62828';
+            }
+        }
+
+        function resetCrossword() {
+            userAnswers = {};
+            const inputs = document.querySelectorAll('#crossword-grid input');
+            inputs.forEach(input => {
+                input.value = '';
+                input.style.background = 'transparent';
+            });
+            document.getElementById('crossword-result').innerHTML = '';
+        }
+
+        function revealCrossword() {
+            const inputs = document.querySelectorAll('#crossword-grid input');
+            inputs.forEach(input => {
+                const row = parseInt(input.dataset.row);
+                const col = parseInt(input.dataset.col);
+                const correctLetter = crosswordData.grid[row][col];
+                if (correctLetter !== '') {
+                    input.value = correctLetter;
+                    input.style.background = '#fff9c4';
+                }
+            });
+            document.getElementById('crossword-result').innerHTML = '💡 All answers revealed!';
+            document.getElementById('crossword-result').style.color = '#f57c00';
+        }
+
+        // Initialize crossword when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            initCrossword();
+        });
+
+        function calculateTotal() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            let total = 0;
+            let hasValues = false;
+            
+            inputs.forEach(input => {
+                const value = parseInt(input.value) || 0;
+                if (value > 0) hasValues = true;
+                total += value;
+            });
+            
+            const display = document.getElementById('total-score-display');
+            
+            if (!hasValues) {
+                display.innerHTML = '⚠️ Please enter your scores in the table above first!';
+                display.style.color = '#f57c00';
+                return;
+            }
+            
+            let grade = '';
+            let color = '';
+            let message = '';
+            
+            if (total >= 100) {
+                grade = 'A+';
+                color = '#2e7d32';
+                message = 'Outstanding work, Detective! 🎉🏆';
+            } else if (total >= 90) {
+                grade = 'A';
+                color = '#2e7d32';
+                message = 'Excellent work, Detective! 🎉';
+            } else if (total >= 80) {
+                grade = 'B';
+                color = '#1565c0';
+                message = 'Very good work! 👍';
+            } else if (total >= 70) {
+                grade = 'C';
+                color = '#f57c00';
+                message = 'Good effort! Keep studying! 📚';
+            } else {
+                grade = 'D/F';
+                color = '#d84315';
+                message = 'Review the material and try again. 💪';
+            }
+            
+            display.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); display: inline-block; margin-top: 20px;">
+                    <div style="font-size: 48px; color: ${color}; margin-bottom: 10px;">${grade}</div>
+                    <div style="font-size: 32px; color: ${color}; margin-bottom: 10px;">${total} / 120 points</div>
+                    <div style="font-size: 20px; color: #333;">${message}</div>
+                </div>
+            `;
+            display.style.color = color;
+        }
+    </script>
+</body>
+</html>
