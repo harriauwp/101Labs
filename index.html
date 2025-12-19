@@ -1,4 +1,186 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>101Labs - The Lab Manual</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 3em;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            color: #718096;
+        }
+        
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .lab-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .lab-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+        
+        .lab-number {
+            font-size: 1.2em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .lab-title {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .lab-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .lab-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .status-complete {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .status-upcoming {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+        
+        .icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧪 101Labs</h1>
+            <p class="subtitle">The Complete Laboratory Manual</p>
+        </header>
+        
+        <div class="labs-grid">
+            <a href="labs/lab01/index.html" class="lab-card">
+                <div class="icon">🔬</div>
+                <div class="lab-number">Lab 01</div>
+                <h2 class="lab-title">Introduction to Biology</h2>
+                <p class="lab-description">Learn the fundamentals of biological sciences and laboratory techniques.</p>
+                <span class="lab-status status-upcoming">Coming Soon</span>
+            </a>
+            
+            <a href="labs/lab02/index.html" class="lab-card">
+                <div class="icon">🍞</div>
+                <div class="lab-number">Lab 02</div>
+                <h2 class="lab-title">Carbohydrates</h2>
+                <p class="lab-description">Explore the structure and function of carbohydrates, including monosaccharides, disaccharides, and polysaccharides.</p>
+                <span class="lab-status status-complete">Available</span>
+            </a>
+            
+            <a href="labs/lab03/index.html" class="lab-card">
+                <div class="icon">🧬</div>
+                <div class="lab-number">Lab 03</div>
+                <h2 class="lab-title">Proteins & Lipids</h2>
+                <p class="lab-description">Study the molecular structures and biological roles of proteins and lipids.</p>
+                <span class="lab-status status-upcoming">Coming Soon</span>
+            </a>
+            
+            <a href="labs/lab04/index.html" class="lab-card">
+                <div class="icon">🔭</div>
+                <div class="lab-number">Lab 04</div>
+                <h2 class="lab-title">Cell Structure</h2>
+                <p class="lab-description">Examine cellular organelles and their functions using microscopy.</p>
+                <span class="lab-status status-upcoming">Coming Soon</span>
+            </a>
+            
+            <a href="labs/lab05/index.html" class="lab-card">
+                <div class="icon">⚡</div>
+                <div class="lab-number">Lab 05</div>
+                <h2 class="lab-title">Cellular Respiration</h2>
+                <p class="lab-description">Investigate the processes of cellular energy production and metabolism.</p>
+                <span class="lab-status status-upcoming">Coming Soon</span>
+            </a>
+            
+            <a href="labs/lab06/index.html" class="lab-card">
+                <div class="icon">🌱</div>
+                <div class="lab-number">Lab 06</div>
+                <h2 class="lab-title">Photosynthesis</h2>
+                <p class="lab-description">Study how plants convert light energy into chemical energy.</p>
+                <span class="lab-status status-upcoming">Coming Soon</span>
+            </a>
+        </div>
+        
+        <footer>
+            <p>&copy; 2024 101Labs Manual | Biology Laboratory Exercises</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
