@@ -1,97 +1,169 @@
-﻿<!DOCTYPE html>
-<html lang='en'>
+<!-- index.html (minified) -->
+<!doctype html>
+<html lang="en">
+
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Lab 2: Carbohydrates | 101Labs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Goals Tracker • Lab 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; line-height: 1.6; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; text-align: center; }
-        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .nav { background: white; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .nav a { color: #667eea; text-decoration: none; font-weight: bold; display: inline-block; padding: 5px 15px; }
-        .nav a:hover { background: #667eea; color: white; border-radius: 5px; }
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h2 { color: #2d3748; font-size: 2em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #667eea; }
-        h3 { color: #4a5568; font-size: 1.5em; margin: 25px 0 15px 0; }
-        .objectives-list { list-style: none; counter-reset: objective-counter; }
-        .objectives-list li { counter-increment: objective-counter; padding: 15px; margin: 10px 0; background: #f7fafc; border-left: 4px solid #667eea; border-radius: 5px; position: relative; padding-left: 60px; }
-        .objectives-list li::before { content: counter(objective-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #667eea; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1em; }
-        .exercise-category { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 20px; margin: 30px 0 20px 0; border-radius: 8px; font-size: 1.3em; font-weight: bold; }
-        .exercise-item { background: #edf2f7; padding: 15px 20px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #48bb78; }
-        .exercise-item p { margin: 5px 0; color: #2d3748; }
-        .location-badge { display: inline-block; padding: 5px 12px; border-radius: 20px; font-size: 0.85em; font-weight: bold; margin-left: 10px; }
-        .badge-online { background: #bee3f8; color: #2c5282; }
-        .badge-lab { background: #c6f6d5; color: #22543d; }
-        .highlight-box { background: #fffbeb; border: 2px solid #f59e0b; border-radius: 8px; padding: 20px; margin: 20px 0; }
-        .highlight-box h4 { color: #92400e; margin-bottom: 10px; }
-        ul { margin: 15px 0 15px 30px; }
-        ul li { margin: 8px 0; color: #4a5568; }
-        .back-link { display: inline-block; margin-top: 30px; padding: 12px 25px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s; }
-        .back-link:hover { background: #5568d3; }
+        :root {
+            --uwp-green: #016836;
+            --uwp-dark: #00502f;
+            --uwp-black: #000;
+            --uwp-grey: #54534A;
+            --uwp-warm: #EFECE2
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            background: #fff;
+            color: #111
+        }
+
+        a {
+            color: var(--uwp-green);
+            text-decoration: none
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .75rem 1rem;
+            border-bottom: 2px solid var(--uwp-green)
+        }
+
+        header .brand {
+            font-weight: 700;
+            letter-spacing: .5px
+        }
+
+        nav a {
+            margin-left: .5rem;
+            font-weight: 600
+        }
+
+        main {
+            padding: 1rem;
+            max-width: 960px;
+            margin: 0 auto
+        }
+
+        h1 {
+            font-size: 1.1rem;
+            margin: .5rem 0
+        }
+
+        #progress {
+            height: 10px;
+            background: #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: .5rem 0
+        }
+
+        #bar {
+            height: 100%;
+            width: 0;
+            background: var(--uwp-green);
+            transition: width .2s linear
+        }
+
+        section {
+            border-left: 4px solid var(--uwp-green);
+            padding: .5rem .75rem;
+            margin: .5rem 0;
+            background: #f8f8f8
+        }
+
+        section h2 {
+            font-size: .95rem;
+            margin: .25rem 0
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0
+        }
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            margin: .25rem 0
+        }
+
+        label {
+            cursor: pointer;
+            display: inline-block;
+            margin-left: .5rem
+        }
+
+        button {
+            background: var(--uwp-green);
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            padding: .5rem .75rem;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        button[disabled] {
+            opacity: .5;
+            cursor: not-allowed
+        }
+
+        footer {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            margin-top: 1rem;
+            font-size: .85rem;
+            color: #333
+        }
+
+        .pill {
+            display: inline-block;
+            background: var(--uwp-warm);
+            color: #222;
+            border: 1px solid var(--uwp-grey);
+            border-radius: 999px;
+            padding: .15rem .5rem;
+            margin-left: .35rem;
+            font-size: .75rem
+        }
     </style>
 </head>
+
 <body>
-    <div class='header'>
-        <h1>🍞 Lab 2: Carbohydrates</h1>
-        <p>Exploring the Structure and Function of Life's Energy Molecules</p>
-    </div>
-    <nav class='nav'><a href='../../index.html'>← Back to Labs</a></nav>
-    <div class='container'>
-        <section class='section'>
-            <h2>📋 Lab Objectives</h2>
-            <ol class='objectives-list'>
-                <li>Understand the chemical composition of living cells, focusing on water and carbohydrates.</li>
-                <li>Learn the properties of water, including polarity and covalent bonding.</li>
-                <li>Review basic organic chemistry concepts: carbon compounds, functional groups, and bonding.</li>
-                <li>Identify and define polymers, monomers, dehydration, and hydrolysis reactions.</li>
-                <li>Explore the structure and function of carbohydrates: monosaccharides, disaccharides, and polysaccharides.</li>
-                <li>Understand glucose transport and storage in plants and animals.</li>
-                <li>Visualize structural isomers and functional groups through molecular models.</li>
-                <li>Learn the differences between starch, glycogen, and cellulose and their biological roles.</li>
-                <li>Perform iodine tests to detect starch and understand its distribution in plant cells.</li>
-                <li>Examine plant cell types (parenchyma, collenchyma, sclerenchyma) and their functions.</li>
-                <li>Study vascular tissues (xylem and phloem) and their roles in transport.</li>
-                <li>Analyze the structure and function of a sunflower stem and identify its regions and cell types.</li>
-                <li>Observe sclereids in pear tissue and understand their role in plant rigidity.</li>
-            </ol>
-        </section>
-        <section class='section'>
-            <h2>📝 Laboratory Exercises</h2>
-            <div class='exercise-category'>🏠 Pre-Lab Exercises</div>
-            <div class='exercise-item'><p><strong>Review Questions</strong> <span class='location-badge badge-online'>Online</span></p><p>Answer review questions on water, carbon, functional groups, and basic organic chemistry.</p></div>
-            <div class='exercise-item'><p><strong>Structural Formulas</strong> <span class='location-badge badge-online'>Online</span></p><p>Draw structural formulas for functional groups and carbon compounds.</p></div>
-            <div class='exercise-item'><p><strong>Key Terminology</strong> <span class='location-badge badge-online'>Online</span></p><p>Define key terms: polymer, monomer, dehydration, and hydrolysis.</p></div>
-            <div class='exercise-item'><p><strong>Molecular Formulas</strong> <span class='location-badge badge-online'>Online</span></p><p>Write molecular formulas for sucrose and maltose.</p></div>
-            <div class='exercise-category'>🔬 In-Lab Exercises</div>
-            <div class='highlight-box'><h4>Molecular Model Construction</h4><ul><li>Construct molecular models of glucose (alpha and beta forms)</li><li>Build models of sucrose and maltose</li><li>Demonstrate dehydration and hydrolysis reactions using models</li></ul></div>
-            <div class='exercise-item'><p><strong>Iodine Test</strong> <span class='location-badge badge-lab'>Lab</span></p><p>Perform iodine test on starch and cellulose samples to observe color changes.</p></div>
-            <div class='exercise-item'><p><strong>Potato Parenchyma Cells</strong> <span class='location-badge badge-lab'>Lab</span></p><p>Prepare and observe potato parenchyma cells under a microscope (before and after iodine treatment).</p><p><em>Task:</em> Sketch potato cells and label cell walls and amyloplasts.</p></div>
-            <div class='exercise-item'><p><strong>Sunflower Stem Cross-Section</strong> <span class='location-badge badge-lab'>Lab</span></p><p>Prepare and sketch sunflower stem cross-section at 4X, 10X, and 40X magnifications.</p><p><em>Identify and label:</em> epidermis, cortex, vascular bundles, xylem, phloem, sclerenchyma fibers.</p></div>
-            <div class='exercise-item'><p><strong>Pear Tissue Analysis</strong> <span class='location-badge badge-lab'>Lab</span></p><p>Prepare and sketch pear tissue showing parenchyma and sclereid cells.</p></div>
-            <div class='exercise-item'><p><strong>Sunflower Stem Model</strong> <span class='location-badge badge-lab'>Lab</span></p><p>Observe sunflower stem model and identify labeled parts.</p></div>
-            <div class='exercise-category'>💻 Post-Lab Exercises</div>
-            <div class='exercise-item'><p><strong>Glucose Forms</strong> <span class='location-badge badge-online'>Online</span></p><p>Answer questions on glucose forms and their structural differences.</p></div>
-            <div class='exercise-item'><p><strong>Chemical Reactions</strong> <span class='location-badge badge-online'>Online</span></p><p>Write equations for dehydration and hydrolysis reactions.</p></div>
-            <div class='exercise-item'><p><strong>Polysaccharide Roles</strong> <span class='location-badge badge-online'>Online</span></p><p>Discuss the roles of starch, glycogen, and cellulose in biological systems.</p></div>
-            <div class='exercise-item'><p><strong>Digestion Analysis</strong> <span class='location-badge badge-online'>Online</span></p><p>Explain why humans can digest starch but not cellulose.</p></div>
-            <div class='exercise-item'><p><strong>Cellulose in Diet</strong> <span class='location-badge badge-online'>Online</span></p><p>Discuss cellulose's importance in diet and how cows/termites hydrolyze cellulose.</p></div>
-            <div class='exercise-item'><p><strong>Review Questions</strong> <span class='location-badge badge-online'>Online</span></p><p>Complete review questions on phloem function, sugar sources/sinks, glycogen storage, and plant cell types.</p></div>
-        </section>
-        <section class='section'>
-            <h2>🔑 Key Concepts</h2>
-            <h3>Carbohydrate Types</h3>
-            <ul><li><strong>Monosaccharides:</strong> Simple sugars like glucose and fructose (single units)</li><li><strong>Disaccharides:</strong> Two sugar units linked together (e.g., sucrose, maltose)</li><li><strong>Polysaccharides:</strong> Long chains of sugar units (e.g., starch, glycogen, cellulose)</li></ul>
-            <h3>Important Reactions</h3>
-            <ul><li><strong>Dehydration Synthesis:</strong> Joining molecules by removing water</li><li><strong>Hydrolysis:</strong> Breaking molecules apart by adding water</li></ul>
-            <h3>Plant Cell Types</h3>
-            <ul><li><strong>Parenchyma:</strong> Storage and basic metabolic functions</li><li><strong>Collenchyma:</strong> Support in growing regions</li><li><strong>Sclerenchyma:</strong> Rigid support in mature tissues</li></ul>
-            <h3>Vascular Tissues</h3>
-            <ul><li><strong>Xylem:</strong> Transports water and minerals upward from roots</li><li><strong>Phloem:</strong> Transports sugars and nutrients throughout the plant</li></ul>
-        </section>
-        <a href='../../index.html' class='back-link'>← Back to All Labs</a>
-    </div>
+    <header>
+        <div class="brand">UW‑Parkside • Lab 2 Goals Tracker</div>
+        <nav><a href="pre-lab.html">🏠 Pre‑Lab</a><a href="in-lab.html">🔬 In‑Lab</a><a href="post-lab.html">💻
+                Post‑Lab</a></nav>
+    </header>
+    <main>
+        <h1>Master the goals, one focused step at a time <span class="pill">25‑minute blocks</span></h1>
+        <div id="progress">
+            <div id="bar"></div>
+        </div>
+        <div id="stats"></div>
+        <div id="goals"></div>
+        <div style="display:flex;gap:.5rem;margin:.75rem 0"><button id="next" disabled>Next Step ▶</button><button
+                id="reset">Reset Progress</button></div>
+    </main>
+    <footer>Parkside style: Green (PMS 349) & Black (PMS Black 3C); Open Sans web font used. © 2025</footer>
+    <script>const data = [{ k: 'Water', items: ['Understand the chemical composition of living cells focusing on water (only)', 'Learn properties of water: polarity, hydrogen bonding, cohesion/adhesion'] }, { k: 'Organic Chemistry Foundations', items: ['Review carbon chemistry: functional groups, covalent bonding, isomerism'] }, { k: 'Macromolecules – Carbohydrates', items: ['Identify polymers vs monomers; dehydration & hydrolysis', 'Explore carbohydrate structures: mono-, di-, polysaccharides', 'Differentiate starch, glycogen, cellulose; link structure to function', 'Understand glucose transport & storage (plants vs animals)'] }, { k: 'Plant Anatomy & Transport', items: ['Study vascular tissues: xylem & phloem roles in transport', 'Ground tissues: parenchyma, collenchyma, sclerenchyma (sclereids as subtype)'] }, { k: 'Applied Lab Skills', items: ['Perform iodine test for starch; controls & interpretation'] }, { k: 'Modeling & Visualization', items: ['Visualize structural isomers & functional groups with models'] }, { k: 'Microscopy & Sketching', items: ['Prepare/sketch potato parenchyma; identify cell walls & amyloplasts', 'Prepare/sketch sunflower stem; epidermis, cortex, vascular bundles, xylem, phloem, sclerenchyma fibers', 'Prepare/sketch pear tissue; identify parenchyma & sclereid cells (sclerenchyma)'] }, { k: 'Specimen Analysis', items: ['Analyze sunflower stem structure; identify regions & cell types'] }]; const KEY = 'lab2_goals_v1'; const saved = JSON.parse(localStorage.getItem(KEY) || '{}'); const container = document.getElementById('goals'); const stats = document.getElementById('stats'); const bar = document.getElementById('bar'); const nextBtn = document.getElementById('next'); const resetBtn = document.getElementById('reset'); function idFor(c, i) { return `${c}__${i}` } function render() { container.innerHTML = ''; let total = 0, done = 0, firstUnchecked = null; data.forEach((cat, ci) => { const sec = document.createElement('section'); sec.innerHTML = `<h2>${cat.k}</h2>`; const ul = document.createElement('ul'); cat.items.forEach((text, ti) => { total++; const id = idFor(ci, ti); const checked = !!saved[id]; if (!checked && firstUnchecked === null) firstUnchecked = id; const li = document.createElement('li'); li.innerHTML = `<input type="checkbox" id="${id}" ${checked ? 'checked' : ''}><label for="${id}">${text}</label>`; ul.appendChild(li); }); sec.appendChild(ul); container.appendChild(sec); }); done = Object.values(saved).filter(Boolean).length; const pct = Math.round((done / total) * 100) || 0; bar.style.width = pct + '%'; stats.textContent = `Progress: ${done}/${total} (${pct}%)`; nextBtn.disabled = !firstUnchecked; nextBtn.dataset.target = firstUnchecked || '' } render(); container.addEventListener('change', e => { if (e.target && e.target.type === 'checkbox') { saved[e.target.id] = e.target.checked; localStorage.setItem(KEY, JSON.stringify(saved)); render() } }); nextBtn.addEventListener('click', () => { const id = nextBtn.dataset.target; if (!id) return; const el = document.getElementById(id); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus() } }); resetBtn.addEventListener('click', () => { localStorage.removeItem(KEY); Object.keys(saved).forEach(k => delete saved[k]); render() });</script>
 </body>
+
 </html>
