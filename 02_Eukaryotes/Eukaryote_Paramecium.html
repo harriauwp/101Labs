@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramecium Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5f9 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #00838f 0%, #006064 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #00838f;
+            color: #00838f;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e0f7fa;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #00838f;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #00838f;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #00838f;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #006064;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #00838f;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #00838f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #006064;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #b2ebf2;
+            color: #006064;
+        }
+
+        .btn-secondary:hover {
+            background: #80deea;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ffa726;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #e65100;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            border: 2px solid #00838f;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #006064;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #e0f7fa;
+            border: 2px solid #b2ebf2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #006064;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #00838f;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #00838f;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #006064;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #b2ebf2;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #b2ebf2;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #1565c0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #00838f;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Paramecium (Ciliated Protist) Laboratory Investigation</h1>
+            <p><strong>Eukaryotic Cells: Rapid Locomotion and Cellular Complexity</strong></p>
+            <p>This investigation demonstrates how a slipper-shaped protist uses thousands of coordinated cilia for rapid movement, while managing water balance and feeding in a freshwater environment through specialized organelles.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Comparative Analysis</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Identify</strong> major structures of Paramecium including cilia, macronucleus, micronucleus, contractile vacuoles, and food vacuoles</li>
+                    <li><strong>Observe</strong> the characteristic slipper shape and rapid ciliary locomotion of Paramecium</li>
+                    <li><strong>Describe</strong> how thousands of cilia beat in coordinated waves to propel the organism</li>
+                    <li><strong>Compare</strong> Paramecium's cilia with cilia found in animal ciliated epithelium and Stentor</li>
+                    <li><strong>Explain</strong> the function of contractile vacuoles in osmoregulation for freshwater protists</li>
+                    <li><strong>Recognize</strong> the kidney-shaped macronucleus characteristic of Paramecium</li>
+                    <li><strong>Apply</strong> techniques for observing rapidly moving microorganisms using stained permanent slides</li>
+                    <li><strong>Understand</strong> why Paramecium is classified as strictly motile (not sessile like some other ciliates)</li>
+                </ul>
+
+                <h3>Chapter Context</h3>
+                <p><strong>Building on Previous Investigations:</strong> The Paramecium investigation builds on observations from Euglena and Stentor by introducing the most advanced ciliary system observed in this chapter. While Stentor can be both motile and sessile, Paramecium is always actively swimming. Students will observe how coordinated ciliary beating creates rapid, controlled movement and how the same 9+2 ciliary structure is conserved across all eukaryotes.</p>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What is Paramecium?</h3>
+                <p><strong>Paramecium</strong> is a medium-sized, slipper-shaped ciliated protist commonly found in freshwater environments. It is one of the most studied unicellular organisms and demonstrates remarkable locomotor control and feeding behavior. Paramecium moves rapidly through water using thousands of cilia that beat in coordinated metachronal waves (like a stadium "wave" moving through the crowd).</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> Unlike Stentor (which can attach and extend), Paramecium is ALWAYS motile. It never attaches to surfaces but instead continuously swims through its aquatic environment using its cilia for both locomotion and feeding. The organism can swim forward, backward, and even rotate on its axis with precise control.
+                </div>
+
+                <h3>Paramecium's Unique Characteristics</h3>
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Slipper Shape</h4>
+                        <p><strong>Distinctive Form:</strong> Elongated, asymmetric body resembling a slipper or shoe sole, with anterior end slightly rounded and posterior end more pointed</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Massive Cilia Coverage</h4>
+                        <p><strong>Thousands of Cilia:</strong> Entire surface covered with cilia arranged in longitudinal rows that beat in coordinated waves</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Dual Nuclei</h4>
+                        <p><strong>Macronucleus + Micronucleus:</strong> Large kidney-shaped macronucleus for daily functions; small micronucleus for reproduction</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Dual Contractile Vacuoles</h4>
+                        <p><strong>Two Pumps:</strong> One at each end (anterior and posterior) that rhythmically pump out excess water</p>
+                    </div>
+                </div>
+
+                <h3>Cilia Structure and Coordination</h3>
+                <p>Paramecium is covered with thousands of short cilia that beat in a highly coordinated manner. Like all eukaryotic cilia, these contain the "9+2" microtubule arrangement. The cilia beat in <strong>metachronal waves</strong>—sequential beating that travels across the cell surface like waves across water.</p>
+
+                <h4>How Paramecium Swims</h4>
+                <ul>
+                    <li><strong>Forward movement:</strong> Cilia beat backward in their power stroke, propelling the cell forward while rotating slightly</li>
+                    <li><strong>Backward movement:</strong> When the organism encounters an obstacle, cilia can reverse their beat direction</li>
+                    <li><strong>Rotation:</strong> The organism spirals as it swims due to asymmetric body shape</li>
+                    <li><strong>Speed:</strong> Very fast compared to other protists—can move several body lengths per second</li>
+                </ul>
+
+                <h3>Living in Freshwater: The Osmoregulation Challenge</h3>
+                <p>Like Stentor, Paramecium lives in freshwater, which is <strong>hypotonic</strong> (has fewer solutes compared to the protist's cytoplasm). Water constantly moves INTO the cell by osmosis. Paramecium has evolved TWO contractile vacuoles to handle this challenge—one near each end of the cell.</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Solution:</strong> Each <strong>contractile vacuole</strong> has a central reservoir surrounded by radiating canals that collect excess water from the cytoplasm. The vacuoles alternately fill and contract, pumping water out through pores to the cell exterior. This rhythmic activity is essential for osmoregulation (control of water balance and solute concentration).
+                </div>
+
+                <h3>Macronucleus vs. Micronucleus</h3>
+                <p>Like all ciliated protists, Paramecium has TWO types of nuclei:</p>
+                <ul>
+                    <li><strong>Macronucleus:</strong> Large, kidney-shaped structure that controls daily cell functions (metabolism, feeding, movement). This is what you will observe most clearly on the stained slide.</li>
+                    <li><strong>Micronucleus:</strong> Small, typically adjacent to the macronucleus, involved in sexual reproduction (conjugation). Usually visible on stained slides as a small dot near the macronucleus.</li>
+                </ul>
+
+                <h3>Why Study Stained Paramecium Instead of Living?</h3>
+                <p>Paramecium moves so rapidly that observing detailed structures in living specimens is extremely frustrating. Even with slowing agents like methyl cellulose, the organism often swims out of the field of view. Therefore, you will observe a <strong>stained permanent slide</strong> where Paramecium have been fixed, stained, and mounted. This allows you to clearly see internal structures that would be impossible to observe in swimming organisms.</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Prepared stained slide of <em>Paramecium</em> (permanent whole mount)</li>
+                        <li>Light microscope with 4X, 10X, and 40X objectives</li>
+                        <li>Lens paper for cleaning lenses</li>
+                        <li>Iris diaphragm for light control</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>📄 For Documentation</h4>
+                    <ul>
+                        <li>Lab notebook or observation sheets</li>
+                        <li>Pencils for sketches</li>
+                        <li>Colored pencils (optional, for highlighting structures)</li>
+                    </ul>
+                </div>
+
+                <h3>Understanding Permanent Stained Slides</h3>
+                <div class="key-concept">
+                    <strong>🎯 Why Permanent Slides?</strong> Paramecium moves extremely fast—several body lengths per second. Even with slowing agents, observing internal structures in living Paramecium is nearly impossible. Permanent stained slides allow you to:
+                    <ul>
+                        <li>See the complete organism at once (not swimming away)</li>
+                        <li>Clearly observe the macronucleus (stains dark)</li>
+                        <li>Identify the micronucleus (often visible as small dot)</li>
+                        <li>Count and observe the arrangement of cilia around the cell periphery</li>
+                        <li>Study the characteristic slipper shape in detail</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Observation Note:</strong> The demonstration microscope has been set up with a permanent slide of Paramecium at 40X magnification. The organism has been fixed (killed), stained, and mounted permanently. You will NOT see movement, but you WILL see structures much more clearly than would ever be possible in a living specimen. The instructor has positioned the slide at a representative specimen.
+                </div>
+
+                <h3>Pre-Lab Checklist</h3>
+                <ul>
+                    <li>Review the structure of cilia (textbook pp. 114-116)</li>
+                    <li>Study Figure 28.19 on p. 607 showing Paramecium anatomy</li>
+                    <li>Review contractile vacuole function (pp. 134-135, Figure 7.14)</li>
+                    <li>Understand the difference between macronucleus and micronucleus</li>
+                    <li>Review proper microscope handling at 40X magnification</li>
+                </ul>
+
+                <h3>Safety and Handling</h3>
+                <ul>
+                    <li>Permanent slides are valuable and fragile—handle with care</li>
+                    <li>Do NOT remove the slide from the demonstration microscope without instructor permission</li>
+                    <li>Use ONLY fine focus adjustment at 40X—never coarse focus</li>
+                    <li>If the image is unclear, ask the instructor for help rather than adjusting objectives yourself</li>
+                    <li>Clean your hands before touching the eyepiece</li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part 1: Locating the Demonstration Microscope</h3>
+                <p><strong>Note:</strong> Your instructor has set up a demonstration microscope with a permanent stained slide of Paramecium at 40X magnification. Multiple students will observe this same preparation.</p>
+
+                <ol>
+                    <li>Locate the demonstration microscope (typically on a side counter or middle table)</li>
+                    <li>Approach carefully—do not bump the microscope or table</li>
+                    <li>The slide is already in position and focused</li>
+                    <li>You may need to make minor adjustments using ONLY the fine focus knob</li>
+                </ol>
+
+                <h3>Part 2: Initial Observation at 40X</h3>
+
+                <h4>Step 1: Observe Overall Structure</h4>
+                <ol>
+                    <li>Look through the eyepiece and locate the Paramecium</li>
+                    <li>Note the characteristic <strong>slipper shape</strong>—elongated, asymmetric body</li>
+                    <li>Identify the anterior end (more rounded, blunt) vs. posterior end (more pointed)</li>
+                    <li>Observe the overall size—Paramecium is medium-sized, approximately 0.15-0.3 mm long</li>
+                    <li>Look at the edge of the organism to see the cilia (tiny hair-like projections)</li>
+                </ol>
+
+                <h4>Step 2: Adjust Light for Optimal Viewing</h4>
+                <ol>
+                    <li>If the image appears washed out, reduce light using the iris diaphragm</li>
+                    <li>If the image is too dark, increase light intensity</li>
+                    <li>Fine-tune the focus using ONLY the fine focus knob</li>
+                    <li>The goal is to see maximum contrast between the stained nucleus and the cytoplasm</li>
+                </ol>
+
+                <h3>Part 3: Identifying Key Structures</h3>
+
+                <h4>A. Cilia</h4>
+                <ol>
+                    <li>Focus on the edge (periphery) of the Paramecium</li>
+                    <li>Look for tiny, hair-like structures extending from the cell surface</li>
+                    <li>The cilia appear as a "fuzzy" border around the entire organism</li>
+                    <li>Note that cilia are arranged in longitudinal rows (though individual rows may be hard to distinguish)</li>
+                    <li>Remember: In the living organism, these thousands of cilia beat in coordinated waves for rapid locomotion</li>
+                </ol>
+
+                <h4>B. Macronucleus</h4>
+                <ol>
+                    <li>Look for a large, kidney-shaped or bean-shaped structure inside the cell</li>
+                    <li>The macronucleus is usually the most prominent feature—it stains very dark (purple or blue-black)</li>
+                    <li>It occupies a significant portion of the cell interior</li>
+                    <li>Note its kidney shape—this is characteristic of Paramecium (different from the bead-like macronucleus of Stentor)</li>
+                    <li>This structure controls all the daily metabolic functions of the cell</li>
+                </ol>
+
+                <h4>C. Micronucleus (if visible)</h4>
+                <ol>
+                    <li>Look for a very small, round structure near or adjacent to the macronucleus</li>
+                    <li>The micronucleus is much smaller than the macronucleus</li>
+                    <li>It may appear as a small dot, typically nestled in the concave curve of the kidney-shaped macronucleus</li>
+                    <li>Not all slides will show the micronucleus clearly—if you cannot find it, that's okay</li>
+                    <li>Ask the instructor for help if needed</li>
+                </ol>
+
+                <h4>D. Oral Groove and Gullet (if visible)</h4>
+                <ol>
+                    <li>Look along one side of the organism for a diagonal depression or groove</li>
+                    <li>This is the <strong>oral groove</strong>—a channel lined with cilia that sweeps food particles toward the gullet</li>
+                    <li>The oral groove leads to the <strong>gullet</strong> (cell "mouth") where food vacuoles form</li>
+                    <li>These structures may not be clearly visible on all specimens—refer to textbook diagrams if unclear</li>
+                </ol>
+
+                <h4>E. Food Vacuoles and Contractile Vacuoles</h4>
+                <ol>
+                    <li>Look for small, round, clear areas scattered throughout the cytoplasm</li>
+                    <li><strong>Food vacuoles:</strong> Small, may appear darker if they contain partially digested food particles</li>
+                    <li><strong>Contractile vacuoles:</strong> Larger, clear, round structures—usually two (one near anterior end, one near posterior end)</li>
+                    <li>On fixed slides, contractile vacuoles appear as empty (clear) circles because they were fixed mid-cycle</li>
+                    <li>In living Paramecium, these would rhythmically fill and contract to pump out excess water</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>40X Magnification Sketch</h4>
+                    <p><strong>Labels to include:</strong></p>
+                    <ul>
+                        <li>Cilia (around cell periphery)</li>
+                        <li>Macronucleus (large, kidney-shaped)</li>
+                        <li>Micronucleus (if visible—small dot near macronucleus)</li>
+                        <li>Contractile vacuole (if visible—clear, round)</li>
+                        <li>Food vacuoles (if visible—small, scattered)</li>
+                        <li>Overall slipper shape</li>
+                    </ul>
+                    <div class="sketch-area">
+                        Your 40X sketch of stained Paramecium showing internal structures
+                    </div>
+                </div>
+
+                <h3>Part 4: Comparing Multiple Specimens (If Available)</h3>
+                <ol>
+                    <li>If the slide contains multiple Paramecium, compare them</li>
+                    <li>Note variations in:
+                        <ul>
+                            <li>Size (organisms at different life stages)</li>
+                            <li>Orientation (some may be viewed from the side, others from a different angle)</li>
+                            <li>Clarity of structures (some may be better stained or oriented than others)</li>
+                        </ul>
+                    </li>
+                    <li>Choose the clearest specimen for your detailed sketch</li>
+                </ol>
+
+                <h3>Part 5: Reference Materials</h3>
+                <p>Use the following resources to enhance your understanding:</p>
+                <ul>
+                    <li><strong>Textbook p. 607, Figure 28.19:</strong> Detailed diagram of Paramecium anatomy</li>
+                    <li><strong>Textbook pp. 114-116:</strong> Cilia structure and function</li>
+                    <li><strong>Textbook pp. 134-135, Figure 7.14:</strong> Contractile vacuole function in freshwater protists</li>
+                    <li><strong>Lab posters:</strong> Examine posted diagrams of Paramecium anatomy</li>
+                    <li><strong>Instructor guidance:</strong> Ask questions if any structures are unclear</li>
+                </ul>
+
+                <div class="reflection-box">
+                    <strong>📌 Reflection:</strong> Why is it necessary to use a stained permanent slide for Paramecium when we were able to observe living Stentor? Consider the speed of movement and the challenge of observing fast-moving organisms under high magnification.</strong>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>Overall Structure at 40X Magnification</h4>
+                <ul>
+                    <li><strong>Slipper shape:</strong> Elongated, asymmetric body approximately 150-300 μm long</li>
+                    <li><strong>Anterior end:</strong> More rounded and blunt</li>
+                    <li><strong>Posterior end:</strong> More pointed and tapered</li>
+                    <li><strong>Fixed position:</strong> Organism is stationary (not moving) because it has been killed and stained</li>
+                    <li><strong>Distinct staining:</strong> Internal structures appear darker than the cytoplasm due to staining</li>
+                </ul>
+
+                <h4>Cilia</h4>
+                <ul>
+                    <li><strong>Location:</strong> Around the entire periphery of the cell</li>
+                    <li><strong>Appearance:</strong> Tiny hair-like projections creating a "fuzzy" border</li>
+                    <li><strong>Arrangement:</strong> Organized in longitudinal rows (though individual rows may be difficult to distinguish)</li>
+                    <li><strong>Coverage:</strong> Thousands of cilia cover the entire cell surface</li>
+                    <li><strong>Function in living cells:</strong> Beat in coordinated metachronal waves for rapid locomotion</li>
+                </ul>
+
+                <h4>Macronucleus</h4>
+                <ul>
+                    <li><strong>Shape:</strong> Large, kidney-shaped or bean-shaped structure</li>
+                    <li><strong>Staining:</strong> Very dark (purple or blue-black) - usually the most prominent feature</li>
+                    <li><strong>Size:</strong> Occupies a significant portion of the cell interior</li>
+                    <li><strong>Location:</strong> Typically central or slightly offset</li>
+                    <li><strong>Function:</strong> Controls daily metabolic functions</li>
+                    <li><strong>Distinction:</strong> Unlike Stentor's bead-like macronucleus, Paramecium has a single kidney-shaped macronucleus</li>
+                </ul>
+
+                <h4>Micronucleus (if visible)</h4>
+                <ul>
+                    <li><strong>Size:</strong> Much smaller than macronucleus</li>
+                    <li><strong>Shape:</strong> Small, round dot</li>
+                    <li><strong>Location:</strong> Near or adjacent to macronucleus, often in the concave curve</li>
+                    <li><strong>Visibility:</strong> Not always clearly visible - if you cannot find it, that's normal</li>
+                    <li><strong>Function:</strong> Involved in sexual reproduction (conjugation)</li>
+                </ul>
+
+                <h4>Contractile Vacuoles (if visible)</h4>
+                <ul>
+                    <li><strong>Number:</strong> Two - one near anterior end, one near posterior end</li>
+                    <li><strong>Appearance:</strong> Clear, round structures (appear empty on fixed slides)</li>
+                    <li><strong>Size:</strong> Larger than food vacuoles</li>
+                    <li><strong>Function in living cells:</strong> Rhythmically collect and pump out excess water for osmoregulation</li>
+                    <li><strong>Fixed appearance:</strong> On permanent slides, they appear as clear circles because they were fixed mid-cycle</li>
+                </ul>
+
+                <h4>Food Vacuoles (if visible)</h4>
+                <ul>
+                    <li><strong>Number:</strong> Multiple, scattered throughout cytoplasm</li>
+                    <li><strong>Appearance:</strong> Small, round structures</li>
+                    <li><strong>Color:</strong> May appear darker if they contain partially digested food</li>
+                    <li><strong>Distribution:</strong> Found throughout the cytoplasm</li>
+                    <li><strong>Function:</strong> Contain captured food particles being digested</li>
+                </ul>
+
+                <h4>Oral Groove and Gullet (if visible)</h4>
+                <ul>
+                    <li><strong>Location:</strong> Diagonal depression along one side of the organism</li>
+                    <li><strong>Appearance:</strong> Channel or groove leading into the cell interior</li>
+                    <li><strong>Visibility:</strong> May not be clearly visible on all specimens</li>
+                    <li><strong>Function:</strong> Cilia in oral groove sweep food particles toward gullet where food vacuoles form</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ If the demonstration microscope is properly set up, you should observe:</strong>
+                    <ul>
+                        <li>Clear slipper-shaped organism with distinct anterior and posterior ends</li>
+                        <li>Well-stained, kidney-shaped macronucleus that is prominently visible</li>
+                        <li>Cilia visible as a fuzzy border around the cell periphery</li>
+                        <li>Possible micronucleus near the macronucleus (small dot)</li>
+                        <li>Possible contractile vacuoles (clear circles) at each end</li>
+                        <li>Sharp focus with good contrast between structures</li>
+                    </ul>
+                </div>
+
+                <h3>Comparison: Living vs. Stained Paramecium</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Living Paramecium</th>
+                            <th>Stained Permanent Slide</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Movement</strong></td>
+                            <td>Extremely rapid - swims several body lengths per second</td>
+                            <td>No movement - organism is fixed and dead</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cilia</strong></td>
+                            <td>Beating rapidly in metachronal waves</td>
+                            <td>Visible as static "fuzzy" border</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Macronucleus</strong></td>
+                            <td>Difficult to see - organism moves too fast</td>
+                            <td>Very clearly visible - stained dark</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Micronucleus</strong></td>
+                            <td>Nearly impossible to observe</td>
+                            <td>Sometimes visible as small dot near macronucleus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contractile Vacuoles</strong></td>
+                            <td>Rhythmically filling and contracting</td>
+                            <td>Appear as static clear circles (fixed mid-cycle)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observation Difficulty</strong></td>
+                            <td>Very frustrating - organism constantly leaves field of view</td>
+                            <td>Easy - organism stays in place, structures clearly visible</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Observing locomotion and behavior</td>
+                            <td>Observing internal structures and anatomy</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cannot see Paramecium</td>
+                            <td>Microscope not focused or specimen not in field</td>
+                            <td>Ask instructor to check position and focus</td>
+                        </tr>
+                        <tr>
+                            <td>Image is blurry</td>
+                            <td>Fine focus needs adjustment</td>
+                            <td>Use ONLY fine focus knob to adjust - never coarse focus at 40X</td>
+                        </tr>
+                        <tr>
+                            <td>Structures too dark or washed out</td>
+                            <td>Lighting needs adjustment</td>
+                            <td>Adjust iris diaphragm to increase or decrease light</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot see cilia clearly</td>
+                            <td>Focus may be slightly off or light too bright</td>
+                            <td>Reduce light with iris diaphragm; fine-tune focus</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot find micronucleus</td>
+                            <td>Micronucleus is very small and not always visible</td>
+                            <td>This is normal - focus on other structures</td>
+                        </tr>
+                        <tr>
+                            <td>Unclear which end is anterior</td>
+                            <td>Organism orientation or unclear specimen</td>
+                            <td>Anterior end is more rounded/blunt; posterior is more pointed</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    <p><strong>Magnification: 40X (Stained Permanent Slide)</strong></p>
+                    <ul>
+                        <li>Overall shape: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Approximate length (relative to field of view): 
+                            <input type="text" style="width: 150px; border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Cilia visible? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - visible as fuzzy border</option>
+                                <option value="partial">Partially visible</option>
+                                <option value="no">No - not clearly visible</option>
+                            </select>
+                        </li>
+                        <li>Macronucleus shape: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Macronucleus staining intensity: 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="very-dark">Very dark (prominent)</option>
+                                <option value="dark">Dark</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="light">Light (difficult to see)</option>
+                            </select>
+                        </li>
+                        <li>Micronucleus observed? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - small dot near macronucleus</option>
+                                <option value="no">No - not visible</option>
+                                <option value="unsure">Unsure</option>
+                            </select>
+                        </li>
+                        <li>Contractile vacuoles visible? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="both">Yes - both (anterior and posterior)</option>
+                                <option value="one">Yes - only one</option>
+                                <option value="no">No - not clearly visible</option>
+                            </select>
+                        </li>
+                        <li>Food vacuoles visible? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="multiple">Yes - multiple scattered throughout</option>
+                                <option value="few">Yes - a few visible</option>
+                                <option value="no">No - not visible</option>
+                            </select>
+                        </li>
+                        <li>Oral groove visible? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - diagonal groove visible</option>
+                                <option value="no">No - not visible</option>
+                                <option value="unsure">Unsure</option>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <p><strong>Sketch Quality Assessment:</strong></p>
+                    <ul>
+                        <li>Did you accurately capture the slipper shape? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="partial">Partially</option>
+                                <option value="no">No - needs improvement</option>
+                            </select>
+                        </li>
+                        <li>Did you label all visible structures? 
+                            <select style="border: none; border-bottom: 2px solid #00838f; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - all structures labeled</option>
+                                <option value="most">Most structures labeled</option>
+                                <option value="some">Some structures labeled</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Answering Key Questions</h3>
+
+                <h4>Question 1: Why is Paramecium observed on a stained permanent slide instead of as a living specimen?</h4>
+                <div class="reflection-box">
+                    <strong>Expected Answer:</strong> Paramecium moves extremely rapidly - several body lengths per second. Even with slowing agents like methyl cellulose, the organism swims out of the field of view too quickly to observe internal structures clearly. Stained permanent slides allow us to see the macronucleus, micronucleus, cilia arrangement, and other structures that would be impossible to observe in rapidly swimming specimens.
+                </div>
+
+                <h4>Question 2: What is the function of the contractile vacuoles in Paramecium?</h4>
+                <div class="reflection-box">
+                    <strong>Expected Answer:</strong> Contractile vacuoles regulate water balance (osmoregulation) in freshwater protists. Since Paramecium lives in a hypotonic environment (freshwater has fewer solutes than the cell's cytoplasm), water constantly enters the cell by osmosis. The two contractile vacuoles collect this excess water and rhythmically pump it out of the cell to prevent the organism from bursting.
+                </div>
+
+                <h4>Question 3: How does the macronucleus of Paramecium differ from the macronucleus of Stentor?</h4>
+                <div class="reflection-box">
+                    <strong>Expected Answer:</strong> Paramecium has a single, kidney-shaped (or bean-shaped) macronucleus, while Stentor has a long, bead-like (string-of-pearls) macronucleus. Both control daily metabolic functions, but their shapes reflect the different body forms of these organisms - Paramecium is compact and slipper-shaped, while Stentor is elongated and trumpet-shaped when extended.
+                </div>
+
+                <h4>Question 4: What is the difference between cilia and flagella?</h4>
+                <div class="reflection-box">
+                    <strong>Expected Answer:</strong> Cilia and flagella have the same internal structure (9+2 microtubule arrangement), but differ in number and length. Cilia are short and numerous (Paramecium has thousands), while flagella are long and few in number (Euglena has one or two). Both are used for locomotion, but cilia beat in coordinated waves while flagella use a whip-like motion.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Comparative Analysis →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: COMPARATIVE ANALYSIS -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔬 Comparative Analysis: Cilia Across Kingdoms</h2>
+
+                <h3>The Unity of Ciliary Structure</h3>
+                <p>One of the most remarkable demonstrations of evolutionary unity is the conservation of ciliary structure across all eukaryotic organisms. The cilia you observed in Paramecium have the exact same internal structure as cilia in your own respiratory tract.</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Universal Ciliary Structure:</strong> All eukaryotic cilia and flagella share the "9+2" arrangement: nine pairs of microtubules arranged in a circle around two central microtubules. This structure has been conserved across millions of years of evolution and is found in protists, plants, and animals. The fact that such a complex structure is identical across kingdoms provides powerful evidence for common ancestry.
+                </div>
+
+                <h3>Comparison Table: Cilia in Different Organisms</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Paramecium (Protist)</th>
+                            <th>Stentor (Protist)</th>
+                            <th>Ciliated Epithelium (Animal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Internal Structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number of Cilia</strong></td>
+                            <td>Thousands covering entire cell surface</td>
+                            <td>Hundreds to thousands, concentrated at oral end</td>
+                            <td>Multiple cilia per cell (on cell surface)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary Function</strong></td>
+                            <td>Locomotion - propels organism through water</td>
+                            <td>Both locomotion (when swimming) and feeding (when attached)</td>
+                            <td>Movement of mucus and trapped particles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Beating Pattern</strong></td>
+                            <td>Coordinated metachronal waves across cell surface</td>
+                            <td>Coordinated beating, especially around oral region</td>
+                            <td>Coordinated beating in same direction (toward throat)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Organism Motility</strong></td>
+                            <td>Always motile - never attaches</td>
+                            <td>Can be motile or sessile (attaches with holdfast)</td>
+                            <td>Cells are fixed in tissue - cilia move materials, not organism</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed of Movement</strong></td>
+                            <td>Very fast - several body lengths per second</td>
+                            <td>Moderate speed when swimming</td>
+                            <td>N/A - cilia move mucus layer</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Secondary Function</strong></td>
+                            <td>Feeding - oral groove cilia sweep food toward gullet</td>
+                            <td>Feeding - cilia create water currents to capture food</td>
+                            <td>Defense - trapping and removing foreign particles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Environment</strong></td>
+                            <td>Freshwater (hypotonic)</td>
+                            <td>Freshwater (hypotonic)</td>
+                            <td>Moist epithelial surface in trachea</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cell Type</strong></td>
+                            <td>Entire organism is single cell</td>
+                            <td>Entire organism is single cell</td>
+                            <td>Specialized epithelial cells in multicellular organism</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observable Under Light Microscope?</strong></td>
+                            <td>Yes - visible as fuzzy border on stained slides</td>
+                            <td>Yes - visible on living specimens at oral end</td>
+                            <td>Yes - visible as ciliated border on tissue sections</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Evolutionary Significance</h3>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Common Ancestry</h4>
+                        <p>The identical 9+2 structure in all eukaryotic cilia indicates these organisms share a common ancestor that evolved this structure over a billion years ago.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Functional Conservation</h4>
+                        <p>Despite vastly different uses (locomotion vs. mucus movement), the basic mechanism of ciliary beating has been preserved because it works efficiently.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Molecular Similarity</h4>
+                        <p>The proteins (tubulin, dynein) that make up cilia are remarkably similar across kingdoms, further supporting evolutionary unity.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Adaptation Diversity</h4>
+                        <p>While the structure is conserved, organisms have adapted cilia for different purposes - showing how evolution modifies existing structures rather than creating new ones from scratch.</p>
+                    </div>
+                </div>
+
+                <h3>Comparison: Movement Structures Across Protists</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Protist</th>
+                            <th>Movement Structure</th>
+                            <th>Number of Structures</th>
+                            <th>Speed</th>
+                            <th>Movement Pattern</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Euglena</strong></td>
+                            <td>Flagellum</td>
+                            <td>One (occasionally two)</td>
+                            <td>Fast</td>
+                            <td>Whip-like lashing motion, pulls organism forward</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Paramecium</strong></td>
+                            <td>Cilia</td>
+                            <td>Thousands</td>
+                            <td>Very fast</td>
+                            <td>Coordinated metachronal waves, propels forward with spiral rotation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Stentor</strong></td>
+                            <td>Cilia</td>
+                            <td>Hundreds to thousands</td>
+                            <td>Moderate</td>
+                            <td>Coordinated beating for swimming or creating feeding currents when attached</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amoeba</strong></td>
+                            <td>Pseudopodia</td>
+                            <td>Variable (1-several at a time)</td>
+                            <td>Slow</td>
+                            <td>Cytoplasmic streaming creates "false feet" for crawling</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Comparison: Osmoregulation in Freshwater Protists</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Paramecium</th>
+                            <th>Stentor</th>
+                            <th>Amoeba</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Environment</strong></td>
+                            <td>Freshwater (hypotonic)</td>
+                            <td>Freshwater (hypotonic)</td>
+                            <td>Freshwater (hypotonic)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Osmoregulation Challenge</strong></td>
+                            <td>Water constantly enters by osmosis</td>
+                            <td>Water constantly enters by osmosis</td>
+                            <td>Water constantly enters by osmosis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Solution</strong></td>
+                            <td>Contractile vacuoles pump out excess water</td>
+                            <td>Contractile vacuoles pump out excess water</td>
+                            <td>Contractile vacuole pumps out excess water</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number of Contractile Vacuoles</strong></td>
+                            <td>Two (one anterior, one posterior)</td>
+                            <td>One or more (depending on size)</td>
+                            <td>One (or occasionally more)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pumping Frequency</strong></td>
+                            <td>Regular rhythmic contractions</td>
+                            <td>Regular rhythmic contractions</td>
+                            <td>Regular rhythmic contractions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visible on Stained Slides?</strong></td>
+                            <td>Yes - appear as clear circles (fixed mid-cycle)</td>
+                            <td>Better visible in living specimens</td>
+                            <td>Yes - clear circle, easier to see in living specimens</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy Requirement</strong></td>
+                            <td>Active transport - requires ATP</td>
+                            <td>Active transport - requires ATP</td>
+                            <td>Active transport - requires ATP</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-concept">
+                    <strong>🎯 Evolutionary Insight:</strong> The fact that Paramecium, Stentor, and Amoeba all evolved contractile vacuoles to solve the same problem (osmoregulation in freshwater) demonstrates convergent evolution. Although these organisms are only distantly related and use different movement mechanisms, they all independently evolved similar solutions to the challenge of living in a hypotonic environment.
+                </div>
+
+                <h3>Comparison: Nuclear Organization in Ciliates</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Paramecium</th>
+                            <th>Stentor</th>
+                            <th>Typical Animal/Plant Cell</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nuclear Dimorphism</strong></td>
+                            <td>Yes - has both macronucleus and micronucleus</td>
+                            <td>Yes - has both macronucleus and micronucleus</td>
+                            <td>No - has single nucleus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Macronucleus Shape</strong></td>
+                            <td>Kidney-shaped or bean-shaped</td>
+                            <td>Long string of beads (moniliform)</td>
+                            <td>N/A - no macronucleus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Macronucleus Function</strong></td>
+                            <td>Controls daily metabolic activities</td>
+                            <td>Controls daily metabolic activities</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Micronucleus</strong></td>
+                            <td>Small, round, adjacent to macronucleus</td>
+                            <td>Small, round, present but hard to see</td>
+                            <td>N/A - no micronucleus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Micronucleus Function</strong></td>
+                            <td>Sexual reproduction (conjugation)</td>
+                            <td>Sexual reproduction (conjugation)</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chromatin Visible?</strong></td>
+                            <td>In macronucleus, yes (with staining)</td>
+                            <td>In macronucleus, yes (with staining)</td>
+                            <td>Yes (during interphase)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Evolutionary Significance</strong></td>
+                            <td>Nuclear dimorphism is unique to ciliates</td>
+                            <td>Nuclear dimorphism is unique to ciliates</td>
+                            <td>Single nucleus is ancestral condition</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Challenge Question: Unity Through Cilia</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Synthesis Challenge:</strong>
+                    <p style="margin-top: 10px;">The cilia you observed in Paramecium have the exact same 9+2 microtubule structure as the cilia lining your trachea. Explain why this structural similarity is considered powerful evidence for the evolutionary unity of all eukaryotic life.</p>
+<p style="margin-top: 10px;"><strong>Your answer should address:</strong></p>
+<ul>
+<li>What the 9+2 structure is and why it's significant</li>
+<li>Why such a complex structure being identical across kingdoms is unlikely to be coincidental</li>
+<li>What this tells us about the evolutionary relationship between protists and animals</li>
+<li>How this relates to the concept of common ancestry</li>
+</ul>
+</div>
+<div class="observation-box">
+                <h4>Write Your Synthesis Response</h4>
+                <textarea style="width: 100%; margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 4px; min-height: 150px; border-left: 4px solid #00838f; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your synthesis response here..."></textarea>
+            </div>
+
+            <div class="key-concept">
+                <strong>Model Answer:</strong> The 9+2 structure refers to the arrangement of nine pairs of microtubules in a circle around two central microtubules, found in all eukaryotic cilia and flagella. This structure is remarkably complex, involving specific proteins (tubulin, dynein) arranged in a precise pattern. The fact that this exact same structure appears in organisms as different as Paramecium (a unicellular protist) and humans (multicellular animals) is extremely unlikely to be coincidental. Such complexity could not have evolved independently multiple times - it's far more probable that all organisms with 9+2 cilia inherited this structure from a common ancestor that lived over a billion years ago. This demonstrates that protists and animals share evolutionary heritage, and that fundamental cellular structures are conserved across vast evolutionary distances. This is powerful evidence for the unity of all eukaryotic life - despite our obvious differences, we are all built using the same basic cellular toolkit.
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+    <p><strong>Paramecium Investigation: Ciliary Locomotion and Osmoregulation</strong></p>
+    <p>Demonstrating evolutionary unity through conserved ciliary structure across kingdoms.</p>
+</footer>
+
+<script>
+    function switchTab(tabName) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Show selected section
+        document.getElementById(tabName).classList.add('active');
+
+        // Add active class to clicked button
+        event.target.classList.add('active');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+</script>
+</body>
+</html>

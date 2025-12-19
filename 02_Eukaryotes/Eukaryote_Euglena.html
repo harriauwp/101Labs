@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euglena (Protist) Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5ff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0288d1 0%, #01579b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #0288d1;
+            color: #0288d1;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e1f5fe;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #0288d1;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #0288d1;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #0288d1;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #01579b;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #0288d1;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #0288d1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #01579b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #b3e5fc;
+            color: #01579b;
+        }
+
+        .btn-secondary:hover {
+            background: #81d4fa;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ffa726;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #e65100;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border: 2px solid #0288d1;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #01579b;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #f1f8fb;
+            border: 2px solid #b3e5fc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #01579b;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #0288d1;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #0288d1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #01579b;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #b3e5fc;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #b3e5fc;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #1565c0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #0288d1;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Euglena (Unicellular Protist) Laboratory Investigation</h1>
+            <p><strong>Domain</strong> Eukaryote | <strong>Kingdom</strong> Protista |  <strong>Cell</strong> Euglena</p>
+            <p>This investigation demonstrates how a single-celled protist possesses both plant-like and animal-like features, illustrating the complexity and evolutionary relationships among eukaryotic organisms.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Comparative Analysis</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Identify</strong> major structures of Euglena including chloroplasts, flagellum, nucleus, and cell membrane</li>
+                    <li><strong>Describe</strong> the dual plant-animal nature of Euglena as evidence of evolutionary relationships</li>
+                    <li><strong>Observe</strong> flagellar motion and explain its function in unicellular locomotion</li>
+                    <li><strong>Compare</strong> Euglena's flagellum with flagella found in animal sperm cells</li>
+                    <li><strong>Recognize</strong> chloroplasts as shared organelles between Euglena and plant cells</li>
+                    <li><strong>Apply</strong> specialized microscopy techniques including the use of methyl cellulose</li>
+                    <li><strong>Explain</strong> how unicellular protists accomplish life functions that multicellular organisms divide among specialized cells</li>
+                </ul>
+
+                <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+                <ul>
+                    <li><strong>Foundational Concept 2:</strong> Structure and Function of Eukaryotic Cells
+                        <ul>
+                            <li><strong>2A: Assembly of Molecules and Organelles</strong>
+                                <ul>
+                                    <li><strong>Eukaryotic Cell Structures:</strong>  Identification of the nucleus, chloroplasts, and pellicle in Euglena, and comparison to the rigid cell wall found in plant cells.</li>
+                                    <li><strong>Organelle Specialization:</strong> Recognition of contractile vacuoles in freshwater protists as adaptations for osmoregulation in hypotonic environments.</li>
+                                </ul>
+                            </li>
+                            <li><strong>2B: Structure and Function of Systems</strong>
+                                <ul>
+                                    <li><strong>Motility Structures:</strong> Observation of flagellar movement in Euglena and comparison to cilia and flagella in other eukaryotic cells.</li>
+                                    <li><strong>Cytoskeletal Organization:</strong> Understanding that eukaryotic flagella and cilia share a conserved 9+2 microtubule axoneme structure across kingdoms.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 3:</strong> Genetics and Information Transfer
+                        <ul>
+                            <li><strong>Nuclear Organization:</strong> Observation of the nucleus containing chromatin, the physical form of eukaryotic DNA during interphase.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Scientific Inquiry and Reasoning Skills (SIRS)</strong>
+                        <ul>
+                            <li><strong>Skill 1: Knowledge of Scientific Concepts and Principles</strong>
+                                <ul>
+                                    <li>Identifying Euglena cell structures under magnification (10X and 40X) and relating observed morphology to eukaryotic classification.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skill 2: Scientific Reasoning and Problem Solving</strong>
+                                <ul>
+                                    <li>Troubleshooting microscopy challenges associated with motile organisms, including the use of methyl cellulose to increase viscosity and improve observation.</li>
+                                    <li>Applying comparative reasoning across cell types (Euglena, Paramecium, sperm, and tracheal epithelial cells) to distinguish cilia- and flagella-based motility.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Chapter Context</h3>
+                <p>This Euglena investigation builds directly on the onion cell exercise by applying the same wet mount preparation techniques and systematic magnification progression while introducing new specialized structures unique to motile cells.</p>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What Are Protists?</h3>
+                <p><strong>Protists</strong> are eukaryotic organisms that are not plants, animals, or fungi. They represent some of the earliest eukaryotic life forms and demonstrate remarkable complexity within a single cell.</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> What a protist accomplishes as a single cell (nutrient uptake, waste excretion, environmental response, reproduction), a human accomplishes with specialized cells working together.
+                </div>
+
+                <h3>What is Euglena?</h3>
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Plant-Like Features</h4>
+                        <p><strong>Chloroplasts:</strong> Contains numerous chloroplasts with chlorophyll for photosynthesis</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Animal-Like Features</h4>
+                        <p><strong>Flagellum:</strong> Long whip-like structure for locomotion, similar to animal sperm</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Shared Features</h4>
+                        <p><strong>Nucleus:</strong> Membrane-bound nucleus like all eukaryotes</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Size</h4>
+                        <p><strong>Observable:</strong> Green organisms visible at 10X; flagellum challenging even at 40X</p>
+                    </div>
+                </div>
+
+                <h3>Flagella Structure and Function</h3>
+                <p>The flagellum is long, thin, and very flexible. It extends from the anterior (front) end and enables rapid swimming by whipping motion. Though difficult to observe, it demonstrates the same internal structure found in animal sperm flagella.</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🔬 For Specimen Preparation</h4>
+                    <ul>
+                        <li>Culture of living <em>Euglena</em></li>
+                        <li>Disposable plastic transfer pipettes</li>
+                        <li>Glass microscope slides</li>
+                        <li>Glass cover slips</li>
+                        <li>Methyl cellulose solution</li>
+                        <li>Paper towels</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Observation Challenge:</strong> Euglena's flagellum is extremely thin, transparent, and moves very rapidly. It's barely visible even at 40X. If you cannot see it, refer to lab posters, textbook diagrams (p. 601, Fig. 28.10), or ask your instructor for assistance.
+                </div>
+
+                <h3>Understanding Methyl Cellulose</h3>
+                <div class="key-concept">
+                    <strong>🎯 Purpose:</strong> Methyl cellulose increases viscosity to slow protist movement. Add it AFTER initial observations. Observe immediately—it works quickly. The goal is to slow movement, not stop it completely.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part 1: Initial Wet Mount Preparation</h3>
+                <ol>
+                    <li>Gently swirl the Euglena culture (do not shake vigorously)</li>
+                    <li>Use a transfer pipette to place <strong>TWO drops</strong> of culture on a clean slide</li>
+                    <li>Lower a cover slip at 45° angle to minimize air bubbles</li>
+                    <li>Blot excess liquid with paper towel</li>
+                </ol>
+
+                <h3>Part 2: Initial Observation at 4X</h3>
+                <ol>
+                    <li>Place slide on microscope stage</li>
+                    <li>Start with 4X objective lens (lowest magnification)</li>
+                    <li>Use <strong>coarse focus</strong> to locate organisms</li>
+                    <li>Small green organisms should be swimming rapidly</li>
+                    <li>Adjust the iris diaphragm to make the field as dark as possible (increases contrast)</li>
+                    <li>Rotate the revolving nose piece to the 10X <strong>Always use ONLY the fine focus knob</strong> at 10X—never the coarse focus to bring the cells into view</li>                    
+                </ol>
+
+                <div class="observation-box">
+                    <h4>10X Magnification Sketch</h4>
+                    <p><strong>Labels to include:</strong> Chloroplasts, General cell shape, Direction of movement (use arrow)</p>
+                    <div class="sketch-area">
+                        Your 10X sketch of swimming Euglena
+                    </div>
+                </div>
+
+                <h3>Part 3: Attempting to Observe the Flagellum at 40X</h3>
+                <ol>
+                    <li>Switch to 40X objective (use ONLY fine focus)</li>
+                    <li><strong>Critical:</strong> Reduce light intensity using iris diaphragm—this increases contrast</li>
+                    <li>Look carefully at the anterior (pointed) end of Euglena</li>
+                    <li>Watch for a thin, transparent, rapidly whipping structure</li>
+                    <li>Be patient—this requires careful observation</li>
+                </ol>
+
+                <h3>Part 4: Using Methyl Cellulose to Slow Movement</h3>
+                <ol>
+                    <li>Locate the methyl cellulose near the culture</li>
+                    <li>Lift the cover slip carefully</li>
+                    <li>Add ONE drop of methyl cellulose to your slide</li>
+                    <li>Dry the cover slip and replace it</li>
+                    <li><strong>Observe immediately</strong>—organisms slow down quickly</li>
+                    <li>Try again to observe the flagellum at 40X with reduced light</li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>Note:</strong> If organisms stop moving completely, prepare a fresh slide. Completely immobile Euglena won't show flagellar movement.
+                </div>
+
+                <div class="observation-box">
+                    <h4>40X Magnification Detailed Sketch</h4>
+                    <p><strong>Labels to include:</strong> Chloroplasts, Flagellum (if visible), Anterior end, Nucleus (if visible)</p>
+                    <div class="sketch-area">
+                        Your 40X detailed sketch of Euglena
+                    </div>
+                </div>
+
+                <h3>Backup Plan: Reference Materials</h3>
+                <p>If you were unable to see the flagellum in motion, be sure to:</p>
+                <ul>
+                    <li>Examine the lab poster showing Euglena structure</li>
+                    <li>Review textbook pages 114-116 (flagella structure)</li>
+                    <li>Study Figure 28.10 on page 601 (Euglena diagram)</li>
+                    <li>Discuss with your instructor what you observed and attempted</li>
+                </ul>                
+                <div class="warning-box">
+                     <strong>(Optional) Deep Dive:</strong> Measuring Cell Dimensions. This section emphasizes <em>estimation and proportional reasoning</em>,
+                     not exact measurement. If you find the calculations challenging, focus on understanding the method
+                     rather than obtaining a precise value.
+                </div>
+
+                <h4>Estimating Cell Length</h4>
+                <ol>
+                    <li>Select a clearly visible cell from your 40X observation.</li>
+                    
+                    <li>How many cells will fit lengthwise across the diameter of the field of view?
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="count">
+                    </li>
+
+                    <li>What is the diameter of the field of view for the 40X objective lens?
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="metric unit">
+                    </li>
+
+                    <li>Write the equation (using words ONLY) for the estimated Length, where:
+                        <span style="font-family: serif; font-style: italic;">Length = </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <span> / </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                    </li>
+
+                    <li>Plug the numbers in the formula:
+                        <span style="font-family: serif; font-style: italic;">Length = </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <span> / </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                    </li>
+
+                    <li>Record your calculated (estimated) Cell length ≈ 
+                        <input type="text" style="width: 80px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="value"> mm
+                    </li>
+
+                    <li>Convert your answer to micrometers:
+                    <div style="display: flex; align-items: center; margin: 30px 0; font-family: sans-serif;">
+                        
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 20px;">
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center;">
+                                <input type="text" style="width: 50px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center; cursor: pointer;" class="cancel-unit" onclick="toggleCancel(this)">
+                            </div>
+                            <div style="height: 35px;"></div>
+                        </div>
+
+                        <div style="width: 4px; height: 120px; background: #2c3e50;"></div>
+
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 20px; position: relative;">
+                            <div style="position: absolute; top: 50%; left: -20px; right: -20px; height: 4px; background: #2c3e50; transform: translateY(-50%);"></div>
+                            
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 25px; z-index: 1;">
+                                <span style="font-size: 24px; font-weight: bold;">1</span>
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center;">
+                            </div>
+
+                            <div style="display: flex; align-items: flex-start; gap: 5px; margin-top: 25px; z-index: 1;">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <span style="font-size: 24px; font-weight: bold; line-height: 1;">10</span>
+                                    <input type="text" style="width: 30px; height: 25px; border-radius: 4px; border: 1px solid #016836; text-align: center; font-size: 14px; margin-top: -10px; margin-left: 2px;" placeholder="x">
+                                </div>
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #fff; text-align: center; cursor: pointer; margin-left: 5px;" class="cancel-unit" onclick="toggleCancel(this)">
+                            </div>
+                        </div>
+
+                        <div style="width: 4px; height: 120px; background: #2c3e50;"></div>
+
+                        <div style="font-size: 32px; font-weight: bold; margin: 0 20px;">=</div>
+
+                        <div style="display: flex; align-items: center; padding: 10px; border: 2px solid #016836; border-radius: 8px; background: #fff; gap: 10px;">
+                            <input type="text" style="width: 100px; border: none; font-size: 18px; text-align: center;">
+                            <span style="font-size: 18px; font-weight: bold; color: #333;">μm</span>
+                        </div>
+                    </div>
+                    <small style="color: #666; display: block; margin-top: -10px;">*Click the unit boxes to cancel them out.</small>
+                </li>
+                </ol>
+
+                <style>
+                    .cancel-unit.cancelled {
+                        text-decoration: line-through;
+                        text-decoration-color: red;
+                        text-decoration-thickness: 2px;
+                        color: #999;
+                    }
+                </style>
+
+                <script>
+                    function toggleCancel(element) {
+                        element.classList.toggle('cancelled');
+                    }
+                </script>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>At 10X Magnification</h4>
+                <ul>
+                    <li><strong>Green color:</strong> Numerous chloroplasts give Euglena its characteristic green appearance</li>
+                    <li><strong>Rapid swimming:</strong> Organisms move quickly through the field of view</li>
+                    <li><strong>Elongated shape:</strong> Oval or spindle-shaped body</li>
+                    <li><strong>Directional movement:</strong> Swimming in specific directions, not just drifting</li>
+                </ul>
+
+                <h4>At 40X Magnification</h4>
+                <ul>
+                    <li><strong>Chloroplasts:</strong> Individual green organelles distributed throughout cytoplasm</li>
+                    <li><strong>Anterior end:</strong> More pointed end where flagellum emerges</li>
+                    <li><strong>Flagellum (if visible):</strong> Thin, whip-like structure extending from anterior end</li>
+                    <li><strong>Nucleus:</strong> Very difficult to see in living specimens without staining</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ Successful observation includes:</strong>
+                    <ul>
+                        <li>Clear identification of green, swimming organisms</li>
+                        <li>Visible chloroplasts at 40X magnification</li>
+                        <li>Recognition of anterior-posterior orientation</li>
+                        <li>Observation of directed swimming motion</li>
+                        <li>Attempt to observe flagellum (success varies)</li>
+                    </ul>
+                </div>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cannot see any organisms</td>
+                            <td>Sample taken from top of culture or organisms settled</td>
+                            <td>Mix culture gently; sample from middle depth</td>
+                        </tr>
+                        <tr>
+                            <td>Organisms moving too fast</td>
+                            <td>Normal behavior for Euglena</td>
+                            <td>Add methyl cellulose; reduce light for better contrast</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot see flagellum</td>
+                            <td>Flagellum is transparent and moves rapidly</td>
+                            <td>Reduce light with iris diaphragm; use 40X; be patient; refer to reference materials</td>
+                        </tr>
+                        <tr>
+                            <td>Organisms stopped moving</td>
+                            <td>Too much methyl cellulose or organisms stressed</td>
+                            <td>Prepare fresh slide with culture</td>
+                        </tr>
+                        <tr>
+                            <td>Green color too pale</td>
+                            <td>Insufficient light or culture needs nutrients</td>
+                            <td>Increase light slightly; check culture health with instructor</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    <p><strong>General Observations:</strong></p>
+                    <ul>
+                        <li>Were Euglena clearly visible and identifiable? 
+                            <select style="border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Describe the color and appearance: 
+                            <input type="text" style="width: 300px; border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Describe the swimming motion: 
+                            <input type="text" style="width: 300px; border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+
+                    <p><strong>Chloroplast Observation:</strong></p>
+                    <ul>
+                        <li>Chloroplasts clearly visible at 40X? 
+                            <select style="border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Approximate number of chloroplasts per cell: 
+                            <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+
+                    <p><strong>Flagellum Observation:</strong></p>
+                    <ul>
+                        <li>Were you able to observe the flagellum? 
+                            <select style="border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="maybe">Possibly/Uncertain</option>
+                            </select>
+                        </li>
+                        <li>If yes, describe what you saw: 
+                            <input type="text" style="width: 300px; border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Did methyl cellulose help? 
+                            <select style="border: none; border-bottom: 2px solid #0288d1; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="na">Did not use</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reflection-box">
+                    <strong>📌 Reflection:</strong> Even if you couldn't see the flagellum directly, what evidence did you observe that Euglena has a structure enabling directed movement (rather than just floating randomly)?
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Comparative Analysis →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: COMPARATIVE ANALYSIS -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔍 Comparative Analysis: Unity Across Kingdoms</h2>
+
+                <h3>Part A: Euglena's Plant-Like Characteristics</h3>
+                
+                <div class="challenge-box">
+                    <strong>🌱 Question 1:</strong> What structure does Euglena share with plant cells (like the onion cels you observed previously)?
+                </div>
+
+                <div class="observation-box">
+                    <h4>Your Answer:</h4>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #0288d1; border-right: none; border-top: none; border-bottom: none; font-family: inherit;" placeholder="Identify the shared structure and explain its function..."></textarea>
+                </div>
+
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Euglena contains <strong>chloroplasts</strong> with chlorophyll, just like plant leaf cells. Both use these organelles for photosynthesis to produce energy from sunlight. This demonstrates that chloroplasts evolved before the divergence of plant and protist lineages.
+                </div>
+
+                <h3>Part B: Euglena's Animal-Like Characteristics</h3>
+
+                <div class="challenge-box">
+                    <strong>🏃 Question 2:</strong> What structure does Euglena use for locomotion, and which animal cells have you observed (or will observe) that use the same type of structure?</strong>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Your Answer:</h4>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #0288d1; border-right: none; border-top: none; border-bottom: none; font-family: inherit;" placeholder="Identify the structure and the animal cells that also have this structure..."></textarea>
+                </div>
+
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Euglena uses a <strong>flagellum</strong> for locomotion. Animal <strong>sperm cells</strong> also use flagella to move through the female reproductive tract toward the egg cell. The flagellum in Euglena is attached at the anterior (front) end, while in sperm cells it's typically attached at the posterior (rear) end. Despite this difference in attachment location, the internal structure of both flagella is identical, demonstrating shared cellular machinery across kingdoms.
+                </div>
+
+                <h3>Part C: Unity Across Kingdoms</h3>
+
+                <div class="challenge-box">
+                    <strong>🔬 Question 3:</strong> Based on your observations, explain how Euglena demonstrates that protists represent an evolutionary link between plants and animals.
+                </div>
+
+                <div class="observation-box">
+                    <h4>Your Answer:</h4>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border-left: 4px solid #0288d1; border-right: none; border-top: none; border-bottom: none; font-family: inherit;" placeholder="Explain how Euglena connects plant and animal characteristics..."></textarea>
+                </div>
+
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Euglena demonstrates evolutionary connections because it possesses characteristics of BOTH plants and animals in a single cell. Like plants, Euglena has chloroplasts and performs photosynthesis to produce energy from sunlight. Like animals, Euglena has a flagellum for active locomotion and can move toward favorable conditions. This combination of features suggests that plants, animals, and protists share common evolutionary ancestors, and that these different kingdoms diverged from organisms that had both capabilities.
+                </div>
+
+                <h3>Part D: Functional Comparison Table</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Characteristic</th>
+                            <th>Euglena (Protist)</th>
+                            <th>Plant Cells</th>
+                            <th>Animal Cells</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Nucleus</strong></td>
+                            <td>✓ Yes (membrane-bound)</td>
+                            <td>✓ Yes (membrane-bound)</td>
+                            <td>✓ Yes (membrane-bound)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chloroplasts</strong></td>
+                            <td>✓ Yes (photosynthesis)</td>
+                            <td>✓ Yes (in leaf cells)</td>
+                            <td>✗ No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flagellum</strong></td>
+                            <td>✓ Yes (locomotion)</td>
+                            <td>✓ Yes (in sperm cells only)</td>
+                            <td>✓ Yes (in sperm cells)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cell Wall</strong></td>
+                            <td>✗ No (flexible pellicle)</td>
+                            <td>✓ Yes (cellulose)</td>
+                            <td>✗ No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motility</strong></td>
+                            <td>✓ Yes (swims actively)</td>
+                            <td>✗ No (except sperm)</td>
+                            <td>✓ Yes (many cell types)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy Source</strong></td>
+                            <td>Photosynthesis + heterotrophy</td>
+                            <td>Photosynthesis</td>
+                            <td>Heterotrophy (consuming food)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Part E: Flagellar Structure Comparison</h3>
+
+                <div class="reflection-box">
+                    <strong>🔬 Deep Dive:</strong> The internal structure of flagella is remarkably conserved across eukaryotes. Both Euglena flagella and animal sperm flagella contain the same "9+2" microtubule arrangement: nine pairs of microtubules arranged in a circle around two central microtubules. This identical internal architecture is powerful evidence that all eukaryotes share a common ancestor.
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧠 Question 4:</strong> You observed that Euglena's flagellum is located at the anterior (front) end, while sperm flagella are located at the posterior (rear) end. Despite this difference in location, both serve the same function. What does this tell you about evolution?
+                </div>
+
+                <div class="observation-box">
+                    <h4>Your Answer:</h4>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #0288d1; border-right: none; border-top: none; border-bottom: none; font-family: inherit;" placeholder="Explain what this structural variation tells us about evolution..."></textarea>
+                </div>
+
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> This shows that evolution modifies existing structures for new purposes rather than creating entirely new structures from scratch. Both Euglena and sperm cells inherited the basic flagellar machinery from a common ancestor, but evolution adapted the placement and orientation to suit each organism's specific needs. Euglena pulls itself forward with anterior flagella, while sperm push themselves forward with posterior flagella. The underlying mechanism (the 9+2 microtubule structure) remains the same, demonstrating evolutionary conservation of successful designs.
+                </div>
+
+                <h3>Part F: Completing the Life Functions Comparison</h3>
+
+                <div class="challenge-box">
+                    <strong>🌱 Question 5:</strong> The lab manual states: "What a protist accomplishes as a single cell, a human accomplishes with specialized cells working together." Based on your observations of Euglena, explain what this means.
+                </div>
+
+                <div class="observation-box">
+                    <h4>Your Answer:</h4>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border-left: 4px solid #0288d1; border-right: none; border-top: none; border-bottom: none; font-family: inherit;" placeholder="Explain how Euglena accomplishes life functions as a single cell..."></textarea>
+                </div>
+
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Euglena must perform ALL life functions within a single cell: it uses chloroplasts to make food through photosynthesis, uses its flagellum to move toward light, takes in nutrients from the environment, excretes wastes, responds to stimuli (like light), and reproduces. In contrast, a human has specialized cells for each function: specialized photoreceptor cells for sensing light, muscle cells for movement, digestive cells for processing nutrients, kidney cells for waste removal, and reproductive cells for reproduction. Euglena demonstrates that a single cell can be remarkably complex and perform all the functions necessary for life.
+                </div>
+
+                <h3>Part G: Reference Materials Summary</h3>
+
+                <div class="materials-list">
+                    <h4>📚 Key Textbook References</h4>
+                    <ul>
+                        <li><strong>pp. 114-116:</strong> Flagella and cilia structure (9+2 microtubule arrangement)</li>
+                        <li><strong>p. 601, Figure 28.10:</strong> Detailed diagram of Euglena structure</li>
+                        <li><strong>pp. 599-607:</strong> Protist diversity and characteristics</li>
+                        <li><strong>p. 1028:</strong> Sperm cell structure and flagellar function</li>
+                    </ul>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Euglena Investigation: Demonstrating Plant-Animal Hybrid Characteristics in Protists</strong></p>
+        <p>This investigation builds on the onion cell template to explore evolutionary connections across kingdoms.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stentor (Protist) Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f4ff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #1976d2;
+            color: #1976d2;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #1976d2;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #1976d2;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #1976d2;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #0d47a1;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #1976d2;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #1976d2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #0d47a1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #bbdefb;
+            color: #0d47a1;
+        }
+
+        .btn-secondary:hover {
+            background: #90caf9;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ffa726;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #e65100;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: 2px solid #1976d2;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #f1f8fb;
+            border: 2px solid #bbdefb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #1976d2;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #1976d2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #bbdefb;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #bbdefb;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #1565c0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #1976d2;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Stentor (Ciliated Protist) Laboratory Investigation</h1>
+            <p><strong>Eukaryotic Cells: Exploring Dual Motility and Osmoregulation</strong></p>
+            <p>This investigation demonstrates how a large, trumpet-shaped protist uses cilia for both locomotion and feeding, while managing water balance in a freshwater environment through specialized organelles.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Comparative Analysis</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Identify</strong> major structures of Stentor including cilia, macronucleus, contractile vacuole, and food vacuoles</li>
+                    <li><strong>Describe</strong> the dual nature of Stentor as both motile (free-swimming) and sessile (attached)</li>
+                    <li><strong>Observe</strong> ciliary motion and explain its dual function in locomotion and feeding</li>
+                    <li><strong>Compare</strong> Stentor's cilia with cilia found in animal ciliated epithelium</li>
+                    <li><strong>Explain</strong> the function of contractile vacuoles in osmoregulation for freshwater protists</li>
+                    <li><strong>Recognize</strong> the unique bead-like macronucleus structure characteristic of ciliated protists</li>
+                    <li><strong>Apply</strong> specialized microscopy techniques including depression slide preparation</li>
+                    <li><strong>Understand</strong> how living in a hypotonic environment requires specific cellular adaptations</li>
+                </ul>
+
+                <h3>Why Stentor is Relevant to MCAT Prep</h3>                
+                <ul>
+                    <li><strong>Eukaryotic Cell Structure:</strong> Stentor allows students to visualize complex organelles like the contractile vacuole (relevant to osmoregulation), macronuclei, and food vacuoles. The MCAT heavily tests the differences between prokaryotic and eukaryotic cells.</li>
+                    <li><strong>Cytoskeleton and Motility:</strong> Stentor uses cilia for feeding and movement. The MCAT requires students to understand the structure of cilia and flagella (9+2 microtubule arrangement) and their roles in human systems, such as the respiratory tract.</li>
+                    <li><strong>Homeostasis:</strong> The use of contractile vacuoles to survive in freshwater environments is a classic example of osmotic pressure and homeostasis, a core "Foundational Concept" (Concept 3) on the MCAT.</li>
+                </ul>
+
+                <h3>Chapter Context</h3>
+                <p><strong>Building on Previous Investigations:</strong> This Stentor investigation builds on the Euglena study by introducing a new type of locomotion structure (cilia instead of flagella) and demonstrates how protists adapt to freshwater environments through osmoregulation. Students will observe the same internal ciliary structure found in animal respiratory tissues, reinforcing the unity of eukaryotic cells.</p>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <a href="https://www.youtube.com/watch?v=PZoaKzEXzi8" target="_blank"><h3>What is Stentor?</h3></a>
+                <p><strong>Stentor</strong> is a large, trumpet-shaped ciliated protist commonly found in freshwater environments. It is one of the largest unicellular organisms, reaching sizes visible to the naked eye (up to 2 mm when fully extended). Stentor demonstrates remarkable behavioral complexity for a single-celled organism.</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> Stentor is capable of BOTH motility and sessility. It can swim freely through water using its cilia, but also attaches to surfaces for extended periods. When attached, it extends into a long funnel shape and uses its cilia to create water currents that draw food particles toward its oral opening.
+                </div>
+
+                <h3>Stentor's Unique Characteristics</h3>
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Cilia Coverage</h4>
+                        <p><strong>Entire Surface:</strong> Cilia cover the entire cell surface, with especially dense concentration at the funnel-shaped anterior end</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Macronucleus</h4>
+                        <p><strong>Bead-Like Structure:</strong> Large nucleus resembling a string of beads, unique to ciliated protists</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Contractile Vacuole</h4>
+                        <p><strong>Osmoregulation:</strong> Pumps out excess water that enters by osmosis from hypotonic environment</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Shape-Shifting</h4>
+                        <p><strong>Variable Form:</strong> Long and funnel-shaped when attached; short and round when swimming</p>
+                    </div>
+                </div>
+
+                <h3>Cilia Structure and Function</h3>
+                <p>Cilia are short, numerous, hair-like extensions that beat in coordinated waves. Like flagella, cilia contain the same "9+2" microtubule arrangement found throughout eukaryotes. In Stentor, cilia serve TWO functions:</p>
+                <ul>
+                    <li><strong>Locomotion:</strong> Coordinated beating propels the cell through water when swimming</li>
+                    <li><strong>Feeding:</strong> Creates water currents that sweep food particles into the oral groove when attached</li>
+                </ul>
+
+                <h3>Living in Freshwater: The Osmoregulation Challenge</h3>
+                <p>Stentor lives in freshwater, which is <strong>hypotonic</strong> (has fewer solutes compared to the protist's cytoplasm). This means water constantly moves INTO the cell by osmosis. Without a mechanism to remove this water, the cell would swell and burst.</p>
+
+                <div class="key-concept">
+                    <strong>🎯 Solution:</strong> The <strong>contractile vacuole</strong> collects excess water from the cytoplasm and periodically pumps it out of the cell. This organelle is essential for osmoregulation (control of water balance and solute concentration) in freshwater protists.
+                </div>
+
+                <h3>Macronucleus vs. Micronucleus</h3>
+                <p>Ciliated protists like Stentor have TWO types of nuclei:</p>
+                <ul>
+                    <li><strong>Macronucleus:</strong> Large, visible, bead-like structure that controls daily cell functions. This is what you will observe.</li>
+                    <li><strong>Micronucleus:</strong> Small, involved in reproduction (sexual conjugation). Usually not visible in living specimens.</li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🔬 For Specimen Preparation</h4>
+                    <ul>
+                        <li>Culture of living <em>Stentor</em></li>
+                        <li>Depression slide (concave slide with well)</li>
+                        <li>Glass cover slip</li>
+                        <li>Disposable plastic transfer pipettes</li>
+                        <li>Paper towels</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Dual-viewing microscope (allows instructor and student simultaneous viewing)</li>
+                        <li>Standard light microscope (10X objective)</li>
+                        <li>Iris diaphragm for light control</li>
+                    </ul>
+                </div>
+
+                <h3>Understanding Depression Slides</h3>
+                <div class="key-concept">
+                    <strong>🎯 Why Depression Slides?</strong> Stentor is MUCH larger than Euglena or Paramecium. A standard flat slide with coverslip would crush the organism. Depression slides have a concave well that provides vertical space, allowing Stentor to maintain its natural shape and movement without being compressed.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Observation Challenge:</strong> Stentor is large enough to see with the naked eye but requires patience to observe well. The organism may:
+                    <ul>
+                        <li>Detach and swim away if disturbed by vibrations</li>
+                        <li>Contract into a compact shape when stressed</li>
+                        <li>Change position within the depression well</li>
+                        <li>Require reduced light for optimal cilia visibility</li>
+                    </ul>
+                    <strong>Solution:</strong> Your instructor will prepare the slide and use the dual-viewing microscope so both you and the instructor can observe simultaneously. DO NOT bump the microscope during observation.
+                </div>
+
+                <h3>Safety and Handling</h3>
+                <ul>
+                    <li>Stentor cultures should be handled gently—avoid shaking or disturbing</li>
+                    <li>Depression slides are more fragile than flat slides—handle carefully</li>
+                    <li>The instructor will prepare your specimen to ensure optimal viewing conditions</li>
+                    <li>Remain still and quiet during observation to avoid disturbing attached Stentor</li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part 1: Instructor-Prepared Depression Slide</h3>
+                <p><strong>Note:</strong> Your instructor will prepare the Stentor depression slide to ensure optimal viewing conditions. This specialized preparation requires experience to prevent disturbing the organisms.</p>
+
+                <h4>Preparation Steps (Performed by Instructor):</h4>
+                <ol>
+                    <li>Gently swirl the Stentor culture (do not shake)</li>
+                    <li>Use a transfer pipette to collect a sample with visible organisms</li>
+                    <li>Place 1-2 drops in the depression (well) of the slide</li>
+                    <li>Carefully lower a cover slip over the depression</li>
+                    <li>Allow organisms to settle for 1-2 minutes</li>
+                    <li>Place slide on dual-viewing microscope at 10X magnification</li>
+                </ol>
+
+                <h3>Part 2: Initial Observation with Dual-Viewing Microscope</h3>
+                <ol>
+                    <li>Approach the dual-viewing microscope carefully (do not bump the table)</li>
+                    <li>Look through your designated eyepiece while instructor observes through the other</li>
+                    <li>The instructor will adjust focus and locate organisms for you</li>
+                    <li>Observe the general shape and behavior of Stentor</li>
+                    <li>Note whether the organism is:
+                        <ul>
+                            <li><strong>Attached and extended:</strong> Long, trumpet-shaped, funnel-like form</li>
+                            <li><strong>Swimming freely:</strong> Compact, rounded shape</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="warning-box">
+                    <strong>⚠️ Important:</strong> If Stentor is swimming, wait patiently for it to attach to a surface. Once attached, it will extend into its characteristic trumpet shape, making structures much easier to observe. Remain completely still—any vibration may cause it to detach and swim away.
+                </div>
+
+                <h3>Part 3: Observing Key Structures at 10X</h3>
+
+                <h4>A. General Shape and Cilia</h4>
+                <ol>
+                    <li>Once Stentor is attached and extended, observe its overall shape</li>
+                    <li>Look for the wide, funnel-shaped anterior (top) end</li>
+                    <li>Focus on the edge of the organism where cilia are easiest to see</li>
+                    <li>Reduce light intensity using the iris diaphragm to increase contrast</li>
+                    <li>Look for tiny, hair-like structures beating in coordinated waves</li>
+                    <li>The cilia at the top (funnel opening) will be most visible and most active</li>
+                </ol>
+
+                <h4>B. Macronucleus</h4>
+                <ol>
+                    <li>Look inside the cell body for a long, chain-like structure</li>
+                    <li>The macronucleus appears as a string of beads or oval segments connected together</li>
+                    <li>It may be curved or winding through the cell body</li>
+                    <li>Ask the instructor for help if you cannot locate it—it can be challenging to see</li>
+                </ol>
+
+                <h4>C. Contractile Vacuole</h4>
+                <ol>
+                    <li>Look for a relatively large, clear, round structure</li>
+                    <li>The contractile vacuole appears empty (clear) compared to food vacuoles</li>
+                    <li>Watch it carefully for 30-60 seconds—you may see it:
+                        <ul>
+                            <li>Gradually increase in size (filling with water)</li>
+                            <li>Suddenly contract and disappear (pumping water out)</li>
+                            <li>Reappear and begin filling again</li>
+                        </ul>
+                    </li>
+                    <li>This rhythmic activity is the osmoregulation process in action</li>
+                </ol>
+
+                <h4>D. Food Vacuoles</h4>
+                <ol>
+                    <li>Look for multiple small, dark structures throughout the cytoplasm</li>
+                    <li>Food vacuoles are smaller than the contractile vacuole</li>
+                    <li>They appear darker because they contain ingested food particles</li>
+                    <li>You may see several scattered throughout the cell</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>10X Magnification Sketch</h4>
+                    <p><strong>Labels to include:</strong> Cilia (especially at funnel opening), Macronucleus (bead-like chain), Contractile vacuole (if visible), Food vacuoles (if visible), General trumpet/funnel shape</p>
+                    <div class="sketch-area">
+                        Your 10X sketch of extended Stentor showing internal structures
+                    </div>
+                </div>
+
+                <h3>Part 4: Observing Behavioral Changes</h3>
+                <ol>
+                    <li>Continue observing for 2-3 minutes</li>
+                    <li>Watch for shape changes:
+                        <ul>
+                            <li>If attached: Does it remain extended or contract?</li>
+                            <li>If swimming: Does it eventually attach?</li>
+                        </ul>
+                    </li>
+                    <li>Observe ciliary activity:
+                        <ul>
+                            <li>Are cilia beating continuously?</li>
+                            <li>Do you see water currents drawing particles toward the funnel opening?</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Part 5: Reference Materials (If Structures Not Visible)</h3>
+                <p>If you were unable to clearly observe all structures:</p>
+                <ul>
+                    <li>Examine the lab posters showing Stentor anatomy</li>
+                    <li>Review textbook pages 114-116 (cilia structure)</li>
+                    <li>Study pages 134-135, Figure 7.14 (contractile vacuole function)</li>
+                    <li>Review page 607 (ciliated protist diversity)</li>
+                    <li>Discuss with your instructor what you observed and any difficulties</li>
+                </ul>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>At 10X Magnification</h4>
+                <ul>
+                    <li><strong>Overall size:</strong> Stentor is much larger than Euglena or Paramecium—easily visible at low magnification</li>
+                    <li><strong>Shape (when attached):</strong> Long, trumpet-shaped or funnel-shaped body with wide anterior end</li>
+                    <li><strong>Shape (when swimming):</strong> Compact, rounded, or oval shape</li>
+                    <li><strong>Cilia:</strong> Tiny hair-like structures, most visible along the edges and at the funnel opening</li>
+                    <li><strong>Macronucleus:</strong> String-of-beads appearance, winding through the cell body</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear, round structure that may rhythmically fill and contract</li>
+                    <li><strong>Food vacuoles:</strong> Multiple small, dark structures scattered in cytoplasm</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ Successful observation includes:</strong>
+                    <ul>
+                        <li>Clear identification of Stentor (large, trumpet-shaped organism)</li>
+                        <li>Observation of ciliary beating (at least along the edges)</li>
+                        <li>Recognition of the extended vs. contracted body forms</li>
+                        <li>Identification of at least 2-3 internal structures (macronucleus, vacuoles)</li>
+                        <li>Understanding of Stentor's dual lifestyle (motile and sessile)</li>
+                    </ul>
+                </div>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cannot locate Stentor</td>
+                            <td>Organism moved or culture has low density</td>
+                            <td>Ask instructor to scan slide; prepare fresh sample from culture</td>
+                        </tr>
+                        <tr>
+                            <td>Stentor keeps swimming away</td>
+                            <td>Normal behavior; organism is disturbed</td>
+                            <td>Wait patiently; avoid bumping microscope; reduce light intensity</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot see cilia clearly</td>
+                            <td>Light too bright or organism not in focus</td>
+                            <td>Reduce light with iris diaphragm; fine-tune focus; look at edges</td>
+                        </tr>
+                        <tr>
+                            <td>Macronucleus not visible</td>
+                            <td>Organism contracted or nucleus difficult to see in living specimen</td>
+                            <td>Wait for extension; adjust lighting; refer to posters and textbook</td>
+                        </tr>
+                        <tr>
+                            <td>Contractile vacuole not pulsing</td>
+                            <td>Organism may be stressed or water balance already achieved</td>
+                            <td>Wait longer (2-3 minutes); observe different specimen; organism may be healthy but not actively pumping at this moment</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="reflection-box">
+                    <strong>📌 Reflection:</strong> Why is Stentor such a valuable organism for studying ciliated protists? Consider its size, visibility of structures, and behavioral complexity compared to smaller organisms like Paramecium.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Comparative Analysis →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: COMPARATIVE ANALYSIS -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔬 Comparative Analysis</h2>
+
+                <h3>Stentor vs. Other Ciliated Organisms</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Characteristic</th>
+                            <th>Stentor (Protist)</th>
+                            <th>Paramecium (Protist)</th>
+                            <th>Vorticella (Protist)</th>
+                            <th>Ciliated Epithelium (Animal Tissue)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cilia Structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lifestyle</strong></td>
+                            <td>Both motile and sessile</td>
+                            <td>Always motile</td>
+                            <td>Always sessile (attached)</td>
+                            <td>Tissue cells are fixed in place</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cilia Function</strong></td>
+                            <td>Locomotion AND feeding</td>
+                            <td>Locomotion AND feeding</td>
+                            <td>Feeding only (creates water currents)</td>
+                            <td>Move mucus and debris upward</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td>Very large (up to 2 mm)</td>
+                            <td>Medium (~0.25 mm)</td>
+                            <td>Small (~0.1 mm)</td>
+                            <td>Cilia are ~10 μm long</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nucleus Type</strong></td>
+                            <td>Macronucleus (bead-like)</td>
+                            <td>Macronucleus (kidney-shaped)</td>
+                            <td>Macronucleus (oval)</td>
+                            <td>Standard eukaryotic nucleus</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contractile Vacuole</strong></td>
+                            <td>Yes (osmoregulation)</td>
+                            <td>Yes (osmoregulation)</td>
+                            <td>Yes (osmoregulation)</td>
+                            <td>No (not needed in multicellular organism)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shape Flexibility</strong></td>
+                            <td>High (extends and contracts)</td>
+                            <td>Low (maintains slipper shape)</td>
+                            <td>Medium (can contract stalk)</td>
+                            <td>None (cells are fixed in tissue)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Unity of Ciliary Structure Across Eukaryotes</h3>
+
+                <div class="key-concept">
+                    <strong>🎯 Critical Insight:</strong> The internal structure of cilia is IDENTICAL in Stentor (a protist), Paramecium (a protist), and the ciliated epithelial cells lining your trachea (animal tissue). All use the same 9+2 microtubule arrangement. This demonstrates that cilia evolved once in an ancient common ancestor and have been conserved throughout eukaryotic evolution.
+                </div>
+
+                <h3>Comparison: Cilia vs. Flagella</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Cilia (e.g., Stentor)</th>
+                            <th>Flagella (e.g., Euglena)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Length</strong></td>
+                            <td>Short (5-10 μm)</td>
+                            <td>Long (can be longer than cell body)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number per cell</strong></td>
+                            <td>Many (hundreds to thousands)</td>
+                            <td>Few (typically 1-8)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement (SAME as cilia)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Movement pattern</strong></td>
+                            <td>Back-and-forth beating in waves</td>
+                            <td>Whip-like motion (undulation)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td>Fast (coordinated beating)</td>
+                            <td>Very fast (single powerful whip)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Examples</strong></td>
+                            <td>Stentor, Paramecium, Vorticella, tracheal epithelium</td>
+                            <td>Euglena, sperm cells, Chlamydomonas</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Osmoregulation in Freshwater Environments</h3>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>The Problem</h4>
+                        <p>Freshwater is <strong>hypotonic</strong> (fewer solutes than the protist cytoplasm). Water constantly enters the cell by osmosis.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>The Solution</h4>
+                        <p>Contractile vacuoles collect excess water from the cytoplasm and rhythmically pump it out of the cell.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Energy Cost</h4>
+                        <p>This process requires ATP because water is being moved against the osmotic gradient (active transport).</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Marine Protists</h4>
+                        <p>Marine (saltwater) protists typically lack contractile vacuoles because seawater is isotonic or slightly hypertonic to their cytoplasm.</p>
+                    </div>
+                </div>
+
+                <h3>Challenge Questions</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 1:</strong>
+                    <p style="margin-top: 10px;">The cilia of Stentor have the SAME internal structure (9+2 microtubules) as the cilia lining your trachea. Based on your lab observations and the lab manual, <strong>explain what this similarity reveals about the evolutionary relationship between protists and animals.</strong></p>
+                    <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ab47bc; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer here..."></textarea>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 2:</strong>
+                    <p style="margin-top: 10px;">Stentor uses cilia for BOTH locomotion and feeding. The ciliated epithelium in your trachea uses cilia to move mucus upward. <strong>What is the specific function of the cilia and mucus at this body location? How does this protect your respiratory system?</strong> (Refer to textbook p. 13 and p. 943)</p>
+                    <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ab47bc; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer here..."></textarea>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 3:</strong>
+                    <p style="margin-top: 10px;">Stentor lives in freshwater, which is a <strong>hypotonic</strong> environment. <strong>Explain why Stentor must have a contractile vacuole to survive, and describe the specific mechanism by which the contractile vacuole functions in osmoregulation.</strong> (Refer to textbook pp. 134-135, Figure 7.14)</p>
+                    <textarea style="width: 100%; margin: 15px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ab47bc; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer here..."></textarea>
+                </div>
+
+                <h3>Review Questions from Lab Manual</h3>
+
+                <div class="observation-box">
+                    <h4>Answer the Following Questions</h4>
+                    
+                    <p><strong>1. The protist organisms that you observed live in freshwater, therefore they must have organelles that enable them to cope with living in a ( hypertonic / hypotonic ) environment.</strong></p>
+                    <p>Answer: <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>2. These freshwater organisms must cope with the problem of water ( entering / leaving ) their cells.</strong></p>
+                    <p>Answer: <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>3. These protists have a specialized organelle called the _________________ _________________ which functions in osmoregulation (the control of solute concentration and of water balance).</strong></p>
+                    <p>Answer: <input type="text" style="width: 300px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>4. Name three protist organisms that you observed in lab which possess cilia:</strong></p>
+                    <p>1. <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+                    <p>2. <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+                    <p>3. <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>5. Name the specific animal tissue (in trachea) which has cells with a ciliated edge:</strong></p>
+                    <p>Answer: <input type="text" style="width: 400px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>6. Is the inside structure of the cilia of a Paramecium the SAME or DIFFERENT compared to the inside structure of cilia of animal cells that line the human trachea?</strong></p>
+                    <p>Answer: <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #1976d2; background: #f9f9f9; padding: 5px;"></p>
+
+                    <p><strong>7. Paramecium use their cilia to swim in their aquatic environment. In contrast, what is the specific function of the cilia on ciliated columnar epithelial cells in the lining of the trachea (what specifically is the cilia moving)?</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 10px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border: 2px solid #bbdefb; font-family: inherit; font-size: inherit;"></textarea>
+                </div>
+
+                <h3>Connecting to the Unity of Life</h3>
+
+                <div class="key-concept">
+                    <strong>🎯 Chapter Integration:</strong> Your observations of Stentor demonstrate how a single-celled organism can accomplish complex tasks (movement, feeding, osmoregulation) using structures that are fundamentally similar to those found in multicellular animals. The 9+2 ciliary structure you observed in Stentor is the SAME structure found in:
+                    <ul>
+                        <li>Paramecium (another ciliated protist)</li>
+                        <li>Ciliated epithelium in your respiratory tract (animal tissue)</li>
+                        <li>Sperm cell flagella (animal reproductive cells)</li>
+                        <li>Euglena flagella (flagellated protist)</li>
+                    </ul>
+                    This demonstrates the profound unity underlying all eukaryotic life—despite billions of years of evolutionary divergence, the same molecular machinery is conserved across kingdoms.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Stentor Investigation: Ciliated Protist Dual Motility and Osmoregulation</strong></p>
+        <p>This investigation demonstrates ciliary structure conservation across eukaryotes and osmoregulation adaptations in freshwater environments.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
