@@ -1,61 +1,26 @@
-<<<<<<< HEAD
-﻿<!-- index.html (minified) -->
-=======
-<!-- index.html (minified) -->
->>>>>>> 7f975d458ddb050e46980767614f8aa3ec920fbb
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Goals Tracker • Lab 2</title>
+    <title>Post‑Lab • Lab 2</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --uwp-green: #016836;
-            --uwp-dark: #00502f;
-            --uwp-black: #000;
-            --uwp-grey: #54534A;
-            --uwp-warm: #EFECE2
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-        html,
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            background: #fff;
-            color: #111
-        }
-
-        a {
-            color: var(--uwp-green);
-            text-decoration: none
+            font-family: 'Open Sans', sans-serif;
+            margin: 0
         }
 
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             padding: .75rem 1rem;
-            border-bottom: 2px solid var(--uwp-green)
+            border-bottom: 2px solid #016836
         }
 
-        header .brand {
-            font-weight: 700;
-            letter-spacing: .5px
-        }
-
-        nav a {
-            margin-left: .5rem;
-            font-weight: 600
+        a {
+            color: #016836
         }
 
         main {
@@ -65,113 +30,35 @@
         }
 
         h1 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             margin: .5rem 0
-        }
-
-        #progress {
-            height: 10px;
-            background: #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-            margin: .5rem 0
-        }
-
-        #bar {
-            height: 100%;
-            width: 0;
-            background: var(--uwp-green);
-            transition: width .2s linear
-        }
-
-        section {
-            border-left: 4px solid var(--uwp-green);
-            padding: .5rem .75rem;
-            margin: .5rem 0;
-            background: #f8f8f8
-        }
-
-        section h2 {
-            font-size: .95rem;
-            margin: .25rem 0
         }
 
         ul {
-            list-style: none;
             padding: 0;
-            margin: 0
+            margin: 0;
+            list-style: none
         }
 
         li {
-            display: flex;
-            align-items: flex-start;
             margin: .25rem 0
-        }
-
-        label {
-            cursor: pointer;
-            display: inline-block;
-            margin-left: .5rem
-        }
-
-        button {
-            background: var(--uwp-green);
-            color: #fff;
-            border: 0;
-            border-radius: 4px;
-            padding: .5rem .75rem;
-            font-weight: 700;
-            cursor: pointer
-        }
-
-        button[disabled] {
-            opacity: .5;
-            cursor: not-allowed
-        }
-
-        footer {
-            padding: 1rem;
-            border-top: 1px solid #eee;
-            margin-top: 1rem;
-            font-size: .85rem;
-            color: #333
-        }
-
-        .pill {
-            display: inline-block;
-            background: var(--uwp-warm);
-            color: #222;
-            border: 1px solid var(--uwp-grey);
-            border-radius: 999px;
-            padding: .15rem .5rem;
-            margin-left: .35rem;
-            font-size: .75rem
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="brand">UW‑Parkside • Lab 2 Goals Tracker</div>
-        <nav><a href="pre-lab.html">🏠 Pre‑Lab</a><a href="in-lab.html">🔬 In‑Lab</a><a href="post-lab.html">💻
-                Post‑Lab</a></nav>
-    </header>
+    <header><a href="index.html">◀ Goals</a></header>
     <main>
-        <h1>Master the goals, one focused step at a time <span class="pill">25‑minute blocks</span></h1>
-        <div id="progress">
-            <div id="bar"></div>
-        </div>
-        <div id="stats"></div>
-        <div id="goals"></div>
-        <div style="display:flex;gap:.5rem;margin:.75rem 0"><button id="next" disabled>Next Step ▶</button><button
-                id="reset">Reset Progress</button></div>
+        <h1>💻 Post‑Lab Exercises</h1>
+        <ul>
+            <li>Explain glucose forms (α vs β) & structural differences</li>
+            <li>Write balanced dehydration/hydrolysis reactions</li>
+            <li>Roles of starch, glycogen, cellulose in biology</li>
+            <li>Why humans digest starch but not cellulose</li>
+            <li>Cellulose in diet; cows/termites hydrolysis pathways</li>
+            <li>Phloem function, sources/sinks, glycogen storage, plant cell types</li>
+        </ul>
     </main>
-    <footer>Parkside style: Green (PMS 349) & Black (PMS Black 3C); Open Sans web font used. © 2025</footer>
-    <script>const data = [{ k: 'Water', items: ['Understand the chemical composition of living cells focusing on water (only)', 'Learn properties of water: polarity, hydrogen bonding, cohesion/adhesion'] }, { k: 'Organic Chemistry Foundations', items: ['Review carbon chemistry: functional groups, covalent bonding, isomerism'] }, { k: 'Macromolecules – Carbohydrates', items: ['Identify polymers vs monomers; dehydration & hydrolysis', 'Explore carbohydrate structures: mono-, di-, polysaccharides', 'Differentiate starch, glycogen, cellulose; link structure to function', 'Understand glucose transport & storage (plants vs animals)'] }, { k: 'Plant Anatomy & Transport', items: ['Study vascular tissues: xylem & phloem roles in transport', 'Ground tissues: parenchyma, collenchyma, sclerenchyma (sclereids as subtype)'] }, { k: 'Applied Lab Skills', items: ['Perform iodine test for starch; controls & interpretation'] }, { k: 'Modeling & Visualization', items: ['Visualize structural isomers & functional groups with models'] }, { k: 'Microscopy & Sketching', items: ['Prepare/sketch potato parenchyma; identify cell walls & amyloplasts', 'Prepare/sketch sunflower stem; epidermis, cortex, vascular bundles, xylem, phloem, sclerenchyma fibers', 'Prepare/sketch pear tissue; identify parenchyma & sclereid cells (sclerenchyma)'] }, { k: 'Specimen Analysis', items: ['Analyze sunflower stem structure; identify regions & cell types'] }]; const KEY = 'lab2_goals_v1'; const saved = JSON.parse(localStorage.getItem(KEY) || '{}'); const container = document.getElementById('goals'); const stats = document.getElementById('stats'); const bar = document.getElementById('bar'); const nextBtn = document.getElementById('next'); const resetBtn = document.getElementById('reset'); function idFor(c, i) { return `${c}__${i}` } function render() { container.innerHTML = ''; let total = 0, done = 0, firstUnchecked = null; data.forEach((cat, ci) => { const sec = document.createElement('section'); sec.innerHTML = `<h2>${cat.k}</h2>`; const ul = document.createElement('ul'); cat.items.forEach((text, ti) => { total++; const id = idFor(ci, ti); const checked = !!saved[id]; if (!checked && firstUnchecked === null) firstUnchecked = id; const li = document.createElement('li'); li.innerHTML = `<input type="checkbox" id="${id}" ${checked ? 'checked' : ''}><label for="${id}">${text}</label>`; ul.appendChild(li); }); sec.appendChild(ul); container.appendChild(sec); }); done = Object.values(saved).filter(Boolean).length; const pct = Math.round((done / total) * 100) || 0; bar.style.width = pct + '%'; stats.textContent = `Progress: ${done}/${total} (${pct}%)`; nextBtn.disabled = !firstUnchecked; nextBtn.dataset.target = firstUnchecked || '' } render(); container.addEventListener('change', e => { if (e.target && e.target.type === 'checkbox') { saved[e.target.id] = e.target.checked; localStorage.setItem(KEY, JSON.stringify(saved)); render() } }); nextBtn.addEventListener('click', () => { const id = nextBtn.dataset.target; if (!id) return; const el = document.getElementById(id); if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus() } }); resetBtn.addEventListener('click', () => { localStorage.removeItem(KEY); Object.keys(saved).forEach(k => delete saved[k]); render() });</script>
 </body>
 
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 7f975d458ddb050e46980767614f8aa3ec920fbb
