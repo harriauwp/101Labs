@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciliated Epithelium Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fce4ec 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #c2185b 0%, #880e4f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #c2185b;
+            color: #c2185b;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #fce4ec;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #c2185b;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #c2185b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #c2185b;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #880e4f;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #c2185b;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #c2185b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #880e4f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #f8bbd0;
+            color: #880e4f;
+        }
+
+        .btn-secondary:hover {
+            background: #f48fb1;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #1565c0;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            border: 2px solid #c2185b;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #880e4f;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #fef5f8;
+            border: 2px solid #f8bbd0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #880e4f;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #c2185b;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #c2185b;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #880e4f;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #f8bbd0;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #66bb6a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #2e7d32;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #c2185b;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border-left: 4px solid #0277bd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #01579b;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Ciliated Epithelium Laboratory Investigation</h1>
+            <p><strong>Cilia in Protists and Animal Tissues: Shared Cellular Structures</strong></p>
+            <p>This investigation explores cilia—microscopic hair-like structures that beat in coordinated waves to move cells or materials across cell surfaces. Students will observe cilia in protists (Paramecium, Stentor, Vorticella) and compare them with cilia in animal respiratory tissue (ciliated pseudostratified columnar epithelium lining the trachea), demonstrating evolutionary conservation of cellular machinery.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Protist-Animal Comparison</button>
+            <button class="nav-btn" onclick="switchTab('review')">Review Questions</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Observe</strong> living ciliated protists demonstrating coordinated ciliary beating</li>
+                    <li><strong>Identify</strong> cilia, macronucleus, contractile vacuoles, and food vacuoles in protist cells</li>
+                    <li><strong>Explain</strong> how cilia function in both locomotion (motile protists) and feeding (sessile protists)</li>
+                    <li><strong>Compare</strong> ciliary structure and function in protists with cilia in animal respiratory epithelium</li>
+                    <li><strong>Describe</strong> the role of cilia in the human respiratory system (mucociliary escalator)</li>
+                    <li><strong>Analyze</strong> how the same 9+2 microtubule structure serves different purposes across organisms</li>
+                    <li><strong>Recognize</strong> that cilia in protists and animal tissues are structurally identical despite different functions</li>
+                </ul>
+
+                <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+                <ul>
+                    <li><strong>Foundational Concept 1:</strong> Structure and Function of Proteins
+                        <ul>
+                            <li><strong>1A: Structure and Function of Proteins</strong>
+                                <ul>
+                                    <li><strong>Dynein Motor Proteins:</strong> Understanding how motor proteins generate coordinated ciliary beating.</li>
+                                    <li><strong>Microtubule Structure:</strong> Recognition of the 9+2 arrangement as the structural basis of cilia.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 2:</strong> Structure and Function of Eukaryotic Cells
+                        <ul>
+                            <li><strong>2A: Assembly of Molecules and Organelles</strong>
+                                <ul>
+                                    <li><strong>Ciliary Structure:</strong> Understanding the 9+2 microtubule arrangement conserved across eukaryotes.</li>
+                                    <li><strong>Contractile Vacuoles:</strong> Recognition of osmoregulation in freshwater protists.</li>
+                                </ul>
+                            </li>
+                            <li><strong>2B: Structure and Function of Systems</strong>
+                                <ul>
+                                    <li><strong>Coordinated Movement:</strong> Understanding how thousands of cilia beat in synchronized waves.</li>
+                                    <li><strong>Mucus Transport:</strong> Recognizing the mucociliary escalator as a defense mechanism.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 3:</strong> Complex Systems of Tissues and Organs
+                        <ul>
+                            <li><strong>Respiratory System:</strong> Understanding how ciliated epithelium protects lungs by removing debris and pathogens.</li>
+                            <li><strong>Epithelial Tissues:</strong> Recognition of pseudostratified columnar epithelium structure and function.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Scientific Inquiry and Reasoning Skills (SIRS)</strong>
+                        <ul>
+                            <li><strong>Skill 1: Knowledge of Scientific Concepts</strong>
+                                <ul>
+                                    <li>Identifying ciliary structures under magnification (10X and 40X).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skill 4: Data-Based and Statistical Reasoning</strong>
+                                <ul>
+                                    <li>Comparing structural similarities between protist cilia and animal tissue cilia.</li>
+                                    <li>Observing functional differences (locomotion vs. mucus transport).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Chapter Context: Building on Previous Investigations</h3>
+                <p><strong>Connection to Previous Labs:</strong> This investigation continues demonstrating shared cellular structures across kingdoms:</p>
+                <ul>
+                    <li><strong>Onion cells:</strong> Established fundamental eukaryotic structures</li>
+                    <li><strong>Amoeba:</strong> Showed pseudopodia as shared locomotion mechanism</li>
+                    <li><strong>Euglena/Sperm:</strong> Demonstrated flagella as conserved structures</li>
+                    <li><strong>Cilia (this lab):</strong> Reveals another conserved mechanism—similar to flagella but shorter and more numerous</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>🎯 Unity of Life Theme:</strong> This investigation demonstrates that cilia in protists (Paramecium, Stentor) are structurally and functionally identical to cilia in human respiratory tissue. Both use the 9+2 microtubule arrangement, both are powered by dynein, and both beat in coordinated waves—showcasing evolutionary conservation of cellular machinery across vast phylogenetic distances.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What are Cilia?</h3>
+                <p><strong>Cilia</strong> (singular: cilium) are tiny hair-like extensions from the cell surface that beat in rapid, precisely coordinated fashion. They are structurally similar to flagella but distinguished by being shorter and more numerous. While a cell typically has only one or a few flagella, ciliated cells may have hundreds or even thousands of cilia covering their surface.</p>
+
+                <h3>Cilia vs. Flagella: Key Differences</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Cilia</th>
+                            <th>Flagella</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Length</strong></td>
+                            <td>Short (typically 2-10 micrometers)</td>
+                            <td>Long (typically 50-200 micrometers)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number per cell</strong></td>
+                            <td>Many (hundreds to thousands)</td>
+                            <td>Few (usually 1-2)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement (identical)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Beating pattern</strong></td>
+                            <td>Back-and-forth rowing motion in coordinated waves</td>
+                            <td>Whip-like undulating motion</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td>Beat 10-40 times per second</td>
+                            <td>Beat hundreds of times per second</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> Despite differences in length and number, cilia and flagella share the same internal structure (9+2 microtubules) and the same molecular mechanism (dynein motor proteins). They represent variations on the same fundamental eukaryotic machinery.
+                </div>
+
+                <h3>The 9+2 Microtubule Arrangement</h3>
+                <p>Like flagella, all eukaryotic cilia share an identical internal structure:</p>
+                <ul>
+                    <li><strong>9 outer doublets:</strong> Nine pairs of microtubules arranged in a circle</li>
+                    <li><strong>2 central singlets:</strong> Two single microtubules in the center</li>
+                    <li><strong>Dynein arms:</strong> Motor proteins that cause sliding of microtubules, generating movement</li>
+                    <li><strong>Radial spokes:</strong> Connect outer doublets to central pair, coordinating movement</li>
+                    <li><strong>ATP requirement:</strong> Ciliary beating requires continuous energy from ATP</li>
+                </ul>
+
+                <h3>Ciliated Protists: Diverse Functions</h3>
+                <p>Protists use cilia for two main purposes, and some species exhibit both strategies:</p>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Motile Protists</h4>
+                        <p><strong>Paramecium, Stentor (when swimming):</strong> Use coordinated ciliary beating for rapid locomotion through water.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Sessile Protists</h4>
+                        <p><strong>Vorticella, Stentor (when attached):</strong> Use cilia to create water currents that draw food particles toward the cell.</p>
+                    </div>
+                </div>
+
+                <h3>Key Ciliated Protists in This Investigation</h3>
+
+                <h4>Paramecium</h4>
+                <p>A slipper-shaped protist completely covered with cilia. Paramecium are highly motile and swim rapidly through water by coordinated ciliary beating. Key structures include:</p>
+                <ul>
+                    <li><strong>Cilia:</strong> Cover entire cell surface in organized rows</li>
+                    <li><strong>Macronucleus:</strong> Large, kidney-shaped nucleus visible in stained specimens</li>
+                    <li><strong>Oral groove:</strong> Depression leading to mouth where food is ingested</li>
+                    <li><strong>Contractile vacuoles:</strong> Two vacuoles that collect and expel excess water</li>
+                    <li><strong>Food vacuoles:</strong> Small vesicles containing captured bacteria</li>
+                </ul>
+
+                <h4>Stentor</h4>
+                <p>A large, trumpet-shaped protist that can be both motile and sessile. When attached to a surface, Stentor extends into a long funnel shape with cilia concentrated around the top opening. Key structures include:</p>
+                <ul>
+                    <li><strong>Cilia:</strong> Most prominent at the top of the funnel (oral region)</li>
+                    <li><strong>Macronucleus:</strong> Beaded or string-of-pearls appearance</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear, round structure</li>
+                    <li><strong>Shape flexibility:</strong> Can contract into ball shape or extend into funnel shape</li>
+                </ul>
+
+                <h4>Vorticella</h4>
+                <p>A bell-shaped protist attached to surfaces by a contractile stalk. Vorticella are completely sessile and use cilia around their top opening to create feeding currents. Key structures include:</p>
+                <ul>
+                    <li><strong>Cilia:</strong> Ring of cilia around the oral region at the top</li>
+                    <li><strong>Contractile stalk:</strong> Coiled stalk that can contract rapidly</li>
+                    <li><strong>Sessile lifestyle:</strong> Remains attached to algae or debris</li>
+                    <li><strong>Feeding strategy:</strong> Creates whirlpool-like currents to capture bacteria</li>
+                </ul>
+
+                <h3>Ciliated Pseudostratified Columnar Epithelium</h3>
+                <p>This specialized animal tissue lines the respiratory tract (nasal cavities, trachea, bronchi). Key features include:</p>
+
+                <h4>Structure</h4>
+                <ul>
+                    <li><strong>Columnar cells:</strong> Tall, column-shaped epithelial cells</li>
+                    <li><strong>Pseudostratified appearance:</strong> Nuclei at different levels create false appearance of multiple layers</li>
+                    <li><strong>Ciliated border:</strong> Hundreds of cilia per cell project into the airway</li>
+                    <li><strong>Goblet cells:</strong> Mucus-secreting cells interspersed among ciliated cells</li>
+                    <li><strong>Basement membrane:</strong> Thin layer anchoring epithelium to connective tissue below</li>
+                </ul>
+
+                <h4>Function: The Mucociliary Escalator</h4>
+                <p>The ciliated epithelium of the respiratory tract performs a critical defense function:</p>
+                <ol>
+                    <li><strong>Mucus secretion:</strong> Goblet cells secrete sticky mucus that traps inhaled particles, bacteria, and debris</li>
+                    <li><strong>Ciliary beating:</strong> Cilia beat in coordinated waves, always pushing mucus <strong>upward</strong> toward the throat</li>
+                    <li><strong>Mucus transport:</strong> The layer of trapped particles is continuously moved up and out of the airways</li>
+                    <li><strong>Swallowing:</strong> Mucus reaches the throat and is swallowed into the digestive system</li>
+                    <li><strong>Protection:</strong> This prevents particles from reaching the delicate lung tissue where they could cause infection or damage</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Clinical Relevance:</strong> Damage to ciliated epithelium (from smoking, pollution, or infections) impairs the mucociliary escalator, leading to accumulation of mucus and increased susceptibility to respiratory infections. Conditions like chronic bronchitis and cystic fibrosis involve ciliary dysfunction.
+                </div>
+
+                <h3>Osmoregulation in Freshwater Protists</h3>
+                <p>All the ciliated protists you'll observe live in freshwater, which creates an osmotic challenge:</p>
+                <ul>
+                    <li><strong>Hypotonic environment:</strong> Freshwater has fewer solutes than the protist's cytoplasm</li>
+                    <li><strong>Water influx:</strong> Water continuously enters the cell by osmosis</li>
+                    <li><strong>Contractile vacuole:</strong> Collects excess water and periodically expels it</li>
+                    <li><strong>Prevention of lysis:</strong> Without this mechanism, cells would swell and burst</li>
+                </ul>
+
+                <h3>Why Observe Both Protists and Animal Tissue?</h3>
+                <p>This comparative investigation reveals:</p>
+                <ul>
+                    <li><strong>Structural identity:</strong> The 9+2 pattern is identical in protists and animals</li>
+                    <li><strong>Functional diversity:</strong> Same structure serves different purposes (locomotion vs. mucus transport)</li>
+                    <li><strong>Evolutionary conservation:</strong> Cilia evolved once and have been maintained across kingdoms</li>
+                    <li><strong>Unity of life:</strong> Fundamental cellular mechanisms are shared across vast evolutionary distances</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Unity of Life Connection:</strong> When you observe ciliary beating in a Paramecium and then examine ciliated epithelium in human tracheal tissue, you're witnessing the same molecular machinery at work. The coordinated beating you see is powered by identical motor proteins, arranged in identical microtubule structures, performing functions that—though different in detail—share the same fundamental principle: moving materials across cell surfaces.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Learning Objectives for Preparation</h3>
+                <p>Before beginning the investigation, you should understand:</p>
+                <ul>
+                    <li>The difference between motile and sessile protists</li>
+                    <li>How to observe rapidly moving organisms under the microscope</li>
+                    <li>Proper use of demonstration microscopes with pre-focused slides</li>
+                    <li>How to identify different tissue layers in histological sections</li>
+                    <li>Safety procedures for handling live cultures</li>
+                </ul>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🦠 For Protist Observations</h4>
+                    <ul>
+                        <li>Prepared permanent slide of stained Paramecium (demonstration)</li>
+                        <li>Live culture of Stentor in depression slide (demonstration, dual-viewing microscope)</li>
+                        <li>Live culture of Vorticella (optional demonstration)</li>
+                        <li>Paper towels</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🫁 For Tracheal Tissue Observation</h4>
+                    <ul>
+                        <li>Prepared permanent slide of ciliated pseudostratified columnar epithelium (trachea cross-section)</li>
+                        <li>Demonstration microscope (set up by instructor at 40X)</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Light microscope with 4X, 10X, and 40X objectives</li>
+                        <li>Dual-viewing microscope for Stentor observation</li>
+                        <li>Lens paper (for cleaning lenses)</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>📝 For Documentation</h4>
+                    <ul>
+                        <li>Pencils or pens (for sketches)</li>
+                        <li>Colored pencils for sketches</li>
+                        <li>Lab notebook or observation sheets</li>
+                    </ul>
+                </div>
+
+                <h3>Preparing the Cultures</h3>
+                <p><strong>Note:</strong> Your instructor will prepare all live cultures and demonstration slides in advance. Students will observe pre-prepared specimens.</p>
+
+                <h3>Preparing Your Workstation</h3>
+
+                <h4>Step 1: Organize Your Space</h4>
+                <ul>
+                    <li>Arrange materials in a logical order on your lab bench</li>
+                    <li>Identify demonstration microscopes on side counters and middle tables</li>
+                    <li>Keep paper towels readily accessible</li>
+                    <li>Have your lab manual open to the protist section for reference</li>
+                </ul>
+
+                <h4>Step 2: Review Microscope Use</h4>
+                <ul>
+                    <li>Review proper focusing technique from the onion cell investigation</li>
+                    <li>Remember: demonstration microscopes are already focused—do not adjust coarse focus</li>
+                    <li>You may use the fine focus knob to sharpen the image</li>
+                    <li>The dual-viewing microscope for Stentor allows multiple students to observe simultaneously</li>
+                </ul>
+
+                <h4>Step 3: Pre-Lab Safety Review</h4>
+                <ul>
+                    <li><strong>Live cultures:</strong> Handle with care; do not bump demonstration microscopes</li>
+                    <li><strong>Microscope:</strong> Do not adjust coarse focus on pre-focused demonstration slides</li>
+                    <li><strong>Hygiene:</strong> Wash hands after handling any biological materials</li>
+                    <li><strong>Movement between stations:</strong> Be courteous to other students observing specimens</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Safety Reminder:</strong> Live protists are delicate organisms. Excessive movement, vibration, or bumping of microscopes may cause motile protists like Stentor to detach and swim away, making observation difficult for all students. Move carefully around demonstration stations.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD & STUDENT ACTIVITY -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part A: Observing Ciliated Protists</h3>
+
+                <h4>Observation 1: Paramecium (Stained Permanent Slide)</h4>
+                
+                <div class="info-box">
+                    <strong>Why use a stained slide?</strong> Paramecium swim extremely fast using coordinated ciliary beating, making it nearly impossible to observe cilia clearly in living specimens. The stained permanent slide allows you to see cellular structures including cilia, macronucleus, and the overall cell organization.
+                </div>
+
+                <ol>
+                    <li>Locate the demonstration microscope set up with the stained Paramecium slide</li>
+                    <li>This microscope is already focused at 40X magnification—do not adjust coarse focus</li>
+                    <li>You may use the fine focus knob to sharpen the image</li>
+                    <li>Observe the slipper-shaped cell body</li>
+                    <li>Identify the following structures:
+                        <ul>
+                            <li><strong>Cilia:</strong> Tiny hair-like projections covering the entire cell surface in organized rows</li>
+                            <li><strong>Macronucleus:</strong> Large, kidney-bean shaped structure (appears darker with staining)</li>
+                            <li><strong>Oral groove:</strong> Depression on one side leading to the cell mouth</li>
+                            <li><strong>Food vacuoles:</strong> Small circular structures (if visible)</li>
+                        </ul>
+                    </li>
+                    <li>Make a detailed sketch showing the overall cell shape and structures</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Paramecium Sketch (40X Magnification)</h4>
+                    <p><strong>Labels to include:</strong> Cilia, Macronucleus, Oral groove (if visible), Cell outline</p>
+                    <div class="sketch-area">
+                        Your sketch of stained Paramecium at 40X magnification
+                    </div>
+                </div>
+
+                <h4>Observation 2: Stentor (Live Culture - Dual-Viewing Microscope)</h4>
+
+                <div class="info-box">
+                    <strong>Why observe live Stentor?</strong> Stentor is large enough to observe clearly while alive, and when attached to a surface, it extends into a trumpet shape that makes cilia visible. The dual-viewing microscope allows your instructor to guide your observation in real-time.
+                </div>
+
+                <ol>
+                    <li>Locate the dual-viewing microscope with live Stentor in a depression slide</li>
+                    <li>Your instructor will assist you in locating an attached Stentor</li>
+                    <li><strong>Important:</strong> Move slowly and avoid bumping the microscope—Stentor may detach if disturbed</li>
+                    <li>Begin observation at 10X magnification</li>
+                    <li>Look for a trumpet-shaped or funnel-shaped organism (if attached)</li>
+                    <li>If Stentor is swimming, it will appear shorter and more rounded</li>
+                    <li>Identify the following structures:
+                        <ul>
+                            <li><strong>Cilia:</strong> Most easily visible at the top of the funnel (oral region)</li>
+                            <li><strong>Macronucleus:</strong> Appears as a long string of beads or pearls</li>
+                            <li><strong>Contractile vacuole:</strong> Large, clear, round structure that may pulsate</li>
+                            <li><strong>Food vacuoles:</strong> Small, dark circular structures scattered throughout</li>
+                        </ul>
+                    </li>
+                    <li>Watch for ciliary beating—cilia create water currents that draw food toward the oral region</li>
+                    <li>Make a sketch showing the extended, funnel-shaped form</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Stentor Sketch (10X Magnification)</h4>
+                    <p><strong>Labels to include:</strong> Cilia, Macronucleus, Contractile vacuole (if visible), Food vacuole (if visible)</p>
+                    <div class="sketch-area">
+                        Your sketch of live Stentor at 10X magnification
+                    </div>
+                </div>
+
+                <h4>Observation 3: Vorticella (Live Culture - Optional Demonstration)</h4>
+
+                <div class="info-box">
+                    <strong>Optional observation:</strong> If available, Vorticella demonstrates a completely sessile ciliate that uses cilia exclusively for feeding rather than locomotion. Its bell shape and contractile stalk are distinctive features.
+                </div>
+
+                <ol>
+                    <li>If available, locate the demonstration microscope with live Vorticella</li>
+                    <li>Look for bell-shaped organisms attached to plant material or debris by a stalk</li>
+                    <li>Observe the ring of cilia around the top opening (oral region)</li>
+                    <li>Watch for the contractile stalk—it may suddenly coil and pull the cell body down</li>
+                    <li>Notice that Vorticella does NOT swim—it remains attached</li>
+                    <li>Observe water currents created by ciliary beating (may see particles moving toward the cell)</li>
+                </ol>
+
+                <h3>Part B: Observing Ciliated Animal Tissue</h3>
+
+                <h4>Observation 4: Ciliated Pseudostratified Columnar Epithelium (Trachea)</h4>
+
+                <div class="info-box">
+                    <strong>Why compare with animal tissue?</strong> This comparison demonstrates that the same ciliary structures found in protists also appear in animal tissues, performing a different function (mucus transport vs. locomotion or feeding) but using identical cellular machinery.
+                </div>
+
+                <ol>
+                    <li>Locate the demonstration microscopes on the middle table set up with tracheal tissue slides</li>
+                    <li>These microscopes are pre-focused at 40X magnification</li>
+                    <li>Identify the location of the pointer—it indicates the ciliated border</li>
+                    <li>Observe the following structures:
+                        <ul>
+                            <li><strong>Ciliated border:</strong> Appears as a dark fuzzy line at the surface of columnar cells</li>
+                            <li><strong>Inside space of trachea:</strong> The open area where air passes (above the ciliated border)</li>
+                            <li><strong>Columnar epithelium layer:</strong> The thin layer of tall, column-shaped cells</li>
+                            <li><strong>Nuclei of epithelial cells:</strong> Dark oval structures at different heights (creating "pseudostratified" appearance)</li>
+                            <li><strong>Mucus-secreting cells:</strong> Goblet-shaped cells interspersed among ciliated cells</li>
+                            <li><strong>Loose connective tissue:</strong> Layer below the epithelium</li>
+                        </ul>
+                    </li>
+                    <li>Note the orientation: cilia face the inside of the trachea where air flows</li>
+                    <li>Make a detailed sketch showing the tissue layers and ciliated border</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Ciliated Columnar Epithelium Sketch (40X Magnification)</h4>
+                    <p><strong>Labels to include:</strong> Columnar epithelium layer (bracket its width), Ciliated border of cells, Mucus-secreting cells, Inside space of trachea, Loose connective tissue layer (below epithelium)</p>
+                    <div class="sketch-area">
+                        Your sketch of ciliated columnar epithelium at 40X magnification
+                    </div>
+                </div>
+
+                <h3>Answering Key Questions</h3>
+
+                <h4>Question 1: Function of Cilia in Respiratory Tissue</h4>
+                <p><strong>What is the function of the cilia and mucus at this body location?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe the specific function of cilia and mucus in the trachea..."></textarea>
+
+                <h4>Question 2: Comparing Protist and Animal Cilia</h4>
+                <p><strong>Is the inside structure of the cilia of a Paramecium the SAME or DIFFERENT compared to the inside structure of cilia of animal cells that line the human trachea?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Same or different? Explain your answer..."></textarea>
+
+                <h4>Question 3: Functional Differences</h4>
+                <p><strong>Paramecium use their cilia to swim in their aquatic environment. In contrast, what is the specific function of the cilia on ciliated columnar epithelial cells in the lining of the trachea (what specifically is the cilia moving)?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe what the cilia are moving and in which direction..."></textarea>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>Paramecium (Stained Permanent Slide)</h4>
+                <ul>
+                    <li><strong>Overall shape:</strong> Slipper-shaped or elongated oval cell body</li>
+                    <li><strong>Cilia:</strong> Numerous short hair-like projections covering the entire cell surface in organized rows</li>
+                    <li><strong>Macronucleus:</strong> Large, kidney-bean shaped or elongated structure, darker than surrounding cytoplasm</li>
+                    <li><strong>Oral groove:</strong> Depression on one side of the cell (may be visible)</li>
+                    <li><strong>Cell length:</strong> Approximately 200-300 micrometers (much larger than onion cells)</li>
+                    <li><strong>Coordinated arrangement:</strong> Cilia arranged in rows following the cell's contour</li>
+                </ul>
+
+                <h4>Stentor (Live Culture)</h4>
+                <ul>
+                    <li><strong>Shape when attached:</strong> Long, trumpet-shaped or funnel-shaped body</li>
+                    <li><strong>Shape when swimming:</strong> Shorter, more rounded or contracted form</li>
+                    <li><strong>Cilia:</strong> Most visible at the top of the funnel (oral region), appearing as a ring or band</li>
+                    <li><strong>Macronucleus:</strong> Distinctive string-of-beads or rosary appearance</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear, circular structure that may visibly pulsate</li>
+                    <li><strong>Food vacuoles:</strong> Small, darker circular structures scattered throughout the cytoplasm</li>
+                    <li><strong>Color:</strong> May appear slightly greenish or blue-green (some Stentor species contain symbiotic algae)</li>
+                    <li><strong>Size:</strong> One of the largest protists, visible even at 10X magnification</li>
+                </ul>
+
+                <h4>Vorticella (Optional)</h4>
+                <ul>
+                    <li><strong>Overall appearance:</strong> Bell-shaped body attached to substrate by a stalk</li>
+                    <li><strong>Contractile stalk:</strong> Coiled, spring-like structure that can rapidly contract</li>
+                    <li><strong>Cilia:</strong> Ring around the top opening (oral region)</li>
+                    <li><strong>Feeding behavior:</strong> Cilia create visible water currents drawing particles toward the cell</li>
+                    <li><strong>Attachment:</strong> Completely sessile—does not swim freely</li>
+                </ul>
+
+                <h4>Ciliated Pseudostratified Columnar Epithelium (Trachea)</h4>
+                <ul>
+                    <li><strong>Ciliated border:</strong> Appears as a dark, fuzzy line at the apical surface of columnar cells</li>
+                    <li><strong>Individual cilia:</strong> Too small to see individually, but appear collectively as a dark border</li>
+                    <li><strong>Columnar epithelial cells:</strong> Tall, column-shaped cells arranged in a single layer</li>
+                    <li><strong>Pseudostratified appearance:</strong> Nuclei at different heights create the illusion of multiple cell layers</li>
+                    <li><strong>Goblet cells:</strong> Lighter-staining, goblet-shaped cells scattered among ciliated cells</li>
+                    <li><strong>Inside space of trachea:</strong> Open lumen above the ciliated border where air passes</li>
+                    <li><strong>Loose connective tissue:</strong> Less organized tissue layer below the epithelium</li>
+                    <li><strong>Basement membrane:</strong> Thin line separating epithelium from connective tissue (may be difficult to see)</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ If your observations were successful, you should have seen:</strong>
+                    <ul>
+                        <li>Clear visualization of cilia covering Paramecium cells in organized rows</li>
+                        <li>The distinctive kidney-shaped macronucleus in Paramecium</li>
+                        <li>Stentor extended in trumpet shape (if attached) or contracted (if swimming)</li>
+                        <li>The string-of-beads macronucleus characteristic of Stentor</li>
+                        <li>Visible ciliary beating in Stentor creating water currents</li>
+                        <li>Clear ciliated border in tracheal epithelium appearing as a dark fuzzy line</li>
+                        <li>Pseudostratified appearance with nuclei at different levels</li>
+                        <li>Goblet cells interspersed among ciliated columnar cells</li>
+                    </ul>
+                </div>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    
+                    <p><strong>Paramecium (40X Magnification)</strong></p>
+                    <ul>
+                        <li>Overall cell shape: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Cilia clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Macronucleus shape: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Other structures visible: 
+                            <input type="text" style="width: 300px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+
+                    <p><strong>Stentor (10X Magnification)</strong></p>
+                    <ul>
+                        <li>Cell shape when observed: 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="extended">Extended (trumpet-shaped)</option>
+                                <option value="contracted">Contracted (rounded)</option>
+                                <option value="swimming">Swimming</option>
+                            </select>
+                        </li>
+                        <li>Cilia location observed: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Macronucleus appearance: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Contractile vacuole visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Food vacuoles visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Did you observe ciliary beating? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <p><strong>Ciliated Columnar Epithelium (40X Magnification)</strong></p>
+                    <ul>
+                        <li>Ciliated border clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Appearance of ciliated border: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Goblet cells visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Pseudostratified appearance evident? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Connective tissue layer visible? 
+                            <select style="border: none; border-bottom: 2px solid #c2185b; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Answering Analysis Questions</h3>
+
+                <h4>Question 1: Function of Cilia and Mucus in the Trachea</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> The cilia in the trachea beat in coordinated waves to move mucus upward toward the throat. The mucus (secreted by goblet cells) traps inhaled particles, bacteria, and debris. Together, cilia and mucus form the "mucociliary escalator," continuously clearing the airways and protecting the lungs from infection and damage. The mucus with trapped particles is eventually swallowed and enters the digestive system.
+                </div>
+
+                <h4>Question 2: Structural Comparison of Cilia</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> The inside structure of cilia in Paramecium is the SAME as the inside structure of cilia in human tracheal cells. Both have the identical 9+2 microtubule arrangement (9 outer doublet microtubules surrounding 2 central singlet microtubules) and both are powered by dynein motor proteins. This demonstrates evolutionary conservation of cellular machinery across vast phylogenetic distances—the same molecular structure evolved once and has been maintained in both protists and animals.
+                </div>
+
+                <h4>Question 3: Functional Differences</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> While Paramecium uses cilia for locomotion (swimming through water), the cilia in tracheal epithelium are moving mucus (along with trapped particles, bacteria, and debris) upward toward the throat. The cilia beat in one direction only—always pushing mucus up and out of the respiratory tract. This demonstrates how the same cellular structure (cilia with 9+2 arrangement) can serve different functions depending on the organism and tissue type.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Protist-Animal Comparison →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: PROTIST-ANIMAL COMPARISON -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔬 Protist-Animal Comparison: Unity Through Cilia</h2>
+
+                <h3>The Power of Comparative Biology</h3>
+                <p>This investigation demonstrates one of biology's most profound principles: fundamental cellular structures are conserved across kingdoms. When we compare ciliated protists with ciliated animal tissues, we discover that organisms separated by hundreds of millions of years of evolution share identical molecular machinery.</p>
+
+                <h3>Structural Identity</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Paramecium/Stentor (Protist)</th>
+                            <th>Tracheal Epithelium (Animal)</th>
+                            <th>Conclusion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ciliary Structure</strong></td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>9+2 microtubule arrangement</td>
+                            <td>Identical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motor Protein</strong></td>
+                            <td>Dynein arms cause sliding</td>
+                            <td>Dynein arms cause sliding</td>
+                            <td>Identical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Energy Source</strong></td>
+                            <td>ATP hydrolysis</td>
+                            <td>ATP hydrolysis</td>
+                            <td>Identical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Beating Pattern</strong></td>
+                            <td>Coordinated rowing motion in waves</td>
+                            <td>Coordinated rowing motion in waves</td>
+                            <td>Identical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Length</strong></td>
+                            <td>2-10 micrometers</td>
+                            <td>2-10 micrometers</td>
+                            <td>Identical</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Number per Cell</strong></td>
+                            <td>Hundreds to thousands</td>
+                            <td>Hundreds per epithelial cell</td>
+                            <td>Similar</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Functional Diversity</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Function</th>
+                            <th>Paramecium (Protist)</th>
+                            <th>Stentor (Protist)</th>
+                            <th>Tracheal Epithelium (Animal)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primary Purpose</strong></td>
+                            <td>Locomotion—rapid swimming</td>
+                            <td>Feeding (when attached) or locomotion (when free)</td>
+                            <td>Mucus transport—clearing airways</td>
+                        </tr>
+                        <tr>
+                            <td><strong>What Moves</strong></td>
+                            <td>The entire cell through water</td>
+                            <td>Water currents toward cell OR cell through water</td>
+                            <td>Mucus layer across cell surface</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Direction</strong></td>
+                            <td>Forward propulsion</td>
+                            <td>Creates feeding currents OR propulsion</td>
+                            <td>Always upward (toward throat)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coordination</strong></td>
+                            <td>Metachronal waves across cell surface</td>
+                            <td>Metachronal waves around oral region</td>
+                            <td>Synchronized beating across tissue</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outcome</strong></td>
+                            <td>Rapid movement through environment</td>
+                            <td>Food capture or movement</td>
+                            <td>Protection from infection and debris</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Insight:</strong> The structural identity but functional diversity of cilia demonstrates a fundamental principle of evolution: natural selection works with existing structures, adapting them to new purposes rather than creating entirely new mechanisms. The 9+2 ciliary structure evolved once in the common ancestor of all eukaryotes and has been maintained for over a billion years, proving its effectiveness.
+                </div>
+
+                <h3>Osmoregulation in Protists</h3>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>The Challenge</h4>
+                        <p>Freshwater protists live in a hypotonic environment—water has fewer solutes than their cytoplasm, causing water to continuously enter by osmosis.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>The Solution</h4>
+                        <p>Contractile vacuoles collect excess water and periodically expel it from the cell, preventing the cell from swelling and bursting (lysis).</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Evidence in Lab</h4>
+                        <p>In Stentor, you may have observed a large, clear, round contractile vacuole that visibly pulsates as it fills with water and then contracts to expel it.</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Why don't animal cells need contractile vacuoles?</strong> Animal cells in the body are surrounded by extracellular fluid that is isotonic (same solute concentration as cytoplasm), so there is no net movement of water into or out of cells. Freshwater protists face a much more extreme osmotic challenge.
+                </div>
+
+                <h3>Evolutionary Significance</h3>
+
+                <p>The presence of identical ciliary structures in both protists and animals provides strong evidence for:</p>
+                
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Common Ancestry</h4>
+                        <p>All eukaryotes inherited the 9+2 ciliary structure from a common ancestor that lived over 1 billion years ago.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Conservation Under Selection</h4>
+                        <p>The structure has remained unchanged because it is highly effective and any mutations would be disadvantageous.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Functional Flexibility</h4>
+                        <p>The same structure can be adapted to different purposes—locomotion, feeding, or mucus transport—without changing its fundamental design.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Unity of Life</h4>
+                        <p>Despite vast differences in complexity and lifestyle, all eukaryotes share fundamental cellular machinery demonstrating their evolutionary relatedness.</p>
+                    </div>
+                </div>
+
+                <h3>Clinical Relevance: When Cilia Fail</h3>
+
+                <div class="warning-box">
+                    <strong>⚠️ Primary Ciliary Dyskinesia (PCD)</strong><br>
+                    A genetic disorder where cilia have structural defects (often in the dynein arms) and cannot beat properly. Patients suffer from chronic respiratory infections, infertility, and other complications because ciliated epithelia throughout the body cannot function. This demonstrates how critical proper ciliary function is to human health.
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Smoking and Ciliary Damage</strong><br>
+                    Cigarette smoke paralyzes and eventually destroys cilia in the respiratory tract. Without functional cilia, the mucociliary escalator fails, leading to mucus accumulation, chronic bronchitis, and increased susceptibility to lung infections. This is why smokers develop "smoker's cough"—their bodies try to compensate for lost ciliary function with coughing.
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Cystic Fibrosis Connection:</strong> While cystic fibrosis is primarily caused by defective chloride channels (not ciliary defects), the thick, sticky mucus produced overwhelms the cilia's ability to clear it, leading to chronic lung infections and progressive lung damage. This shows how ciliary function depends on both proper ciliary structure AND appropriate mucus consistency.
+                </div>
+
+                <h3>Beyond This Investigation</h3>
+
+                <p>Cilia appear throughout the body in specialized roles:</p>
+                <ul>
+                    <li><strong>Olfactory epithelium:</strong> Cilia on olfactory receptor cells increase surface area for detecting odor molecules</li>
+                    <li><strong>Female reproductive tract:</strong> Cilia in the fallopian tubes help move the egg toward the uterus</li>
+                    <li><strong>Brain ventricles:</strong> Ependymal cells with cilia help circulate cerebrospinal fluid</li>
+                    <li><strong>Kidney tubules:</strong> Specialized primary cilia act as mechanosensors detecting fluid flow</li>
+                </ul>
+
+                <p>In each case, the fundamental 9+2 structure remains the same, but the specific function is adapted to the tissue's needs.</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn" onclick="switchTab('review')">Next: Review Questions →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: REVIEW QUESTIONS -->
+        <div id="review" class="section">
+            <div class="card">
+                <h2>📝 Review Questions</h2>
+
+                <h3>Comprehension Questions</h3>
+
+                <div class="observation-box">
+                    <h4>Question 1</h4>
+                    <p><strong>The protist organisms that you observed live in freshwater, therefore, they must have organelles that enable them to cope with living in a (hypertonic or hypotonic) environment.</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer..."></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 2</h4>
+                    <p><strong>These freshwater organisms must cope with the problem of water (entering or leaving) their cells.</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer..."></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 3</h4>
+                    <p><strong>These protists have a specialized organelle called the _____________ _____________ which functions in osmoregulation (the control of solute concentration and of water balance).</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer..."></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 4</h4>
+                    <p><strong>Name three protist organisms that you observed in lab which possess cilia:</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="1. _______________
+2. _______________
+3. _______________"></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 5</h4>
+                    <p><strong>Name the specific animal tissue (in trachea) which has cells with a ciliated edge:</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer..."></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 6</h4>
+                    <p><strong>Is the inside structure of the cilia of a Paramecium the SAME or DIFFERENT compared to the inside structure of cilia of animal cells that line the human trachea?</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer and explain..."></textarea>
+                </div>
+
+                <div class="observation-box">
+                    <h4>Question 7</h4>
+                    <p><strong>Paramecium use their cilia to swim in their aquatic environment. In contrast, what is the specific function of the cilia on ciliated columnar epithelial cells in the lining of the trachea (what specifically is the cilia moving)?</strong></p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #c2185b; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer..."></textarea>
+                </div>
+
+                <h3>Answer Key</h3>
+
+                <div class="key-concept">
+                    <strong>Question 1:</strong> Hypotonic (freshwater has fewer solutes than the protist's cytoplasm)
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 2:</strong> Entering (water moves from high water concentration [freshwater] to low water concentration [protist cytoplasm])
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 3:</strong> Contractile vacuole
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 4:</strong> Paramecium, Stentor, Vorticella (any three of these)
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 5:</strong> Ciliated pseudostratified columnar epithelium
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 6:</strong> SAME—both have the identical 9+2 microtubule arrangement with dynein motor proteins. This demonstrates evolutionary conservation of cellular structures across kingdoms.
+                </div>
+
+                <div class="key-concept">
+                    <strong>Question 7:</strong> The cilia are moving mucus (along with trapped particles, bacteria, and debris) upward toward the throat. This is called the mucociliary escalator and protects the lungs by preventing foreign material from reaching the delicate lung tissue.
+                </div>
+
+                <h3>Synthesis Questions</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 1:</strong>
+                    <p>Explain why the discovery that protist cilia and animal tissue cilia have identical structure provides evidence for evolution and common ancestry.</p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ab47bc; font-family: inherit; font-size: inherit;" placeholder="Type your synthesis answer..."></textarea>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 2:</strong>
+                    <p>Why would damage to the cilia in the respiratory tract (from smoking or infection) lead to chronic respiratory infections? Describe the mechanism.</p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ab47bc; font-family: inherit; font-size: inherit;" placeholder="Type your synthesis answer..."></textarea>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Question 3:</strong>
+                    <p>Compare and contrast the use of cilia in motile protists (like Paramecium) versus sessile protists (like Vorticella). How does the same structure serve different purposes?</p>
+                    <textarea style="width: 100%; margin: 10px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border: 2px solid #ab47bc; font-family: inherit; font-size: inherit;" placeholder="Type your synthesis answer..."></textarea>
+                </div>
+
+                <h3>Connection to Chapter Theme</h3>
+
+                <div class="reflection-box">
+                    <strong>📌 Unity of Life Reflection:</strong>
+                    <p>This investigation has demonstrated that cilia—whether in single-celled protists or in the specialized epithelial tissues of complex animals—share identical molecular structure. The 9+2 microtubule arrangement powered by dynein motor proteins is conserved across kingdoms, providing direct evidence for the unity of all eukaryotic life.</p>
+                    
+                    <p style="margin-top: 15px;">As you continue through this chapter, you will observe additional examples of shared cellular structures: flagella in Euglena and sperm cells, pseudopodia in amoeba and neutrophils, and chloroplasts in plant cells and photosynthetic protists. Each investigation reinforces the same fundamental principle: despite the vast diversity of life forms, all eukaryotic organisms are united by common cellular machinery inherited from shared ancestors.</p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('comparison')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Ciliated Epithelium Investigation: Demonstrating Evolutionary Conservation</strong></p>
+        <p>This investigation reveals how identical cellular structures serve different functions across kingdoms.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

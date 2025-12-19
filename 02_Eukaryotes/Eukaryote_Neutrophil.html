@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudopodia Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fff3e0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ef6c00 0%, #e65100 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #ef6c00;
+            color: #ef6c00;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #fff3e0;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #ef6c00;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #ef6c00;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #ef6c00;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #e65100;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #ef6c00;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #ef6c00;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #e65100;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #ffe0b2;
+            color: #e65100;
+        }
+
+        .btn-secondary:hover {
+            background: #ffcc80;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #1565c0;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #ef6c00;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #fef5e7;
+            border: 2px solid #ffe0b2;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #ef6c00;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #ef6c00;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #e65100;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #ffe0b2;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #ffe0b2;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-left: 4px solid #66bb6a;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #2e7d32;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #ef6c00;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #e1f5fe 0%, #b3e5fc 100%);
+            border-left: 4px solid #0277bd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #01579b;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Pseudopodia Laboratory Investigation</h1>
+            <p><strong>Amoeboid Motion in Protists and Animal Cells: Shared Locomotion Mechanism</strong></p>
+            <p>This investigation explores pseudopodia—temporary cytoplasmic extensions used for movement and feeding. Students will observe amoeboid motion in protists (amoeba) and compare it with pseudopodia in animal white blood cells (neutrophils), demonstrating that the same cellular mechanism serves both locomotion and immune defense across kingdoms.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('comparison')">Protist-Animal Comparison</button>
+            <button class="nav-btn" onclick="switchTab('review')">Review Questions</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Observe</strong> living amoeba demonstrating cytoplasmic streaming and pseudopodial extension</li>
+                    <li><strong>Identify</strong> pseudopodia, nucleus, food vacuoles, and contractile vacuoles in amoeba</li>
+                    <li><strong>Explain</strong> how pseudopodia function in both locomotion and phagocytosis</li>
+                    <li><strong>Compare</strong> pseudopodial structure and function in amoeba with pseudopodia in neutrophils</li>
+                    <li><strong>Describe</strong> the role of neutrophils in the human immune system</li>
+                    <li><strong>Analyze</strong> how actin-myosin interactions generate amoeboid motion</li>
+                    <li><strong>Recognize</strong> that amoeboid motion in protists and white blood cells uses the same cytoskeletal mechanism</li>
+                </ul>
+
+                <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+                <ul>
+                    <li><strong>Foundational Concept 1:</strong> Structure and Function of Proteins
+                        <ul>
+                            <li><strong>1A: Structure and Function of Proteins</strong>
+                                <ul>
+                                    <li><strong>Actin and Myosin:</strong> Understanding how motor proteins generate pseudopodial movement through coordinated contraction.</li>
+                                    <li><strong>Cytoskeletal Dynamics:</strong> Recognition that microfilaments and microtubules enable cellular movement.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 2:</strong> Structure and Function of Eukaryotic Cells
+                        <ul>
+                            <li><strong>2A: Assembly of Molecules and Organelles</strong>
+                                <ul>
+                                    <li><strong>Cytoskeleton:</strong> Understanding how microfilaments (actin) and motor proteins (myosin) generate movement.</li>
+                                    <li><strong>Phagocytosis:</strong> Recognition of endocytosis as a mechanism for engulfing solid particles.</li>
+                                    <li><strong>Contractile Vacuoles:</strong> Understanding osmoregulation in freshwater protists.</li>
+                                </ul>
+                            </li>
+                            <li><strong>2B: Structure and Function of Systems</strong>
+                                <ul>
+                                    <li><strong>Directed Movement:</strong> Understanding how amoeba demonstrate chemotaxis toward food sources.</li>
+                                    <li><strong>Immune Cell Migration:</strong> Recognizing how neutrophils use amoeboid motion to reach infection sites.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 8:</strong> Immune System
+                        <ul>
+                            <li><strong>Innate Immunity:</strong> Understanding neutrophils as phagocytic cells of the innate immune system.</li>
+                            <li><strong>Phagocytosis of Pathogens:</strong> Recognition that neutrophils engulf and destroy bacteria using pseudopodia.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Scientific Inquiry and Reasoning Skills (SIRS)</strong>
+                        <ul>
+                            <li><strong>Skill 1: Knowledge of Scientific Concepts</strong>
+                                <ul>
+                                    <li>Identifying cellular structures under magnification (10X, 40X, and 100X oil immersion).</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skill 4: Data-Based and Statistical Reasoning</strong>
+                                <ul>
+                                    <li>Comparing structural similarities between amoeba pseudopodia and neutrophil pseudopodia.</li>
+                                    <li>Observing functional similarities (locomotion and phagocytosis).</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Chapter Context: Building on Previous Investigations</h3>
+                <p><strong>Connection to Previous Labs:</strong> This investigation continues demonstrating shared cellular structures across kingdoms:</p>
+                <ul>
+                    <li><strong>Onion cells:</strong> Established fundamental eukaryotic structures</li>
+                    <li><strong>Euglena/Sperm:</strong> Demonstrated flagella as conserved locomotion structures</li>
+                    <li><strong>Cilia (Paramecium/trachea):</strong> Revealed another conserved mechanism using microtubules</li>
+                    <li><strong>Pseudopodia (this lab):</strong> Shows a third type of cellular movement based on microfilaments</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>🎯 Unity of Life Theme:</strong> This investigation demonstrates that pseudopodia in protists (amoeba) and in animal white blood cells (neutrophils) use identical cellular machinery—actin microfilaments and myosin motor proteins. Both generate movement through coordinated cytoplasmic streaming and both use pseudopodia for phagocytosis, showcasing evolutionary conservation of the cytoskeleton across vast phylogenetic distances.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What is Amoeboid Motion?</h3>
+                <p><strong>Amoeboid motion</strong> is a type of cellular locomotion characterized by the slow oozing of the cell through temporary extensions called <strong>pseudopodia</strong> (singular: pseudopodium, meaning "false feet"). Unlike flagella and cilia which involve permanent structures that beat rhythmically, pseudopodia are temporary projections that can form anywhere on the cell surface and are constantly extending and retracting.</p>
+
+                <h3>Comparison of Three Movement Types</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Flagella</th>
+                            <th>Cilia</th>
+                            <th>Pseudopodia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Structure</strong></td>
+                            <td>Permanent, whip-like</td>
+                            <td>Permanent, hair-like</td>
+                            <td>Temporary, finger-like</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Internal basis</strong></td>
+                            <td>Microtubules (9+2)</td>
+                            <td>Microtubules (9+2)</td>
+                            <td>Microfilaments (actin)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motor protein</strong></td>
+                            <td>Dynein</td>
+                            <td>Dynein</td>
+                            <td>Myosin</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Movement type</strong></td>
+                            <td>Undulating waves</td>
+                            <td>Rowing motion</td>
+                            <td>Cytoplasmic streaming</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td>Fast</td>
+                            <td>Fast</td>
+                            <td>Slow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example cells</strong></td>
+                            <td>Sperm, Euglena</td>
+                            <td>Paramecium, respiratory epithelium</td>
+                            <td>Amoeba, neutrophils</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> All three movement mechanisms—flagella, cilia, and pseudopodia—are based on the eukaryotic cytoskeleton. Flagella and cilia use microtubules with dynein motors, while pseudopodia use microfilaments with myosin motors. These represent different solutions to the same problem: cellular movement.
+                </div>
+
+                <h3>Molecular Basis of Amoeboid Motion</h3>
+                <p>Pseudopodial movement involves coordinated actions of the cytoskeleton:</p>
+                <ul>
+                    <li><strong>Actin microfilaments:</strong> Protein polymers that form a network throughout the cytoplasm</li>
+                    <li><strong>Myosin motor proteins:</strong> Generate force by pulling on actin filaments</li>
+                    <li><strong>Localized contractions:</strong> Myosin-actin interactions create pressure that extends pseudopodia</li>
+                    <li><strong>Gel-sol transitions:</strong> Cytoplasm alternates between gel (solid) and sol (liquid) states</li>
+                    <li><strong>ATP requirement:</strong> Energy from ATP powers myosin motor activity</li>
+                </ul>
+
+                <h3>How Pseudopodia Work</h3>
+                <ol>
+                    <li><strong>Extension:</strong> A pseudopodium begins to bulge from the cell surface</li>
+                    <li><strong>Anchoring:</strong> The tip of the pseudopodium adheres to the substrate</li>
+                    <li><strong>Contraction:</strong> Actin-myosin interactions pull the rest of the cell forward</li>
+                    <li><strong>Cytoplasmic streaming:</strong> Cytoplasm flows into the extended pseudopodium</li>
+                    <li><strong>Retraction:</strong> Rear pseudopodia retract as the cell moves forward</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>💡 Directed Movement:</strong> Although pseudopodial action may seem chaotic, amoeba demonstrate <strong>chemotaxis</strong>—directed movement toward chemical signals such as those released by bacteria. This shows that even single-celled organisms can sense their environment and respond with purposeful movement.
+                </div>
+
+                <h3>Amoeba: Model Organism for Pseudopodial Motion</h3>
+                <p><strong>Amoeba</strong> are single-celled protists that live in freshwater environments. They are ideal for studying pseudopodial motion because:</p>
+
+                <h4>Key Characteristics</h4>
+                <ul>
+                    <li><strong>No fixed shape:</strong> Cell shape constantly changes as pseudopodia extend and retract</li>
+                    <li><strong>Large size:</strong> Visible at 10X magnification, making movement easy to observe</li>
+                    <li><strong>Transparent cytoplasm:</strong> Internal structures visible in living cells</li>
+                    <li><strong>Slow movement:</strong> Movement is slow enough to observe in real-time under the microscope</li>
+                </ul>
+
+                <h4>Observable Structures</h4>
+                <ul>
+                    <li><strong>Pseudopodia:</strong> Temporary finger-like extensions used for movement and feeding</li>
+                    <li><strong>Nucleus:</strong> Contains genetic material (more visible in stained specimens)</li>
+                    <li><strong>Food vacuoles:</strong> Small, dark vesicles containing captured bacteria or other food particles</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear structure that collects and expels excess water</li>
+                    <li><strong>Cytoplasmic streaming:</strong> Visible flow of cytoplasm into extending pseudopodia</li>
+                </ul>
+
+                <h3>Phagocytosis: "Cell Eating"</h3>
+                <p>Amoeba use pseudopodia not only for locomotion but also for <strong>phagocytosis</strong>—the process of engulfing solid particles:</p>
+                <ol>
+                    <li><strong>Recognition:</strong> Amoeba contacts a food particle (bacteria, algae, or debris)</li>
+                    <li><strong>Engulfment:</strong> Pseudopodia extend around the particle from multiple directions</li>
+                    <li><strong>Formation of food vacuole:</strong> Pseudopodia fuse, enclosing the particle in a membrane-bound vesicle</li>
+                    <li><strong>Digestion:</strong> The food vacuole fuses with a lysosome, whose enzymes digest the food</li>
+                    <li><strong>Absorption:</strong> Nutrients are absorbed into the cytoplasm; waste is expelled</li>
+                </ol>
+
+                <h3>Neutrophils: Amoeboid Motion in the Immune System</h3>
+                <p><strong>Neutrophils</strong> are the most abundant type of white blood cell in humans and are critical components of the innate immune system. They use the exact same amoeboid motion mechanism as amoeba.</p>
+
+                <h4>Structure and Identification</h4>
+                <ul>
+                    <li><strong>Size:</strong> 10-12 micrometers in diameter (much smaller than amoeba)</li>
+                    <li><strong>Lobed nucleus:</strong> Distinctive multi-lobed nucleus (3-5 lobes) that stains purple</li>
+                    <li><strong>Granular cytoplasm:</strong> Contains granules with antimicrobial enzymes</li>
+                    <li><strong>Most abundant WBC:</strong> Comprise 50-70% of all white blood cells</li>
+                </ul>
+
+                <h4>Function in Immunity</h4>
+                <ul>
+                    <li><strong>First responders:</strong> First immune cells to arrive at infection sites</li>
+                    <li><strong>Chemotaxis:</strong> Migrate toward chemical signals released by bacteria or damaged tissue</li>
+                    <li><strong>Extravasation:</strong> Squeeze between endothelial cells to exit blood vessels and enter tissues</li>
+                    <li><strong>Phagocytosis:</strong> Engulf and destroy bacteria using pseudopodia</li>
+                    <li><strong>Respiratory burst:</strong> Generate reactive oxygen species to kill pathogens</li>
+                    <li><strong>Short-lived:</strong> Typically survive only 5-90 hours after leaving the bloodstream</li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>💡 Clinical Relevance:</strong> Neutrophil counts are routinely measured in blood tests. <strong>Neutropenia</strong> (low neutrophil count) leaves patients vulnerable to bacterial infections, while <strong>neutrophilia</strong> (high neutrophil count) often indicates active bacterial infection or inflammation.
+                </div>
+
+                <h3>Blood Smear: Observing Neutrophils</h3>
+                <p>A <strong>blood smear</strong> is a thin layer of blood spread on a microscope slide and stained to make cells visible. In a typical blood smear you will observe:</p>
+
+                <h4>Cell Types Visible</h4>
+                <ul>
+                    <li><strong>Red blood cells (RBCs):</strong> Small, pink, biconcave discs without nuclei (most numerous)</li>
+                    <li><strong>Platelets:</strong> Tiny purple fragments involved in blood clotting</li>
+                    <li><strong>White blood cells (WBCs):</strong> Larger cells with nuclei (much less numerous than RBCs)</li>
+                </ul>
+
+                <h4>Identifying Neutrophils</h4>
+                <p>Among the five types of white blood cells, neutrophils are distinguished by:</p>
+                <ul>
+                    <li><strong>Multi-lobed nucleus:</strong> Nucleus has 3-5 lobes connected by thin strands</li>
+                    <li><strong>Purple-staining nucleus:</strong> Chromatin stains dark purple with standard blood stains</li>
+                    <li><strong>Pale cytoplasm:</strong> Cytoplasm appears light pink or nearly colorless</li>
+                    <li><strong>Most abundant WBC:</strong> You're most likely to encounter neutrophils when examining blood smears</li>
+                </ul>
+
+                <h3>Osmoregulation: A Shared Challenge</h3>
+                <p>Like other freshwater protists, amoeba face the challenge of living in a hypotonic environment:</p>
+                <ul>
+                    <li><strong>Hypotonic environment:</strong> Freshwater has fewer solutes than the amoeba's cytoplasm</li>
+                    <li><strong>Water influx:</strong> Water continuously enters by osmosis</li>
+                    <li><strong>Contractile vacuole:</strong> Collects excess water and periodically contracts to expel it</li>
+                    <li><strong>Prevention of lysis:</strong> Without this mechanism, the cell would swell and burst</li>
+                    <li><strong>Energy requirement:</strong> Maintaining the contractile vacuole requires ATP</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Unity of Life Connection:</strong> When you observe cytoplasmic streaming in an amoeba and then examine a neutrophil engulfing bacteria, you're witnessing the same molecular machinery at work. The actin-myosin interactions that power pseudopodial extension are identical in both organisms. This demonstrates that fundamental cellular mechanisms are conserved across kingdoms—the same cytoskeletal system that allows a protist to capture food also enables your immune system to defend against infection.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Learning Objectives for Preparation</h3>
+                <p>Before beginning the investigation, you should understand:</p>
+                <ul>
+                    <li>The difference between living and stained specimens</li>
+                    <li>How to observe slowly moving organisms under the microscope</li>
+                    <li>Proper use of demonstration microscopes with pre-focused slides</li>
+                    <li>The use of oil immersion lens (100X) for viewing blood smears</li>
+                    <li>Safety procedures for handling live cultures and blood specimens</li>
+                </ul>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🦠 For Amoeba Observations</h4>
+                    <ul>
+                        <li>Live culture of amoeba (demonstration, wet mount)</li>
+                        <li>Prepared permanent slide of stained amoeba (demonstration)</li>
+                        <li>Depression slides (if needed)</li>
+                        <li>Paper towels</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🩸 For Blood Smear Observation</h4>
+                    <ul>
+                        <li>Prepared blood smear slide (demonstration)</li>
+                        <li>Demonstration microscope with 100X oil immersion objective</li>
+                        <li>Immersion oil</li>
+                        <li>Lens paper for cleaning</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Light microscope with 4X, 10X, 40X, and 100X objectives</li>
+                        <li>Lens paper (for cleaning lenses)</li>
+                        <li>Demonstration microscopes (set up by instructor)</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>📝 For Documentation</h4>
+                    <ul>
+                        <li>Pencils or colored pencils (for sketches)</li>
+                        <li>Lab notebook or observation sheets</li>
+                    </ul>
+                </div>
+
+                <h3>Preparing Your Workstation</h3>
+
+                <h4>Step 1: Organize Your Space</h4>
+                <ul>
+                    <li>Identify demonstration microscope locations for each specimen type</li>
+                    <li>Keep paper towels readily accessible</li>
+                    <li>Have your lab manual open to the amoeba/neutrophil section</li>
+                    <li>Review blood cell identification charts posted in the lab</li>
+                </ul>
+
+                <h4>Step 2: Review Microscope Use</h4>
+                <ul>
+                    <li>Review proper focusing technique from previous investigations</li>
+                    <li>Remember: demonstration microscopes are pre-focused—adjust only fine focus</li>
+                    <li>Never touch the oil immersion lens with your fingers</li>
+                    <li>Do not adjust coarse focus on pre-focused demonstration slides</li>
+                </ul>
+
+                <h4>Step 3: Understanding Oil Immersion</h4>
+                <ul>
+                    <li><strong>Why oil immersion?</strong> Blood cells are very small and require 100X magnification</li>
+                    <li><strong>How it works:</strong> Oil between the lens and slide eliminates air, increasing resolution</li>
+                    <li><strong>Important:</strong> Only use oil with the 100X objective (marked with black or white ring)</li>
+                    <li><strong>Cleaning:</strong> Instructor will clean oil immersion lens after use</li>
+                </ul>
+
+                <h4>Step 4: Pre-Lab Safety Review</h4>
+                <ul>
+                    <li><strong>Live cultures:</strong> Handle with care; wash hands after observation</li>
+                    <li><strong>Blood smears:</strong> Treat all blood specimens as potentially infectious</li>
+                    <li><strong>Microscope:</strong> Do not bump demonstration microscopes with live specimens</li>
+                    <li><strong>Oil immersion:</strong> Never use immersion oil on any objective except 100X</li>
+                    <li><strong>Movement between stations:</strong> Be courteous to other students</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Safety Reminder:</strong> Although blood smears in this lab are commercially prepared and considered safe, always treat biological specimens with appropriate caution. Wash hands thoroughly after completing observations. Never eat or drink in the laboratory.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD & STUDENT ACTIVITY -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Part A: Observing Living Amoeba</h3>
+
+                <div class="info-box">
+                    <strong>Why observe living amoeba?</strong> Living amoeba demonstrate real-time cytoplasmic streaming and pseudopodial extension—the defining characteristics of amoeboid motion. Observing this movement helps you understand how cells can move without permanent locomotor structures.
+                </div>
+
+                <h4>Observation 1: Living Amoeba (Wet Mount)</h4>
+                <ol>
+                    <li>Locate the demonstration microscope set up with a wet mount of living amoeba</li>
+                    <li>This microscope is focused at 10X magnification</li>
+                    <li>You may use the fine focus knob to sharpen the image</li>
+                    <li><strong>Move slowly and avoid bumping the microscope</strong>—vibration may cause amoeba to contract</li>
+                    <li>Look for irregular, blob-like organisms slowly changing shape</li>
+                    <li>Observe the following features:
+                        <ul>
+                            <li><strong>Pseudopodia:</strong> Temporary finger-like extensions bulging from the cell surface</li>
+                            <li><strong>Cytoplasmic streaming:</strong> Watch for visible flow of cytoplasm into extending pseudopodia</li>
+                            <li><strong>Direction of movement:</strong> Note which direction (if any) the amoeba is moving</li>
+                            <li><strong>Food vacuoles:</strong> Small, dark circular structures (if visible)</li>
+                            <li><strong>Contractile vacuole:</strong> Large, clear, round structure (if visible)</li>
+                        </ul>
+                    </li>
+                    <li>Watch for at least 2-3 minutes to observe movement</li>
+                    <li>Use arrows in your sketch to show the direction of cytoplasmic streaming</li>
+                    <li>Ask the instructor for assistance if the amoeba is not showing movement</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Living Amoeba Sketch (10X Magnification)</h4>
+                    <p><strong>Labels to include:</strong> Pseudopodia, Cytoplasmic streaming (use arrows to show direction), Food vacuoles (if visible), Contractile vacuole (if visible)</p>
+                    <div class="sketch-area">
+                        Your sketch of living amoeba at 10X magnification showing movement
+                    </div>
+                </div>
+
+                <div class="reflection-box">
+                    <strong>📌 Observation Notes:</strong> As you watch the amoeba, notice that the cell has no fixed shape. Pseudopodia extend and retract continuously. The movement is slow—typically 1-2 micrometers per second—but visible under the microscope. This demonstrates that cells can actively move even without specialized structures like flagella or cilia.
+                </div>
+
+                <h3>Part B: Observing Stained Amoeba</h3>
+
+                <div class="info-box">
+                    <strong>Why observe stained amoeba?</strong> Staining makes internal structures much more visible, particularly the nucleus and organelles. The stained specimen complements the living observation by revealing structures that are difficult to see in transparent living cells.
+                </div>
+
+                <h4>Observation 2: Stained Amoeba (Permanent Slide)</h4>
+                <ol>
+                    <li>Locate the demonstration microscope set up with a stained amoeba slide</li>
+                    <li>This microscope is focused at 40X magnification</li>
+                    <li>You may use the fine focus knob to optimize the image</li>
+                    <li>Note that stained amoeba appear "frozen" in their shape at the moment of fixation</li>
+                    <li>Identify the following structures:
+                        <ul>
+                            <li><strong>Pseudopodia:</strong> Clearly visible extensions from the cell body</li>
+                            <li><strong>Nucleus:</strong> Dark-staining, often oval or irregular structure (much more visible than in living cells)</li>
+                            <li><strong>Food vacuoles:</strong> Small, dark circular structures scattered throughout</li>
+                            <li><strong>Contractile vacuole:</strong> Large, clear, round structure (if present)</li>
+                            <li><strong>Cell boundary:</strong> Irregular outline showing the lack of cell wall</li>
+                        </ul>
+                    </li>
+                    <li>Make a detailed sketch showing internal structures</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Stained Amoeba Sketch (40X Magnification)</h4>
+                    <p><strong>Labels to include:</strong> Pseudopodia, Nucleus, Food vacuoles, Contractile vacuole</p>
+                    <div class="sketch-area">
+                        Your sketch of stained amoeba at 40X magnification
+                    </div>
+                </div>
+
+                <h3>Part C: Observing Human Blood Smear (Neutrophils)</h3>
+
+                <div class="info-box">
+                    <strong>Why observe blood smears?</strong> This observation demonstrates that amoeboid motion is not unique to protists. Human white blood cells (neutrophils) use the identical cellular mechanism—actin-myosin-based pseudopodial extension—for immune defense. In living tissue, neutrophils move through blood vessels and tissues using the same cytoplasmic streaming you observed in amoeba.
+                </div>
+
+                <h4>Observation 3: Human Blood Smear (100X Oil Immersion)</h4>
+                <ol>
+                    <li>Locate the demonstration microscope set up with a blood smear slide</li>
+                    <li><strong>This microscope uses the 100X oil immersion lens</strong></li>
+                    <li>The instructor has already applied immersion oil to the slide</li>
+                    <li>This microscope is pre-focused—use only fine focus adjustment</li>
+                    <li><strong>Do not adjust coarse focus or bump the microscope</strong></li>
+                    <li>Observe the field and identify different cell types:
+                        <ul>
+                            <li><strong>Red blood cells (RBCs):</strong> Most numerous cells, small pink discs without nuclei</li>
+                            <li><strong>Platelets:</strong> Tiny purple fragments, much smaller than RBCs</li>
+                            <li><strong>White blood cells (WBCs):</strong> Much larger than RBCs, with visible nuclei</li>
+                        </ul>
+                    </li>
+                    <li>Locate a <strong>neutrophil</strong> (the most common WBC):
+                        <ul>
+                            <li><strong>Size:</strong> 2-3 times larger than RBCs</li>
+                            <li><strong>Lobed nucleus:</strong> Nucleus has 3-5 lobes connected by thin strands (key identifying feature)</li>
+                            <li><strong>Purple nucleus:</strong> Chromatin stains dark purple</li>
+                            <li><strong>Pale cytoplasm:</strong> Appears light pink or nearly colorless</li>
+                        </ul>
+                    </li>
+                    <li>If you cannot locate a neutrophil, ask your instructor for assistance</li>
+                    <li>Refer to blood cell posters in the lab for comparison</li>
+                    <li>Make a sketch showing the neutrophil in context with surrounding blood cells</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>Human Blood Smear Sketch (100X Oil Immersion)</h4>
+                    <p><strong>Labels to include:</strong> A neutrophil (WBC with a lobed nucleus), Red blood cells (RBCs), Platelets (if visible)</p>
+                    <div class="sketch-area">
+                        Your sketch of blood smear at 100X showing neutrophil among RBCs
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Understanding What You See:</strong> In the blood smear, neutrophils appear stationary because they are fixed and stained. However, in living blood and tissue, neutrophils actively move using pseudopodia—crawling through blood vessel walls, migrating through tissues toward infection sites, and engulfing bacteria through phagocytosis. The lobed nucleus you observe is characteristic of mature, active neutrophils.
+                </div>
+
+                <h3>Answering Key Questions</h3>
+
+                <h4>Question 1: Locomotion Mechanism</h4>
+                <p><strong>Describe how amoeba use pseudopodia for movement. Include the role of cytoplasmic streaming in your answer.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe the mechanism of pseudopodial movement..."></textarea>
+
+                <h4>Question 2: Phagocytosis</h4>
+                <p><strong>Besides movement, what do amoeba and neutrophils both use pseudopodia for? Describe this process.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe phagocytosis..."></textarea>
+
+                <h4>Question 3: Identifying Neutrophils</h4>
+                <p><strong>What is the key distinguishing feature that allows you to identify a neutrophil among other white blood cells?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe the identifying feature..."></textarea>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>Living Amoeba (10X Magnification)</h4>
+                <ul>
+                    <li><strong>Overall appearance:</strong> Irregular, blob-like cell with no fixed shape</li>
+                    <li><strong>Pseudopodia:</strong> Temporary finger-like or lobe-like extensions from the cell surface</li>
+                    <li><strong>Cytoplasmic streaming:</strong> Visible flow of granular cytoplasm into extending pseudopodia</li>
+                    <li><strong>Slow movement:</strong> Cell gradually changes position over several minutes</li>
+                    <li><strong>Transparent cytoplasm:</strong> Cell appears glassy or translucent with granular inclusions</li>
+                    <li><strong>Food vacuoles:</strong> Small, dark spherical structures (may contain ingested bacteria or algae)</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear, round structure that may pulsate (if visible)</li>
+                    <li><strong>Size:</strong> Approximately 200-600 micrometers in diameter (much larger than most cells)</li>
+                </ul>
+
+                <h4>Stained Amoeba (40X Magnification)</h4>
+                <ul>
+                    <li><strong>Fixed shape:</strong> Cell shape "frozen" at moment of fixation</li>
+                    <li><strong>Pseudopodia:</strong> Clearly visible, extending in various directions</li>
+                    <li><strong>Nucleus:</strong> Large, dark-staining, oval or irregular structure (much more visible than in living cells)</li>
+                    <li><strong>Food vacuoles:</strong> Multiple small, dark circular structures throughout cytoplasm</li>
+                    <li><strong>Contractile vacuole:</strong> Large, clear, circular structure (if present in the section)</li>
+                    <li><strong>No cell wall:</strong> Irregular cell boundary (unlike plant cells)</li>
+                    <li><strong>Cytoplasmic detail:</strong> Staining reveals granular texture of cytoplasm</li>
+                </ul>
+
+                <h4>Human Blood Smear (100X Oil Immersion)</h4>
+                <ul>
+                    <li><strong>Red blood cells (RBCs):</strong> Numerous small (7-8 μm), pink, biconcave discs without nuclei</li>
+                    <li><strong>Platelets:</strong> Tiny purple fragments (2-4 μm), much smaller than RBCs</li>
+                    <li><strong>Neutrophils (WBCs):</strong> Much larger than RBCs (10-12 μm diameter)</li>
+                    <li><strong>Lobed nucleus:</strong> Distinctive nucleus with 3-5 lobes connected by thin chromatin strands</li>
+                    <li><strong>Purple-staining nucleus:</strong> Chromatin appears dark purple</li>
+                    <li><strong>Pale cytoplasm:</strong> Cytoplasm appears light pink or nearly colorless</li>
+                    <li><strong>Relative abundance:</strong> Neutrophils comprise 50-70% of WBCs, but WBCs are much less numerous than RBCs (ratio approximately 1:700)</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ If your observations were successful, you should have seen:</strong>
+                    <ul>
+                        <li>Clear visualization of pseudopodial extension in living amoeba</li>
+                        <li>Visible cytoplasmic streaming flowing into extending pseudopodia</li>
+                        <li>The amoeba changing shape and/or position over several minutes</li>
+                        <li>A large, well-stained nucleus in the stained amoeba specimen</li>
+                        <li>Multiple food vacuoles in the stained amoeba</li>
+                        <li>Clear identification of neutrophils with lobed nuclei in the blood smear</li>
+                        <li>Numerous red blood cells surrounding the neutrophil(s)</li>
+                        <li>Size comparison showing neutrophils are much larger than RBCs</li>
+                    </ul>
+                </div>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    
+                    <p><strong>Living Amoeba (10X Magnification)</strong></p>
+                    <ul>
+                        <li>Number of pseudopodia visible: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;" min="0">
+                        </li>
+                        <li>Cytoplasmic streaming observed? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Direction of streaming: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Cell movement observed? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Food vacuoles visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Contractile vacuole visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                    </ul>
+
+                    <p><strong>Stained Amoeba (40X Magnification)</strong></p>
+                    <ul>
+                        <li>Nucleus clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Nucleus shape: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Number of food vacuoles observed: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;" min="0">
+                        </li>
+                        <li>Contractile vacuole visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Overall cell shape: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+
+                    <p><strong>Human Blood Smear (100X Oil Immersion)</strong></p>
+                    <ul>
+                        <li>Neutrophil identified? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Number of nuclear lobes observed: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;" min="0" max="5">
+                        </li>
+                        <li>Nucleus color: 
+                            <input type="text" style="width: 150px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Cytoplasm color: 
+                            <input type="text" style="width: 150px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Approximate size compared to RBCs: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Red blood cells visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes - many</option>
+                                <option value="few">Yes - few</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Platelets visible? 
+                            <select style="border: none; border-bottom: 2px solid #ef6c00; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Living amoeba not moving</td>
+                            <td>Temperature too cold or amoeba inactive</td>
+                            <td>Wait 5-10 minutes; ask instructor to check culture freshness</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot see cytoplasmic streaming</td>
+                            <td>Magnification too low or observation time too short</td>
+                            <td>Watch for 2-3 minutes; adjust light intensity with iris diaphragm</td>
+                        </tr>
+                        <tr>
+                            <td>Nucleus not visible in living amoeba</td>
+                            <td>Nucleus is transparent in living cells</td>
+                            <td>This is normal—observe the stained specimen for nucleus</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot locate neutrophil in blood smear</td>
+                            <td>WBCs are much less numerous than RBCs</td>
+                            <td>Scan across the slide; ask instructor for assistance</td>
+                        </tr>
+                        <tr>
+                            <td>Image blurry at 100X</td>
+                            <td>Insufficient oil or incorrect focus</td>
+                            <td>Check that oil droplet covers both lens and slide; use fine focus only</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot distinguish lobes of neutrophil nucleus</td>
+                            <td>Focus or contrast issue</td>
+                            <td>Adjust fine focus; reduce light with iris diaphragm for better contrast</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Answering Analysis Questions</h3>
+
+                <h4>Question 1: Mechanism of Pseudopodial Movement</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Amoeba use pseudopodia for movement by extending temporary projections from their cell surface. A pseudopodium extends forward and anchors to the substrate. Then, actin-myosin interactions in the cytoskeleton cause contraction, pulling the rest of the cell forward. Cytoplasmic streaming—the visible flow of cytoplasm—moves into the extending pseudopodium, filling it and advancing the cell. This process continues as old pseudopodia retract and new ones form, allowing the cell to move slowly through its environment (typically 1-2 μm/second).
+                </div>
+
+                <h4>Question 2: Phagocytosis</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> Both amoeba and neutrophils use pseudopodia for <strong>phagocytosis</strong> (cell eating). When either cell encounters a solid particle (bacteria for neutrophils; bacteria, algae, or other food for amoeba), it extends pseudopodia around the particle from multiple directions. The pseudopodia fuse together, enclosing the particle in a membrane-bound vesicle called a food vacuole (or phagosome). The vacuole then fuses with a lysosome, whose enzymes digest the contents. This process allows amoeba to feed and allows neutrophils to destroy pathogens as part of the immune response.
+                </div>
+
+                <h4>Question 3: Identifying Neutrophils</h4>
+                <div class="key-concept">
+                    <strong>Expected Answer:</strong> The key distinguishing feature of neutrophils is their <strong>multi-lobed nucleus</strong>. Unlike other white blood cells that have round, kidney-shaped, or bilobed nuclei, neutrophils have a nucleus with 3-5 distinct lobes connected by thin chromatin strands. This lobulation becomes more pronounced as neutrophils mature. The nucleus stains purple, and the cytoplasm is pale pink or nearly colorless.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('comparison')">Next: Protist-Animal Comparison →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: PROTIST -ANIMAL COMPARISON -->
+        <div id="comparison" class="section">
+            <div class="card">
+                <h2>🔬 Protist-Animal Comparison</h2>
+
+                <h3>Shared Cellular Mechanism: Amoeboid Motion</h3>
+                <p>One of the most striking examples of evolutionary conservation is the identical mechanism used by amoeba (protists) and neutrophils (animal cells) for movement and feeding. Both use <strong>amoeboid motion</strong> powered by the same molecular machinery.</p>
+
+                <h3>Molecular Basis: Actin-Myosin System</h3>
+                <div class="key-concept">
+                    <strong>🎯 The Same Motor Proteins:</strong> Both amoeba and neutrophils use:
+                    <ul>
+                        <li><strong>Actin microfilaments</strong> - protein polymers that form a dynamic cytoskeletal network</li>
+                        <li><strong>Myosin motor proteins</strong> - generate force by pulling on actin filaments</li>
+                        <li><strong>ATP hydrolysis</strong> - provides energy for myosin motor activity</li>
+                        <li><strong>Gel-sol transitions</strong> - cytoplasm alternates between solid and liquid states</li>
+                    </ul>
+                </div>
+
+                <h3>Comparative Analysis: Amoeba vs. Neutrophils</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Amoeba (Protist)</th>
+                            <th>Neutrophils (Animal WBC)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Kingdom</strong></td>
+                            <td>Protista</td>
+                            <td>Animalia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Organization</strong></td>
+                            <td>Single-celled organism</td>
+                            <td>Single cell within multicellular organism</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Size</strong></td>
+                            <td>200-600 μm (very large)</td>
+                            <td>10-12 μm (much smaller)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nucleus</strong></td>
+                            <td>Single, round nucleus</td>
+                            <td>Multi-lobed nucleus (3-5 lobes)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Locomotion mechanism</strong></td>
+                            <td>Pseudopodia + cytoplasmic streaming</td>
+                            <td>Pseudopodia + cytoplasmic streaming</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cytoskeletal basis</strong></td>
+                            <td>Actin-myosin interactions</td>
+                            <td>Actin-myosin interactions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Movement speed</strong></td>
+                            <td>1-2 μm/second</td>
+                            <td>Similar (variable depending on tissue)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phagocytosis</strong></td>
+                            <td>Yes - captures bacteria, algae, debris for nutrition</td>
+                            <td>Yes - engulfs bacteria and pathogens for immune defense</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chemotaxis</strong></td>
+                            <td>Yes - moves toward food sources</td>
+                            <td>Yes - moves toward infection/inflammation sites</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lifespan</strong></td>
+                            <td>Indefinite (can reproduce)</td>
+                            <td>5-90 hours after leaving bloodstream</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary function</strong></td>
+                            <td>Survival, feeding, reproduction</td>
+                            <td>Innate immune defense</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Environment</strong></td>
+                            <td>Freshwater (hypotonic)</td>
+                            <td>Blood and tissue fluids (isotonic)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contractile vacuole</strong></td>
+                            <td>Yes (osmoregulation required)</td>
+                            <td>No (isotonic environment)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>The Power of Phagocytosis</h3>
+                <p>Both amoeba and neutrophils use pseudopodia for <strong>phagocytosis</strong> - the process of engulfing solid particles:</p>
+
+                <div class="info-box">
+                    <strong>💡 Phagocytosis Process (Identical in Both Cell Types):</strong>
+                    <ol>
+                        <li><strong>Recognition:</strong> Cell contacts target particle (bacteria, food, debris)</li>
+                        <li><strong>Pseudopodial extension:</strong> Pseudopodia extend from multiple directions around particle</li>
+                        <li><strong>Engulfment:</strong> Pseudopodia surround and enclose particle</li>
+                        <li><strong>Vacuole formation:</strong> Particle is enclosed in membrane-bound vesicle (phagosome/food vacuole)</li>
+                        <li><strong>Fusion with lysosome:</strong> Vesicle fuses with lysosome containing digestive enzymes</li>
+                        <li><strong>Digestion:</strong> Enzymes break down contents</li>
+                        <li><strong>Absorption/Expulsion:</strong> Nutrients absorbed (amoeba) or debris expelled (neutrophils)</li>
+                    </ol>
+                </div>
+
+                <h3>Directed Movement: Chemotaxis</h3>
+                <p>Both cell types demonstrate <strong>chemotaxis</strong> - directed movement toward chemical signals:</p>
+
+                <h4>Amoeba Chemotaxis</h4>
+                <ul>
+                    <li>Detect chemical gradients released by bacteria or decaying organic matter</li>
+                    <li>Extend pseudopodia preferentially toward higher concentrations</li>
+                    <li>This allows efficient location of food sources in their environment</li>
+                    <li>Demonstrates single cells can sense and respond to environmental cues</li>
+                </ul>
+
+                <h4>Neutrophil Chemotaxis</h4>
+                <ul>
+                    <li>Respond to chemical signals (chemokines) released at infection sites</li>
+                    <li>Migrate through blood vessel walls (extravasation)</li>
+                    <li>Navigate through tissue toward areas of inflammation</li>
+                    <li>Critical for rapid immune response - first responders to infection</li>
+                </ul>
+
+                <div class="reflection-box">
+                    <strong>🔬 Clinical Connection:</strong> When you get a cut or infection, neutrophils use the same pseudopodial mechanism you observed in amoeba to reach the wound site. They squeeze between blood vessel cells, crawl through tissue spaces, and engulf invading bacteria - all using actin-myosin-based amoeboid motion. The pus that forms at infection sites consists largely of dead neutrophils that exhausted themselves fighting bacteria through phagocytosis.
+                </div>
+
+                <h3>Evolutionary Significance</h3>
+                <div class="key-concept">
+                    <strong>🎯 Unity of Life Principle:</strong> The fact that a single-celled protist living in pond water and a specialized immune cell in human blood both use the exact same cellular machinery for movement demonstrates:
+                    <ul>
+                        <li><strong>Shared evolutionary ancestry:</strong> Both inherited this mechanism from a common eukaryotic ancestor</li>
+                        <li><strong>Conservation of successful solutions:</strong> Natural selection maintained this mechanism because it works effectively</li>
+                        <li><strong>Fundamental cellular unity:</strong> Despite vast differences in size, complexity, and function, the underlying molecular machinery is identical</li>
+                        <li><strong>Adaptability:</strong> The same mechanism serves different purposes (feeding vs. immune defense) in different contexts</li>
+                    </ul>
+                </div>
+
+                <h3>Why Study Both Together?</h3>
+                <p>Comparing amoeba and neutrophils side-by-side reveals several important biological principles:</p>
+
+                <ol>
+                    <li><strong>Molecular mechanisms are conserved:</strong> The actin-myosin motor system evolved once and is used across kingdoms</li>
+                    <li><strong>Function follows form:</strong> Similar structures (pseudopodia) enable similar functions (movement, phagocytosis)</li>
+                    <li><strong>Complexity builds on simplicity:</strong> Multicellular immune systems use the same tools as single-celled organisms</li>
+                    <li><strong>Evolution is economical:</strong> Rather than inventing new mechanisms, evolution adapts existing ones to new purposes</li>
+                </ol>
+
+                <div class="challenge-box">
+                    <strong>🧩 Critical Thinking Question:</strong> If amoeba and neutrophils both use pseudopodia and phagocytosis, why does this NOT mean that neutrophils evolved directly from amoeba? (Hint: Consider that both inherited these traits from a much more ancient common ancestor, and that many other protists and animal cells also use similar mechanisms.)
+                </div>
+
+                <h3>Comparison Summary</h3>
+                <div class="info-box">
+                    <strong>📊 Key Takeaway:</strong> When you observe:
+                    <ul>
+                        <li><strong>Cytoplasmic streaming in amoeba</strong> → You're seeing the same process neutrophils use to migrate through your tissues</li>
+                        <li><strong>Pseudopodial extension</strong> → You're observing the mechanism your immune system uses to reach infection sites</li>
+                        <li><strong>Phagocytosis of bacteria</strong> → You're witnessing the fundamental process protecting you from disease</li>
+                    </ul>
+                    <p style="margin-top: 15px;">The amoeba you observe under the microscope is not just an interesting pond organism - it's a window into understanding how your own immune system defends your body at the cellular level.</p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn" onclick="switchTab('review')">Next: Review Questions →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 7: REVIEW QUESTIONS -->
+        <div id="review" class="section">
+            <div class="card">
+                <h2>📝 Review Questions</h2>
+
+                <h3>Structural Identification Questions</h3>
+
+                <h4>Question 1: Identifying Pseudopodia</h4>
+                <p><strong>The specific protist organism that you observed that uses pseudopodia for movement and for capturing food is called:</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Answer: The organism is..."></textarea>
+
+                <h4>Question 2: Animal Cells with Pseudopodia</h4>
+                <p><strong>The specific animal cells (of the blood) that also use pseudopodia are called:</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Answer: These cells are called..."></textarea>
+
+                <h4>Question 3: Function Beyond Movement</h4>
+                <p><strong>Besides movement, what do these blood cells use pseudopodia for?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 80px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Answer: Pseudopodia are used for..."></textarea>
+
+                <h3>Environmental Adaptation Questions</h3>
+
+                <h4>Question 4: Hypotonic Environment</h4>
+                <p><strong>The protist organisms that you observed live in freshwater, therefore, they must have organelles that enable them to cope with living in a (hypertonic or hypotonic) environment.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Circle one: hypertonic OR hypotonic"></textarea>
+
+                <h4>Question 5: Water Movement</h4>
+                <p><strong>These freshwater organisms must cope with the problem of water (entering or leaving) their cells.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Circle one: entering OR leaving"></textarea>
+
+                <h4>Question 6: Osmoregulation Organelle</h4>
+                <p><strong>These protists have a specialized organelle called the __________________ __________________ which functions in osmoregulation (the control of solute concentration and water balance).</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Answer: This organelle is called the..."></textarea>
+
+                <h3>Conceptual Understanding Questions</h3>
+
+                <h4>Question 7: Mechanism of Amoeboid Motion</h4>
+                <p><strong>Describe the molecular mechanism by which amoeba generate pseudopodial movement. Include the roles of actin, myosin, and ATP.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 120px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe the mechanism..."></textarea>
+
+                <h4>Question 8: Identifying Neutrophils</h4>
+                <p><strong>What is the key distinguishing feature that allows you to identify a neutrophil among other white blood cells in a blood smear?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="The distinguishing feature is..."></textarea>
+
+                <h4>Question 9: Comparing Movement Types</h4>
+                <p><strong>Create a comparison table showing the differences between flagella, cilia, and pseudopodia in terms of: (1) structure type, (2) internal basis, (3) motor protein, and (4) movement pattern.</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 150px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Create your comparison table here..."></textarea>
+
+                <h4>Question 10: Unity of Life Connection</h4>
+                <p><strong>Explain how the observation of amoeboid motion in both protists and animal immune cells demonstrates the principle of evolutionary unity. What does this conservation of mechanism tell us about the history of eukaryotic life?</strong></p>
+                <textarea style="width: 100%; margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 4px; min-height: 150px; border-left: 4px solid #ef6c00; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Explain the evolutionary significance..."></textarea>
+
+                <h3>Expected Answers</h3>
+
+                <div class="key-concept">
+                    <strong>Answer Key (for instructor reference):</strong>
+                    <ol>
+                        <li><strong>Amoeba</strong></li>
+                        <li><strong>Neutrophils</strong></li>
+                        <li><strong>Phagocytosis</strong> - engulfing and destroying bacteria and other pathogens as part of the innate immune response</li>
+                        <li><strong>Hypotonic</strong> - freshwater has fewer solutes than the protist's cytoplasm</li>
+                        <li><strong>Entering</strong> - water moves from high to low water concentration (into the cell)</li>
+                        <li><strong>Contractile vacuole</strong> - collects and expels excess water</li>
+                        <li>Amoeboid motion is generated by <strong>actin microfilaments</strong> and <strong>myosin motor proteins</strong>. Myosin uses ATP to pull on actin filaments, creating localized contractions. This generates pressure that extends pseudopodia forward. Cytoplasm flows into the extended pseudopodium through cytoplasmic streaming. The cytoskeleton undergoes gel-sol transitions, allowing the cytoplasm to alternate between solid and liquid states during movement.</li>
+                        <li>The <strong>multi-lobed nucleus</strong> (3-5 lobes connected by chromatin strands). This is unique among white blood cells and makes neutrophils easily distinguishable from lymphocytes, monocytes, eosinophils, and basophils.</li>
+                        <li>See comparison table in Background section for complete answer</li>
+                        <li>The identical actin-myosin mechanism in both amoeba and neutrophils demonstrates that fundamental cellular machinery is conserved across vast evolutionary distances. Both organisms inherited this system from a common eukaryotic ancestor. The fact that the same molecular mechanism serves different purposes (feeding in protists, immune defense in animals) shows that evolution adapts existing structures to new functions rather than inventing entirely new mechanisms. This conservation reveals the underlying unity of all eukaryotic life.</li>
+                    </ol>
+                </div>
+
+                <h3>Additional Challenge Questions</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Advanced Question 1:</strong>
+                    <p>Why do freshwater protists like amoeba need contractile vacuoles while neutrophils (which also use amoeboid motion) do not? What does this tell you about the importance of environmental context in cellular adaptations?</p>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Advanced Question 2:</strong>
+                    <p>Neutrophils are described as having a "short lifespan" (5-90 hours after leaving the bloodstream). Why might this be advantageous for the immune system? Consider what happens when neutrophils phagocytose many bacteria.</p>
+                </div>
+
+                <div class="challenge-box">
+                    <strong>🧩 Advanced Question 3:</strong>
+                    <p>If you could observe living neutrophils under a microscope (not possible with standard blood smears), predict what you would see. How would their movement compare to the amoeba you observed? What structures would be similar or different?</p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('comparison')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Pseudopodia Investigation: Demonstrating Shared Cellular Mechanisms Across Kingdoms</strong></p>
+        <p>This investigation reveals how the same molecular machinery (actin-myosin interactions) powers movement in both protists and animal immune cells.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

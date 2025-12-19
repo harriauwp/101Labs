@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Cells (Onion) Laboratory Investigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #016836 0%, #00502f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.4;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: white;
+            border: 2px solid #016836;
+            color: #016836;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #e8f5e9;
+            transform: translateY(-2px);
+        }
+
+        .nav-btn.active {
+            background: #016836;
+            color: white;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            border-left: 4px solid #016836;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        .card h2 {
+            color: #016836;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #00502f;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .card h4 {
+            color: #016836;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            background: #016836;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #00502f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: #c8e6c9;
+            color: #00502f;
+        }
+
+        .btn-secondary:hover {
+            background: #a5d6a7;
+        }
+
+        .key-concept {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ffa726;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .key-concept strong {
+            color: #e65100;
+        }
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .learning-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #016836;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .learning-card h4 {
+            color: #00502f;
+            margin-bottom: 10px;
+        }
+
+        .learning-card p {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .materials-list {
+            background: #f1f8f5;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .materials-list h4 {
+            color: #00502f;
+            margin-bottom: 15px;
+        }
+
+        .materials-list ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .materials-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .materials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .materials-list li:before {
+            content: "✓ ";
+            color: #016836;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .observation-box {
+            background: white;
+            border: 2px solid #016836;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .observation-box h4 {
+            color: #00502f;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #c8e6c9;
+            padding-bottom: 10px;
+        }
+
+        .sketch-area {
+            background: #f9f9f9;
+            border: 2px dashed #c8e6c9;
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+            margin: 15px 0;
+        }
+
+        .reflection-box {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #42a5f5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .reflection-box strong {
+            color: #1565c0;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border-left: 4px solid #ab47bc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .challenge-box strong {
+            color: #6a1b9a;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: #016836;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: left;
+            }
+
+            .learning-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔬 Onion Cell Laboratory Investigation</h1>
+            <p><strong>Domain</strong> Eukaryote | <strong>Kingdom</strong> Plantae |  <strong>Tissue</strong> Parenchyma | <strong>Cell</strong> Onion</p>
+            <p>This investigation demonstrates the fundamental features of eukaryotic plant cells. Students will prepare wet mounts, observe cell structures at multiple magnifications, and discover characteristics shared with animal and protist cells.</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="nav-btn active" onclick="switchTab('alignment')">Curriculum Alignment</button>
+            <button class="nav-btn" onclick="switchTab('background')">Background</button>
+            <button class="nav-btn" onclick="switchTab('preparation')">Preparation</button>
+            <button class="nav-btn" onclick="switchTab('method')">Method & Activity</button>
+            <button class="nav-btn" onclick="switchTab('observation')">Observation & Results</button>
+            <button class="nav-btn" onclick="switchTab('challenge')">Challenge Question</button>
+        </div>
+
+        <!-- SECTION 1: CURRICULUM ALIGNMENT -->
+        <div id="alignment" class="section active">
+            <div class="card">
+                <h2>📚 Curriculum Alignment</h2>
+                
+                <h3>Learning Outcomes</h3>
+                <p>Upon completion of this investigation, students will be able to:</p>
+                <ul>
+                    <li><strong>Identify</strong> major structures of plant cells including cell wall, plasma membrane, nucleus, nuclear membrane, chromatin, and nucleolus</li>
+                    <li><strong>Compare</strong> plant cells with animal cells and protist cells to demonstrate cellular unity across kingdoms</li>
+                    <li><strong>Explain</strong> why the nucleus is a defining characteristic of eukaryotic cells</li>
+                    <li><strong>Apply</strong> microscopy techniques including wet mount preparation, magnification selection, and staining procedures</li>
+                    <li><strong>Estimate</strong> cell size using micrometer calculations and proportional reasoning</li>
+                    <li><strong>Recognize</strong> that all eukaryotic organisms share fundamental cellular structures</li>
+                </ul>
+
+                <h3>MCAT Alignment: Biological and Biochemical Foundations</h3>
+                <ul>
+                    <li><strong>Foundational Concept 2:</strong> Structure and Function of Eukaryotic Cells
+                        <ul>
+                            <li><strong>2A: Assembly of Molecules and Organelles</strong>
+                                <ul>
+                                    <li><strong>Nucleus and Nucleolus:</strong> Identification of the nucleus as the site of genetic material (chromatin) and the nucleolus as the site of ribosome synthesis.</li>
+                                    <li><strong>Organelle Diversity:</strong> Recognition of eukaryotic-specific structures, including the cell wall, plasma membrane, and vacuoles, and their roles in maintaining cellular integrity.</li>
+                                </ul>
+                            </li>
+                            <li><strong>2B: Structure and Function of Systems</strong>
+                                <ul>
+                                    <li><strong>Cellular Membranes:</strong> Understanding the relationship between the plasma membrane and the cell wall in providing structural support and regulating the passage of molecules.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Foundational Concept 3:</strong> Genetics and Information Transfer
+                        <ul>
+                            <li><strong>Chromatin Structure:</strong> Observation of the nucleus containing chromatin, the physical form of eukaryotic DNA during interphase.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Scientific Inquiry and Reasoning Skills (SIRS)</strong>
+                        <ul>
+                            <li><strong>Skill 1: Knowledge of Scientific Concepts and Principles</strong>
+                                <ul>
+                                    <li>Identifying cell structures under magnification (4X, 10X, and 40X) to relate physical form to biological classification.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skill 2: Scientific Reasoning and Problem Solving</strong>
+                                <ul>
+                                    <li>Analyzing the surface area to volume ratio to understand the physical constraints on cell size and metabolic efficiency.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Chapter Context</h3>
+                <p><strong>Template Role:</strong> This onion cell investigation establishes the fundamental procedures, observational framework, and comparative methodology that will be used throughout this entire chapter. Students learn:</p>
+                <ul>
+                    <li>How to properly prepare wet mount slides with staining</li>
+                    <li>How to systematically observe at multiple magnifications (4X, 10X,→ 40X)</li>
+                    <li>How to identify and label cellular structures</li>
+                    <li>How to estimate cell dimensions</li>
+                    <li>How to recognize shared characteristics across different cell types</li>
+                </ul>
+                <p>These foundational skills will be applied directly to protist cells, animal cells, and specialized plant tissues in subsequent investigations.</p>
+
+                <div class="button-group">
+                    <button class="btn" onclick="switchTab('background')">Next: Background →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: BACKGROUND -->
+        <div id="background" class="section">
+            <div class="card">
+                <h2>🧬 Background Information</h2>
+
+                <h3>What is a Cell?</h3>
+                <p>A cell is the smallest unit that can carry out all life activities. Cells provide strong evidence for the underlying unity of all living things. When we examine a wide range of seemingly diverse organisms—from unicellular protists to the most complex plants and animals—we find striking similarities at the cellular level. The unity of life is evident in the universal genetic code shared by all organisms.</p>
+
+                <h3>Eukaryotic vs. Prokaryotic Cells</h3>
+                <p>The defining feature of a <strong>eukaryotic cell</strong> is the presence of a <strong>membrane-bound nucleus</strong> that contains the cell's DNA. Plant cells, animal cells, and protist cells are all eukaryotic. In contrast, prokaryotic cells (bacteria and archaea) lack a nucleus and have their DNA floating freely in the nucleoid region.</p>
+
+                <h3>Plant Cell Structure</h3>
+                <p>Plant cells are eukaryotic cells that have additional structures not found in animal cells:</p>
+
+                <div class="learning-grid">
+                    <div class="learning-card">
+                        <h4>Cell Wall</h4>
+                        <p>A rigid outer layer made of cellulose that surrounds the plasma membrane, providing support and protection.</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Plastids</h4>
+                        <p>Membrane-bound organelles for synthesis and storage, including Chloroplasts (photosynthesis), Amyloplasts (starch storage), and Chromoplasts (pigments).</p>
+                    </div>
+                    <div class="learning-card">
+                        <h4>Central Vacuole</h4>
+                        <p>A large, fluid-filled organelle that maintains turgor pressure and stores nutrients or waste products.</p>
+                    </div>
+                    <div class="learning-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border: 3px solid #6a1b9a;">
+                    <h4>Nitroplast <span style="font-size:12px; font-weight:600; color:#6a1b9a;">(Deep Dive – Not Observed)</span></h4>
+                    <p>
+                         A recently discovered organelle (2024) found in some algae that enables nitrogen fixation.
+                         <br><br>
+                         <strong>Important:</strong> Nitroplasts are <em>not observable</em> in onion cells or in this lab.
+                         This example is included to show that cell biology is an evolving field and that new organelles
+                         are still being discovered.
+                     </p>
+                </div>
+                </div>
+
+                <h3>Why Study the Onion Cell?</h3>
+                <p>The onion epidermal cell is ideal for this investigation because:</p>
+                <ul>
+                    <li>Plant cells are <strong>large enough</strong> to observe clearly under light microscopy</li>
+                    <li>The <strong>nucleus is prominent</strong> and easily visualized with staining</li>
+                    <li>Onion cells are <strong>non-photosynthetic</strong>, making it easier to see nuclear structures without chloroplast interference</li>
+                    <li>The <strong>cell wall</strong> is visible and clearly demonstrates the difference between plant and animal cells</li>
+                    <li>Results serve as a <strong>template for understanding all plant cells</strong> in subsequent investigations</li>
+                </ul>
+
+                <div class="key-concept">
+                    <strong>🎯 Key Principle:</strong> Although onion epidermal cells are specialized and non-photosynthetic, they contain all the fundamental structures shared by ALL eukaryotic plant cells. By mastering this investigation, you create a framework for understanding other cell types.
+                </div>
+
+                <h3>The Unity of Life Connection</h3>
+                <p>As you examine onion cells, you'll notice they contain structures identical to those found in animal cells and protist cells: a nucleus, nuclear membrane, chromatin, and mitochondria. This demonstrates that despite the diversity of life forms, all eukaryotic organisms are united by fundamental cellular similarities.</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">← Back</button>
+                    <button class="btn" onclick="switchTab('preparation')">Next: Preparation →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: PREPARATION -->
+        <div id="preparation" class="section">
+            <div class="card">
+                <h2>⚙️ Preparation</h2>
+
+                <h3>Learning Objectives for Preparation</h3>
+                <p>Before beginning the investigation, you should understand:</p>
+                <ul>
+                    <li>The purpose of staining in cell microscopy</li>
+                    <li>The correct procedure for preparing a wet mount slide</li>
+                    <li>How to use the microscope at low and high magnification</li>
+                    <li>Safety procedures for handling microscopy equipment</li>
+                </ul>
+
+                <h3>Materials & Equipment</h3>
+                <div class="materials-list">
+                    <h4>🧅 For Specimen Preparation</h4>
+                    <ul>
+                        <li>One small onion piece</li>
+                        <li>Dissecting forceps - tweezers</li>
+                        <li>Glass microscope slides (clean and dry)</li>
+                        <li>Glass cover slips</li>
+                        <li>Stain solution</li>
+                        <li>Distilled water in dropper bottle</li>
+                        <li>Paper towels</li>
+                        <li>Container for cleaned slides</li>
+                        <li>Container for used coverslips</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>🔬 For Microscopy</h4>
+                    <ul>
+                        <li>Light microscope with 4X, 10X, and 40X objectives</li>
+                        <li>Lens paper (for cleaning lenses)</li>
+                        <li>Iris diaphragm for light control</li>
+                    </ul>
+                </div>
+
+                <div class="materials-list">
+                    <h4>📝 For Documentation</h4>
+                    <ul>
+                        <li>Pencils or sketch pad (for sketches)</li>
+                        <li>Blank paper or observation sheets</li>
+                     </ul>
+                </div>
+
+                <h3>Preparing the Culture</h3>
+                <p><strong>Note:</strong> Prepare fresh cell samples immediately before observation.</p>
+
+                <h3>Preparing Your Workstation</h3>
+
+                <h4>Step 1: Organize Your Space</h4>
+                <ul>
+                    <li>Arrange materials in a logical order on your lab bench</li>
+                    <li>Place microscope at a comfortable height with good lighting</li>
+                    <li>Keep paper towels readily accessible</li>
+                    <li>Designate the side bench as slide preparation area</li>
+                </ul>
+
+                <h4>Step 2: Clean Your Microscope</h4>
+                <ul>
+                    <li>Use lens paper (never paper towels) to clean objective lenses</li>
+                    <li>Clean the eyepiece last</li>
+                    <li>Wipe the stage clean</li>
+                    <li>Confirm the 4X objective lens is clicked into place directly above the light opening before viewing</li>
+                    <li>Adjust the iris diaphragm to full open position</li>
+                    <li>Raise the stage to its highest position to allow proper initial focusing at low power</li>
+                </ul>
+
+                <h4>Step 3: Pre-Lab Safety Review</h4>
+                <ul>
+                    <li><strong>Stains:</strong> Avoid contact with skin; wash hands if exposure occurs</li>
+                    <li><strong>Microscope:</strong> Do not apply excessive pressure to slides; never use the coarse focus at 10X or 40X</li>
+                    <li><strong>Glass:</strong> Report any broken slides or cover slips to instructor immediately</li>
+                </ul>
+
+                <div class="warning-box">
+                    <strong>⚠️ Safety Reminder:</strong> The objective lenses are valuable and easily damaged. Do not let the lens touch the slide except through proper focusing procedures. Always start with 4X magnification and only move to 40X after checking focus at lower magnification.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('background')">← Back</button>
+                    <button class="btn" onclick="switchTab('method')">Next: Method & Activity →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: METHOD & STUDENT ACTIVITY -->
+        <div id="method" class="section">
+            <div class="card">
+                <h2>🧪 Method - Student Activity</h2>
+
+                <h3>Wet Mount Slide Preparation</h3>
+
+                <h4>Step 1: Extract the Onion Epidermis</h4>
+                <ol>
+                    <li>Select a small onion piece (about 2-3 cm square)</li>
+                    <li>Using forceps, grasp the outer papery skin layer</li>
+                    <li>Gently peel off the transparent inner layer from the curved surface (this is the epidermis)</li>
+                    <li>Place the thin, transparent layer on a clean, dry microscope slide</li>
+                    <li><strong>Important:</strong> Avoid wrinkles and folds in the tissue—this will make viewing difficult</li>
+                </ol>
+
+                <div class="sketch-area">
+                    Student sketch: How to extract onion epidermis with forceps (10X magnification guide)
+                </div>
+
+                <h4>Step 2: Add Stain</h4>
+                <ol>
+                    <li>Using a dropper, place 1-2 drops of stain solution directly onto the onion epidermis</li>
+                    <li>Do NOT add water first—stain is applied to moist tissue</li>
+                    <li>Wait 3 minutes for stain to penetrate and make nuclei visible</li>
+                    <li>Note: Excess stain can be blotted with a paper towel if color is too dark</li>
+                </ol>
+
+                <h4>Step 3: Add Cover Slip</h4>
+                <ol>
+                    <li>At a 45-degree angle, carefully lower a cover slip onto the stained tissue</li>
+                    <li>Lower it gradually to avoid trapping large air bubbles</li>
+                    <li>If major air bubbles are present, lift the cover slip and try again</li>
+                    <li>Small air bubbles are acceptable and will not interfere with observation</li>
+                </ol>
+
+                <h4>Step 4: Blot Excess Stain</h4>
+                <ol>
+                    <li>Use a paper towel to gently blot excess stain from the edges of the cover slip</li>
+                    <li>This improves visibility and prevents staining your microscope</li>
+                </ol>
+
+                <h3>Microscopy Observation Procedure</h3>
+
+                <h4>At 4X Magnification</h4>
+                <ol>
+                    <li>Place the prepared slide on the microscope stage</li>
+                    <li>Start with the 4X objective (lowest magnification)</li>
+                    <li>Use the <strong>coarse focus knob</strong> to bring cells into view</li>
+                    <li>Adjust the iris diaphragm to make the field as dark as possible (increases contrast)</li>
+                    <li>Locate a region with clear, intact cells</li>
+                    <li>Identify the overall cell shape and cell wall outline</li>
+                    <li>Locate the cell nucleus (will appear as a darker region)</li>
+                    <li><strong>Rotate the revolving nose piece to the 10X</strong> Always use ONLY the fine focus knob at 10X—never the coarse focus to bring the cells into view</li>
+                    <li><strong>Adjust the iris diaphragm</strong> prepare to sketch 3-5 adjacent cells with labels</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>10X Magnification Sketch</h4>
+                    <p><strong>Labels to include:</strong> Cell wall (outline shape of one cell), Plasma membrane (inside the cell wall), Nucleus</p>
+                    <div class="sketch-area">
+                        Your 10X magnification sketch of onion epidermal cells
+                    </div>
+                </div>
+
+                <h4>At 40X Magnification</h4>
+                <ol>
+                    <li>Slowly turn the revolving nose piece to the 40X objective</li>
+                    <li><strong>Important:</strong> Always use ONLY the fine focus knob at 40X—never the coarse focus</li>
+                    <li>Adjust focus until cell structures become sharp and clear</li>
+                    <li>Reduce light intensity using the iris diaphragm to increase contrast</li>
+                    <li>Examine the nucleus closely—look for:</li>
+                    <ul>
+                        <li><strong>Nuclear membrane:</strong> The boundary of the nucleus</li>
+                        <li><strong>Chromatin:</strong> Dark-staining threads or granules inside the nucleus</li>
+                        <li><strong>Nucleolus:</strong> One or more small, round structures INSIDE the nucleus</li>
+                    </ul>
+                    <li>Examine the cytoplasm (area outside the nucleus but inside the plasma membrane)</li>
+                    <li><strong>Make a detailed sketch</strong> of a single cell showing internal structures</li>
+                </ol>
+
+                <div class="observation-box">
+                    <h4>40X Magnification Sketch</h4>
+                    <p><strong>Labels to include:</strong> Nuclear membrane, Chromatin, Nucleolus (singular: nucleolus, plural: nucleoli), Cell wall, Plasma membrane</p>
+                    <div class="sketch-area">
+                        Your 40X magnification detailed sketch of onion cell nucleus
+                    </div>
+                </div>
+
+                <h3>Measuring Cell Dimensions</h3>
+                <div class="warning-box">
+                     <strong>Optional Deep Dive:</strong> This section emphasizes <em>estimation and proportional reasoning</em>,
+                     not exact measurement. If you find the calculations challenging, focus on understanding the method
+                     rather than obtaining a precise value.
+                </div>
+
+                <h4>Estimating Cell Length</h4>
+                <ol>
+                    <li>Select a clearly visible cell from your 10X observation.</li>
+                    
+                    <li>How many cells will fit lengthwise across the diameter of the field of view?
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="count">
+                    </li>
+
+                    <li>What is the diameter of the field of view for the 10X objective lens?
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <input type="text" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="metric unit">
+                    </li>
+
+                    <li>Write the equation (using words ONLY) for the estimated Length, where:
+                        <span style="font-family: serif; font-style: italic;">Length = </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <span> / </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                    </li>
+
+                    <li>Plug the numbers in the formula:
+                        <span style="font-family: serif; font-style: italic;">Length = </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                        <span> / </span>
+                        <input type="text" style="width: 100px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="?">
+                    </li>
+
+                    <li>Record your calculated (estimated) Cell length ≈ 
+                        <input type="text" style="width: 80px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" placeholder="value"> mm
+                    </li>
+
+                    <li>Convert your answer to micrometers:
+                    <div style="display: flex; align-items: center; margin: 30px 0; font-family: sans-serif;">
+                        
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 20px;">
+                            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center;">
+                                <input type="text" style="width: 50px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center; cursor: pointer;" class="cancel-unit" onclick="toggleCancel(this)">
+                            </div>
+                            <div style="height: 35px;"></div>
+                        </div>
+
+                        <div style="width: 4px; height: 120px; background: #2c3e50;"></div>
+
+                        <div style="display: flex; flex-direction: column; align-items: center; padding: 0 20px; position: relative;">
+                            <div style="position: absolute; top: 50%; left: -20px; right: -20px; height: 4px; background: #2c3e50; transform: translateY(-50%);"></div>
+                            
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 25px; z-index: 1;">
+                                <span style="font-size: 24px; font-weight: bold;">1</span>
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #ececec; text-align: center;">
+                            </div>
+
+                            <div style="display: flex; align-items: flex-start; gap: 5px; margin-top: 25px; z-index: 1;">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <span style="font-size: 24px; font-weight: bold; line-height: 1;">10</span>
+                                    <input type="text" style="width: 30px; height: 25px; border-radius: 4px; border: 1px solid #016836; text-align: center; font-size: 14px; margin-top: -10px; margin-left: 2px;" placeholder="x">
+                                </div>
+                                <input type="text" style="width: 60px; height: 35px; border-radius: 6px; border: 1px solid #ccc; background: #fff; text-align: center; cursor: pointer; margin-left: 5px;" class="cancel-unit" onclick="toggleCancel(this)">
+                            </div>
+                        </div>
+
+                        <div style="width: 4px; height: 120px; background: #2c3e50;"></div>
+
+                        <div style="font-size: 32px; font-weight: bold; margin: 0 20px;">=</div>
+
+                        <div style="display: flex; align-items: center; padding: 10px; border: 2px solid #016836; border-radius: 8px; background: #fff; gap: 10px;">
+                            <input type="text" style="width: 100px; border: none; font-size: 18px; text-align: center;">
+                            <span style="font-size: 18px; font-weight: bold; color: #333;">μm</span>
+                        </div>
+                    </div>
+                    <small style="color: #666; display: block; margin-top: -10px;">*Click the unit boxes to cancel them out.</small>
+                </li>
+                </ol>
+
+                <style>
+                    .cancel-unit.cancelled {
+                        text-decoration: line-through;
+                        text-decoration-color: red;
+                        text-decoration-thickness: 2px;
+                        color: #999;
+                    }
+                </style>
+
+                <script>
+                    function toggleCancel(element) {
+                        element.classList.toggle('cancelled');
+                    }
+                </script>
+
+                <div class="reflection-box">
+                    <strong>📌 Reflection:</strong> Why is it difficult to measure cell dimensions precisely under a light microscope? Consider the resolution limits of the microscope and the variability in cell shape.
+                </div>
+
+                <h3>Answering Key Questions</h3>
+
+                <h4>Question 1: Nuclear Components</h4>
+                <p><strong>Within these cells you labeled the nucleus, which contains chromatin and the nucleolus. Answer the following:</strong></p>
+                <ul>
+                    <li>What is chromatin?</li>
+                    <li>What is the nucleolus?</li>
+                </ul>
+
+                <h4>Question 2: Cell Size Estimation</h4>
+                <p><strong>Estimate the width of one of these cells in millimeters (show your equation):</strong></p>
+                <p>width = _____ mm</p>
+                <p>Equation used: _________________________________</p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('preparation')">← Back</button>
+                    <button class="btn" onclick="switchTab('observation')">Next: Observation & Results →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: OBSERVATION & RESULTS -->
+        <div id="observation" class="section">
+            <div class="card">
+                <h2>👁️ Observation & Results</h2>
+
+                <h3>What Students Should Observe</h3>
+
+                <h4>At 10X Magnification</h4>
+                <ul>
+                    <li><strong>Cell walls:</strong> Clear boundaries forming rectangular (or polygonal) shapes</li>
+                    <li><strong>Entire cells:</strong> Each cell appears as a distinct rectangular unit</li>
+                    <li><strong>Nuclei:</strong> Darker-staining spherical or oval structures, typically located near the cell center</li>
+                    <li><strong>Multiple cells:</strong> Observe at least 5-10 intact cells in your viewing field</li>
+                    <li><strong>Cell arrangement:</strong> Cells fit together like puzzle pieces—demonstrating they are closely packed in tissue</li>
+                </ul>
+
+                <h4>At 40X Magnification</h4>
+                <ul>
+                    <li><strong>Nuclear membrane:</strong> A distinct boundary separating the nucleus from the cytoplasm</li>
+                    <li><strong>Chromatin:</strong> Fine threads or granular material distributed throughout the nucleus (appears dark after staining)</li>
+                    <li><strong>Nucleolus:</strong> One or more small, round, very dark-staining regions WITHIN the nucleus (these are ribosome-producing sites)</li>
+                    <li><strong>Cytoplasm:</strong> The material surrounding the nucleus, appearing lighter than the nucleus</li>
+                    <li><strong>Cell wall and plasma membrane:</strong> Visible as distinct layers at the cell periphery</li>
+                </ul>
+
+                <h3>Expected Results</h3>
+
+                <div class="success-box">
+                    <strong>✓ If your preparation was successful, you should observe:</strong>
+                    <ul>
+                        <li>Clear rectangular cells arranged in rows</li>
+                        <li>Well-stained nuclei that are distinctly darker than the cytoplasm</li>
+                        <li>Visible nucleoli within the nucleus (may appear as 1-3 small dots)</li>
+                        <li>Good optical clarity with minimal air bubbles</li>
+                        <li>Sharp focus at both 10X and 40X magnification</li>
+                    </ul>
+                </div>
+
+                <h3>Troubleshooting</h3>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Problem</th>
+                            <th>Likely Cause</th>
+                            <th>Solution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cells appear too pale</td>
+                            <td>Insufficient stain or stain not yet penetrated</td>
+                            <td>Add 1-2 more drops of stain; wait additional 2 minutes</td>
+                        </tr>
+                        <tr>
+                            <td>Cells appear too dark (cannot see detail)</td>
+                            <td>Too much stain or cell tissue too thick</td>
+                            <td>Blot excess stain; prepare new slide with thinner tissue layer</td>
+                        </tr>
+                        <tr>
+                            <td>Image is blurry at 40X</td>
+                            <td>Objective lens not properly focused or dirty</td>
+                            <td>Use ONLY fine focus knob at 40X; clean lens with lens paper</td>
+                        </tr>
+                        <tr>
+                            <td>Large air bubbles present</td>
+                            <td>Cover slip lowered too quickly</td>
+                            <td>Prepare new slide; lower cover slip slowly at 45-degree angle</td>
+                        </tr>
+                        <tr>
+                            <td>Nucleus not visible</td>
+                            <td>Tissue may be from outer epidermal layer (lacks nucleus) or insufficient staining</td>
+                            <td>Use inner epidermis layer; increase staining time</td>
+                        </tr>
+                        <tr>
+                            <td>Wrinkles in tissue</td>
+                            <td>Tissue layer too thick or forceps handled roughly</td>
+                            <td>Prepare new slide; handle tissue gently with forceps</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Data Recording</h3>
+
+                <div class="observation-box">
+                    <h4>Record Your Observations</h4>
+                    <p><strong>Magnification: 10X</strong></p>
+                    <ul>
+                        <li>Number of complete cells visible in field: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" min="0">
+                        </li>
+                        <li>Cell shape: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Nucleus clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Overall cell arrangement pattern: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+
+                    <p><strong>Magnification: 40X</strong></p>
+                    <ul>
+                        <li>Nuclear membrane clearly visible? 
+                            <select style="border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Chromatin observed? 
+                            <select style="border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                                <option value="">Select...</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </li>
+                        <li>Number of nucleoli observed: 
+                            <input type="number" style="width: 60px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;" min="0">
+                        </li>
+                        <li>Nuclear shape: 
+                            <input type="text" style="width: 200px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                        <li>Approximate nucleus size compared to cell: 
+                            <input type="text" style="width: 250px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px;">
+                        </li>
+                    </ul>
+                </div>
+
+                <h3>Answering Analysis Questions</h3>
+
+                <h4>Question 1: What is chromatin?</h4>
+                <p>Chromatin is made of DNA + proteins (called histones). It appears as dark-staining threads or granules within the nucleus and contains the cell's genetic instructions.</p>
+
+                <h4>Question 2: What is the nucleolus?</h4>
+                <p>The nucleolus is a region WITHIN the nucleus where ribosomal RNA (rRNA) is synthesized. It appears as a very small, round, intensely dark-staining structure inside the nucleus.</p>
+
+                <h4>Question 3: Estimating cell length</h4>
+                <p>Typical onion epidermal cells range from 0.3-0.5 mm in length. Your estimate: 
+                    <input type="text" style="width: 80px; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 2px 5px; text-align: center;" placeholder="0.0"> mm
+                </p>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('method')">← Back</button>
+                    <button class="btn" onclick="switchTab('challenge')">Next: Challenge Question →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: CHALLENGE QUESTION -->
+        <div id="challenge" class="section">
+            <div class="card">
+                <h2>🎯 Challenge Question: Finding Shared Characteristics</h2>
+
+                <h3>The Grand Challenge</h3>
+
+                <div class="challenge-box">
+                    <strong>🧩 Challenge Prompt:</strong>
+                    <p style="margin-top: 10px;">Based on your observations of onion epidermal cells, <strong>identify ONE characteristic that the onion cell shares with BOTH animal cells AND protist cells.</strong></p>
+                    <p>This characteristic should:</p>
+                    <ul>
+                        <li>Be a fundamental structure or feature you directly observed in the onion cell</li>
+                        <li>Be present in animal cells (based on lab knowledge)</li>
+                        <li>Be present in protist cells (based on lab knowledge)</li>
+                        <li>Demonstrate the <strong>unity of eukaryotic life</strong></li>
+                        <li>Be explained with evidence from your observations AND the lab manual</li>
+                    </ul>
+                </div>
+
+                <h3>Guided Reflection Questions</h3>
+
+                <h4>Question 1: What structures did you observe in the onion cell?</h4>
+                <p><strong>Consider these:</strong> nucleus, nuclear membrane, chromatin, nucleolus, cell wall, plasma membrane, cytoplasm</p>
+                <p>Your answer: 
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 5px; font-family: inherit;">
+                </p>
+
+                <h4>Question 2: Which of these structures are UNIQUE to plant cells?</h4>
+                <p><strong>Hint:</strong> Think about structures animals have that plants don't (and vice versa)</p>
+                <p>Unique to plants: 
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 5px; font-family: inherit;">
+                </p>
+
+                <h4>Question 3: Which structures are SHARED across protists, animals, AND plants?</h4>
+                <p><strong>Hint:</strong> These are the structures that define eukaryotic cells</p>
+                <p>Shared structures: 
+                    <input type="text" style="width: 100%; border: none; border-bottom: 2px solid #016836; background: #f9f9f9; padding: 5px; font-family: inherit;">
+                </p>
+
+                <h3>Your Challenge Response</h3>
+
+                <div class="observation-box">
+                    <h4>Write Your Answer Below</h4>
+                    <p><strong>ONE characteristic shared by onion cells, animal cells, AND protist cells:</strong></p>
+                    <textarea style="width: 100%; margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 4px; min-height: 60px; border-left: 4px solid #016836; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Type your answer here..."></textarea>
+
+                    <p><strong>Evidence from your onion cell observation:</strong></p>
+                    <textarea style="width: 100%; margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #016836; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Describe your evidence..."></textarea>
+
+                    <p><strong>Why this demonstrates the unity of eukaryotic life:</strong></p>
+                    <textarea style="width: 100%; margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 4px; min-height: 100px; border-left: 4px solid #016836; border-right: none; border-top: none; border-bottom: none; font-family: inherit; font-size: inherit;" placeholder="Explain the biological significance..."></textarea>
+                </div>
+
+                <h3>Exemplary Responses</h3>
+
+                <div class="key-concept">
+                    <strong>Example Answer 1:</strong> <br>
+                    "The shared characteristic is the <strong>nucleus</strong>. In my onion cell observation, I clearly saw a large, dark-staining nucleus at 40X magnification containing chromatin and nucleoli. Animal cells also have a nucleus (I saw this in the blood smear slide), and protist cells like Euglena have a nucleus (though it was hard to see in living cells). The presence of a nucleus in all three cell types shows they are all eukaryotic cells, which is the definition of eukaryotes. This demonstrates unity because having a nucleus is what makes them related at the cellular level."
+                </div>
+
+                <div class="key-concept">
+                    <strong>Example Answer 2:</strong> <br>
+                    "The shared characteristic is <strong>chromatin (DNA + proteins)</strong>. In the onion cell, chromatin appeared as dark threads throughout the nucleus at 40X magnification. Animal cells contain chromatin in their nucleus, and protists like Paramecium also contain chromatin. This shows that all eukaryotic cells store genetic information in the same way—DNA combined with proteins—which is evidence they evolved from a common ancestor. All eukaryotes use this system to organize and protect their genetic material."
+                </div>
+
+                <div class="key-concept">
+                    <strong>Example Answer 3:</strong> <br>
+                    "The shared characteristic is the <strong>plasma membrane</strong>. Although I couldn't see it directly in the onion cell (it's too thin), I knew it was there separating the cytoplasm from the cell wall. Animal cells have a plasma membrane (the neutrophil had one), and protists like amoeba have a plasma membrane that allows them to move and control what enters/exits. Having a plasma membrane is essential for all cells to regulate their internal environment, whether they are plant, animal, or protist. This shared structure shows all eukaryotic cells solve the same problem of controlling what moves in and out."
+                </div>
+
+                <h3>This Template Pattern</h3>
+
+                <div class="key-concept">
+                    <strong>📌 Template Establishment:</strong> Your answer to this challenge question establishes the framework that will guide every subsequent investigation in this chapter. Each investigation will explore different organisms or cell types (carrot parenchyma, Euglena, Paramecium, animal sperm, etc.), but you will consistently apply this same analysis:
+                    <ul>
+                        <li>Observe the specific cell type</li>
+                        <li>Identify its unique characteristics</li>
+                        <li>Recognize shared characteristics across kingdoms</li>
+                        <li>Connect observations to the concept of evolutionary unity</li>
+                    </ul>
+                    This is the unifying theme of the entire chapter.
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-secondary" onclick="switchTab('observation')">← Back</button>
+                    <button class="btn btn-secondary" onclick="switchTab('alignment')">Return to Overview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>University of Wisconsin-Parkside | Eukaryotic Cells Laboratory Investigation</p>
+        <p><strong>Onion Cell Investigation: Template Foundation for Chapter Success</strong></p>
+        <p>This investigation establishes procedures and conceptual frameworks applied to all subsequent investigations.</p>
+    </footer>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
