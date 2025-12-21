@@ -1,24 +1,37 @@
-const Game = {
+// main.js
+// Purpose: application entry point + safe initialization
+// This file MUST exist and MUST run after game.js
 
-  addAA(name) {
-    if (State.chain.length >= 5) return;
-    State.chain.push({
-      name,
-      r: AminoAcids[name].r,
-      reacted: false
-    });
-    document.getElementById("hint").textContent =
-      "Select OH, then dehydrate.";
-    Renderer.render();
-  },
+(function () {
+  "use strict";
 
-  selectOH(i) {
-    State.selectedOH = i;
-    document.getElementById("rxnBtn").style.display = "block";
-  },
-
-  dehydrate() {
-    Reactions.dehydrate();
-    document.getElementById("rxnBtn").style.display = "none";
+  // Hard fail if Game is not present
+  if (typeof Game === "undefined") {
+    console.error("Game object not found. game.js did not load.");
+    return;
   }
-};
+
+  // Initialize after DOM is fully ready
+  window.addEventListener("DOMContentLoaded", () => {
+
+    // Ensure required DOM nodes exist
+    const stage = document.getElementById("stage");
+    const rxnBtn = document.getElementById("rxnBtn");
+
+    if (!stage || !rxnBtn) {
+      console.error("Required DOM elements missing.");
+      return;
+    }
+
+    // Hide reaction button initially
+    rxnBtn.style.display = "none";
+
+    // Force initial render (empty lab state)
+    if (typeof Game.render === "function") {
+      Game.render();
+    }
+
+    console.log("Peptide Bond Builder initialized successfully.");
+  });
+
+})();
