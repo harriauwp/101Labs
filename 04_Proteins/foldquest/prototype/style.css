@@ -1,160 +1,95 @@
-/* =========================
-   Global Page Styling
-   ========================= */
-
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f8;
-  color: #333;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
   padding: 20px;
 }
 
-h1, h2 {
+h1, h2, h3, p {
   text-align: center;
 }
 
-p {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* =========================
-   Amino Acid Pool & Chain
-   ========================= */
-
-#aa-pool,
-#chain {
+#aa-pool, #chain, #waterPool {
   display: flex;
+  gap: 14px;
   flex-wrap: wrap;
-  gap: 10px;
+  justify-content: center;
   padding: 15px;
-  background-color: #ffffff;
+  background: white;
   border-radius: 8px;
-  margin: 0 auto 25px auto;
-  max-width: 900px;
-  min-height: 70px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin: 15px auto;
+  max-width: 1100px;
 }
 
-/* Chain visual emphasis */
-#chain {
-  border: 2px dashed #999;
-  justify-content: flex-start;
-}
-
-/* =========================
-   Amino Acid Blocks
-   ========================= */
+/* === Amino Acid Pool === */
 
 .aa {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 6px;
   font-weight: bold;
-  font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
-  user-select: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.aa:active {
-  cursor: grabbing;
-}
+.nonpolar { background: #ffe082; }
+.polar    { background: #a5d6a7; }
+.acidic  { background: #ef9a9a; }
+.basic   { background: #90caf9; }
 
-/* =========================
-   Amino Acid Color Coding
-   ========================= */
-
-/* Nonpolar / Hydrophobic */
-.nonpolar {
-  background-color: #ffe082; /* Yellow */
-}
-
-/* Polar / Uncharged */
-.polar {
-  background-color: #a5d6a7; /* Green */
-}
-
-/* Acidic / Negatively Charged */
-.acidic {
-  background-color: #ef9a9a; /* Red */
-}
-
-/* Basic / Positively Charged */
-.basic {
-  background-color: #90caf9; /* Blue */
-}
-
-/* =========================
-   Peptide Bond Visualization
-   ========================= */
-
-.bond {
-  width: 20px;
-  height: 6px;
-  background-color: #555;
-  border-radius: 3px;
-  align-self: center;
-}
-
-/* =========================
-   Dehydration (Water Release)
-   ========================= */
-
-#reactionFeedback {
-  text-align: center;
-  font-size: 16px;
-  min-height: 24px;
-}
-
-.water {
-  display: inline-block;
-  margin-top: 10px;
-  color: #2196f3;
-  font-weight: bold;
-  animation: fadeOut 1.5s forwards;
-}
-
-/* =========================
-   Animations
-   ========================= */
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-
-/* =========================
-   Backbone Residue Styling
-   ========================= */
+/* === Residue Skeleton === */
 
 .residue {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  width: 120px;
+  height: 120px;
   font-size: 12px;
 }
 
-.backbone {
-  font-family: monospace;
-  margin-bottom: 4px;
+.atom {
+  position: absolute;
+  font-weight: bold;
 }
 
-.r-group {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.bond {
+  position: absolute;
+  background: #000;
+}
+
+/* Bonds */
+.bond.h { width: 2px; height: 20px; }
+.bond.v { width: 20px; height: 2px; }
+
+/* Atom positions */
+.N  { left: 10px;  top: 50px; }
+.Ca { left: 45px;  top: 50px; }
+.C  { left: 80px;  top: 50px; }
+.O  { left: 105px; top: 50px; }
+
+.R  { left: 45px;  top: 5px;  }
+.Ha { left: 45px;  top: 90px; }
+
+/* Bonds around alpha carbon */
+.bond.NCa { left: 25px; top: 60px; }
+.bond.CaC { left: 60px; top: 60px; }
+.bond.R   { left: 55px; top: 25px; transform: rotate(90deg); }
+.bond.Ha  { left: 55px; top: 75px; transform: rotate(90deg); }
+
+/* Carbonyl double bond */
+.double {
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: #000;
+  left: 90px;
+}
+
+.double.one { top: 45px; }
+.double.two { top: 55px; }
+
+/* Water molecules */
+.water {
   font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #2196f3;
 }
