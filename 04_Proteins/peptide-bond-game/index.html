@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Peptide Bond Builder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
 
@@ -22,7 +22,7 @@
 
       <hr>
 
-      <p id="hint">Add amino acids to begin.</p>
+      <p id="hint">Add amino acids, then select OH and H.</p>
 
       <button id="rxnBtn" onclick="Game.dehydrate()">DEHYDRATE</button>
       <button onclick="location.reload()">Reset</button>
@@ -39,8 +39,11 @@
   </div>
 </div>
 
-<script src="game.js"></script>
-<script src="main.js"></script>
+<script src="scripts/data.js"></script>
+<script src="scripts/state.js"></script>
+<script src="scripts/render.js"></script>
+<script src="scripts/reaction.js"></script>
+<script src="scripts/game.js"></script>
+
 </body>
 </html>
-
