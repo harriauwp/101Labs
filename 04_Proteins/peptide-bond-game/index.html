@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Peptide Bond Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+<div class="lab-container">
+  <header class="uwp-header">
+    <h1>Peptide Bond & Polypeptide Builder</h1>
+    <span>UWP PRE-MED LAB</span>
+  </header>
+
+  <div class="layout-grid">
+    <aside class="sidebar">
+      <button onclick="Game.addAA('Glycine')">+ Glycine</button>
+      <button onclick="Game.addAA('Alanine')">+ Alanine</button>
+      <button onclick="Game.addAA('Cysteine')">+ Cysteine</button>
+
+      <hr>
+      <p id="hint">Add amino acids to begin.</p>
+      <button id="rxnBtn" onclick="Game.dehydrate()">DEHYDRATE</button>
+      <button onclick="location.reload()">Reset</button>
+    </aside>
+
+    <main class="workspace">
+      <div class="byproduct-tray">
+        <span>WATERS:</span>
+        <div id="waterStorage"></div>
+      </div>
+      <div id="stage" class="stage"></div>
+    </main>
+  </div>
+</div>
+
+<script src="scripts/aminoAcids.js"></script>
+<script src="scripts/state.js"></script>
+<script src="scripts/render.js"></script>
+<script src="scripts/reactions.js"></script>
+<script src="scripts/main.js"></script>
+
+</body>
+</html>
