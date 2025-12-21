@@ -176,7 +176,7 @@
 
         /* AI Prompt Expandable Box */
         .ai-prompt-container {
-            background: #f0f4ff;
+            background: white;
             border: 1px solid #d0e0ff;
             border-radius: 6px;
             overflow: hidden;
@@ -187,7 +187,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 12px;
+            padding: 12px;
             cursor: pointer;
             background: #e8efff;
             transition: background 0.3s ease;
@@ -206,6 +206,7 @@
             line-height: 16px;
             font-size: 0.9em;
             transition: transform 0.3s ease;
+            font-weight: bold;
         }
 
         .ai-prompt-toggle.open {
@@ -223,6 +224,7 @@
             color: #555;
             border-top: 1px solid #d0e0ff;
             line-height: 1.6;
+            background: white;
         }
 
         .ai-prompt-content.open {
@@ -230,19 +232,54 @@
         }
 
         .ai-prompt-text {
-            background: white;
-            padding: 10px;
+            background: #f9f9f9;
+            padding: 12px;
             border-radius: 4px;
             border-left: 3px solid #667eea;
             margin-top: 8px;
             font-family: 'Courier New', monospace;
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #333;
             white-space: pre-wrap;
             word-wrap: break-word;
-            max-height: 200px;
-            overflow-y: auto;
+            line-height: 1.5;
         }
+
+        /* Task Input Boxes */
+        .task-box {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #d0e0ff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .task-box-title {
+            font-size: 0.85em;
+            color: #555;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .task-box-subtitle {
+            font-size: 0.75em;
+            color: #999;
+            margin: 0;
+        }
+
+        .task-input {
+            margin-top: 8px;
+            padding: 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.85em;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+</CANVAS_NEW_STR>
 
         /* Exercise Page Styles */
         .exercise-page {
@@ -389,17 +426,17 @@
             </div>
 
             <!-- AI Prompt Instructions Box -->
-            <div style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%; max-width: 100%;">
-                <p style="color: #333; margin-bottom: 15px; font-size: 0.95em;"><strong>Copy and paste this AI prompt into Copilot:</strong></p>
+            <div style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%;">
                 <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
-                    <!-- Prompt Box -->
+                    <!-- Prompt Box with Instructions -->
                     <div class="ai-prompt-container">
                         <div class="ai-prompt-header" onclick="togglePrompt(this)">
                             <span class="ai-prompt-toggle">▶</span>
                             <span class="ai-prompt-label">📋 Click to view AI prompt</span>
                         </div>
                         <div class="ai-prompt-content">
-                            <div class="ai-prompt-text">Prompt: "Please provide a comprehensive linguistic and conceptual breakdown of the word [INSERT WORD HERE].
+                            <p style="font-size: 0.85em; color: #555; margin: 0 0 8px 0;"><strong>Copy and paste this AI prompt into Copilot:</strong></p>
+                            <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown of the word [INSERT WORD HERE].
 
 Your response must include the following four sections:
 
@@ -409,21 +446,25 @@ Etymology: Provide a detailed history of the word's origins, including the origi
 
 Standard Definition: Provide a clear, academic definition of the concept as it is understood today.
 
-Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information."</div>
+Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information.</div>
                         </div>
                     </div>
                     <!-- Morpheme & Etymology Box -->
-                    <div style="background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #667eea;">
-                        <p style="font-size: 0.85em; color: #555; margin: 0;"><strong>In your own words:</strong></p>
-                        <p style="font-size: 0.8em; color: #999; margin: 8px 0 0 0;">Explain the morpheme and etymology</p>
+                    <div class="task-box">
+                        <p class="task-box-title">In your own words:</p>
+                        <p class="task-box-subtitle">Explain the morpheme and etymology</p>
+                        <textarea class="task-input" placeholder="Type your response here..."></textarea>
                     </div>
                     <!-- Examples Box -->
-                    <div style="background: white; padding: 12px; border-radius: 6px; border-left: 3px solid #667eea;">
-                        <p style="font-size: 0.85em; color: #555; margin: 0;"><strong>Then provide:</strong></p>
-                        <p style="font-size: 0.8em; color: #999; margin: 8px 0 0 0;">Examples of pseudoscience</p>
+                    <div class="task-box">
+                        <p class="task-box-title">Then provide:</p>
+                        <p class="task-box-subtitle">Examples of pseudoscience</p>
+                        <textarea class="task-input" placeholder="Type your response here..."></textarea>
                     </div>
                 </div>
             </div>
+
+</CANVAS_NEW_STR>
 
             <div class="exercises-grid">
                 <!-- Exercise 1: Astrology -->
@@ -568,6 +609,16 @@ Scholarly Verification: For every major claim made in the definition and etymolo
             // Scroll to top
             window.scrollTo(0, 0);
         }
+
+        function togglePrompt(header) {
+            const toggle = header.querySelector('.ai-prompt-toggle');
+            const content = header.nextElementSibling;
+            
+            toggle.classList.toggle('open');
+            content.classList.toggle('open');
+        }
     </script>
+
+</CANVAS_NEW_STR>
 </body>
 </html>
