@@ -1,3 +1,7 @@
+/* =========================
+   Amino Acid Definitions
+   ========================= */
+
 const aminoAcids = [
   { code: "A", type: "nonpolar" },
   { code: "V", type: "nonpolar" },
@@ -23,52 +27,89 @@ const aminoAcids = [
   { code: "H", type: "basic" }
 ];
 
-let chainLength = 0;
+let residueCount = 0;
+let waterReleased = 0;
+
+/* =========================
+   Drag & Drop Helpers
+   ========================= */
 
 function allowDrop(ev) {
   ev.preventDefault();
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+  ev.dataTransfer.setData("text", ev.target.dataset.aa);
 }
+
+/* =========================
+   Core Drop Logic
+   ========================= */
 
 function dropAA(ev) {
   ev.preventDefault();
-  const id = ev.dataTransfer.getData("text");
-  const aa = document.getElementById(id);
+  const aaCode = ev.dataTransfer.getData("text");
+  const aa = aminoAcids.find(a => a.code === aaCode);
 
-  if (chainLength > 0) {
+  const chain = document.getElementById("chain");
+
+  // Add peptide bond if not first residue
+  if (residueCount > 0) {
     const bond = document.createElement("div");
     bond.className = "bond";
-    ev.target.appendChild(bond);
+    chain.appendChild(bond);
 
-    const water = document.createElement("div");
-    water.className = "water";
-    water.innerText = "H₂O released";
-    document.getElementById("reactionFeedback").innerHTML = "";
-    document.getElementById("reactionFeedback").appendChild(water);
+    releaseWater();
   }
 
-  ev.target.appendChild(aa);
-  aa.setAttribute("draggable", "false");
-  chainLength++;
+  // Create backbone unit
+  const residue = document.createElement("div");
+  residue.className = "residue";
+
+  residue.innerHTML = `
+    <div class="backbone">N—Cα—C</div>
+    <div class="r-group ${aa.type}">${aa.code}</div>
+  `;
+
+  chain.appendChild(residue);
+  residueCount++;
 
   document.getElementById("reactionFeedback").innerText =
     "Peptide bond formed via dehydration reaction.";
 }
 
+/* =========================
+   Water Animation & Counter
+   ========================= */
+
+function releaseWater() {
+  waterReleased++;
+  document.getElementById("waterCount").innerText = waterReleased;
+
+  const water = document.createElement("div");
+  water.className = "water";
+  water.innerText = "H₂O";
+
+  document.body.appendChild(water);
+
+  setTimeout(() => water.remove(), 1500);
+}
+
+/* =========================
+   Pool Creation (Infinite)
+   ========================= */
+
 function createPool() {
   const pool = document.getElementById("aa-pool");
 
-  aminoAcids.forEach((aa, index) => {
-    const div = document.createElement("div");
-    div.className = `aa ${aa.type}`;
-    div.innerText = aa.code;
-    div.id = `aa-${index}`;
-    div.draggable = true;
-    div.ondragstart = drag;
-    pool.appendChild(div);
+  aminoAcids.forEach(aa => {
+    const tile = document.createElement("div");
+    tile.className = `aa ${aa.type}`;
+    tile.innerText = aa.code;
+    tile.dataset.aa = aa.code;
+    tile.draggable = true;
+    tile.ondragstart = drag;
+    pool.appendChild(tile);
   });
 }
 
