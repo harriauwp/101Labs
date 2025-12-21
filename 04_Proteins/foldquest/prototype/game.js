@@ -1,87 +1,75 @@
-let energy = 50;
-let sequence = "";
-let hBondsOn = false;
+const aminoAcids = [
+  { code: "A", type: "nonpolar" },
+  { code: "V", type: "nonpolar" },
+  { code: "L", type: "nonpolar" },
+  { code: "I", type: "nonpolar" },
+  { code: "M", type: "nonpolar" },
+  { code: "F", type: "nonpolar" },
+  { code: "W", type: "nonpolar" },
+  { code: "P", type: "nonpolar" },
 
-// Amino acid categories
-const hydrophobic = ["A", "V", "L", "I", "M", "F", "W"];
-const charged = ["D", "E", "K", "R", "H"];
-const cysteine = "C";
+  { code: "S", type: "polar" },
+  { code: "T", type: "polar" },
+  { code: "N", type: "polar" },
+  { code: "Q", type: "polar" },
+  { code: "Y", type: "polar" },
+  { code: "C", type: "polar" },
 
-function updateEnergy(amount) {
-  energy += amount;
-  energy = Math.max(0, Math.min(100, energy));
+  { code: "D", type: "acidic" },
+  { code: "E", type: "acidic" },
 
-  document.getElementById("energyValue").innerText = `Energy: ${energy}`;
-  document.getElementById("energyFill").style.width = energy + "%";
+  { code: "K", type: "basic" },
+  { code: "R", type: "basic" },
+  { code: "H", type: "basic" }
+];
 
-  if (energy < 30) {
-    document.getElementById("stabilityMessage").innerText =
-      "✅ Protein is stable.";
-  } else if (energy < 70) {
-    document.getElementById("stabilityMessage").innerText =
-      "⚠️ Protein is partially stable.";
-  } else {
-    document.getElementById("stabilityMessage").innerText =
-      "❌ Protein is unstable.";
-  }
+let chainLength = 0;
+
+function allowDrop(ev) {
+  ev.preventDefault();
 }
 
-function buildSequence() {
-  sequence = document.getElementById("sequence").value.toUpperCase();
-  if (sequence.length < 5) {
-    document.getElementById("sequenceFeedback").innerText =
-      "Sequence too short to fold meaningfully.";
-    return;
-  }
-
-  document.getElementById("sequenceFeedback").innerText =
-    "Peptide bonds formed via dehydration reactions.";
-  updateEnergy(0);
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
 }
 
-function toggleHBonds() {
-  if (!sequence) return;
+function dropAA(ev) {
+  ev.preventDefault();
+  const id = ev.dataTransfer.getData("text");
+  const aa = document.getElementById(id);
 
-  hBondsOn = !hBondsOn;
+  if (chainLength > 0) {
+    const bond = document.createElement("div");
+    bond.className = "bond";
+    ev.target.appendChild(bond);
 
-  if (hBondsOn) {
-    document.getElementById("secondaryFeedback").innerText =
-      "Hydrogen bonds stabilize secondary structure (α-helices / β-sheets).";
-    updateEnergy(-15);
-  } else {
-    document.getElementById("secondaryFeedback").innerText =
-      "Hydrogen bonds removed. Secondary structure destabilized.";
-    updateEnergy(15);
+    const water = document.createElement("div");
+    water.className = "water";
+    water.innerText = "H₂O released";
+    document.getElementById("reactionFeedback").innerHTML = "";
+    document.getElementById("reactionFeedback").appendChild(water);
   }
+
+  ev.target.appendChild(aa);
+  aa.setAttribute("draggable", "false");
+  chainLength++;
+
+  document.getElementById("reactionFeedback").innerText =
+    "Peptide bond formed via dehydration reaction.";
 }
 
-function applyHydrophobicCollapse() {
-  if (!sequence) return;
+function createPool() {
+  const pool = document.getElementById("aa-pool");
 
-  let exposedHydrophobic = 0;
-  for (let aa of sequence) {
-    if (hydrophobic.includes(aa)) exposedHydrophobic++;
-  }
-
-  if (exposedHydrophobic > 2) {
-    document.getElementById("tertiaryFeedback").innerText =
-      "Hydrophobic residues buried in the core. Energy decreases.";
-    updateEnergy(-20);
-  } else {
-    document.getElementById("tertiaryFeedback").innerText =
-      "Few hydrophobic residues present. Minimal stabilization.";
-    updateEnergy(-5);
-  }
+  aminoAcids.forEach((aa, index) => {
+    const div = document.createElement("div");
+    div.className = `aa ${aa.type}`;
+    div.innerText = aa.code;
+    div.id = `aa-${index}`;
+    div.draggable = true;
+    div.ondragstart = drag;
+    pool.appendChild(div);
+  });
 }
 
-function formDisulfide() {
-  if (!sequence.includes(cysteine)) {
-    document.getElementById("tertiaryFeedback").innerText =
-      "No cysteines available for disulfide bonds.";
-    return;
-  }
-
-  document.getElementById("tertiaryFeedback").innerText =
-    "Disulfide bond formed between cysteines. Tertiary structure stabilized.";
-  updateEnergy(-10);
-}
+createPool();
