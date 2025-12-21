@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FoldQuest Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>🧬 FoldQuest: Protein Folding Prototype</h1>
+  <p>Build a protein and observe how folding rules affect stability.</p>
+
+  <section class="panel">
+    <h2>1️⃣ Primary Structure</h2>
+    <label for="sequence">Amino Acid Sequence (1-letter codes):</label>
+    <input type="text" id="sequence" placeholder="Example: AVVLKDSC">
+    <button onclick="buildSequence()">Build Chain</button>
+    <p id="sequenceFeedback"></p>
+  </section>
+
+  <section class="panel">
+    <h2>2️⃣ Secondary Structure</h2>
+    <button onclick="toggleHBonds()">Toggle Hydrogen Bonds</button>
+    <p id="secondaryFeedback"></p>
+  </section>
+
+  <section class="panel">
+    <h2>3️⃣ Tertiary Structure</h2>
+    <button onclick="applyHydrophobicCollapse()">Apply Hydrophobic Collapse</button>
+    <button onclick="formDisulfide()">Form Disulfide Bonds</button>
+    <p id="tertiaryFeedback"></p>
+  </section>
+
+  <section class="panel energy">
+    <h2>⚡ Energy & Stability</h2>
+    <div id="energyBar">
+      <div id="energyFill"></div>
+    </div>
+    <p id="energyValue">Energy: 50</p>
+    <p id="stabilityMessage"></p>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
