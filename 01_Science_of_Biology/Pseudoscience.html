@@ -146,6 +146,13 @@
             border-radius: 4px;
         }
 
+        .card-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: auto;
+        }
+
         .start-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -156,13 +163,85 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            align-self: flex-start;
-            margin-top: auto;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .start-button:hover {
             transform: scale(1.05);
             box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        }
+
+        /* AI Prompt Expandable Box */
+        .ai-prompt-container {
+            background: #f0f4ff;
+            border: 1px solid #d0e0ff;
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 0.85em;
+        }
+
+        .ai-prompt-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            cursor: pointer;
+            background: #e8efff;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .ai-prompt-header:hover {
+            background: #dce4ff;
+        }
+
+        .ai-prompt-toggle {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            text-align: center;
+            line-height: 16px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+
+        .ai-prompt-toggle.open {
+            transform: rotate(90deg);
+        }
+
+        .ai-prompt-label {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .ai-prompt-content {
+            display: none;
+            padding: 12px;
+            color: #555;
+            border-top: 1px solid #d0e0ff;
+            line-height: 1.6;
+        }
+
+        .ai-prompt-content.open {
+            display: block;
+        }
+
+        .ai-prompt-text {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+            margin-top: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #333;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 200px;
+            overflow-y: auto;
         }
 
         /* Exercise Page Styles */
@@ -311,7 +390,7 @@
 
             <div class="exercises-grid">
                 <!-- Exercise 1: Astrology -->
-                <div class="exercise-card" onclick="showExercise('astrology')">
+                <div class="exercise-card">
                     <div class="card-number">Exercise 1</div>
                     <div class="card-icon">♈</div>
                     <h3>Astrology Under Test</h3>
@@ -319,11 +398,32 @@
                     <div class="learning-objective">
                         <strong>Master:</strong> How to design controlled experiments to test extraordinary claims
                     </div>
-                    <button class="start-button">Begin Exercise →</button>
+                    <div class="card-footer">
+                        <a href="01astrology.html" class="start-button">Begin Exercise →</a>
+                        <div class="ai-prompt-container">
+                            <div class="ai-prompt-header" onclick="togglePrompt(this)">
+                                <span class="ai-prompt-toggle">▶</span>
+                                <span class="ai-prompt-label">📋 Click to view AI prompt</span>
+                            </div>
+                            <div class="ai-prompt-content">
+                                <p>Copy and paste this AI prompt into Copilot. In your own words, explain the morpheme and etymology, then provide examples of pseudoscience.</p>
+                                <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown of the word Pseudoscience.
+Your response must include the following four sections:
+
+Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots, suffixes), explaining the meaning of each part.
+
+Etymology: Provide a detailed history of the word's origins, including the original Greek, Latin, or other linguistic roots and the approximate era it entered the English language.
+
+Standard Definition: Provide a clear, academic definition of the concept as it is understood today.
+
+Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Exercise 2: Emily Rosa & Therapeutic Touch -->
-                <div class="exercise-card" onclick="showExercise('emily')">
+                <div class="exercise-card">
                     <div class="card-number">Exercise 2</div>
                     <div class="card-icon">🧑‍🔬</div>
                     <h3>Emily Rosa's Breakthrough</h3>
@@ -331,11 +431,32 @@
                     <div class="learning-objective">
                         <strong>Master:</strong> Testing fundamental claims before complex outcomes
                     </div>
-                    <button class="start-button">Begin Exercise →</button>
+                    <div class="card-footer">
+                        <a href="02EmilyRosa.html" class="start-button">Begin Exercise →</a>
+                        <div class="ai-prompt-container">
+                            <div class="ai-prompt-header" onclick="togglePrompt(this)">
+                                <span class="ai-prompt-toggle">▶</span>
+                                <span class="ai-prompt-label">📋 Click to view AI prompt</span>
+                            </div>
+                            <div class="ai-prompt-content">
+                                <p>Copy and paste this AI prompt into Copilot. In your own words, explain the morpheme and etymology, then provide examples of pseudoscience.</p>
+                                <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown of the word Pseudoscience.
+Your response must include the following four sections:
+
+Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots, suffixes), explaining the meaning of each part.
+
+Etymology: Provide a detailed history of the word's origins, including the original Greek, Latin, or other linguistic roots and the approximate era it entered the English language.
+
+Standard Definition: Provide a clear, academic definition of the concept as it is understood today.
+
+Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Exercise 3: Crystal Healing -->
-                <div class="exercise-card" onclick="showExercise('crystals')">
+                <div class="exercise-card">
                     <div class="card-number">Exercise 3</div>
                     <div class="card-icon">💎</div>
                     <h3>Crystal Healing Claims</h3>
@@ -343,7 +464,28 @@
                     <div class="learning-objective">
                         <strong>Master:</strong> Identifying pseudoscientific patterns and goalpost-moving
                     </div>
-                    <button class="start-button">Begin Exercise →</button>
+                    <div class="card-footer">
+                        <a href="03CrystalHealing.html" class="start-button">Begin Exercise →</a>
+                        <div class="ai-prompt-container">
+                            <div class="ai-prompt-header" onclick="togglePrompt(this)">
+                                <span class="ai-prompt-toggle">▶</span>
+                                <span class="ai-prompt-label">📋 Click to view AI prompt</span>
+                            </div>
+                            <div class="ai-prompt-content">
+                                <p>Copy and paste this AI prompt into Copilot. In your own words, explain the morpheme and etymology, then provide examples of pseudoscience.</p>
+                                <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown of the word Pseudoscience.
+Your response must include the following four sections:
+
+Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots, suffixes), explaining the meaning of each part.
+
+Etymology: Provide a detailed history of the word's origins, including the original Greek, Latin, or other linguistic roots and the approximate era it entered the English language.
+
+Standard Definition: Provide a clear, academic definition of the concept as it is understood today.
+
+Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
