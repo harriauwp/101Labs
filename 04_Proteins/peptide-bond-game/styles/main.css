@@ -69,12 +69,12 @@ main {
 }
 
 .aa {
-  margin: 0 6px;
+  margin: 0 8px;
 }
 
 svg {
-  width: 220px;
-  height: 240px;
+  width: 240px;
+  height: 260px;
 }
 
 .atom {
@@ -99,4 +99,8 @@ svg {
 
 .selected {
   fill: orange;
+}
+
+#rxnBtn {
+  display: none;
 }
