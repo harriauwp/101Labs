@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -122,6 +123,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -300,13 +302,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🔬 EukaryLingo: Cell Biology Terminology Mastery</h1>
 
         <div class="intro-section">
             <h2>How This System Works</h2>
-            <p>This interactive system will help you become fluent in biological terminology through a proven 6-step process:</p>
+            <p>This interactive system will help you become fluent in biological terminology through a proven 6-step
+                process:</p>
             <ol>
                 <li><strong>Select a term</strong> from the dropdown menu</li>
                 <li><strong>Copy the AI prompt</strong> and paste it into an AI tool (ChatGPT, Claude, or Copilot)</li>
@@ -315,13 +319,16 @@
                 <li><strong>Listen</strong> to correct pronunciation and practice aloud</li>
                 <li><strong>Assess</strong> your pronunciation using Microsoft's Speech Assessment Tool</li>
             </ol>
+            <p style="margin-top: 15px;">📚 <strong>Additional Resource:</strong> <a
+                    href="https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=2087&context=open_access_etds"
+                    target="_blank">Read more about biological terminology learning strategies</a></p>
         </div>
 
         <div class="term-selector">
             <label for="termSelect">Select a Biological Term:</label>
             <select id="termSelect" onchange="displayPrompt(this.value)">
                 <option value="">-- Choose a term --</option>
-                
+
                 <!-- Singular/Plural Pairs (with morpheme breakdown) -->
                 <option value="nucleus">Nucleus (singular) & Nuclei (plural)</option>
                 <option value="flagellum">Flagellum (singular) & Flagella (plural)</option>
@@ -329,7 +336,7 @@
                 <option value="pseudopodium">Pseudopodium (singular) & Pseudopodia (plural)</option>
                 <option value="nucleolus">Nucleolus (singular) & Nucleoli (plural)</option>
                 <option value="mitochondrion">Mitochondrion (singular) & Mitochondria (plural)</option>
-                
+
                 <!-- Organelles and Structures (with morpheme breakdown) -->
                 <option value="ribosome">Ribosome</option>
                 <option value="lysosome">Lysosome</option>
@@ -352,13 +359,13 @@
                 <option value="pigment">Pigment</option>
                 <option value="chlorophyll">Chlorophyll</option>
                 <option value="carotene">Carotene</option>
-                
+
                 <!-- Organism/Proper Nouns (no morpheme breakdown) -->
                 <option value="protist">Protist</option>
                 <option value="euglena">Euglena</option>
                 <option value="chlamydomonas">Chlamydomonas</option>
                 <option value="volvox">Volvox</option>
-                
+
                 <!-- Physiological/Chemical Processes (with morpheme breakdown) -->
                 <option value="osmoregulation">Osmoregulation</option>
                 <option value="phagocytosis">Phagocytosis</option>
@@ -395,14 +402,17 @@
             <div class="step-title">📝 Step 2: Explain in Your Own Words</div>
             <div class="text-input-section">
                 <label for="morphemeInput">What did you learn about the morpheme and etymology?</label>
-                <textarea id="morphemeInput" placeholder="In your own words, explain the word parts (morphemes) and origins (etymology) of this term..."></textarea>
+                <textarea id="morphemeInput"
+                    placeholder="In your own words, explain the word parts (morphemes) and origins (etymology) of this term..."></textarea>
             </div>
 
             <!-- Step 3: Application Examples -->
             <div class="step-title">🔬 Step 3: Provide Examples</div>
             <div class="text-input-section">
-                <label for="examplesInput">Where does this term appear in your lab manual or relate to structures you've observed?</label>
-                <textarea id="examplesInput" placeholder="Provide specific examples of how this term is used in biology or appears in your lab experiences..."></textarea>
+                <label for="examplesInput">Where does this term appear in your lab manual or relate to structures you've
+                    observed?</label>
+                <textarea id="examplesInput"
+                    placeholder="Provide specific examples of how this term is used in biology or appears in your lab experiences..."></textarea>
             </div>
 
             <!-- Step 4: Pronunciation -->
@@ -415,8 +425,10 @@
                     <li>Repeat aloud after each listen</li>
                 </ul>
                 <p style="margin-top: 15px;"><strong>Audio Pronunciation:</strong></p>
-                <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #667eea; margin-top: 10px;">
-                    <button id="playAudioBtn" onclick="playPronunciation()" style="background: #667eea; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 1em; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s ease;">
+                <div
+                    style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #667eea; margin-top: 10px;">
+                    <button id="playAudioBtn" onclick="playPronunciation()"
+                        style="background: #667eea; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 1em; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s ease;">
                         🔊 Play Pronunciation
                     </button>
                     <span id="audioStatus" style="color: #999; font-size: 0.85em; margin-left: 12px;"></span>
@@ -426,21 +438,27 @@
             <!-- Step 5: Reading Aloud -->
             <div class="step-title">📖 Step 5: Read Aloud</div>
             <div class="instructions">
-                <p>Read this sentence containing your selected term aloud several times. Focus on correct pronunciation of the highlighted word:</p>
+                <p>Read this sentence containing your selected term aloud several times. Focus on correct pronunciation
+                    of the highlighted word:</p>
                 <div class="sample-sentence" id="sampleSentence"></div>
             </div>
 
             <!-- Step 6: Speech Assessment -->
             <div class="step-title">✅ Step 6: Formal Pronunciation Feedback</div>
             <div class="instructions">
-                <p><strong>Use Microsoft's Pronunciation Assessment Tool</strong> for formal, detailed feedback on your pronunciation:</p>
-                <p style="margin-top: 15px; font-weight: 600; color: #667eea;">Step 1: Click the button below to open the assessment tool</p>
-                <a href="https://speech.microsoft.com/portal/pronunciationassessmenttool" target="_blank" style="display: inline-block; background: #667eea; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 10px; transition: background 0.3s ease; cursor: pointer;">
+                <p><strong>Use Microsoft's Pronunciation Assessment Tool</strong> for formal, detailed feedback on your
+                    pronunciation:</p>
+                <p style="margin-top: 15px; font-weight: 600; color: #667eea;">Step 1: Click the button below to open
+                    the assessment tool</p>
+                <a href="https://speech.microsoft.com/portal/pronunciationassessmenttool" target="_blank"
+                    style="display: inline-block; background: #667eea; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 10px; transition: background 0.3s ease; cursor: pointer;">
                     🔗 Open Microsoft Pronunciation Assessment Tool
                 </a>
                 <p style="margin-top: 15px; font-weight: 600; color: #667eea;">Step 2: Upload your screenshot</p>
-                <p style="font-size: 0.95em; color: #555; margin-top: 10px;">After using the tool, take a screenshot of your results and upload it here:</p>
-                <input type="file" id="assessmentFile" accept="image/*" style="margin-top: 10px; padding: 8px; border: 1px solid #d0e0ff; border-radius: 6px; width: 100%;">
+                <p style="font-size: 0.95em; color: #555; margin-top: 10px;">After using the tool, take a screenshot of
+                    your results and upload it here:</p>
+                <input type="file" id="assessmentFile" accept="image/*"
+                    style="margin-top: 10px; padding: 8px; border: 1px solid #d0e0ff; border-radius: 6px; width: 100%;">
                 <div class="note-box" style="margin-top: 15px;">
                     💡 <strong>How to Use Microsoft's Tool:</strong>
                     <ul style="margin-top: 8px; margin-left: 20px;">
@@ -455,7 +473,8 @@
         </div>
 
         <div class="footer">
-            <p>📚 EukaryLingo helps you master biological terminology through linguistic understanding, audio pronunciation, and practical application.</p>
+            <p>📚 EukaryLingo helps you master biological terminology through linguistic understanding, audio
+                pronunciation, and practical application.</p>
         </div>
     </div>
 
@@ -665,7 +684,7 @@
 
             const term = termData[value];
             let titleText = value.charAt(0).toUpperCase() + value.slice(1);
-            
+
             // Check if it's a singular/plural pair
             if (term.singular && term.plural) {
                 titleText = `${term.singular} (singular) & ${term.plural} (plural)`;
@@ -727,35 +746,35 @@ Use standard biological and linguistic references. Do not invent meanings, roots
 
             const statusEl = document.getElementById('audioStatus');
             const btnEl = document.getElementById('playAudioBtn');
-            
+
             // Format term for audio
             const termForAudio = currentTerm.charAt(0).toUpperCase() + currentTerm.slice(1).toLowerCase();
-            
+
             // Use Google Translate's Text-to-Speech API
             const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(termForAudio)}&tl=en&client=tw-ob`;
-            
+
             // Disable button while playing
             btnEl.disabled = true;
             statusEl.textContent = '🔊 Playing...';
-            
+
             const audio = new Audio(audioUrl);
-            
-            audio.onplay = function() {
+
+            audio.onplay = function () {
                 statusEl.textContent = '🔊 Playing...';
             };
-            
-            audio.onended = function() {
+
+            audio.onended = function () {
                 btnEl.disabled = false;
                 statusEl.textContent = '✓ Done';
             };
-            
-            audio.onerror = function() {
+
+            audio.onerror = function () {
                 btnEl.disabled = false;
                 statusEl.textContent = '⚠️ Audio unavailable';
                 console.error('Audio playback error');
             };
-            
-            audio.play().catch(function(error) {
+
+            audio.play().catch(function (error) {
                 btnEl.disabled = false;
                 statusEl.textContent = '⚠️ Unable to play audio';
                 console.error('Playback error:', error);
@@ -764,7 +783,7 @@ Use standard biological and linguistic references. Do not invent meanings, roots
 
         // Update displayPrompt to track current term
         const originalDisplayPrompt = window.displayPrompt;
-        window.displayPrompt = function(value) {
+        window.displayPrompt = function (value) {
             originalDisplayPrompt(value);
             if (value && termData[value]) {
                 currentTerm = value;
@@ -774,4 +793,5 @@ Use standard biological and linguistic references. Do not invent meanings, roots
         };
     </script>
 </body>
+
 </html>
