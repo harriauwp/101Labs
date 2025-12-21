@@ -1,115 +1,81 @@
-/* =========================
-   Amino Acid Definitions
-   ========================= */
-
 const aminoAcids = [
-  { code: "A", type: "nonpolar" },
-  { code: "V", type: "nonpolar" },
-  { code: "L", type: "nonpolar" },
-  { code: "I", type: "nonpolar" },
-  { code: "M", type: "nonpolar" },
-  { code: "F", type: "nonpolar" },
-  { code: "W", type: "nonpolar" },
-  { code: "P", type: "nonpolar" },
+  { code: "A", type: "nonpolar" }, { code: "V", type: "nonpolar" },
+  { code: "L", type: "nonpolar" }, { code: "I", type: "nonpolar" },
+  { code: "M", type: "nonpolar" }, { code: "F", type: "nonpolar" },
+  { code: "W", type: "nonpolar" }, { code: "P", type: "nonpolar" },
 
-  { code: "S", type: "polar" },
-  { code: "T", type: "polar" },
-  { code: "N", type: "polar" },
-  { code: "Q", type: "polar" },
-  { code: "Y", type: "polar" },
-  { code: "C", type: "polar" },
+  { code: "S", type: "polar" }, { code: "T", type: "polar" },
+  { code: "N", type: "polar" }, { code: "Q", type: "polar" },
+  { code: "Y", type: "polar" }, { code: "C", type: "polar" },
 
-  { code: "D", type: "acidic" },
-  { code: "E", type: "acidic" },
+  { code: "D", type: "acidic" }, { code: "E", type: "acidic" },
 
-  { code: "K", type: "basic" },
-  { code: "R", type: "basic" },
+  { code: "K", type: "basic" }, { code: "R", type: "basic" },
   { code: "H", type: "basic" }
 ];
 
 let residueCount = 0;
-let waterReleased = 0;
+let waterCount = 0;
 
-/* =========================
-   Drag & Drop Helpers
-   ========================= */
+function allowDrop(e) { e.preventDefault(); }
+function drag(e) { e.dataTransfer.setData("aa", e.target.dataset.code); }
 
-function allowDrop(ev) {
-  ev.preventDefault();
-}
-
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.dataset.aa);
-}
-
-/* =========================
-   Core Drop Logic
-   ========================= */
-
-function dropAA(ev) {
-  ev.preventDefault();
-  const aaCode = ev.dataTransfer.getData("text");
-  const aa = aminoAcids.find(a => a.code === aaCode);
+function dropAA(e) {
+  e.preventDefault();
+  const code = e.dataTransfer.getData("aa");
+  const aa = aminoAcids.find(a => a.code === code);
 
   const chain = document.getElementById("chain");
 
-  // Add peptide bond if not first residue
-  if (residueCount > 0) {
-    const bond = document.createElement("div");
-    bond.className = "bond";
-    chain.appendChild(bond);
+  if (residueCount > 0) releaseWater();
 
-    releaseWater();
-  }
+  const res = document.createElement("div");
+  res.className = "residue";
 
-  // Create backbone unit
-  const residue = document.createElement("div");
-  residue.className = "residue";
+  const nhText = residueCount === 0 ? "NH₂" : "NH";
 
-  residue.innerHTML = `
-    <div class="backbone">N—Cα—C</div>
-    <div class="r-group ${aa.type}">${aa.code}</div>
+  res.innerHTML = `
+    <div class="atom N">${nhText}</div>
+    <div class="atom Ca">Cα</div>
+    <div class="atom C">C</div>
+    <div class="atom O">O</div>
+
+    <div class="double one"></div>
+    <div class="double two"></div>
+
+    <div class="bond v NCa"></div>
+    <div class="bond v CaC"></div>
+    <div class="bond h R"></div>
+    <div class="bond h Ha"></div>
+
+    <div class="atom R ${aa.type}">${aa.code}</div>
+    <div class="atom Ha">H</div>
   `;
 
-  chain.appendChild(residue);
+  chain.appendChild(res);
   residueCount++;
-
-  document.getElementById("reactionFeedback").innerText =
-    "Peptide bond formed via dehydration reaction.";
 }
 
-/* =========================
-   Water Animation & Counter
-   ========================= */
-
 function releaseWater() {
-  waterReleased++;
-  document.getElementById("waterCount").innerText = waterReleased;
+  waterCount++;
+  document.getElementById("waterCount").innerText = waterCount;
 
   const water = document.createElement("div");
   water.className = "water";
   water.innerText = "H₂O";
-
-  document.body.appendChild(water);
-
-  setTimeout(() => water.remove(), 1500);
+  document.getElementById("waterPool").appendChild(water);
 }
-
-/* =========================
-   Pool Creation (Infinite)
-   ========================= */
 
 function createPool() {
   const pool = document.getElementById("aa-pool");
-
   aminoAcids.forEach(aa => {
-    const tile = document.createElement("div");
-    tile.className = `aa ${aa.type}`;
-    tile.innerText = aa.code;
-    tile.dataset.aa = aa.code;
-    tile.draggable = true;
-    tile.ondragstart = drag;
-    pool.appendChild(tile);
+    const d = document.createElement("div");
+    d.className = `aa ${aa.type}`;
+    d.innerText = aa.code;
+    d.dataset.code = aa.code;
+    d.draggable = true;
+    d.ondragstart = drag;
+    pool.appendChild(d);
   });
 }
 
