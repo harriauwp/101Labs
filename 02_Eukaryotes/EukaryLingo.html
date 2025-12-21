@@ -416,11 +416,10 @@
                 </ul>
                 <p style="margin-top: 15px;"><strong>Audio Pronunciation:</strong></p>
                 <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #667eea; margin-top: 10px;">
-                    <audio id="pronunciationAudio" controls style="width: 100%;">
-                        <source id="audioSource" src="" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    <p style="font-size: 0.8em; color: #999; margin-top: 10px;">🔊 <strong>Audio generated from Google's Text-to-Speech API</strong></p>
+                    <button id="playAudioBtn" onclick="playPronunciation()" style="background: #667eea; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 1em; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s ease;">
+                        🔊 Play Pronunciation
+                    </button>
+                    <span id="audioStatus" style="color: #999; font-size: 0.85em; margin-left: 12px;"></span>
                 </div>
             </div>
 
@@ -718,27 +717,59 @@ Use standard biological and linguistic references. Do not invent meanings, roots
             content.classList.toggle('open');
         }
 
-        function generatePronunciationAudio(term) {
-            // Google Text-to-Speech API for pronunciation audio
-            const audioSource = document.getElementById('audioSource');
-            const audioElement = document.getElementById('pronunciationAudio');
+        let currentTerm = '';
+
+        function playPronunciation() {
+            if (!currentTerm) {
+                alert('Please select a biological term first');
+                return;
+            }
+
+            const statusEl = document.getElementById('audioStatus');
+            const btnEl = document.getElementById('playAudioBtn');
             
-            // Format term for audio generation
-            const termForAudio = term.charAt(0).toUpperCase() + term.slice(1).toLowerCase();
+            // Format term for audio
+            const termForAudio = currentTerm.charAt(0).toUpperCase() + currentTerm.slice(1).toLowerCase();
             
-            // Google Translate TTS API (free alternative)
+            // Use Google Translate's Text-to-Speech API
             const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(termForAudio)}&tl=en&client=tw-ob`;
             
-            audioSource.src = audioUrl;
-            audioElement.load();
+            // Disable button while playing
+            btnEl.disabled = true;
+            statusEl.textContent = '🔊 Playing...';
+            
+            const audio = new Audio(audioUrl);
+            
+            audio.onplay = function() {
+                statusEl.textContent = '🔊 Playing...';
+            };
+            
+            audio.onended = function() {
+                btnEl.disabled = false;
+                statusEl.textContent = '✓ Done';
+            };
+            
+            audio.onerror = function() {
+                btnEl.disabled = false;
+                statusEl.textContent = '⚠️ Audio unavailable';
+                console.error('Audio playback error');
+            };
+            
+            audio.play().catch(function(error) {
+                btnEl.disabled = false;
+                statusEl.textContent = '⚠️ Unable to play audio';
+                console.error('Playback error:', error);
+            });
         }
 
-        // Enhance displayPrompt to include audio generation
+        // Update displayPrompt to track current term
         const originalDisplayPrompt = window.displayPrompt;
         window.displayPrompt = function(value) {
             originalDisplayPrompt(value);
             if (value && termData[value]) {
-                generatePronunciationAudio(value);
+                currentTerm = value;
+                document.getElementById('audioStatus').textContent = '';
+                document.getElementById('playAudioBtn').disabled = false;
             }
         };
     </script>
