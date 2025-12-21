@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Scientific Process Adventure: Magnesium & Diabetes</title>
+<style>
+    /* Original CSS: REMOVED / OVERRIDDEN to meet UWP Style Guide */
+    /* UWP Marketing & Design Style Guide Compliant CSS */
+    :root {
+        /* UWP Brand Colors (Fallback: Parkside Green #007A33, as guide access is restricted) */
+        --uwp-green: #007A33; /* Parkside Green (used for primary accent) */
+        --uwp-green-dark: #004D21; /* Darker variant for contrast on white */
+        --uwp-black: #000000;
+        --uwp-white: #ffffff;
+        --uwp-grey-text: #5C5C5C; /* Readable neutral grey for placeholders and muted text */
+        --uwp-grey-light: #F7F7F7; /* Light background/border grey */
+        --uwp-grey-dark: #E0E0E0; /* Slightly darker light grey */
+
+        /* Spacing (in rem) */
+        --space-1: 0.25rem;
+        --space-2: 0.5rem;
+        --space-3: 0.75rem;
+        --space-4: 1rem;
+        --space-5: 1.25rem;
+        --space-6: 1.5rem;
+
+        /* Override original variables to use UWP colors for consistency */
+        --bg: var(--uwp-grey-light); /* Changed for readability */
+        --card: var(--uwp-white);
+        --accent: var(--uwp-green);
+        --accent2: var(--uwp-green-dark); /* Using accessible green for links/accents */
+        --accent3: #5C95AA; /* A secondary blue for steps/progress */
+        --text: var(--uwp-black);
+        --muted: var(--uwp-grey-text);
+        --danger: #D84315; /* Accessible dark orange/red */
+        --success: #388E3C; /* Accessible dark green */
+    }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        /* UWP Typography Stack */
+        font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 16px; /* Body text size >= 16px */
+        line-height: 1.5; /* Line height >= 1.5 */
+    }
+    a {
+        color: var(--uwp-green-dark);
+        text-decoration: underline;
+        transition: color 0.15s ease;
+    }
+    a:hover, a:focus {
+        color: var(--uwp-black);
+    }
+    /* Enforce black text on all cards (which are now white) */
+    .app {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 24px 16px 40px;
+    }
+
+    h1, h2, h3 {
+        margin: 0 0 var(--space-4);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--uwp-black);
+    }
+    h1 span.accent { color: var(--uwp-green-dark); }
+    p { margin: 0 0 var(--space-4); }
+
+    .flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-4);
+    }
+    .center { text-align: center; }
+
+    /* CARD STYLING: Changed from dark gradient to white with subtle shadow/border */
+    .card {
+        background: var(--card); /* White background */
+        border-radius: 8px; /* Slightly tighter radius */
+        padding: var(--space-5) var(--space-6);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border: 1px solid var(--uwp-grey-dark);
+        backdrop-filter: none; /* Not needed on light background */
+        position: relative;
+        overflow: hidden;
+    }
+    /* All text inside cards must be black */
+    .card, .card p, .card h1, .card h2, .card h3, .card a {
+        color: var(--uwp-black);
+    }
+    .card p, .card .tagline {
+        color: var(--uwp-black);
+    }
+
+
+    .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: var(--space-1) var(--space-3);
+        border-radius: 999px;
+        background: var(--uwp-grey-dark); /* Light grey background */
+        color: var(--uwp-black); /* Black text for contrast */
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+    }
+
+    /* BUTTON STYLING: Primary = UWP Green */
+    .btn {
+        border: none;
+        cursor: pointer;
+        border-radius: 4px; /* Square off buttons slightly */
+        padding: var(--space-3) var(--space-5);
+        font-size: 15px;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+        transition: transform 0.08s ease, box-shadow 0.1s ease, background 0.15s ease;
+        background: var(--uwp-green);
+        color: var(--uwp-white); /* White text on UWP Green for AA contrast */
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .btn:hover {
+        background: var(--uwp-green-dark);
+    }
+    .btn:focus-visible {
+        outline: 3px solid var(--uwp-green-dark);
+        outline-offset: 2px;
+    }
+    .btn.secondary {
+        background: var(--uwp-white); /* White background */
+        color: var(--uwp-green-dark); /* Dark Green text for contrast */
+        box-shadow: none;
+        border: 1px solid var(--uwp-green-dark);
+    }
+    .btn.secondary:hover {
+        background: var(--uwp-grey-dark);
+    }
+    .btn:active {
+        transform: translateY(1px) scale(0.99);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+    .btn[disabled] {
+        opacity: 0.6;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    .tagline {
+        font-size: 16px;
+        color: var(--uwp-black);
+        max-width: 620px;
+        margin: var(--space-3) auto var(--space-4);
+    }
+
+    .choice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: var(--space-4);
+        margin-top: var(--space-4);
+    }
+
+    /* EXPERIMENT CARD STYLING */
+    .experiment-card {
+        cursor: pointer;
+        transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+        border-radius: 8px;
+        padding: var(--space-4);
+        background: var(--uwp-white);
+        border: 1px solid var(--uwp-grey-dark);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .experiment-card h3 {
+        color: var(--uwp-green-dark);
+    }
+    .experiment-card.diabetes {
+        /* No specific color gradient needed, keep white for simplicity/compliance */
+    }
+    .experiment-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        border-color: var(--uwp-green);
+    }
+    .experiment-card:focus-visible {
+        outline: 3px solid var(--uwp-green);
+        outline-offset: 2px;
+    }
+
+    .badge-row {
+        display: flex;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+        margin-top: var(--space-3);
+        font-size: 12px;
+        color: var(--uwp-black);
+    }
+    .badge {
+        padding: 2px var(--space-3);
+        border-radius: 4px;
+        border: 1px solid var(--uwp-grey-dark);
+        background: var(--uwp-grey-light);
+    }
+
+    .hidden { display: none !important; }
+
+    .step-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-3);
+        margin-bottom: var(--space-3);
+    }
+    .step-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--uwp-green-dark);
+    }
+    .step-subtitle {
+        font-size: 14px;
+        color: var(--uwp-grey-text);
+    }
+
+    /* PROGRESS BAR STYLING: UWP Green accent */
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--uwp-grey-dark);
+        overflow: hidden;
+        margin: var(--space-3) 0 var(--space-4);
+    }
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: var(--uwp-green);
+        transition: width 0.25s ease-out;
+    }
+
+    /* INPUT/TEXTAREA STYLING: Visible borders, UWP Green focus ring */
+    textarea, input[type="text"] {
+        width: 100%;
+        background: var(--uwp-white);
+        border-radius: 4px;
+        border: 1px solid var(--uwp-grey-text);
+        color: var(--uwp-black);
+        padding: var(--space-3);
+        font-size: 16px;
+        resize: vertical;
+        min-height: 90px;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    textarea:focus, input[type="text"]:focus {
+        border-color: var(--uwp-green);
+        box-shadow: 0 0 0 2px rgba(0, 122, 51, 0.4); /* UWP Green focus glow */
+    }
+    /* Placeholder text style */
+    ::placeholder {
+        color: var(--uwp-grey-text);
+        opacity: 1; /* Ensure placeholder is readable and not too faint */
+    }
+
+    .prompt-label {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: var(--space-2);
+        color: var(--uwp-black);
+    }
+    .prompt-helper {
+        font-size: 13px;
+        color: var(--uwp-grey-text);
+        margin-bottom: var(--space-3);
+    }
+
+    .pill-step {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--uwp-black);
+        display: inline-flex;
+        gap: var(--space-1);
+        align-items: center;
+        font-weight: 600;
+    }
+
+    .nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-3);
+        margin-top: var(--space-4);
+        flex-wrap: wrap;
+    }
+
+    .feedback {
+        font-size: 13px;
+        margin-top: var(--space-2);
+        font-weight: 600;
+    }
+    .feedback.good { color: var(--success); }
+    .feedback.warn { color: var(--danger); }
+
+    .mini-checklist {
+        font-size: 13px;
+        margin-top: var(--space-2);
+        color: var(--uwp-grey-text);
+    }
+    .mini-checklist span {
+        display: inline-block;
+        margin-right: var(--space-3);
+        padding: 2px var(--space-2);
+        border-radius: 4px;
+        border: 1px solid var(--uwp-grey-dark);
+        background: var(--uwp-grey-light);
+    }
+
+    /* Summary box border accent color */
+    .summary-box {
+        font-size: 14px;
+        color: var(--uwp-black);
+        border-left: 3px solid var(--uwp-green); /* Use UWP Green for accent */
+        padding-left: var(--space-3);
+        margin-top: var(--space-3);
+        background: var(--uwp-grey-light);
+        padding: var(--space-3);
+        border-radius: 4px;
+    }
+
+    /* COMPARISON TABLE STYLING */
+    .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: var(--space-3);
+        font-size: 14px;
+    }
+    .compare-table th,
+    .compare-table td {
+        border: 1px solid var(--uwp-grey-dark);
+        padding: var(--space-2) var(--space-3);
+        text-align: left;
+        color: var(--uwp-black); /* Ensure black text */
+    }
+    .compare-table th {
+        background: var(--uwp-grey-dark);
+        font-weight: 700;
+    }
+    .compare-table td {
+        background: var(--uwp-white);
+    }
+
+    @media (max-width: 720px) {
+        .app { padding: 18px 10px 30px; }
+        .card { padding: var(--space-4); }
+    }
+</style>
+</head>
+<body>
+<div class="app">
+
+    <section id="landing">
+        <div class="card center">
+            <div class="pill">Interactive PreMed Lab • Scientific Process</div>
+            <h1>Build Science Like a <span class="accent">Detective Story</span></h1>
+            <p class="tagline">
+                Every diagnosis and every experiment starts the same way: an observation, a question,
+                and a testable idea. Use two mini “cases”&mdash;magnesium & tomato plants and cinnamon & Type 2 diabetes&mdash;
+                to practice the full scientific process from first hunch to theory vs. law.
+            </p>
+            <div class="flex center" style="justify-content: center; gap: 10px; margin-bottom: 10px;">
+                <button class="btn" onclick="scrollToChoices()">
+                    Start the Adventure
+                </button>
+                <button class="btn secondary" onclick="toggleHowTo()">
+                    How this game works
+                </button>
+            </div>
+            <div id="howto" class="hidden" style="max-width: 720px; margin: 8px auto 0; text-align: left;">
+                <p style="font-size: 13px; color: var(--muted);">
+                    1. Pick an experiment: plant nutrition (magnesium) or metabolic health (cinnamon and Type 2 diabetes).<br>
+                    2. Move through the steps: observation → curiosity question → research question → hypothesis →
+                    prediction → variables → design → results → theory vs. law.<br>
+                    3. At each step, type your answer, then use the hints and instant feedback to tighten your scientific thinking.
+                </p>
+            </div>
+            <div class="choice-grid" id="experimentChoices">
+                <div class="experiment-card" onclick="startGame('magnesium')">
+                    <h3>Magnesium & Tomato Plants</h3>
+                    <p style="font-size: 13px; color: var(--muted);">
+                        Greenhouse student, two cities, one difference: magnesium in the water.
+                        Use plant height and leaf color to build a full experimental story.
+                    </p>
+                    <div class="badge-row">
+                        <div class="badge">Plant physiology</div>
+                        <div class="badge">Variables & controls</div>
+                        <div class="badge">Quant vs. qual data</div>
+                    </div>
+                </div>
+                <div class="experiment-card diabetes" onclick="startGame('diabetes')">
+                    <h3>Cinnamon & Type 2 Diabetes</h3>
+                    <p style="font-size: 13px; color: var(--muted);">
+                        Clinical team, multiple cinnamon doses, and patients with Type 2 diabetes.
+                        Design and interpret a controlled trial on blood glucose and lipids.
+                    </p>
+                    <div class="badge-row">
+                        <div class="badge">Clinical design</div>
+                        <div class="badge">Doses & placebos</div>
+                        <div class="badge">Biomarkers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gameSection" class="hidden" style="margin-top: 20px;">
+        <div class="card">
+            <div class="step-header">
+                <div>
+                    <div class="pill-step">
+                        <span id="expLabel">Magnesium Lab</span>
+                        • <span id="stepLabel">Step 1 of 8</span>
+                    </div>
+                    <div class="step-title" id="stepTitle">Observation</div>
+                    <div class="step-subtitle" id="stepSubtitle">
+                        Describe what is happening before you try to explain why.
+                    </div>
+                </div>
+                <button class="btn secondary" onclick="backToLanding()">← Switch experiment</button>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div id="contextBox" class="summary-box">
+                </div>
+
+            <div style="margin-top: 12px;">
+                <div class="prompt-label" id="promptLabel">Your turn</div>
+                <div class="prompt-helper" id="promptHelper">
+                    Use complete sentences. Focus on what is directly observable.
+                </div>
+                <textarea id="responseInput" placeholder="Type your response here..."></textarea>
+                <div class="feedback" id="feedbackArea"></div>
+                <div class="mini-checklist" id="checklistArea"></div>
+            </div>
+
+            <div class="nav-row">
+                <button class="btn secondary" onclick="prevStep()" id="prevBtn">← Previous</button>
+                <div style="flex: 1;"></div>
+                <button class="btn" onclick="nextStep()" id="nextBtn">
+                    Check & Continue →
+                </button>
+            </div>
+        </div>
+
+        <div class="card hidden" id="compareCard" style="margin-top: 16px;">
+            <h3>From One Experiment to Medical Science</h3>
+            <p style="font-size: 13px; color: var(--muted);">
+                Your single experiment is one tile in a much larger mosaic. The table below
+                compares how your case fits into different levels of scientific knowledge.
+            </p>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>What it is</th>
+                        <th>In this module</th>
+                    </tr>
+                </thead>
+                <tbody id="compareBody">
+                    </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<script>
+/* ------------ DATA MODEL FOR STEPS ------------ */
+
+const STEPS = [
+    "Observation",
+    "Curiosity Question",
+    "Research Question",
+    "Hypothesis",
+    "Prediction",
+    "Variables & Controls",
+    "Experimental Design & Results",
+    "Theory vs. Law"
+];
+
+const EXPERIMENTS = {
+    magnesium: {
+        label: "Magnesium & Tomato Plants",
+        shortLabel: "Magnesium Lab",
+        color: "plants",
+        contextByStep: [
+            // 0 Observation
+            "You are a student working in greenhouses in Racine & Kenosha and you notices that tomato plants in one city grow taller and have thicker stems than in the other. A water filter is used in one greenhouse, while the other uses tap water that contains trace magnesium.",
+            // 1 Curiosity
+            "Curiosity turns observations into questions. Here you want to know how magnesium in the water might relate to differences in plant growth.",
+            // 2 Research Question
+            "A research question must be specific and testable. In this case, it should link magnesium concentration (independent variable) to a measurable plant trait such as final height (dependent variable).",
+            // 3 Hypothesis
+            "A hypothesis is an educated, testable statement. For example, that water containing magnesium will stimulate tomato plants to grow taller compared to water without magnesium.",
+            // 4 Prediction
+            "A prediction states what should happen if the hypothesis is correct, often in an If–Then form focused on the measurable outcome, such as final plant height.",
+            // 5 Variables
+            "Here, you identify the independent variable (magnesium in water), the dependent variable (plant height, stem thickness), and control variables (light, temperature, soil, pot size, watering schedule).",
+            // 6 Design & Results
+            "In the sample design, two groups of tomato plants receive either filtered water (no magnesium) or filtered water plus magnesium salts. All other conditions are kept constant and final heights are measured after several weeks.",
+            // 7 Theory vs. Law
+            "Your experiment on magnesium contributes one small piece of evidence to a larger theory of plant nutrition supported by many disciplines, but it is far from a universal scientific law."
+        ],
+        prompts: [
+            {
+                label: "Describe what you see.",
+                helper: "Focus on the differences in tomato plants between the two cities: height, stem thickness, and any leaf color notes; plus, your watering activities.",
+                checklist: ["Mentions two locations", "Describes plant differences", "Avoids explanations"]
+            },
+            {
+                label: "Turn that into a curiosity question.",
+                helper: "Start with phrases like 'How does…', 'Is there a correlation between…', or 'To what extent…' rather than 'Why…'.",
+                checklist: ["Uses How/Is there/To what extent", "Mentions magnesium or water source", "Mentions plant growth"]
+            },
+            {
+                label: "Write a focused research question.",
+                helper: "Use the pattern: How does [magnesium concentration] affect [final height of tomato plants]?",
+                checklist: ["Mentions magnesium as IV", "Mentions a measurable DV", "Question is testable"]
+            },
+            {
+                label: "Write your hypothesis as a causality statement.",
+                helper: "Use the pattern: 'Water containing magnesium will … compared to water without magnesium.'",
+                checklist: ["States cause and effect", "Includes comparison group", "Is testable / falsifiable"]
+            },
+            {
+                label: "Write your If–Then prediction.",
+                helper: "If [plants receive magnesium water], then [plants will show a specific measurable change].",
+                checklist: ["Uses If–Then", "Focuses on measurable outcome", "Aligns with your hypothesis"]
+            },
+            {
+                label: "Identify variables and controls.",
+                helper: "Name the independent variable, dependent variable, and at least three factors you would keep constant.",
+                checklist: ["Names IV", "Names DV", "Lists ≥ 3 control variables"]
+            },
+            {
+                label: "Sketch the experiment and expected results.",
+                helper: "Specify control vs. experimental groups, number of plants per group, and what pattern of results would support vs. reject your hypothesis.",
+                checklist: ["Defines groups", "Mentions sample size or replication", "Links expected results to hypothesis"]
+            },
+            {
+                label: "Compare your experiment to theories and laws.",
+                helper: "Explain how your single experiment differs in scope, evidence, and certainty from a broader theory of plant nutrition or a physical law.",
+                checklist: ["Mentions scope", "Mentions strength of evidence", "Mentions uncertainty / future studies"]
+            }
+        ],
+        compareRows: [
+            {
+                level: "Hypothesis",
+                what: "A narrow, testable idea about how one factor influences another in a specific system.",
+                inModule: "Water containing magnesium will stimulate tomato plants to grow taller compared to water without magnesium."
+            },
+            {
+                level: "Scientific Theory",
+                what: "A broad explanatory framework supported by many experiments, observations, and disciplines.",
+                inModule: "The theory of plant nutrition explains how essential elements like magnesium support photosynthesis, metabolism, and growth across species and environments."
+            },
+            {
+                level: "Scientific Law",
+                what: "A mathematical statement describing a consistent relationship between measurable variables.",
+                inModule: "Physical laws governing light absorption and energy transfer help explain why chlorophyll with magnesium absorbs light efficiently, but your greenhouse experiment alone does not form a law."
+            }
+        ]
+    },
+    diabetes: {
+        label: "Cinnamon & Type 2 Diabetes",
+        shortLabel: "Diabetes Trial",
+        color: "diabetes",
+        contextByStep: [
+            // 0 Observation
+            "Clinicians observe that patients with Type 2 diabetes eating a standard American diet have high blood glucose, blood lipids, and cholesterol. Early studies hint that cinnamon might improve these markers.",
+            // 1 Curiosity
+            "Curiosity focuses on whether cinnamon intake is linked to changes in metabolic health indicators such as blood glucose or triglycerides.",
+            // 2 Research Question
+            "A research question must specify cinnamon dose as the independent variable and at least one metabolic marker, such as fasting blood glucose, as the dependent variable.",
+            // 3 Hypothesis
+            "A hypothesis proposes a causal claim, for example that daily cinnamon consumption will reduce blood glucose levels compared to placebo in adults with Type 2 diabetes.",
+            // 4 Prediction
+            "A prediction states that if patients consume cinnamon daily, then their blood glucose (and possibly lipids) will decrease more than in a placebo group, in measurable units.",
+            // 5 Variables
+            "Here, you highlight the independent variable (daily cinnamon dose), dependent variables (blood glucose, lipids, LDL cholesterol), and control variables such as baseline diet instructions, study duration, and age range.",
+            // 6 Design & Results
+            "In the example design, participants are randomly assigned to placebo or different cinnamon doses (e.g., 1 g, 3 g, 6 g) for 40 days, and before/after values for blood glucose and lipids are recorded and compared.",
+            // 7 Theory vs. Law
+            "This single clinical trial adds evidence to broader theories of metabolic regulation and diabetes but is only one data point within a much larger literature, not a standalone theory or law."
+        ],
+        prompts: [
+            {
+                label: "Describe the starting health picture.",
+                helper: "Summarize the blood glucose, lipid, and cholesterol status of patients with Type 2 diabetes before any cinnamon treatment.",
+                checklist: ["Mentions Type 2 diabetes", "Mentions high glucose/lipids", "Avoids explanations"]
+            },
+            {
+                label: "Formulate a curiosity question.",
+                helper: "Use question stems like 'How does…', 'Is there a correlation between…', or 'To what extent…' focusing on cinnamon intake and metabolic markers.",
+                checklist: ["Uses scientific question stem", "Mentions cinnamon", "Mentions at least one metabolic marker"]
+            },
+            {
+                label: "Write a research question.",
+                helper: "Use the pattern: How does daily cinnamon consumption affect blood glucose levels in adults with Type 2 diabetes?",
+                checklist: ["Mentions cinnamon as IV", "Mentions a clear DV", "Specifies the study population"]
+            },
+            {
+                label: "Write your hypothesis.",
+                helper: "Use the pattern: 'Daily cinnamon consumption will … compared to placebo.'",
+                checklist: ["States cause and effect", "Includes placebo comparison", "Is testable / falsifiable"]
+            },
+            {
+                label: "Write your If–Then prediction.",
+                helper: "If [patients consume cinnamon daily], then [their blood glucose (and/or lipids) will change in a specific direction].",
+                checklist: ["Uses If–Then", "Specifies direction of change", "Uses measurable language"]
+            },
+            {
+                label: "Identify variables and controls.",
+                helper: "Name the independent variable, dependent variables, and at least three control variables you would keep constant across dosage groups.",
+                checklist: ["Names IV", "Names ≥ 1 DV", "Lists ≥ 3 control variables"]
+            },
+            {
+                label: "Outline your clinical design and expected results.",
+                helper: "Describe placebo vs. multiple cinnamon doses, sample size per group, duration, and what patterns in before/after data would support vs. reject the hypothesis.",
+                checklist: ["Includes placebo and dose groups", "Mentions sample size/time", "Links expected pattern to hypothesis"]
+            },
+            {
+                label: "Contrast your trial with theories and laws.",
+                helper: "Discuss how this controlled experiment differs from a broad theory of metabolic regulation or a mathematical law, in scope, evidence, and certainty.",
+                checklist: ["Mentions scope", "Mentions strength/amount of evidence", "Mentions uncertainty / need for more trials"]
+            }
+        ],
+        compareRows: [
+            {
+                level: "Hypothesis",
+                what: "A specific, testable claim about how cinnamon intake will change measurable metabolic markers.",
+                inModule: "Daily cinnamon consumption will reduce blood glucose levels compared to placebo in adults with Type 2 diabetes."
+            },
+            {
+                level: "Scientific Theory",
+                what: "A broad explanation supported by diverse evidence for how hormones, diet, and cellular pathways regulate metabolism.",
+                inModule: "The theory of metabolic regulation integrates biochemistry, physiology, genetics, and clinical data to explain Type 2 diabetes and responses to interventions like cinnamon."
+            },
+            {
+                level: "Scientific Law",
+                what: "A mathematical relationship between variables that consistently holds under defined conditions.",
+                inModule: "Dose–response models for drugs or nutrients can sometimes be expressed in equations, but one cinnamon trial mainly informs the larger theory rather than defining a universal law."
+            }
+        ]
+    }
+};
+
+/* ------------ STATE ------------ */
+
+let currentExperiment = "magnesium";
+let currentStepIndex = 0;
+const responses = {
+    magnesium: Array(STEPS.length).fill(""),
+    diabetes: Array(STEPS.length).fill("")
+};
+
+/* ------------ UI HELPERS ------------ */
+
+function scrollToChoices() {
+    document.getElementById("experimentChoices").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+function toggleHowTo() {
+    const h = document.getElementById("howto");
+    h.classList.toggle("hidden");
+}
+
+function backToLanding() {
+    document.getElementById("gameSection").classList.add("hidden");
+    document.getElementById("landing").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+/* ------------ GAME LOGIC ------------ */
+
+function startGame(expKey) {
+    currentExperiment = expKey;
+    currentStepIndex = 0;
+    document.getElementById("landing").scrollIntoView({behavior: "smooth", block: "start"});
+    document.getElementById("gameSection").classList.remove("hidden");
+    loadStep();
+}
+
+function loadStep() {
+    const exp = EXPERIMENTS[currentExperiment];
+    const stepName = STEPS[currentStepIndex];
+
+    // Labels
+    document.getElementById("expLabel").textContent = exp.shortLabel;
+    document.getElementById("stepLabel").textContent = `Step ${currentStepIndex + 1} of ${STEPS.length}`;
+    document.getElementById("stepTitle").textContent = stepName;
+    document.getElementById("stepSubtitle").textContent = getSubtitle(stepName);
+
+    // Context box
+    document.getElementById("contextBox").textContent = exp.contextByStep[currentStepIndex];
+
+    // Prompt / helper / checklist
+    const p = exp.prompts[currentStepIndex];
+    document.getElementById("promptLabel").textContent = p.label;
+    document.getElementById("promptHelper").textContent = p.helper;
+    const cl = document.getElementById("checklistArea");
+    cl.innerHTML = "";
+    p.checklist.forEach(text => {
+        const span = document.createElement("span");
+        span.textContent = text;
+        cl.appendChild(span);
+    });
+
+    // Load previous response if any
+    const input = document.getElementById("responseInput");
+    input.value = responses[currentExperiment][currentStepIndex] || "";
+    document.getElementById("feedbackArea").textContent = "";
+
+    // Progress bar
+    const fraction = (currentStepIndex) / (STEPS.length - 1);
+    document.getElementById("progressFill").style.width = `${fraction * 100}%`;
+
+    // Prev / Next button states
+    document.getElementById("prevBtn").disabled = currentStepIndex === 0;
+    document.getElementById("nextBtn").textContent =
+        currentStepIndex === STEPS.length - 1 ? "Finish & Show Big Picture" : "Check & Continue →";
+
+    // Hide comparison until final step completed
+    document.getElementById("compareCard").classList.add("hidden");
+}
+
+function getSubtitle(stepName) {
+    switch (stepName) {
+        case "Observation":
+            return "Describe what is happening before you try to explain why.";
+        case "Curiosity Question":
+            return "Turn your observation into a clear, non‑'why' question.";
+        case "Research Question":
+            return "Refine curiosity into a specific, testable question with clear variables.";
+        case "Hypothesis":
+            return "Propose an educated, falsifiable answer to your research question.";
+        case "Prediction":
+            return "State what you expect to measure if your hypothesis is correct.";
+        case "Variables & Controls":
+            return "Separate the factor you change from what you measure and what you hold constant.";
+        case "Experimental Design & Results":
+            return "Plan the test and connect expected data patterns back to your hypothesis.";
+        case "Theory vs. Law":
+            return "Place your experiment on the hypothesis–theory–law spectrum.";
+        default:
+            return "";
+    }
+}
+
+function prevStep() {
+    if (currentStepIndex === 0) return;
+    saveCurrentResponse();
+    currentStepIndex--;
+    loadStep();
+}
+
+function nextStep() {
+    // Save and give simple heuristic feedback
+    saveCurrentResponse();
+    giveFeedback();
+
+    // If last step, reveal comparison table instead of moving further
+    if (currentStepIndex === STEPS.length - 1) {
+        fillCompareTable();
+        document.getElementById("compareCard").classList.remove("hidden");
+        return;
+    }
+    // Move to next step after brief delay so feedback is visible
+    setTimeout(() => {
+        currentStepIndex++;
+        loadStep();
+    }, 500);
+}
+
+function saveCurrentResponse() {
+    const text = document.getElementById("responseInput").value.trim();
+    responses[currentExperiment][currentStepIndex] = text;
+}
+
+function giveFeedback() {
+    const text = document.getElementById("responseInput").value.toLowerCase();
+    const fb = document.getElementById("feedbackArea");
+    if (!text) {
+        fb.textContent = "Try adding at least one complete sentence before moving on.";
+        fb.className = "feedback warn";
+        return;
+    }
+
+    const stepName = STEPS[currentStepIndex];
+    let ok = true;
+    let msg = "Nice—this hits the key features of this step. You can refine wording, but the structure is solid.";
+
+    if (stepName === "Observation") {
+        if (text.includes("because") || text.includes("due to") || text.includes("cause")) {
+            ok = false;
+            msg = "Focus on what you see, not why you think it happens. Save explanations for later steps.";
+        }
+    }
+    if (stepName === "Curiosity Question") {
+        if (text.startsWith("why")) {
+            ok = false;
+            msg = "Try rephrasing to start with 'How', 'Is there a correlation between', or 'To what extent' instead of 'Why'.";
+        }
+    }
+    if (stepName === "Hypothesis") {
+        if (!text.includes("will")) {
+            ok = false;
+            msg = "Strong hypotheses usually use a future‑tense verb like 'will' to predict what happens.";
+        }
+        if (!text.includes("compared")) {
+            msg += " Add an explicit comparison phrase (e.g., 'compared to placebo' or 'compared to water without magnesium').";
+        }
+    }
+    if (stepName === "Prediction") {
+        if (!text.includes("if")) {
+            ok = false;
+            msg = "Use an If–Then structure so the prediction clearly follows from your hypothesis.";
+        }
+    }
+
+    fb.textContent = msg;
+    fb.className = "feedback " + (ok ? "good" : "warn");
+}
+
+function fillCompareTable() {
+    const exp = EXPERIMENTS[currentExperiment];
+    const body = document.getElementById("compareBody");
+    body.innerHTML = "";
+    exp.compareRows.forEach(row => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${row.level}</td>
+            <td>${row.what}</td>
+            <td>${row.inModule}</td>
+        `;
+        body.appendChild(tr);
+    });
+}
+
+/* Initialize default view */
+document.addEventListener("DOMContentLoaded", () => {
+    // Nothing to do beyond showing landing; gameSection stays hidden
+});
+</script>
+</body>
+</html>
