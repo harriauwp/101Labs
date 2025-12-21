@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Detective: Emily Rosa's Therapeutic Touch Investigation</title>
+<style>
+*{box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}body{background:linear-gradient(135deg,#1a2980 0%,#26d0ce 100%);color:#333;margin:0;padding:20px;min-height:100vh;}.container{max-width:1000px;margin:0 auto;background:white;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);padding:30px;position:relative;overflow:hidden;}.header{text-align:center;border-bottom:3px solid #26d0ce;padding-bottom:20px;margin-bottom:30px;}.header h1{color:#1a2980;font-size:2.5rem;margin:0;}.header h2{color:#666;font-weight:400;}.badge{position:absolute;top:20px;right:20px;background:#ff6b6b;color:white;padding:8px 15px;border-radius:20px;font-weight:bold;transform:rotate(5deg);box-shadow:0 4px 8px rgba(0,0,0,0.2);}.step-container{display:none;animation:fadeIn 0.5s;}.step-container.active{display:block;}.step-indicator{display:flex;justify-content:space-between;margin-bottom:30px;position:relative;flex-wrap:wrap;gap:10px;}.step-indicator:before{content:'';position:absolute;top:15px;left:0;right:0;height:3px;background:#ddd;z-index:1;}.step{width:40px;height:40px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#666;position:relative;z-index:2;transition:all 0.3s;font-size:0.9rem;}.step.active{background:#26d0ce;color:white;transform:scale(1.1);box-shadow:0 0 0 4px rgba(38,208,206,0.2);}.step.completed{background:#1a2980;color:white;}.question-box{background:#f8f9fa;border-left:5px solid #26d0ce;padding:20px;border-radius:0 10px 10px 0;margin:20px 0;box-shadow:0 3px 10px rgba(0,0,0,0.08);}.question-box h3{margin-top:0;color:#1a2980;}.options{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px;margin:20px 0;}.option{background:white;border:2px solid #e9ecef;border-radius:10px;padding:15px;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;}.option:hover{border-color:#26d0ce;transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.1);}.option.selected{border-color:#1a2980;background:#f0f7ff;}.option.correct{border-color:#4CAF50;background:#f0fff4;}.option.incorrect{border-color:#ff6b6b;background:#fff0f0;}.option-number{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;background:#e9ecef;border-radius:50%;margin-right:10px;font-weight:bold;}.option.selected .option-number{background:#1a2980;color:white;}.feedback{padding:15px;border-radius:10px;margin:20px 0;display:none;animation:fadeIn 0.5s;}.feedback.correct-feedback{background:#d4edda;border:1px solid #c3e6cb;color:#155724;}.feedback.incorrect-feedback{background:#f8d7da;border:1px solid #f5c6cb;color:#721c24;}.feedback.show{display:block;}.data-visualization{background:#f8f9fa;border-radius:10px;padding:20px;margin:20px 0;text-align:center;}.button{background:#1a2980;color:white;border:none;padding:12px 25px;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:bold;transition:all 0.3s;margin:10px 5px;}.button:hover{background:#26d0ce;transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,0.2);}.button:disabled{background:#ccc;cursor:not-allowed;transform:none;box-shadow:none;opacity:0.5;}.button.secondary{background:#6c757d;}.progress-bar{height:8px;background:#e9ecef;border-radius:4px;margin:20px 0;overflow:hidden;}.progress-fill{height:100%;background:linear-gradient(90deg,#26d0ce,#1a2980);width:0%;transition:width 0.5s;border-radius:4px;}.completion-screen{text-align:center;padding:40px 20px;display:none;}.completion-screen.show{display:block;}.certificate{background:linear-gradient(135deg,#fff8e1 0%,#fff 100%);border:8px solid #1a2980;border-radius:15px;padding:30px;max-width:600px;margin:20px auto;box-shadow:0 10px 30px rgba(0,0,0,0.2);}@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}.highlight{background:#fffacd;padding:2px 5px;border-radius:3px;font-weight:bold;}.goal-identification, .reflection-phase, .study-boosters {padding: 15px;margin-bottom: 20px;border-radius: 8px;background: #e9f7ff;border: 1px solid #26d0ce;}.reflection-phase {background: #fff0f0;border: 1px solid #ff6b6b;}.mastery-button {background:#1a2980;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:1rem;font-weight:bold;transition:all 0.3s;margin-top: 10px;}.mastery-button:hover{background:#26d0ce;transform:translateY(-2px);}.learning-cycle-prompt {font-weight: bold;color: #1a2980;margin-bottom: 5px;}textarea.reflection-input {width: 100%;min-height: 80px;padding: 10px;border: 1px solid #ccc;border-radius: 4px;box-sizing: border-box;}.study-boosters h4 {color: #1a2980;border-bottom: 1px dashed #ccc;padding-bottom: 5px;}.content-engagement, .reflection-phase, .study-boosters {display: none;}.interactive-prompt {background: #fff;border: 1px solid #ddd;padding: 15px;margin: 15px 0;border-radius: 8px;}.interactive-prompt h4 {margin-top: 0;color: #1a2980;}.interactive-prompt label {display: block;margin-bottom: 8px;font-weight: 500;}.interactive-prompt input[type="text"],.interactive-prompt input[type="radio"] {margin-right:5px;}.interactive-textarea {width: 100%;padding: 8px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 4px;min-height: 50px;}.hero-box {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);color: white;padding: 20px;border-radius: 10px;margin: 20px 0;text-align: center;}.hero-box h3 {margin-top: 0;font-size: 1.8rem;}.observation-card{background:#fff;border:2px solid #26d0ce;border-radius:8px;padding:15px;margin:15px 0;}.observation-card h4{color:#1a2980;margin-top:0;}.claim-box{background:#f8f9fa;border-left:4px solid #1a2980;padding:15px;margin:15px 0;border-radius:0 8px 8px 0;}.claim-answer{background:#e9f7ff;padding:10px;margin:10px 0;border-radius:5px;display:none;}.claim-answer.show{display:block;}
+/* New styles for Step 9 */
+.case-study-section {
+    background: #fff;
+    border: 2px solid #1a2980;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+.case-study-section h3 {
+    color: #1a2980;
+    border-bottom: 2px solid #26d0ce;
+    padding-bottom: 10px;
+}
+.morpheme-box {
+    background: #e8f4fc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #667eea;
+}
+.fallacy-box {
+    background: #ffeaea;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #ff6b6b;
+}
+.evidence-box {
+    background: #eafaf1;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #4CAF50;
+}
+.goalpost-box {
+    background: #fff8e1;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #f39c12;
+}
+.tt-hands-diagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+.hand-circle {
+    width: 120px;
+    height: 120px;
+    background: #26d0ce;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.1rem;
+    position: relative;
+}
+.hand-circle::after {
+    content: "↑";
+    position: absolute;
+    top: -25px;
+    font-size: 1.5rem;
+}
+.hand-circle.left::after {
+    content: "↑ Left Hand";
+    left: 50%;
+    transform: translateX(-50%);
+}
+.hand-circle.right::after {
+    content: "↑ Right Hand";
+    left: 50%;
+    transform: translateX(-50%);
+}
+.screen-box {
+    background: #e0e0e0;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 10px;
+}
+.energy-field-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+.energy-line {
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    margin: 5px 0;
+    border-radius: 2px;
+    position: relative;
+}
+.energy-line::before {
+    content: "⟷";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -8px;
+    font-size: 1.2rem;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+th {
+    background: #1a2980;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+tr:nth-child(even) {
+    background: #f8f9fa;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="badge">Age 9 Investigator</div>
+<div class="header">
+<h1>🔬 Science Detective</h1>
+<h2>Emily Rosa's Therapeutic Touch Investigation</h2>
+<p>How a 4th grader became the youngest person ever published in a major medical journal</p>
+</div>
+
+<div class="hero-box">
+<h3>⭐ The Youngest Published Scientist</h3>
+<p>In 1998, at age 11, Emily Rosa became the youngest person to publish research in the <em>Journal of the American Medical Association (JAMA)</em>. Her science fair project challenged a practice used by over 100,000 healthcare practitioners.</p>
+</div>
+
+<div class="step-indicator">
+<div class="step active" data-step="0">👁</div>
+<div class="step" data-step="1">1</div>
+<div class="step" data-step="2">2</div>
+<div class="step" data-step="3">3</div>
+<div class="step" data-step="4">4</div>
+<div class="step" data-step="5">5</div>
+<div class="step" data-step="6">6</div>
+<div class="step" data-step="7">7</div>
+<div class="step" data-step="8">8</div>
+<div class="step" data-step="9">9</div>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- STEP 0: Everyday Observation Exercise -->
+<div class="step-container active" id="step0">
+    <div class="goal-identification" id="goal0">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Observation Skills</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-0" placeholder='Example: I want to master making purely descriptive observations without inference.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(0)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement0">
+        <div class="question-box">
+            <h3>👁️ Everyday Observation Exercise</h3>
+            <p>Before Emily's story, practice your observation skills. For each prompt below, do four micro-steps: <strong>Pause & Observe → Write → Ask → Reflect</strong>—staying strictly descriptive (no "because" statements).</p>
+        </div>
+
+        <div class="observation-card">
+            <h4>1️⃣ Student Union Bulletin Boards & Tabling</h4>
+            <p><strong>Pause & Observe (30-60s):</strong> Stand near bulletin boards or tabling areas. Look at flyers/signs and listen to pitch lines. Focus on visible words, icons, colors, placement—and brief phrases you hear (e.g., "detox," "energy," "vibrations," "chemical-free," "immune," "mercury in retrograde").</p>
+            
+            <p><strong>Write Your Observation (2-3 sentences):</strong></p>
+            <textarea class="interactive-textarea" placeholder='Example: "Three flyers use the word energy with wave icons; two are at eye level. One tabling group's sign says frequency balance in bold blue."'></textarea>
+            
+            <p><strong>Ask a Curious Question (1 line):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Are flyers with energy/frequency wording posted higher (eye level) more often than general wellness flyers?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Was it hard to avoid inferring that placement was intentional?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>2️⃣ Campus Bookstore/Café Product Shelf</h4>
+            <p><strong>Pause & Observe (30-60s):</strong> Scan front-facing products with claims like "immune," "cleanse," "alkaline," "non-GMO," "structured water." Note icons (shields, plus signs), color palettes, shelf height, price tags—no judgments.</p>
+            
+            <p><strong>Write Your Observation (2-3 sentences):</strong></p>
+            <textarea class="interactive-textarea" placeholder='Example: "Two refrigerated shots have shield icons and immune in green text; they're on the top shelf. A non-GMO badge appears on a mineral water bottle."'></textarea>
+            
+            <p><strong>Ask a Curious Question (1 line):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Do products with shield icons appear refrigerated more often than those without shield icons?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Did I slip into guessing what the icons mean?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>3️⃣ Rec Center/Gym Display</h4>
+            <p><strong>Pause & Observe (30-60s):</strong> At entrance or fitness floor, note devices/wearables (e.g., vibration platforms, copper-infused sleeves, magnetic bracelets), demonstration photos, placement (front vs. back). Optionally, count how many people touch/pick up a package in one minute.</p>
+            
+            <p><strong>Write Your Observation (2-3 sentences):</strong></p>
+            <textarea class="interactive-textarea" placeholder='Example: "A balance-test photo appears on two boxes near the front desk. Three copper-accent sleeves are on an endcap; two students handled them during my minute."'></textarea>
+            
+            <p><strong>Ask a Curious Question (1 line):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Are packages with demo photos handled more often than packages without demo images during a 60-second observation?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Was I tempted to explain why people handled some items more?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>4️⃣ Residence Hall Common Room</h4>
+            <p><strong>Pause & Observe (30-60s):</strong> Look for wellness-linked objects—crystals on windowsills, essential oil diffusers (LED color cycling), "structured/alkaline" pitchers. Note placement (near sunlight vs. shade), LED behavior, whether devices are on.</p>
+            
+            <p><strong>Write Your Observation (2-3 sentences):</strong></p>
+            <textarea class="interactive-textarea" placeholder='Example: "Two crystals sit on the sunny windowsill; none on shaded shelves. One diffuser cycles colors every few seconds and is currently on."'></textarea>
+            
+            <p><strong>Ask a Curious Question (1 line):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Are crystals more often placed near windows than in shaded areas in common rooms?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Did I start guessing why the objects were placed there?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>5️⃣ Study Lounge/Heard Phrasing in Open Spaces</h4>
+            <p><strong>Pause & Observe (30-60s):</strong> Sit in a public study space. Listen for brief, general phrases people say out loud—e.g., "retrograde is wrecking me," "this band boosts focus," "detox before finals," "EMF stickers help sleep." Tally instances of causal phrasing (words like "because," "due to," "causes," "boosts") versus descriptive phrasing ("looks," "sounds," "feels").</p>
+            
+            <p><strong>Write Your Observation (2-3 sentences):</strong></p>
+            <textarea class="interactive-textarea" placeholder='Example: "In 60 seconds I heard 3 causal phrases (boosts focus, because mercury) and 1 descriptive phrase (this tea tastes strong)."'></textarea>
+            
+            <p><strong>Ask a Curious Question (1 line):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Are causal phrases heard more frequently than descriptive phrases in open study areas during a 1-minute sample?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="interactive-textarea" style="min-height:40px;" placeholder='"Was it hard not to evaluate whether those causal statements were true?"'>
+        </div>
+
+        <button class="button" onclick="nextStep(0)">I've Practiced Observation →</button>
+    </div>
+</div>
+
+<!-- STEP 1: Emily's Observation -->
+<div class="step-container" id="step1">
+    <div class="goal-identification" id="goal1">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Scientific Observation</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-1" placeholder='Example: I want to master identifying testable claims in complex practices.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(1)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement1">
+        <div class="question-box">
+            <h3>🔍 STEP 1: Emily's Observation</h3>
+            <p>In 1996, 9-year-old Emily Rosa watched a video about Therapeutic Touch (TT) practitioners who claimed they could:</p>
+            <ul>
+                <li>Feel a "Human Energy Field" (HEF) emanating from people's bodies</li>
+                <li>Manipulate this energy field to promote healing</li>
+                <li>Detect the field without touching the person</li>
+            </ul>
+            <p>One practitioner described the sensation as feeling <em>"warm as Jell-O"</em> and <em>"tactile as taffy."</em></p>
+            
+            <div style="background:#fffacd; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>⚕️ Context:</strong> At this time, over 100,000 healthcare practitioners worldwide were trained in Therapeutic Touch. It was taught in over 100 colleges and universities and practiced in many hospitals.
+            </div>
+
+            <p><strong>Question:</strong> What key observation did Emily make about these claims?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="true"><span class="option-number">A</span>The practitioners claimed sensory detection, which should be testable under blinded conditions</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>The practitioners were lying and needed to be exposed</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Ancient healing practices are always wrong</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Energy fields don't exist so the claim is automatically false</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Excellent observation!</strong> Emily recognized that <span class="highlight">if practitioners claim they can sense something, that claim is testable.</span> She didn't start with the assumption the claim was false—she identified that it could be tested objectively. This is the foundation of scientific skepticism: extraordinary claims deserve fair testing.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> Emily's approach wasn't about "exposing" anyone. Science isn't about proving people are liars—it's about testing claims objectively. Many TT practitioners genuinely believed in their abilities.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> This dismisses practices without testing them. The age of a practice doesn't determine its validity. Emily tested the specific claim, not the entire tradition.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This assumes the conclusion before testing. Good science tests claims rather than dismissing them based on prior beliefs. Emily designed an experiment to find out.</div>
+        
+        <button class="button mastery-button" onclick="showReflection(1)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection1">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-1" rows="4" placeholder="Example: I mastered recognizing that sensory claims are testable because they involve detection that can be measured objectively."></textarea>
+        <button class="button" id="nextStep1" onclick="nextStep(1)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 2: Practice Identifying Claims -->
+<div class="step-container" id="step2">
+    <div class="goal-identification" id="goal2">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Testable vs Untestable Claims</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-2" placeholder='Example: I want to master distinguishing testable from untestable claims.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(2)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement2">
+        <div class="question-box">
+            <h3>🧪 STEP 2: Practice - Identifying Claims</h3>
+            <p>Before we continue with Emily's experiment, let's practice identifying whether claims are testable or not. Click each claim to see the answer.</p>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(1)">
+            <h4 style="cursor:pointer;">Claim 1: "I can sense your energy field with my hands." 🔽</h4>
+            <div class="claim-answer" id="claim1">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> You can design a blinded hand-detection test (as JAMA did for Therapeutic Touch) where the practitioner must identify the location of an unseen hand above theirs. If an energy field is perceptible, performance should exceed chance; in the JAMA study, practitioners performed at chance levels (≈44%), failing to detect any "field."</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(2)">
+            <h4 style="cursor:pointer;">Claim 2: "Happiness is the most important thing in life." 🔽</h4>
+            <div class="claim-answer" id="claim2">
+                <p><strong>Is this testable?</strong> No.</p>
+                <p><strong>Why or why not?</strong> This is a normative/value statement (what should matter most). It doesn't specify an observable, falsifiable condition, a measurable variable, or a criterion for refutation. It's about values, not empirical observation—so it isn't testable in the scientific sense.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(3)">
+            <h4 style="cursor:pointer;">Claim 3: "Meditating with crystals reduces anxiety more than meditating with visually identical placebo stones." 🔽</h4>
+            <div class="claim-answer" id="claim3">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> You can run a randomized, double-blind, placebo-controlled study comparing anxiety outcomes (e.g., Beck Anxiety Inventory) between real-crystal and placebo-stone groups. Recent controlled work finds no specific effect beyond placebo—improvements occur only among believers, regardless of whether the stone is real or placebo.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(4)">
+            <h4 style="cursor:pointer;">Claim 4: "Astrological signs determine personality traits." 🔽</h4>
+            <div class="claim-answer" id="claim4">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> You can correlate zodiac signs with validated personality measures (e.g., Big Five inventories) across large samples. Findings show no scientifically valid linkage; belief in astrology correlates with higher narcissism and lower measured intelligence, not with stable trait profiles by sign.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(5)">
+            <h4 style="cursor:pointer;">Claim 5: "Homeopathic remedies work because water 'remembers' substances once diluted away." 🔽</h4>
+            <div class="claim-answer" id="claim5">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> The water-memory mechanism can be tested by seeing whether serially diluted solutions (beyond Avogadro's limit) retain biological effects. The famous Benveniste report (1988) sparked tests, but replications under control have failed; the claim contradicts established physical chemistry and lacks reproducible evidence.</p>
+            </div>
+        </div>
+
+        <button class="button secondary" onclick="prevStep(2)">← Previous</button>
+        <button class="button" onclick="nextStep(2)">Continue to Research Question →</button>
+    </div>
+</div>
+
+<!-- STEP 3: Research Question -->
+<div class="step-container" id="step3">
+    <div class="goal-identification" id="goal3">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Research Questions</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-3" placeholder='Example: I want to master formulating focused research questions from observations.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(3)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement3">
+        <div class="question-box">
+            <h3>❓ STEP 3: Forming a Research Question</h3>
+            
+            <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>🔬 Emily's Reasoning:</strong>
+                <p>Emily observed that TT practitioners claim to detect a human energy field. Before testing whether TT heals people (which is complex with many confounding variables), she decided to test the simpler, more fundamental claim: <em>Can practitioners actually detect this energy field?</em></p>
+            </div>
+
+            <p><strong>Question:</strong> Why did Emily focus on testing energy <em>detection</em> rather than testing healing outcomes?</p>
+        </div>
+        
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>She didn't care about whether people got healed</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>Detection is the fundamental claim underlying TT's therapeutic mechanism—if practitioners can't detect the field, the healing claim lacks foundation</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Healing is too complicated to ever study scientifically</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Detection tests are easier to pass than healing tests</div>
+        </div>
+
+        <div class="feedback correct-feedback"><strong>✅ Brilliant strategic thinking!</strong> Emily identified the <span class="highlight">most basic, foundational claim</span> of Therapeutic Touch. If practitioners cannot detect an energy field under controlled conditions, then the entire healing mechanism is undermined. This avoids confounding variables like placebo effect, natural healing, and psychological factors. It's a simple, clean test of the core claim.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Emily wasn't dismissive of healing. She was being scientifically strategic by testing the fundamental mechanism first. If the basic claim fails, the complex claim (healing) needs reevaluation.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Healing can be studied scientifically through controlled trials. However, healing has many confounding factors. Emily wisely chose to test the simpler, more fundamental claim first.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Detection tests aren't "easier"—they're more fundamental. If practitioners claim to sense energy, they should demonstrate that ability before claiming they can manipulate it for healing.</div>
+        
+        <button class="button secondary" onclick="prevStep(3)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(3)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection3">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-3" rows="4" placeholder="Example: I mastered the strategy of testing fundamental claims before complex outcomes to isolate confounding variables."></textarea>
+        <button class="button" id="nextStep3" onclick="nextStep(3)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 4: Hypothesis -->
+<div class="step-container" id="step4">
+    <div class="goal-identification" id="goal4">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Hypothesis Formation</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-4" placeholder='Example: I want to master writing testable, falsifiable hypotheses.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(4)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement4">
+        <div class="question-box">
+            <h3>📋 STEP 4: Forming a Hypothesis</h3>
+            
+            <section style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <h4 style="margin-top:0; color:#1a2980;">🤔 What Makes a Good Hypothesis?</h4>
+                <p>A hypothesis is a testable, falsifiable prediction about the relationship between variables.</p>
+                <ul>
+                    <li><strong>Testable:</strong> You can design an experiment to see if it's true</li>
+                    <li><strong>Falsifiable:</strong> Data could potentially show it's wrong</li>
+                    <li><strong>Specific:</strong> Clearly states how IV affects DV</li>
+                </ul>
+            </section>
+
+            <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>💭 Emily's Hypothesis:</strong>
+                <p style="font-style:italic;">"If Therapeutic Touch practitioners truly can sense a human energy field (HEF) emanating from a person's body, then—under blinded conditions where they cannot see any cues—they should be able to detect, at rates significantly above chance (>50%), which of their hands is closest to the 'energy source' (the volunteer's unseen hand)."</p>
+            </div>
+
+            <p><strong>Question:</strong> What makes Emily's hypothesis scientifically strong?</p>
+        </div>
+        
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>It assumes the practitioners are correct</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>It has a clear prediction (>50% accuracy), measurable outcome (correct identifications), and baseline for comparison (50% chance)</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>It's guaranteed to prove practitioners wrong</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>It focuses on complex healing rather than simple detection</div>
+        </div>
+
+        <div class="feedback correct-feedback"><strong>✅ Excellent analysis!</strong> Emily's hypothesis has all the elements of strong scientific thinking: <span class="highlight">a specific prediction, measurable variables, and a clear baseline.</span> If practitioners score above 50%, the hypothesis is supported. If they score at or below 50%, it's not. This is what makes it both testable and falsifiable.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> A good hypothesis doesn't assume the answer. It makes a prediction that could go either way based on the data.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> A hypothesis isn't "guaranteed" to prove anything. It's a testable prediction that the data will either support or fail to support.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Emily's strength was focusing on the simple, fundamental claim rather than complex healing outcomes.</div>
+        
+        <button class="button secondary" onclick="prevStep(4)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(4)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection4">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-4" rows="4" placeholder="Example: I mastered the components of a strong hypothesis: testability, falsifiability, specific predictions, and measurable outcomes."></textarea>
+        <button class="button" id="nextStep4" onclick="nextStep(4)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 5: Experimental Design -->
+<div class="step-container" id="step5">
+    <div class="goal-identification" id="goal5">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Experimental Design</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-5" placeholder='Example: I want to master the principles of blinding and randomization.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(5)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement5">
+        
+        <section class="interactive-prompt" style="background: #fdfdfd; border: 2px dashed #26d0ce;">
+            <h3>🛠️ Emily's Experimental Setup</h3>
+            <p><strong>The Setup (performed in Emily's home):</strong></p>
+            <ol>
+                <li>Emily sat across from a TT practitioner with a tall cardboard screen between them</li>
+                <li>The practitioner put both hands, palms up, through two holes in the screen</li>
+                <li>Emily used a coin flip to randomly select which of the practitioner's hands she would hold <em>her</em> hand above (about 3-4 inches away, without touching)</li>
+                <li>The practitioner had to identify which of their hands was near Emily's hand</li>
+                <li>This was repeated multiple times per practitioner</li>
+            </ol>
+            <div style="text-align:center; margin:15px 0;">
+                <div style="display:inline-block; padding:15px; background:#f0f7ff; border-radius:8px; border:2px solid #1a2980;">
+                    <strong>🎲 Key Design Element:</strong> Coin flip randomization ensured no patterns Emily could unconsciously create
+                </div>
+            </div>
+        </section>
+
+        <div class="question-box">
+            <h3>🔬 STEP 5: Why This Design Works</h3>
+            <p><strong>Question:</strong> What does the cardboard screen (blinding) accomplish in this experiment?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>It makes the experiment look more official and scientific</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>It prevents Emily from cheating by giving hints to practitioners</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>It eliminates visual cues (like Emily's breathing, posture, or shadows) that could allow practitioners to guess hand position rather than sense energy</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>It keeps the practitioners from seeing how young Emily is</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Perfect understanding of experimental controls!</strong> The screen <span class="highlight">isolates the claimed ability</span> from confounding sensory information. If practitioners could see Emily, they might unconsciously detect visual cues (shadows, air movement, body language) and mistake those for "energy field" detection. The blind design ensures that only the claimed energy-sensing ability is being tested.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> The screen serves a critical scientific purpose, not an aesthetic one. It's an essential control that removes confounding variables.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> While blinding does prevent signaling, the primary purpose is to eliminate ordinary sensory cues that the practitioners might use, consciously or unconsciously, instead of "energy sensing."</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Emily's age wasn't the concern. The screen's purpose was to eliminate all visual information that could substitute for the claimed energy-sensing ability.</div>
+
+        <div class="question-box" style="margin-top:30px;">
+            <h3>🎲 The Role of Randomization</h3>
+            <p><strong>Follow-up Question:</strong> Why did Emily use a coin flip to decide which hand to place hers above?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>Because she couldn't decide on her own</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>To prevent unconscious patterns (like alternating left-right-left) that practitioners might detect, and to ensure true 50% chance baseline</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>To make the experiment take longer</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Because coin flips are traditional in science experiments</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Excellent grasp of randomization!</strong> Humans are terrible at generating random sequences—we create unconscious patterns. By using a coin flip, Emily ensured:<br>1. <strong>True randomization</strong> with no detectable pattern<br>2. <strong>Exactly 50% baseline probability</strong> for statistical comparison<br>3. <strong>No unconscious bias</strong> in her selections<br><br>This is the gold standard for experimental design!</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Emily used randomization for methodological rigor, not indecision. Random selection eliminates bias and establishes the proper baseline for comparison.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> The coin flip added minimal time but provided critical methodological validity.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Coin flips aren't about tradition—they're a simple, effective method for achieving true randomization.</div>
+        
+        <button class="button secondary" onclick="prevStep(5)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(5)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection5">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-5" rows="4" placeholder="Example: I mastered why blinding and randomization are essential to isolate the claimed effect from confounding variables."></textarea>
+        <button class="button" id="nextStep5" onclick="nextStep(5)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 6: Variables & Measurement -->
+<div class="step-container" id="step6">
+    <div class="goal-identification" id="goal6">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Variables</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-6" placeholder='Example: I want to master identifying independent and dependent variables.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(6)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement6">
+        
+        <section class="interactive-prompt">
+            <h3>🏷️ Identify the Variables</h3>
+            <p>In Emily's experiment, let's identify the key variables:</p>
+            <div style="margin-bottom:15px; background:#f0f7ff; padding:10px; border-radius:5px;">
+                <strong>1. Hand Position (Which hand Emily places hers above) is the:</strong><br>
+                <label><input type="radio" name="v1"> Independent Variable (What Emily manipulates)</label><br>
+                <label><input type="radio" name="v1"> Dependent Variable (What is measured)</label><br>
+                <label><input type="radio" name="v1"> Control Variable (What is kept constant)</label>
+            </div>
+            <div style="margin-bottom:15px; background:#f0f7ff; padding:10px; border-radius:5px;">
+                <strong>2. Practitioner's Correct/Incorrect Detection is the:</strong><br>
+                <label><input type="radio" name="v2"> Independent Variable (What Emily manipulates)</label><br>
+                <label><input type="radio" name="v2"> Dependent Variable (What is measured)</label><br>
+                <label><input type="radio" name="v2"> Control Variable (What is kept constant)</label>
+            </div>
+            <p style="font-size:0.9rem; color:#666;"><em>Answers: 1=Independent Variable, 2=Dependent Variable</em></p>
+        </section>
+
+        <div class="question-box">
+            <h3>📊 STEP 6: Measurement</h3>
+            <p><strong>Question:</strong> What is the appropriate way to measure the dependent variable (detection ability)?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>Ask practitioners if they felt confident in their answers</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>Count the number of correct identifications out of total trials and calculate percentage accuracy</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Observe practitioners' body language during the test</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Survey practitioners afterward about their energy-sensing abilities</div>
+        </div>
+        
+        <div class="feedback correct-feedback"><strong>✅ Perfect measurement!</strong> <span class="highlight">Objective, quantifiable data</span> is the gold standard. Counting correct vs. incorrect responses gives a clear percentage that can be compared to the 50% chance baseline. This removes subjectivity and provides statistical evidence.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Confidence doesn't measure actual ability. Practitioners might feel very confident while still guessing incorrectly.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Body language is subjective and doesn't measure detection ability. We need objective data about correct vs. incorrect identifications.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Self-assessment doesn't measure actual performance. Practitioners might believe they have the ability even when objective data shows they don't.</div>
+        
+        <button class="button secondary" onclick="prevStep(6)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(6)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection6">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-6" rows="4" placeholder="Example: I mastered identifying variables and choosing objective, quantifiable measurements over subjective assessments."></textarea>
+        <button class="button" id="nextStep6" onclick="nextStep(6)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 7: Results & Analysis -->
+<div class="step-container" id="step7">
+    <div class="goal-identification" id="goal7">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Data Interpretation</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-7" placeholder='Example: I want to master interpreting results against chance probability.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(7)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement7">
+        
+        <div class="data-visualization" style="background:#fff; border:2px solid #1a2980; padding:25px; margin:20px 0;">
+            <h2 style="color:#1a2980; border-bottom:2px solid #26d0ce; padding-bottom:10px;">📊 The Results</h2>
+            
+            <div style="text-align:left; background:#f0f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>Emily tested 21 Therapeutic Touch practitioners</strong></p>
+                <ul>
+                    <li><strong>Experience level:</strong> 1 to 27 years of practice</li>
+                    <li><strong>Total trials:</strong> 280 detection attempts</li>
+                    <li><strong>Expected baseline (random guessing):</strong> 50%</li>
+                </ul>
+            </div>
+
+            <div style="height:300px; margin:30px 0; display:flex; align-items:flex-end; justify-content:center; gap:60px;">
+                <div style="text-align:center;">
+                    <div style="width:100px; height:250px; background:#e9ecef; position:relative; border-radius:5px 5px 0 0;">
+                        <div style="width:100%; height:100%; background:#26d0ce; position:absolute; bottom:0; border-radius:5px 5px 0 0;"></div>
+                        <div style="position:absolute; top:15px; width:100%; color:#fff; font-weight:bold; font-size:1.8rem;">50%</div>
+                    </div>
+                    <div style="margin-top:10px; font-weight:bold;">Expected<br>(Random Chance)</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:100px; height:250px; background:#e9ecef; position:relative; border-radius:5px 5px 0 0;">
+                        <div style="width:100%; height:88%; background:#ff6b6b; position:absolute; bottom:0; border-radius:5px 5px 0 0;"></div>
+                        <div style="position:absolute; top:40px; width:100%; color:#fff; font-weight:bold; font-size:1.8rem;">44%</div>
+                    </div>
+                    <div style="margin-top:10px; font-weight:bold;">Actual Result<br>(TT Practitioners)</div>
+                </div>
+            </div>
+
+            <div style="background:#fff0f0; padding:15px; border-radius:8px; border-left:4px solid #ff6b6b; margin:15px 0;">
+                <p><strong>📉 Key Finding:</strong> The practitioners correctly identified which hand was near Emily's hand only <strong>44% of the time</strong>—worse than random guessing!</p>
+                <p style="margin-top:10px;"><em>Statistical analysis showed this was significantly below chance (p < 0.001), meaning the difference wasn't due to random variation.</em></p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h3>🔍 STEP 7: Analyzing the Results</h3>
+            <p><strong>Question:</strong> What does it mean that practitioners scored 44% (below 50% chance)?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>The practitioners were deliberately trying to fail the test</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>Emily's energy field was too weak for them to detect</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>There is no evidence that practitioners can detect a human energy field—their performance was no better than random guessing</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>The experiment proves energy fields don't exist anywhere in the universe</div>
+        </div>
+        
+        <div class="feedback correct-feedback"><strong>✅ Scientifically precise interpretation!</strong> The results show that <span class="highlight">under controlled conditions, TT practitioners could not detect the claimed energy field.</span> This doesn't prove energy fields don't exist in some other context, but it does show that:<br>1. The specific claim of sensing HEF is not supported<br>2. If such a field exists, it's not detectable in the way practitioners claim<br>3. The fundamental mechanism of TT lacks empirical support</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> There's no evidence of sabotage. The practitioners genuinely believed in their abilities and tried their best. The results simply show that their subjective experiences didn't translate to objective detection ability.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> This is an unfalsifiable excuse. If practitioners claim they can detect energy fields in their practice, they should be able to detect them in a controlled test. Moving the goalposts ("this specific person's energy was too weak") makes the claim untestable.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This overgeneralizes. The experiment tested a specific claim about human energy field detection in Therapeutic Touch. It doesn't make universal statements about all possible energy phenomena.</div>
+
+        <button class="button secondary" onclick="prevStep(7)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(7)" style="background:#26d0ce;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection7">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-7" rows="4" placeholder="Example: I mastered comparing experimental results to baseline chance probability and interpreting what below-chance performance means."></textarea>
+        <button class="button" id="nextStep7" onclick="nextStep(7)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 8: Conclusions & Impact -->
+<div class="step-container" id="step8">
+    <div class="goal-identification" id="goal8">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Drawing Conclusions</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-8" placeholder='Example: I want to master drawing appropriately scoped conclusions from experimental results.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(8)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement8">
+        <div class="question-box">
+            <h3>🎯 STEP 8: Conclusions & The Big Picture</h3>
+            
+            <div style="background:#fffacd; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>📰 What Happened Next:</strong></p>
+                <ul>
+                    <li>Emily's experiment won her school science fair</li>
+                    <li>With help from her mother (a nurse) and statistician Stephen Barrett, she published the findings in <em>JAMA</em> (1998)</li>
+                    <li>At age 11, she became the youngest person ever published in a major medical journal</li>
+                    <li>The study sparked national debate about evidence-based medicine</li>
+                </ul>
+            </div>
+
+            <p><strong>Question:</strong> What is the most appropriate conclusion from Emily Rosa's experiment?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>All alternative medicine is fraudulent and should be banned</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>The experiment was done by a child, so professional practitioners shouldn't take it seriously</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>The fundamental claim of Therapeutic Touch—that practitioners can detect a human energy field—lacks empirical support under controlled conditions</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>We should continue using Therapeutic Touch because it's been practiced for many years</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Scientifically appropriate conclusion!</strong> Emily's experiment specifically tested the <span class="highlight">foundational claim of energy field detection.</span> The conclusion is precisely scoped to what was tested. Good science makes specific claims supported by specific evidence, not sweeping generalizations.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> This overgeneralizes wildly. Emily tested one specific claim about one specific practice. Her findings don't extend to all alternative medicine—each practice must be evaluated on its own evidence.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> This is an <em>ad hominem</em> fallacy—attacking the person rather than addressing the argument. Emily's age is irrelevant; her methodology was sound and her study was peer-reviewed by experts before publication in JAMA.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This is an Appeal to Tradition fallacy. The age of a practice doesn't determine its validity. Evidence-based medicine requires that practices be supported by empirical evidence, regardless of how long they've been used.</div>
+        
+        <div class="question-box" style="margin-top:30px;">
+            <h3>🤔 Application Challenge</h3>
+            <p>A hospital administrator says: "Even if practitioners can't detect energy fields, our patients <em>feel better</em> after Therapeutic Touch sessions. Shouldn't we keep offering it?"</p>
+            <p><strong>What's the most thoughtful response?</strong></p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>"No, if the science doesn't support it, it should be immediately discontinued."</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>"The benefits patients feel likely come from the therapeutic interaction, touch, and attention—not from energy manipulation. We should continue providing compassionate care while being honest about the mechanism and not making unsupported claims."</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>"Patient feelings don't matter—only objective evidence matters."</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>"We should tell patients it works even though we know it doesn't, because belief creates healing."</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Excellent nuanced thinking!</strong> This response:<br>1. <strong>Acknowledges real benefits</strong> (therapeutic alliance, human touch, attention)<br>2. <strong>Correctly identifies the mechanism</strong> (not energy fields, but human connection)<br>3. <strong>Maintains honesty</strong> (no false claims about energy manipulation)<br>4. <strong>Preserves compassionate care</strong><br><br>This is how evidence-based medicine should work: honest about mechanisms while valuing patient experience.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> This is too rigid. Patients genuinely benefit from human touch, attention, and therapeutic relationships. We should continue these beneficial elements while being honest that energy field manipulation isn't the active mechanism.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Patient experience absolutely matters—it's a crucial outcome in medicine. The key is understanding <em>why</em> patients feel better (therapeutic interaction) versus accepting unfounded explanations (energy field manipulation).</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This violates medical ethics. Deception undermines trust and autonomy. Patients deserve honest information to make informed decisions about their care.</div>
+        
+        <button class="button secondary" onclick="prevStep(8)">← Previous</button>
+        <button class="button" onclick="nextStep(8)">Continue to Case Study →</button>
+    </div>
+</div>
+
+<!-- STEP 9: Case Study in Therapeutic Touch -->
+<div class="step-container" id="step9">
+    <div class="case-study-section">
+        <h3>🔬 Final Page: A Case Study in Therapeutic Touch</h3>
+        
+        <div class="morpheme-box">
+            <h4>1. Etymology of "Therapeutic Touch"</h4>
+            <p>The practice combines two linguistic elements:</p>
+            <ul>
+                <li><strong>Therapeutic:</strong> From Greek <em>therapeutikos</em> (θεραπευτικός), meaning "healing" or "attending to the sick"</li>
+                <li><strong>Touch:</strong> From Old French <em>touche</em>, meaning "to touch"</li>
+            </ul>
+            <p><strong>Important note:</strong> Despite the name, Therapeutic Touch practitioners typically hover their hands <em>above</em> the body without physical contact. The "touch" refers to interacting with the claimed "Human Energy Field" rather than physical touch.</p>
+            <p><strong>Related term - Human Energy Field (HEF):</strong> A concept borrowed from various spiritual traditions claiming humans emit or are surrounded by an energetic aura that can be manipulated for healing.</p>
+        </div>
+
+        <div class="fallacy-box">
+            <h4>2. Why is Therapeutic Touch Considered Pseudoscience?</h4>
+            <p>Therapeutic Touch meets the criteria for pseudoscience because it:</p>
+            <ul>
+                <li><strong>Uses scientific-sounding language</strong> ("energy field," "bioplasmic energy") without scientific methodology</li>
+                <li><strong>Makes testable claims</strong> that fail under controlled testing (as demonstrated by Emily Rosa's experiment)</li>
+                <li><strong>Relies on subjective validation</strong> rather than objective evidence</li>
+                <li><strong>Lacks a plausible mechanism</strong> consistent with established physics or biology</li>
+                <li><strong>Doesn't self-correct</strong> in response to negative evidence</li>
+                <li><strong>Claims are unfalsifiable</strong> when practitioners offer excuses for failures</li>
+            </ul>
+            
+            <div class="tt-hands-diagram">
+                <div class="hand-circle left">Practitioner's Hand</div>
+                <div class="screen-box">Cardboard Screen (Blind)</div>
+                <div class="hand-circle right">Practitioner's Hand</div>
+            </div>
+            <div class="energy-field-diagram">
+                <div class="energy-line"></div>
+                <div class="energy-line"></div>
+                <div class="energy-line"></div>
+                <p style="font-size:0.9rem; color:#666;"><em>Claimed "Human Energy Field" (HEF) that practitioners say they can detect and manipulate</em></p>
+            </div>
+        </div>
+
+        <div class="evidence-box">
+            <h4>3. The Fundamental Reason We Consider Therapeutic Touch Pseudoscience</h4>
+            <p><strong>It fails the most basic test of a claimed sensory ability:</strong></p>
+            <p>When tested under controlled conditions that eliminate ordinary sensory cues:</p>
+            <ul>
+                <li><strong>Rosa (1998):</strong> Practitioners performed at 44% accuracy (worse than 50% chance)</li>
+                <li><strong>Follow-up studies:</strong> Multiple replications have confirmed these findings</li>
+                <li><strong>Meta-analyses:</strong> Systematic reviews find no evidence for HEF detection</li>
+                <li><strong>Clinical trials:</strong> While some show subjective improvement, these are indistinguishable from placebo effects</li>
+            </ul>
+            
+            <div style="background:#fff; padding:15px; border-radius:8px; margin:15px 0; border-left:4px solid #4CAF50;">
+                <p><strong>💡 The Core Issue:</strong> Therapeutic Touch claims to involve a detectable, manipulable energy field, but practitioners cannot demonstrate this ability under controlled conditions. The subjective benefits reported are explained by known psychological mechanisms (placebo, relaxation, attention) rather than the claimed energy manipulation.</p>
+            </div>
+        </div>
+
+        <div class="goalpost-box">
+            <h4>4. Moving the Goalposts in Therapeutic Touch</h4>
+            <p>When faced with negative evidence like Emily Rosa's study, Therapeutic Touch defenses often involve "moving the goalposts":</p>
+            
+            <table>
+                <tr>
+                    <th>Claim When Tested</th>
+                    <th>Response When Fails</th>
+                    <th>Scientific Problem</th>
+                </tr>
+                <tr>
+                    <td>"We can detect human energy fields"</td>
+                    <td>"The test conditions were unnatural" or "Emily's energy was too weak"</td>
+                    <td>Makes claim untestable; if it only works under unspecified "natural" conditions, it's not a reliable ability</td>
+                </tr>
+                <tr>
+                    <td>"The energy field is a physical phenomenon"</td>
+                    <td>"It's a spiritual/energetic reality that science can't measure"</td>
+                    <td>Abandons empirical claim while keeping scientific trappings; becomes unfalsifiable</td>
+                </tr>
+                <tr>
+                    <td>"Practitioners need client interaction"</td>
+                    <td>"Blinded tests eliminate the energetic connection"</td>
+                    <td>If the ability requires knowing the client's identity or condition, it suggests cues rather than energy detection</td>
+                </tr>
+                <tr>
+                    <td>"Our training produces reliable practitioners"</td>
+                    <td>"Only some practitioners are truly gifted"</td>
+                    <td>Special pleading; no objective criteria for distinguishing "gifted" from non-gifted practitioners</td>
+                </tr>
+            </table>
+            
+            <div style="background:#fff; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>🎯 The Scientific Standard:</strong> A valid sensory ability should work under controlled conditions that eliminate ordinary cues. If Therapeutic Touch only "works" when practitioners can see the patient, sense body heat, or receive verbal feedback, then it's those ordinary cues—not energy field detection—producing the results.</p>
+            </div>
+        </div>
+
+        <div style="background:#f8f9fa; padding:20px; border-radius:10px; margin:20px 0; text-align:center;">
+            <h4>🏁 Conclusion: Therapeutic Touch as a Case Study in Medical Pseudoscience</h4>
+            <p>Therapeutic Touch provides a perfect case study in medical pseudoscience because:</p>
+            <ol style="text-align:left; max-width:600px; margin:15px auto;">
+                <li>It <strong>makes testable empirical claims</strong> (energy field detection) that fail under controlled testing</li>
+                <li>It <strong>uses scientific terminology</strong> while rejecting scientific methodology</li>
+                <li>It <strong>maintains institutional support</strong> (hospitals, nursing schools) despite negative evidence</li>
+                <li>It demonstrates <strong>classic pseudoscientific defenses</strong> (goalpost-moving, special pleading)</li>
+                <li>It <strong>confuses mechanism with outcome</strong> (benefits from human interaction ≠ energy manipulation)</li>
+            </ol>
+            <p style="margin-top:15px;"><strong>The takeaway for healthcare:</strong> We should value compassionate human interaction in medicine while being honest about mechanisms. The therapeutic alliance, attentive presence, and caring touch have demonstrated benefits—but these don't require inventing undetectable energy fields. Evidence-based medicine requires separating genuine therapeutic elements from pseudoscientific explanations.</p>
+        </div>
+
+        <button class="button secondary" onclick="prevStep(9)">← Previous</button>
+        <button class="button" onclick="completeInvestigation()">Complete Investigation</button>
+    </div>
+</div>
+
+<div class="completion-screen" id="completionScreen">
+    <div class="certificate">
+        <h1 style="color:#1a2980;margin-bottom:10px;">🎓 Certificate of Scientific Investigation</h1>
+        <h2 style="color:#667eea; margin-top:5px;">Emily Rosa Investigation Complete</h2>
+        <p>This certifies that the investigator has successfully:</p>
+        <ul style="text-align:left;max-width:500px;margin:20px auto;">
+            <li>Practiced making descriptive observations without inference</li>
+            <li>Identified testable vs. untestable claims</li>
+            <li>Formulated focused research questions</li>
+            <li>Created testable, falsifiable hypotheses</li>
+            <li>Understood the importance of blinding and randomization</li>
+            <li>Identified and measured variables objectively</li>
+            <li>Interpreted results against baseline probability</li>
+            <li>Drew appropriately scoped conclusions</li>
+            <li>Distinguished between mechanism and outcome</li>
+            <li>Analyzed Therapeutic Touch as a case study in pseudoscience</li>
+        </ul>
+        <div style="border-top:2px dashed #ccc;margin:30px 0;padding-top:20px;">
+            <h3>Key Lessons from Emily Rosa's Investigation:</h3>
+            <div style="background:#f8f9fa;padding:15px;border-radius:10px;margin:15px 0; text-align:left;">
+                <p><strong>1. Test fundamental claims first:</strong> Before testing complex outcomes, verify the basic mechanism</p>
+                <p><strong>2. Good methodology beats credentials:</strong> A well-designed 4th grade experiment can challenge established practices</p>
+                <p><strong>3. Distinguish mechanism from benefit:</strong> Human connection heals, but not through undetectable energy fields</p>
+                <p><strong>4. Science requires fair testing:</strong> Give claims an honest test under controlled conditions</p>
+                <p><strong>5. Be precise in conclusions:</strong> Test specific claims, draw specific conclusions</p>
+                <p><strong>6. Recognize pseudoscientific patterns:</strong> Goalpost-moving, unfalsifiable claims, and confusion of correlation with causation</p>
+            </div>
+        </div>
+        
+        <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:20px 0; text-align:left;">
+            <p><strong>💡 The Takeaway for Future Healthcare Professionals:</strong></p>
+            <p style="font-style:italic;">"When patients use practices unsupported by evidence, don't dismiss their experiences. Identify what's actually helping them (human connection, relaxation, hope) and preserve those elements while being honest about mechanisms. Evidence-based practice and compassionate care are not opposites—they're partners in providing effective, ethical healthcare."</p>
+        </div>
+
+        <p style="font-size:1.2rem;margin-top:30px;"><strong>Remember:</strong> You're never too young (or too old) to ask good questions and <span class="highlight">design good tests.</span></p>
+        <button class="button" id="restartButton" style="margin-top:20px;">🔄 Restart Investigation</button>
+    </div>
+</div>
+</div>
+
+<script>
+let currentStep=0;
+const totalSteps=9;
+
+function initializeApp(){
+    updateStepIndicator();
+    updateProgressBar();
+    setupEventListeners();
+    document.querySelectorAll('.content-engagement, .reflection-phase, .study-boosters').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.goal-identification').forEach((el, index) => {
+        if (index !== currentStep) {
+            el.style.display = 'none';
+        }
+    });
+}
+
+function startEngagement(stepNum) {
+    const goalInput = document.getElementById('goal-input-' + stepNum);
+    const goalText = goalInput.value.trim() || goalInput.placeholder.split(':')[1].trim();
+    
+    const masterButton = goalInput.nextElementSibling;
+    masterButton.textContent = `Let's go master (${goalText.replace(/['"]\.$/, '')})!`;
+
+    document.getElementById('goal' + stepNum).style.display = 'none';
+    const engagementDiv = document.getElementById('engagement' + stepNum);
+    engagementDiv.style.display = 'block';
+    
+    // Ensure reflection buttons start disabled for steps with questions
+    const reflectionButton = engagementDiv.querySelector('.mastery-button[onclick^="showReflection"]');
+    if(reflectionButton) {
+        reflectionButton.disabled = true;
+        reflectionButton.style.opacity = '0.5';
+        reflectionButton.style.cursor = 'not-allowed';
+    }
+}
+
+function showReflection(stepNum) {
+    document.getElementById('engagement' + stepNum).style.display = 'none';
+    document.getElementById('reflection' + stepNum).style.display = 'block';
+}
+
+function nextStep(stepNum) {
+    if (stepNum === totalSteps) {
+        completeInvestigation();
+    } else {
+        currentStep = stepNum + 1;
+        updateStepIndicator();
+        updateProgressBar();
+        
+        // Show goal identification for next step
+        const nextGoal = document.getElementById('goal' + currentStep);
+        if(nextGoal) {
+            nextGoal.style.display = 'block';
+        }
+    }
+}
+
+function prevStep(stepNum) {
+    currentStep = stepNum - 1;
+    updateStepIndicator();
+    updateProgressBar();
+    
+    // When going back, show the engagement content
+    document.getElementById('engagement' + currentStep).style.display = 'block';
+    const reflectionDiv = document.getElementById('reflection' + currentStep);
+    if(reflectionDiv) {
+        reflectionDiv.style.display = 'none';
+    }
+    const goalDiv = document.getElementById('goal' + currentStep);
+    if(goalDiv) {
+        goalDiv.style.display = 'none';
+    }
+}
+
+function updateStepIndicator(){
+    document.querySelectorAll('.step').forEach(step=>{
+        const stepNum = step.dataset.step === '👁' ? 0 : parseInt(step.dataset.step);
+        step.classList.remove('active','completed');
+        if(stepNum===currentStep){
+            step.classList.add('active');
+        }else if(stepNum<currentStep){
+            step.classList.add('completed');
+        }
+    });
+    document.querySelectorAll('.step-container').forEach(container=>{
+        container.classList.remove('active');
+    });
+    if(currentStep <= totalSteps) {
+        document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+}
+
+function updateProgressBar(){
+    const progress=((currentStep)/(totalSteps))*100;
+    document.getElementById('progressFill').style.width=`${progress}%`;
+}
+
+function toggleClaim(claimNum) {
+    const claimAnswer = document.getElementById('claim' + claimNum);
+    if(claimAnswer.classList.contains('show')) {
+        claimAnswer.classList.remove('show');
+    } else {
+        claimAnswer.classList.add('show');
+    }
+}
+
+function completeInvestigation() {
+    document.getElementById('completionScreen').classList.add('show');
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep = totalSteps + 1;
+    updateStepIndicator();
+    updateProgressBar();
+}
+
+function setupEventListeners(){
+    document.querySelectorAll('.option').forEach(option=>{
+        option.addEventListener('click',function(){
+            if(this.classList.contains('selected'))return;
+            const parent=this.parentElement;
+            parent.querySelectorAll('.option').forEach(opt=>{
+                opt.classList.remove('selected','correct','incorrect');
+            });
+            this.classList.add('selected');
+            const isCorrect=this.dataset.correct==='true';
+            const container=this.closest('.step-container');
+            const feedbackCorrect=container.querySelector('.correct-feedback');
+            const feedbackIncorrect=container.querySelectorAll('.incorrect-feedback');
+            if(isCorrect){
+                this.classList.add('correct');
+                if(feedbackCorrect){
+                    feedbackCorrect.classList.add('show');
+                }
+                feedbackIncorrect.forEach(fb=>fb.classList.remove('show'));
+            }else{
+                this.classList.add('incorrect');
+                if(feedbackIncorrect){
+                    feedbackIncorrect.forEach(fb=>{
+                        if(fb.dataset.option===this.querySelector('.option-number').textContent){
+                            fb.classList.add('show');
+                        }else{
+                            fb.classList.remove('show');
+                        }
+                    });
+                }
+                if(feedbackCorrect){
+                    feedbackCorrect.classList.remove('show');
+                }
+                parent.querySelector('.option[data-correct="true"]').classList.add('correct');
+            }
+            const engagementDiv = this.closest('.content-engagement');
+            if(engagementDiv) {
+                const reflectionButton = engagementDiv.querySelector('.mastery-button[onclick^="showReflection"]');
+                if(reflectionButton) {
+                    reflectionButton.disabled = false;
+                    reflectionButton.style.opacity = '1';
+                    reflectionButton.style.cursor = 'pointer';
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('[id^="restartButton"]').forEach(button=>{
+        button.addEventListener('click',function(){
+            currentStep=0;
+            document.getElementById('completionScreen').classList.remove('show');
+            document.querySelectorAll('.option').forEach(opt=>{
+                opt.classList.remove('selected','correct','incorrect');
+            });
+            document.querySelectorAll('.feedback').forEach(fb=>{
+                fb.classList.remove('show');
+            });
+            document.querySelectorAll('.mastery-button[onclick^="showReflection"]').forEach(btn=>{
+                btn.disabled=true;
+                btn.style.opacity='0.5';
+                btn.style.cursor='not-allowed';
+            });
+            document.querySelectorAll('.content-engagement, .reflection-phase').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.goal-identification').forEach((el, idx) => {
+                el.style.display = idx === 0 ? 'block' : 'none';
+            });
+            document.querySelectorAll('.claim-answer').forEach(ans => ans.classList.remove('show'));
+            updateStepIndicator();
+            updateProgressBar();
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded',initializeApp);
+</script>
+</body>
+</html>

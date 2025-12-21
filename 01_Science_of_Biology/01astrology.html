@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Detective: The Carlson Astrology Study</title>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #2c3e50 0%, #4a6491 100%);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 3px solid #e74c3c;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.header h2 {
+    color: #7f8c8d;
+    font-weight: 400;
+}
+
+.badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #e74c3c;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transform: rotate(5deg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.step-container {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.step-container.active {
+    display: block;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.step-indicator:before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.step.active {
+    background: #e74c3c;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.2);
+}
+
+.step.completed {
+    background: #2c3e50;
+    color: white;
+}
+
+.question-box {
+    background: #f8f9fa;
+    border-left: 5px solid #e74c3c;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.question-box h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.option {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.option:hover {
+    border-color: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.option.selected {
+    border-color: #2c3e50;
+    background: #f0f7ff;
+}
+
+.option.correct {
+    border-color: #27ae60;
+    background: #eafaf1;
+}
+
+.option.incorrect {
+    border-color: #e74c3c;
+    background: #ffeaea;
+}
+
+.option-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #e9ecef;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.option.selected .option-number {
+    background: #2c3e50;
+    color: white;
+}
+
+.feedback {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.feedback.correct-feedback {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.feedback.incorrect-feedback {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.feedback.show {
+    display: block;
+}
+
+.data-visualization {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin: 10px 5px;
+}
+
+.button:hover {
+    background: #e74c3c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.5;
+}
+
+.button.secondary {
+    background: #7f8c8d;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e74c3c, #2c3e50);
+    width: 0%;
+    transition: width 0.5s;
+    border-radius: 4px;
+}
+
+.completion-screen {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+}
+
+.completion-screen.show {
+    display: block;
+}
+
+.certificate {
+    background: linear-gradient(135deg, #fff8e1 0%, #fff 100%);
+    border: 8px solid #2c3e50;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight {
+    background: #fffacd;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.goal-identification, .reflection-phase, .study-boosters {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: #e9f7ff;
+    border: 1px solid #3498db;
+}
+
+.reflection-phase {
+    background: #fff0f0;
+    border: 1px solid #e74c3c;
+}
+
+.mastery-button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.mastery-button:hover {
+    background: #e74c3c;
+    transform: translateY(-2px);
+}
+
+.learning-cycle-prompt {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+textarea.reflection-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.study-boosters h4 {
+    color: #2c3e50;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.content-engagement, .reflection-phase, .study-boosters {
+    display: none;
+}
+
+.interactive-prompt {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.interactive-prompt h4 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.hero-box {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.hero-box h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.observation-card {
+    background: #fff;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.observation-card h4 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.claim-box {
+    background: #f8f9fa;
+    border-left: 4px solid #2c3e50;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.claim-answer {
+    background: #e9f7ff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: none;
+}
+
+.claim-answer.show {
+    display: block;
+}
+
+.study-design {
+    background: #f9f9f9;
+    border: 2px dashed #3498db;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.study-design h4 {
+    color: #2c3e50;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.case-study-section {
+    background: #fff;
+    border: 2px solid #2c3e50;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.case-study-section h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #e74c3c;
+    padding-bottom: 10px;
+}
+
+.morpheme-box {
+    background: #e8f4fc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #3498db;
+}
+
+.fallacy-box {
+    background: #ffeaea;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #e74c3c;
+}
+
+.evidence-box {
+    background: #eafaf1;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #27ae60;
+}
+
+.goalpost-box {
+    background: #fff8e1;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #f39c12;
+}
+
+.zodiac-wheel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.zodiac-sign {
+    width: 80px;
+    height: 80px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="badge">Nature 1985</div>
+<div class="header">
+    <h1>🔭 Science Detective</h1>
+    <h2>The Carlson Astrology Investigation</h2>
+    <p>How a landmark study in Nature tested astrology's scientific claims</p>
+</div>
+
+<div class="hero-box">
+    <h3>⭐ The Definitive Astrology Test</h3>
+    <p>In 1985, physicist <strong>Shawn T. Carlson</strong> published a groundbreaking double-blind test of astrology in the prestigious journal <em>Nature</em>. This study remains the gold standard for evaluating astrology's claims against scientific scrutiny.</p>
+</div>
+
+<div class="step-indicator">
+    <div class="step active" data-step="0">👁</div>
+    <div class="step" data-step="1">1</div>
+    <div class="step" data-step="2">2</div>
+    <div class="step" data-step="3">3</div>
+    <div class="step" data-step="4">4</div>
+    <div class="step" data-step="5">5</div>
+    <div class="step" data-step="6">6</div>
+    <div class="step" data-step="7">7</div>
+    <div class="step" data-step="8">8</div>
+    <div class="step" data-step="9">9</div>
+</div>
+<div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- STEP 0: Everyday Observation Exercise -->
+<div class="step-container active" id="step0">
+    <div class="goal-identification" id="goal0">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Astrological Claims in Daily Life</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-0" placeholder='Example: I want to master identifying astrological claims in everyday contexts.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(0)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement0">
+        <div class="question-box">
+            <h3>👁️ Astrology in Everyday Life</h3>
+            <p>Before examining the Carlson study, let's observe how astrological claims appear in daily life. For each prompt below, practice the scientific observation method: <strong>Pause & Observe → Document → Question → Reflect</strong>.</p>
+        </div>
+
+        <div class="observation-card">
+            <h4>1️⃣ Social Media & News Outlets</h4>
+            <p><strong>Pause & Observe (5 minutes):</strong> Browse through social media feeds or news sites. Look for horoscope columns, astrology memes, or personality predictions based on zodiac signs. Note the language used (e.g., "Mercury retrograde," "Mars in Gemini," "Scorpio energy").</p>
+            
+            <p><strong>Document Your Observations (2-3 sentences):</strong></p>
+            <textarea class="reflection-input" placeholder='Example: "Three different Instagram accounts posted horoscopes today. One claimed Leos would have financial luck this week. A news site sidebar had daily horoscopes for all signs."'></textarea>
+            
+            <p><strong>Generate a Testable Question (1 line):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Do people born under Leo actually experience more financial luck during weeks when horoscopes predict it?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Was it challenging to avoid accepting the claims at face value?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>2️⃣ Dating Apps & Social Profiles</h4>
+            <p><strong>Pause & Observe (5 minutes):</strong> Look at dating app profiles or social media bios. Note how many mention zodiac signs (e.g., "Pisces sun, Scorpio moon," "Only date fire signs," "Looking for my Cancer soulmate").</p>
+            
+            <p><strong>Document Your Observations (2-3 sentences):</strong></p>
+            <textarea class="reflection-input" placeholder='Example: "Out of 20 dating profiles, 6 mentioned zodiac signs. Two said they preferred certain signs. One had astrology compatibility as a dealbreaker."'></textarea>
+            
+            <p><strong>Generate a Testable Question (1 line):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Are relationships between supposedly compatible signs actually more successful or longer-lasting?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Did I notice any patterns in which demographic groups mentioned astrology most?"'>
+        </div>
+
+        <div class="observation-card">
+            <h4>3️⃣ Product Marketing & Entertainment</h4>
+            <p><strong>Pause & Observe (5 minutes):</strong> Look at product descriptions, streaming service categories, or bookstore sections. Note astrology-themed products, zodiac-based marketing, or entertainment focused on astrological themes.</p>
+            
+            <p><strong>Document Your Observations (2-3 sentences):</strong></p>
+            <textarea class="reflection-input" placeholder='Example: "A skincare brand has zodiac-themed products. Netflix has astrology documentaries. The bookstore has an entire section for astrology books next to astronomy."'></textarea>
+            
+            <p><strong>Generate a Testable Question (1 line):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Do zodiac-themed products sell better during certain planetary alignments as some marketers claim?"'>
+            
+            <p><strong>Reflect (1 sentence):</strong></p>
+            <input type="text" class="reflection-input" style="min-height:40px;" placeholder='"Was it difficult to separate entertainment value from scientific claims?"'>
+        </div>
+
+        <button class="button" onclick="nextStep(0)">I've Practiced Observation →</button>
+    </div>
+</div>
+
+<!-- STEP 1: Carlson's Observation -->
+<div class="step-container" id="step1">
+    <div class="goal-identification" id="goal1">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Core Astrological Claims</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-1" placeholder='Example: I want to master identifying the fundamental testable claims of astrology.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(1)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement1">
+        <div class="question-box">
+            <h3>🔍 STEP 1: Carlson's Observation</h3>
+            <p>Shawn Carlson noted that astrologers make specific, testable claims:</p>
+            <ul>
+                <li>Natal astrology can predict personality traits from birth charts</li>
+                <li>Professional astrologers can match birth charts to personality profiles</li>
+                <li>The positions of celestial bodies at birth influence human personality</li>
+            </ul>
+            
+            <div style="background:#fffacd; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>📜 Context:</strong> In the 1980s, astrology was experiencing a revival in Western culture. Millions of people read daily horoscopes, and many consulted professional astrologers for life guidance. The scientific community was skeptical but hadn't conducted a definitive, well-controlled study.
+            </div>
+
+            <p><strong>Question:</strong> What key observation did Carlson make about astrology's claims?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="true"><span class="option-number">A</span>The claims are testable using standard psychological instruments and blinded experimental design</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>Astrologers are frauds who intentionally deceive people</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Ancient knowledge systems should not be subjected to modern testing</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>The claims are purely spiritual and cannot be tested</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Scientific approach!</strong> Carlson recognized that <span class="highlight">astrology makes empirical claims about personality prediction that can be tested objectively.</span> He approached it not as a believer or debunker, but as a scientist testing a hypothesis.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> Carlson's approach wasn't about exposing fraud. Many astrologers genuinely believe in their practice. Science tests claims, not intentions.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> If a system makes testable predictions about the physical world, it's appropriate to test those predictions regardless of the system's age.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Natal astrology specifically claims to predict measurable personality traits, making it empirically testable, not purely spiritual.</div>
+        
+        <button class="button mastery-button" onclick="showReflection(1)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection1">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-1" rows="4" placeholder="Example: I mastered recognizing that astrology makes testable empirical claims about personality prediction, not just spiritual guidance."></textarea>
+        <button class="button" id="nextStep1" onclick="nextStep(1)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 2: Practice Identifying Astrological Claims -->
+<div class="step-container" id="step2">
+    <div class="goal-identification" id="goal2">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Testable vs Untestable Claims</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-2" placeholder='Example: I want to master distinguishing testable astrological claims from untestable ones.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(2)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement2">
+        <div class="question-box">
+            <h3>🧪 STEP 2: Practice - Identifying Testable Claims</h3>
+            <p>Let's practice identifying which astrological claims are scientifically testable. Click each claim to see the answer.</p>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(1)">
+            <h4 style="cursor:pointer;">Claim 1: "Your sun sign determines your core personality traits." 🔽</h4>
+            <div class="claim-answer" id="claim1">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> This makes specific predictions about correlations between birth dates and personality traits that can be measured with validated personality inventories (like the CPI used in Carlson's study). Large-scale studies have tested this and found no correlation beyond chance.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(2)">
+            <h4 style="cursor:pointer;">Claim 2: "Astrology helps you understand your life's purpose." 🔽</h4>
+            <div class="claim-answer" id="claim2">
+                <p><strong>Is this testable?</strong> Partially/No.</p>
+                <p><strong>Why or why not?</strong> "Life's purpose" is subjective and poorly defined. While you could test whether astrology increases self-reported sense of purpose compared to other interventions, the claim itself is vague and value-laden rather than a specific empirical prediction.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(3)">
+            <h4 style="cursor:pointer;">Claim 3: "Mercury retrograde causes communication breakdowns and technology failures." 🔽</h4>
+            <div class="claim-answer" id="claim3">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> This predicts increased rates of specific events during specific astronomical periods. You could collect data on communication errors or technology failures during Mercury retrograde vs. other periods and compare the rates.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(4)">
+            <h4 style="cursor:pointer;">Claim 4: "Astrology is a beautiful symbolic system for self-reflection." 🔽</h4>
+            <div class="claim-answer" id="claim4">
+                <p><strong>Is this testable?</strong> No.</p>
+                <p><strong>Why or why not?</strong> This is a statement about personal meaning and value, not an empirical claim. Whether something is "beautiful" or useful for "self-reflection" is subjective and cannot be objectively verified or falsified.</p>
+            </div>
+        </div>
+
+        <div class="claim-box" onclick="toggleClaim(5)">
+            <h4 style="cursor:pointer;">Claim 5: "Compatible zodiac signs have more successful relationships." 🔽</h4>
+            <div class="claim-answer" id="claim5">
+                <p><strong>Is this testable?</strong> Yes.</p>
+                <p><strong>Why or why not?</strong> This makes a specific prediction about relationship outcomes that can be measured. You could track relationships between people of different zodiac sign combinations and measure success through longevity, satisfaction surveys, etc.</p>
+            </div>
+        </div>
+
+        <button class="button secondary" onclick="prevStep(2)">← Previous</button>
+        <button class="button" onclick="nextStep(2)">Continue to Research Question →</button>
+    </div>
+</div>
+
+<!-- STEP 3: Research Question -->
+<div class="step-container" id="step3">
+    <div class="goal-identification" id="goal3">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Research Questions</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-3" placeholder='Example: I want to master formulating focused research questions from broad claims.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(3)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement3">
+        <div class="question-box">
+            <h3>❓ STEP 3: Forming a Research Question</h3>
+            
+            <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>🔬 Carlson's Reasoning:</strong>
+                <p>Carlson identified the most fundamental claim of natal astrology: that trained astrologers can extract accurate personality information from a birth chart. Before testing whether astrology predicts life events or compatibility, he decided to test this core competency claim.</p>
+            </div>
+
+            <p><strong>Question:</strong> Why did Carlson focus on testing whether astrologers could match charts to profiles rather than testing long-term predictions?</p>
+        </div>
+        
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>Long-term predictions take too much time to test</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>If astrologers cannot demonstrate basic chart interpretation skills under controlled conditions, the entire system's validity is questionable</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Chart matching is easier for astrologers to perform correctly</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Personality is easier to measure than life events</div>
+        </div>
+
+        <div class="feedback correct-feedback"><strong>✅ Strategic scientific thinking!</strong> Carlson tested the <span class="highlight">most basic, foundational claim</span> of natal astrology. If professional astrologers cannot perform above chance at matching birth charts to personality profiles—their core professional task—then the entire predictive system lacks empirical foundation. This avoids confounding variables like self-fulfilling prophecies and selective memory.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> While time is a practical consideration, the primary reason is methodological. Testing the fundamental claim first is scientifically more rigorous.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Chart matching is actually what astrologers claim to do professionally. If they can't do this basic task under controlled conditions, their more complex claims (predicting specific events) are even less likely to be valid.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> While personality inventories are well-validated, the key point is testing the foundational claim first, not relative ease of measurement.</div>
+        
+        <button class="button secondary" onclick="prevStep(3)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(3)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection3">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-3" rows="4" placeholder="Example: I mastered the strategy of testing the most fundamental claim of a system before testing more complex predictions."></textarea>
+        <button class="button" id="nextStep3" onclick="nextStep(3)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 4: Hypothesis -->
+<div class="step-container" id="step4">
+    <div class="goal-identification" id="goal4">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Hypothesis Formation</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-4" placeholder='Example: I want to master writing specific, testable hypotheses.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(4)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement4">
+        <div class="question-box">
+            <h3>📋 STEP 4: Forming a Hypothesis</h3>
+            
+            <section style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <h4 style="margin-top:0; color:#2c3e50;">🤔 The Scientific Hypothesis</h4>
+                <p>A hypothesis must be <strong>testable, falsifiable, and specific</strong>. It states the expected relationship between variables in measurable terms.</p>
+            </section>
+
+            <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <strong>💭 Carlson's Hypothesis:</strong>
+                <p style="font-style:italic;">"If natal astrology is valid and professional astrologers possess the skills they claim, then—under double-blind experimental conditions—they should be able to match birth charts to corresponding California Personality Inventory (CPI) profiles at a rate significantly above chance (50%)."</p>
+            </div>
+
+            <p><strong>Question:</strong> What makes Carlson's hypothesis scientifically strong?</p>
+        </div>
+        
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>It assumes astrology is valid before testing</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>It specifies exact measures (CPI profiles), conditions (double-blind), and a clear criterion for success (>50%)</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>It's designed to prove astrology wrong</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>It focuses on what people believe rather than objective outcomes</div>
+        </div>
+
+        <div class="feedback correct-feedback"><strong>✅ Excellent analysis!</strong> Carlson's hypothesis has all the hallmarks of good science: <span class="highlight">specific measurable outcomes, controlled conditions, and a clear statistical benchmark.</span> The 50% chance level provides a precise null hypothesis against which to compare results.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> A hypothesis doesn't assume truth; it makes a testable prediction. The "if-then" structure allows either outcome based on evidence.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> A proper hypothesis isn't designed to prove anything. It makes a prediction that evidence will either support or fail to support.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> The hypothesis focuses entirely on objective performance (matching accuracy), not subjective beliefs.</div>
+        
+        <button class="button secondary" onclick="prevStep(4)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(4)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection4">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-4" rows="4" placeholder="Example: I mastered creating hypotheses with specific measures, controlled conditions, and clear statistical benchmarks."></textarea>
+        <button class="button" id="nextStep4" onclick="nextStep(4)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 5: Experimental Design -->
+<div class="step-container" id="step5">
+    <div class="goal-identification" id="goal5">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Experimental Design</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-5" placeholder='Example: I want to master double-blind methodology and proper controls.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(5)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement5">
+        
+        <section class="study-design">
+            <h3>🛠️ Carlson's Experimental Design</h3>
+            <p><strong>The Double-Blind Procedure:</strong></p>
+            <ol>
+                <li>Carlson recruited <strong>28 European and American astrologers</strong> recommended by astrological organizations as particularly competent</li>
+                <li>Each astrologer received <strong>3 items</strong>:
+                    <ul>
+                        <li>A natal (birth) chart</li>
+                        <li>Three CPI (California Personality Inventory) profiles</li>
+                        <li>A demographic questionnaire</li>
+                    </ul>
+                </li>
+                <li>Only <strong>one</strong> CPI profile matched the birth chart; the other two were randomly selected from the pool</li>
+                <li><strong>Neither the astrologers nor the experimenters</strong> knew which profile was correct during testing</li>
+                <li>Astrologers had to identify which CPI profile matched the birth chart</li>
+                <li>Each astrologer performed this matching task <strong>multiple times</strong> with different charts and profiles</li>
+            </ol>
+            
+            <div style="text-align:center; margin:15px 0;">
+                <div style="display:inline-block; padding:15px; background:#f0f7ff; border-radius:8px; border:2px solid #2c3e50;">
+                    <strong>🎲 Key Design Element:</strong> Double-blind protocol prevented experimenter bias and eliminated cues
+                </div>
+            </div>
+        </section>
+
+        <div class="question-box">
+            <h3>🔬 STEP 5: Why This Design Works</h3>
+            <p><strong>Question:</strong> What does the double-blind design accomplish in this experiment?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>It makes the study more expensive and impressive</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>It prevents astrologers from cheating by researching the subjects</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>It eliminates experimenter cues and confirmation bias that could influence results</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>It keeps astrologers from knowing they're being tested</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Perfect understanding of experimental controls!</strong> The double-blind design <span class="highlight">isolates the claimed ability</span> from all confounding factors. Neither the astrologers nor the researchers knew the correct answers, preventing:
+        <br>1. <strong>Experimenter effects:</strong> Unconscious cues from researchers
+        <br>2. <strong>Confirmation bias:</strong> Interpreting ambiguous results as supportive
+        <br>3. <strong>Selective reporting:</strong> Emphasizing hits and ignoring misses</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Double-blinding serves critical methodological purposes, not aesthetic ones. It's essential for eliminating bias, not for appearance.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> While it does prevent some forms of cheating, the primary purpose is eliminating bias—both from experimenters and participants.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Astrologers knew they were being tested; they just didn't know which answers were correct during the test.</div>
+
+        <div class="question-box" style="margin-top:30px;">
+            <h3>📊 The California Personality Inventory (CPI)</h3>
+            <p><strong>Follow-up Question:</strong> Why did Carlson use the CPI instead of simpler personality measures?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>The CPI is the most expensive test, making the study seem more prestigious</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>The CPI is a well-validated, comprehensive personality inventory that provides detailed profiles similar to what astrologers claim to discern from charts</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Carlson happened to have CPI data available</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Astrologers specifically requested the CPI</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Excellent methodological choice!</strong> The CPI provides:
+        <br>1. <strong>Scientific validity:</strong> Extensive psychometric testing
+        <br>2. <strong>Comprehensive profiles:</strong> 18 dimensions covering the range of traits astrologers claim to discern
+        <br>3. <strong>Standardization:</strong> Allows comparison across studies
+        <br>4. <strong>Objective scoring:</strong> Eliminates subjective interpretation</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Cost doesn't determine scientific merit. The CPI was chosen for its validity and comprehensiveness.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> While availability matters, the primary reason was scientific suitability for testing astrology's specific claims.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> The choice was driven by methodological considerations, not participant preference.</div>
+        
+        <button class="button secondary" onclick="prevStep(5)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(5)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection5">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-5" rows="4" placeholder="Example: I mastered why double-blind design and validated measurement tools are essential for isolating claimed abilities from bias."></textarea>
+        <button class="button" id="nextStep5" onclick="nextStep(5)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 6: Variables & Measurement -->
+<div class="step-container" id="step6">
+    <div class="goal-identification" id="goal6">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Variables</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-6" placeholder='Example: I want to master identifying and measuring variables in psychological research.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(6)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement6">
+        
+        <section class="interactive-prompt">
+            <h3>🏷️ Identify the Variables</h3>
+            <p>In Carlson's experiment, identify the key variables:</p>
+            <div style="margin-bottom:15px; background:#f0f7ff; padding:10px; border-radius:5px;">
+                <strong>1. The birth chart presented to astrologers is the:</strong><br>
+                <label><input type="radio" name="v1"> Independent Variable (What is manipulated)</label><br>
+                <label><input type="radio" name="v1"> Dependent Variable (What is measured)</label><br>
+                <label><input type="radio" name="v1"> Control Variable (What is kept constant)</label>
+            </div>
+            <div style="margin-bottom:15px; background:#f0f7ff; padding:10px; border-radius:5px;">
+                <strong>2. The astrologer's correct/incorrect matching is the:</strong><br>
+                <label><input type="radio" name="v2"> Independent Variable (What is manipulated)</label><br>
+                <label><input type="radio" name="v2"> Dependent Variable (What is measured)</label><br>
+                <label><input type="radio" name="v2"> Control Variable (What is kept constant)</label>
+            </div>
+            <p style="font-size:0.9rem; color:#666;"><em>Answers: 1=Independent Variable (stimulus), 2=Dependent Variable (response)</em></p>
+        </section>
+
+        <div class="question-box">
+            <h3>📊 STEP 6: Measurement</h3>
+            <p><strong>Question:</strong> What is the most appropriate way to measure astrology's predictive ability in this experiment?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>Ask astrologers how confident they feel about each match</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>Calculate the percentage of correct matches across all trials and compare to 50% chance expectation</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>Have subjects rate how accurate the astrologer's descriptions feel</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>Count how many astrologers believe they performed above chance</div>
+        </div>
+        
+        <div class="feedback correct-feedback"><strong>✅ Perfect measurement choice!</strong> <span class="highlight">Objective, quantifiable accuracy</span> measured against a clear chance baseline (50%) provides definitive evidence. This eliminates:
+        <br>1. <strong>Subjective bias:</strong> Feelings don't equal accuracy
+        <br>2. <strong>Barnum/Forer effect:</strong> Vague statements that seem personally accurate
+        <br>3. <strong>Confirmation bias:</strong> Remembering hits, forgetting misses</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> Confidence doesn't equal accuracy. People can be very confident while being completely wrong.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Subjective feelings of accuracy are vulnerable to the Barnum effect—vague statements that seem personally meaningful but apply to nearly everyone.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> Belief in performance doesn't measure actual performance. This is why objective measurement against chance is essential.</div>
+        
+        <button class="button secondary" onclick="prevStep(6)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(6)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection6">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-6" rows="4" placeholder="Example: I mastered the importance of objective measurement against chance baselines in testing predictive claims."></textarea>
+        <button class="button" id="nextStep6" onclick="nextStep(6)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 7: Results & Analysis -->
+<div class="step-container" id="step7">
+    <div class="goal-identification" id="goal7">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Data Interpretation</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-7" placeholder='Example: I want to master interpreting statistical results against chance probability.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(7)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement7">
+        
+        <div class="data-visualization" style="background:#fff; border:2px solid #2c3e50; padding:25px; margin:20px 0;">
+            <h2 style="color:#2c3e50; border-bottom:2px solid #e74c3c; padding-bottom:10px;">📊 The Results</h2>
+            
+            <div style="text-align:left; background:#f0f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>Carlson tested 28 professional astrologers</strong></p>
+                <ul>
+                    <li><strong>Experience level:</strong> Recommended by astrological organizations as particularly competent</li>
+                    <li><strong>Total matching attempts:</strong> 116 natal charts matched to CPI profiles</li>
+                    <li><strong>Expected baseline (random guessing):</strong> 33.3% (1 correct out of 3 options)</li>
+                </ul>
+            </div>
+
+            <div style="height:300px; margin:30px 0; display:flex; align-items:flex-end; justify-content:center; gap:60px;">
+                <div style="text-align:center;">
+                    <div style="width:100px; height:250px; background:#e9ecef; position:relative; border-radius:5px 5px 0 0;">
+                        <div style="width:100%; height:100%; background:#3498db; position:absolute; bottom:0; border-radius:5px 5px 0 0;"></div>
+                        <div style="position:absolute; top:15px; width:100%; color:#fff; font-weight:bold; font-size:1.8rem;">33.3%</div>
+                    </div>
+                    <div style="margin-top:10px; font-weight:bold;">Expected<br>(Random Chance)</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:100px; height:250px; background:#e9ecef; position:relative; border-radius:5px 5px 0 0;">
+                        <div style="width:100%; height:99%; background:#e74c3c; position:absolute; bottom:0; border-radius:5px 5px 0 0;"></div>
+                        <div style="position:absolute; top:15px; width:100%; color:#fff; font-weight:bold; font-size:1.8rem;">33.0%</div>
+                    </div>
+                    <div style="margin-top:10px; font-weight:bold;">Actual Result<br>(Astrologers)</div>
+                </div>
+            </div>
+
+            <div style="background:#fff0f0; padding:15px; border-radius:8px; border-left:4px solid #e74c3c; margin:15px 0;">
+                <p><strong>📉 Key Finding:</strong> The astrologers correctly matched birth charts to CPI profiles only <strong>33.0% of the time</strong>—statistically indistinguishable from random guessing (33.3%)!</p>
+                <p style="margin-top:10px;"><em>Statistical analysis showed no significant difference from chance (p > 0.05). The astrologers performed exactly as expected if they were simply guessing.</em></p>
+            </div>
+            
+            <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>🔍 Additional Finding:</strong> Astrologers' confidence in their matches showed <strong>no correlation</strong> with actual accuracy. Some of the most confident matches were incorrect, while some hesitant matches were correct.</p>
+            </div>
+        </div>
+
+        <div class="question-box">
+            <h3>🔍 STEP 7: Analyzing the Results</h3>
+            <p><strong>Question:</strong> What does it mean that astrologers scored 33.0% when chance expectation was 33.3%?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>The astrologers were deliberately trying to fail the test</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>The CPI profiles were too vague for accurate matching</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>There is no evidence that professional astrologers can extract accurate personality information from birth charts under controlled conditions</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>The experiment proves celestial bodies have no influence on human affairs</div>
+        </div>
+        
+        <div class="feedback correct-feedback"><strong>✅ Scientifically precise interpretation!</strong> The results show that <span class="highlight">under controlled double-blind conditions, professional astrologers perform at chance level</span> for their core professional task. This doesn't prove astrology is false in all possible forms, but it does show that:
+        <br>1. The specific claim of chart-to-profile matching lacks empirical support
+        <br>2. Professional astrologers' subjective confidence doesn't correlate with objective accuracy
+        <br>3. The foundation of natal astrology's predictive claims is not supported by evidence</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> There's no evidence of sabotage. The astrologers were volunteers recommended by their organizations and presumably tried their best.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> The CPI is a well-validated psychological instrument. If astrology worked as claimed, astrologers should have been able to extract information from birth charts that correlated with CPI results.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This overgeneralizes. The experiment tested a specific claim about natal astrology. It doesn't address all possible celestial influences.</div>
+
+        <button class="button secondary" onclick="prevStep(7)">← Previous</button>
+        <button class="button mastery-button" onclick="showReflection(7)" style="background:#e74c3c;" disabled>I've Engaged! Show Reflection →</button>
+    </div>
+
+    <div class="reflection-phase" id="reflection7">
+        <h3 class="section-title" style="border-bottom: none;">💡 Reflection</h3>
+        <p class="learning-cycle-prompt">What did I just master? (Answer without consulting notes.)</p>
+        <textarea class="reflection-input" id="reflection-text-7" rows="4" placeholder="Example: I mastered interpreting chance-level performance as evidence against a claimed predictive ability."></textarea>
+        <button class="button" id="nextStep7" onclick="nextStep(7)">Move to Next Step →</button>
+    </div>
+</div>
+
+<!-- STEP 8: Conclusions & Impact -->
+<div class="step-container" id="step8">
+    <div class="goal-identification" id="goal8">
+        <h3 class="section-title" style="border-bottom: none;">🎯 Goal Identification - Drawing Conclusions</h3>
+        <p class="learning-cycle-prompt">What am I trying to master in this step?</p>
+        <input type="text" id="goal-input-8" placeholder='Example: I want to master drawing appropriately scoped conclusions from experimental results.' style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button class="mastery-button" onclick="startEngagement(8)">Let's go master...</button>
+    </div>
+
+    <div class="content-engagement" id="engagement8">
+        <div class="question-box">
+            <h3>🎯 STEP 8: Conclusions & The Big Picture</h3>
+            
+            <div style="background:#fffacd; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>📰 What Happened Next:</strong></p>
+                <ul>
+                    <li>Carlson's study was published in <em>Nature</em> in 1985</li>
+                    <li>It remains one of the most cited and methodologically rigorous tests of astrology</li>
+                    <li>The study sparked debate about why astrology remains popular despite negative evidence</li>
+                    <li>Subsequent studies have consistently replicated Carlson's findings</li>
+                </ul>
+            </div>
+
+            <p><strong>Question:</strong> What is the most appropriate conclusion from Carlson's experiment?</p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>All astrology is fraudulent and astrologers are liars</div>
+            <div class="option" data-correct="false"><span class="option-number">B</span>The experiment was flawed because astrologers need client interaction to be accurate</div>
+            <div class="option" data-correct="true"><span class="option-number">C</span>The fundamental claim of natal astrology—that trained practitioners can extract accurate personality information from birth charts—lacks empirical support under controlled conditions</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>We should continue using astrology because it's been practiced for thousands of years</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Scientifically appropriate conclusion!</strong> Carlson's experiment specifically tested the <span class="highlight">core competency claim of natal astrology.</span> The conclusion is precisely scoped to what was tested. Good science makes specific claims supported by specific evidence.</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> This overgeneralizes and makes claims about intentions. The study tested performance, not honesty. Many astrologers likely believe in their practice.</div>
+        <div class="feedback incorrect-feedback" data-option="B"><strong>❌ Not quite - Option B:</strong> This is a common "moving the goalposts" response. If astrology requires unknowable or untestable conditions to work, it becomes unfalsifiable and unscientific.</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This is an Appeal to Tradition fallacy. The age of a practice doesn't determine its validity. Evidence-based evaluation requires empirical support.</div>
+        
+        <div class="question-box" style="margin-top:30px;">
+            <h3>🤔 Application Challenge</h3>
+            <p>A friend says: "Even if astrologers can't match charts to profiles, astrology helps me understand myself and my relationships. Shouldn't I keep using it?"</p>
+            <p><strong>What's the most thoughtful response?</strong></p>
+        </div>
+        <div class="options">
+            <div class="option" data-correct="false"><span class="option-number">A</span>"No, if the science doesn't support it, you should immediately stop."</div>
+            <div class="option" data-correct="true"><span class="option-number">B</span>"The benefits you experience likely come from self-reflection and thinking about relationships—not from celestial influences. You can continue these valuable practices while recognizing that birth charts don't objectively predict personality."</div>
+            <div class="option" data-correct="false"><span class="option-number">C</span>"Your feelings don't matter—only objective evidence matters."</div>
+            <div class="option" data-correct="false"><span class="option-number">D</span>"You should believe it works even though we know it doesn't, because belief creates benefits."</div>
+        </div>
+        <div class="feedback correct-feedback"><strong>✅ Excellent nuanced thinking!</strong> This response:
+        <br>1. <strong>Acknowledges real benefits</strong> (self-reflection, relationship consideration)
+        <br>2. <strong>Correctly identifies the mechanism</strong> (psychological, not celestial)
+        <br>3. <strong>Maintains scientific honesty</strong> (no false claims about predictive power)
+        <br>4. <strong>Preserves personal meaning</strong> while distinguishing it from empirical truth</div>
+        <div class="feedback incorrect-feedback" data-option="A"><strong>❌ Not quite - Option A:</strong> This is too rigid. People find value in many practices that aren't scientifically supported. The key is understanding what's actually providing value.</div>
+        <div class="feedback incorrect-feedback" data-option="C"><strong>❌ Not quite - Option C:</strong> Personal experience matters—it's what motivates engagement. The key is understanding why the experience feels meaningful (psychological mechanisms vs. celestial ones).</div>
+        <div class="feedback incorrect-feedback" data-option="D"><strong>❌ Not quite - Option D:</strong> This promotes self-deception. We can acknowledge psychological benefits without claiming false mechanisms.</div>
+
+        <div class="hero-box" style="margin:30px 0;">
+            <h3>🏆 Why Carlson's Work Matters</h3>
+            <p style="text-align:left;">Carlson's experiment is a landmark in skeptical inquiry because it demonstrates:</p>
+            <ol style="text-align:left; margin:0 auto; max-width:600px;">
+                <li><strong>Fair Testing:</strong> He gave astrology its best chance by working with professional organizations</li>
+                <li><strong>Methodological Rigor:</strong> Double-blind design, validated measures, proper statistical analysis</li>
+                <li><strong>Specificity:</strong> Tested the most fundamental claim before addressing more complex ones</li>
+                <li><strong>Transparency:</strong> Published in a top-tier journal with full methodological details</li>
+                <li><strong>Replicability:</strong> Clear methods allowing others to reproduce the study</li>
+            </ol>
+            <p style="margin-top:15px;"><em>Good science tests extraordinary claims with extraordinary rigor.</em></p>
+        </div>
+        
+        <button class="button secondary" onclick="prevStep(8)">← Previous</button>
+        <button class="button" onclick="nextStep(8)">Continue to Case Study →</button>
+    </div>
+</div>
+
+<!-- STEP 9: Case Study in Astrology -->
+<div class="step-container" id="step9">
+    <div class="case-study-section">
+        <h3>🔭 Final Page: A Case Study in Astrology</h3>
+        
+        <div class="morpheme-box">
+            <h4>1. Morphemes of "Astrology"</h4>
+            <p>The word "astrology" comes from Greek roots:</p>
+            <ul>
+                <li><strong>Astro-</strong> (ἄστρον): Star, celestial body</li>
+                <li><strong>-logy</strong> (λόγος): Study, discourse, reasoning</li>
+            </ul>
+            <p><strong>Literal meaning:</strong> "Study of the stars" or "Reasoning from the stars"</p>
+            <p><strong>Contrast with Astronomy:</strong> Astronomy adds <em>-nomia</em> (νόμος) meaning "law" → "Law/pattern of the stars." This reflects the shift from prescientific astrology to empirical astronomy.</p>
+        </div>
+
+        <div class="fallacy-box">
+            <h4>2. Why is Astrology Considered a Pseudoscience?</h4>
+            <p>Astrology meets the criteria for pseudoscience because it:</p>
+            <ul>
+                <li><strong>Uses scientific language</strong> without scientific methodology</li>
+                <li><strong>Makes testable claims</strong> that fail under controlled testing (like Carlson's study)</li>
+                <li><strong>Relies on confirmation bias</strong> and the Barnum/Forer effect</li>
+                <li><strong>Lacks a plausible mechanism</strong> consistent with established physics</li>
+                <li><strong>Doesn't self-correct</strong> in response to negative evidence</li>
+                <li><strong>Uses ad hoc hypotheses</strong> to explain away failures</li>
+            </ul>
+            
+            <div class="zodiac-wheel">
+                <div class="zodiac-sign">Aries ♈</div>
+                <div class="zodiac-sign">Taurus ♉</div>
+                <div class="zodiac-sign">Gemini ♊</div>
+                <div class="zodiac-sign">Cancer ♋</div>
+                <div class="zodiac-sign">Leo ♌</div>
+                <div class="zodiac-sign">Virgo ♍</div>
+                <div class="zodiac-sign">Libra ♎</div>
+                <div class="zodiac-sign">Scorpio ♏</div>
+                <div class="zodiac-sign">Sagittarius ♐</div>
+                <div class="zodiac-sign">Capricorn ♑</div>
+                <div class="zodiac-sign">Aquarius ♒</div>
+                <div class="zodiac-sign">Pisces ♓</div>
+            </div>
+            <p style="font-size:0.9rem; color:#666;"><em>Modern astrology uses the tropical zodiac fixed to seasons, not actual constellations, creating a 1-sign misalignment due to Earth's precession over 2000 years.</em></p>
+        </div>
+
+        <div class="evidence-box">
+            <h4>3. The Fundamental Reason We Consider Astrology Pseudoscience</h4>
+            <p><strong>It fails the most basic test of a predictive system:</strong></p>
+            <p>When tested under controlled conditions that eliminate bias and chance:</p>
+            <ul>
+                <li><strong>Carlson (1985):</strong> Astrologers performed at chance (33.0% vs. 33.3% expected)</li>
+                <li><strong>Dean (2003 review):</strong> Analysis of over 100 studies found no replicable evidence</li>
+                <li><strong>French (2008):</strong> Demonstrated Barnum effect explains perceived accuracy</li>
+                <li><strong>Multiple replications:</strong> No study meeting basic methodological standards has shown above-chance performance</li>
+            </ul>
+            
+            <div style="background:#fff; padding:15px; border-radius:8px; margin:15px 0; border-left:4px solid #27ae60;">
+                <p><strong>💡 The Core Issue:</strong> Astrology claims to be a predictive system but performs no better than guessing when tested objectively. This is the definition of a failed scientific claim.</p>
+            </div>
+        </div>
+
+        <div class="goalpost-box">
+            <h4>4. Moving the Goalposts in Astrology</h4>
+            <p>When faced with negative evidence like Carlson's study, astrological defenses often involve "moving the goalposts":</p>
+            
+            <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+                <tr style="background:#2c3e50; color:white;">
+                    <th style="padding:10px; text-align:left;">Claim When Tested</th>
+                    <th style="padding:10px; text-align:left;">Response When Fails</th>
+                    <th style="padding:10px; text-align:left;">Scientific Problem</th>
+                </tr>
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">"Astrologers can match charts to personality profiles"</td>
+                    <td style="padding:10px;">"They need client interaction"</td>
+                    <td style="padding:10px;">Makes claim untestable; if it only works under unspecified conditions, it's not a predictive system</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">"Predictions are specific and testable"</td>
+                    <td style="padding:10px;">"Astrology is symbolic, not predictive"</td>
+                    <td style="padding:10px;">Contradicts how astrology is actually practiced and marketed</td>
+                </tr>
+                <tr style="border-bottom:1px solid #ddd;">
+                    <td style="padding:10px;">"Based on celestial influences"</td>
+                    <td style="padding:10px;">"It's about archetypes, not physics"</td>
+                    <td style="padding:10px;">Abandons the original empirical claim while keeping the trappings of science</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px;">"Works for everyone"</td>
+                    <td style="padding:10px;">"You need the right astrologer/chart type"</td>
+                    <td style="padding:10px;">Special pleading; no objective criteria for what makes an astrologer "right"</td>
+                </tr>
+            </table>
+            
+            <div style="background:#fff; padding:15px; border-radius:8px; margin:15px 0;">
+                <p><strong>🎯 The Scientific Standard:</strong> A valid predictive system should work under controlled conditions that eliminate bias. If it only "works" under conditions where bias can operate (like knowing the client), it's likely the bias, not the system, producing the results.</p>
+            </div>
+        </div>
+
+        <div style="background:#f8f9fa; padding:20px; border-radius:10px; margin:20px 0; text-align:center;">
+            <h4>🏁 Conclusion: Astrology as a Case Study in Pseudoscience</h4>
+            <p>Astrology provides a perfect case study in pseudoscience because:</p>
+            <ol style="text-align:left; max-width:600px; margin:15px auto;">
+                <li>It <strong>makes testable empirical claims</strong> (unlike purely spiritual practices)</li>
+                <li>Those claims <strong>consistently fail</strong> under controlled testing</li>
+                <li>It <strong>maintains popularity</strong> despite negative evidence</li>
+                <li>It <strong>uses scientific-looking language</strong> without scientific methodology</li>
+                <li>It demonstrates <strong>classic cognitive biases</strong> (Barnum effect, confirmation bias)</li>
+            </ol>
+            <p style="margin-top:15px;"><strong>The takeaway:</strong> We can appreciate astrology's historical role and psychological appeal while recognizing its failure as a predictive science. The same analytical tools that exposed astrology's flaws—controlled testing, statistical analysis, critical thinking—help us evaluate other claims in our information-rich world.</p>
+        </div>
+
+        <button class="button secondary" onclick="prevStep(9)">← Previous</button>
+        <button class="button" onclick="completeInvestigation()">Complete Investigation</button>
+    </div>
+</div>
+
+<div class="completion-screen" id="completionScreen">
+    <div class="certificate">
+        <h1 style="color:#2c3e50;margin-bottom:10px;">🎓 Certificate of Scientific Investigation</h1>
+        <h2 style="color:#3498db; margin-top:5px;">Carlson Astrology Study Complete</h2>
+        <p>This certifies that the investigator has successfully:</p>
+        <ul style="text-align:left;max-width:500px;margin:20px auto;">
+            <li>Identified testable claims in astrology</li>
+            <li>Understood double-blind experimental design</li>
+            <li>Analyzed results against chance probability</li>
+            <li>Recognized pseudoscientific characteristics</li>
+            <li>Distinguished psychological benefits from empirical claims</li>
+            <li>Identified "moving the goalposts" fallacies</li>
+            <li>Applied scientific skepticism to popular claims</li>
+        </ul>
+        <div style="border-top:2px dashed #ccc;margin:30px 0;padding-top:20px;">
+            <h3>Key Lessons from the Carlson Investigation:</h3>
+            <div style="background:#f8f9fa;padding:15px;border-radius:10px;margin:15px 0; text-align:left;">
+                <p><strong>1. Extraordinary claims require extraordinary evidence:</strong> Astrology makes bold predictions about celestial influences on personality that demand rigorous testing</p>
+                <p><strong>2. Methodology matters more than credentials:</strong> Professional astrologers performed at chance level under proper controls</p>
+                <p><strong>3. Confidence ≠ Accuracy:</strong> Subjective confidence showed no correlation with objective performance</p>
+                <p><strong>4. Distinguish mechanism from benefit:</strong> Self-reflection is valuable; celestial determinism is unsupported</p>
+                <p><strong>5. Beware of goalpost-moving:</strong> Pseudosciences often change claims when tested</p>
+            </div>
+        </div>
+        
+        <div style="background:#e9f7ff; padding:15px; border-radius:8px; margin:20px 0; text-align:left;">
+            <p><strong>💡 The Takeaway for Critical Thinking:</strong></p>
+            <p style="font-style:italic;">"When evaluating any claim—astrological, medical, or otherwise—ask: What specific predictions does it make? Can those predictions be tested under conditions that eliminate bias? What would count as evidence against the claim? Claims that avoid these questions or consistently fail these tests should be viewed with appropriate skepticism."</p>
+        </div>
+
+        <p style="font-size:1.2rem;margin-top:30px;"><strong>Remember:</strong> Scientific thinking isn't about what to believe, but <span class="highlight">how to evaluate evidence.</span></p>
+        <button class="button" id="restartButton" style="margin-top:20px;">🔄 Restart Investigation</button>
+    </div>
+</div>
+</div>
+
+<script>
+let currentStep=0;
+const totalSteps=9;
+
+function initializeApp(){
+    updateStepIndicator();
+    updateProgressBar();
+    setupEventListeners();
+    document.querySelectorAll('.content-engagement, .reflection-phase, .study-boosters').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.goal-identification').forEach((el, index) => {
+        if (index !== currentStep) {
+            el.style.display = 'none';
+        }
+    });
+}
+
+function startEngagement(stepNum) {
+    const goalInput = document.getElementById('goal-input-' + stepNum);
+    const goalText = goalInput.value.trim() || goalInput.placeholder.split(':')[1].trim();
+    
+    const masterButton = goalInput.nextElementSibling;
+    masterButton.textContent = `Let's go master (${goalText.replace(/['"]\.$/, '')})!`;
+
+    document.getElementById('goal' + stepNum).style.display = 'none';
+    const engagementDiv = document.getElementById('engagement' + stepNum);
+    engagementDiv.style.display = 'block';
+    
+    // Ensure reflection buttons start disabled for steps with questions
+    const reflectionButton = engagementDiv.querySelector('.mastery-button[onclick^="showReflection"]');
+    if(reflectionButton) {
+        reflectionButton.disabled = true;
+        reflectionButton.style.opacity = '0.5';
+        reflectionButton.style.cursor = 'not-allowed';
+    }
+}
+
+function showReflection(stepNum) {
+    document.getElementById('engagement' + stepNum).style.display = 'none';
+    document.getElementById('reflection' + stepNum).style.display = 'block';
+}
+
+function nextStep(stepNum) {
+    if (stepNum === totalSteps) {
+        completeInvestigation();
+    } else {
+        currentStep = stepNum + 1;
+        updateStepIndicator();
+        updateProgressBar();
+        
+        // Show goal identification for next step
+        const nextGoal = document.getElementById('goal' + currentStep);
+        if(nextGoal) {
+            nextGoal.style.display = 'block';
+        }
+    }
+}
+
+function prevStep(stepNum) {
+    currentStep = stepNum - 1;
+    updateStepIndicator();
+    updateProgressBar();
+    
+    // When going back, show the engagement content
+    document.getElementById('engagement' + currentStep).style.display = 'block';
+    const reflectionDiv = document.getElementById('reflection' + currentStep);
+    if(reflectionDiv) {
+        reflectionDiv.style.display = 'none';
+    }
+    const goalDiv = document.getElementById('goal' + currentStep);
+    if(goalDiv) {
+        goalDiv.style.display = 'none';
+    }
+}
+
+function updateStepIndicator(){
+    document.querySelectorAll('.step').forEach(step=>{
+        const stepNum = step.dataset.step === '👁' ? 0 : parseInt(step.dataset.step);
+        step.classList.remove('active','completed');
+        if(stepNum===currentStep){
+            step.classList.add('active');
+        }else if(stepNum<currentStep){
+            step.classList.add('completed');
+        }
+    });
+    document.querySelectorAll('.step-container').forEach(container=>{
+        container.classList.remove('active');
+    });
+    if(currentStep <= totalSteps) {
+        document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+}
+
+function updateProgressBar(){
+    const progress=((currentStep)/(totalSteps))*100;
+    document.getElementById('progressFill').style.width=`${progress}%`;
+}
+
+function toggleClaim(claimNum) {
+    const claimAnswer = document.getElementById('claim' + claimNum);
+    if(claimAnswer.classList.contains('show')) {
+        claimAnswer.classList.remove('show');
+    } else {
+        claimAnswer.classList.add('show');
+    }
+}
+
+function completeInvestigation() {
+    document.getElementById('completionScreen').classList.add('show');
+    document.getElementById(`step${currentStep}`).classList.remove('active');
+    currentStep = totalSteps + 1;
+    updateStepIndicator();
+    updateProgressBar();
+}
+
+function setupEventListeners(){
+    document.querySelectorAll('.option').forEach(option=>{
+        option.addEventListener('click',function(){
+            if(this.classList.contains('selected'))return;
+            const parent=this.parentElement;
+            parent.querySelectorAll('.option').forEach(opt=>{
+                opt.classList.remove('selected','correct','incorrect');
+            });
+            this.classList.add('selected');
+            const isCorrect=this.dataset.correct==='true';
+            const container=this.closest('.step-container');
+            const feedbackCorrect=container.querySelector('.correct-feedback');
+            const feedbackIncorrect=container.querySelectorAll('.incorrect-feedback');
+            if(isCorrect){
+                this.classList.add('correct');
+                if(feedbackCorrect){
+                    feedbackCorrect.classList.add('show');
+                }
+                feedbackIncorrect.forEach(fb=>fb.classList.remove('show'));
+            }else{
+                this.classList.add('incorrect');
+                if(feedbackIncorrect){
+                    feedbackIncorrect.forEach(fb=>{
+                        if(fb.dataset.option===this.querySelector('.option-number').textContent){
+                            fb.classList.add('show');
+                        }else{
+                            fb.classList.remove('show');
+                        }
+                    });
+                }
+                if(feedbackCorrect){
+                    feedbackCorrect.classList.remove('show');
+                }
+                parent.querySelector('.option[data-correct="true"]').classList.add('correct');
+            }
+            const engagementDiv = this.closest('.content-engagement');
+            if(engagementDiv) {
+                const reflectionButton = engagementDiv.querySelector('.mastery-button[onclick^="showReflection"]');
+                if(reflectionButton) {
+                    reflectionButton.disabled = false;
+                    reflectionButton.style.opacity = '1';
+                    reflectionButton.style.cursor = 'pointer';
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('[id^="restartButton"]').forEach(button=>{
+        button.addEventListener('click',function(){
+            currentStep=0;
+            document.getElementById('completionScreen').classList.remove('show');
+            document.querySelectorAll('.option').forEach(opt=>{
+                opt.classList.remove('selected','correct','incorrect');
+            });
+            document.querySelectorAll('.feedback').forEach(fb=>{
+                fb.classList.remove('show');
+            });
+            document.querySelectorAll('.mastery-button[onclick^="showReflection"]').forEach(btn=>{
+                btn.disabled=true;
+                btn.style.opacity='0.5';
+                btn.style.cursor='not-allowed';
+            });
+            document.querySelectorAll('.content-engagement, .reflection-phase').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.goal-identification').forEach((el, idx) => {
+                el.style.display = idx === 0 ? 'block' : 'none';
+            });
+            document.querySelectorAll('.claim-answer').forEach(ans => ans.classList.remove('show'));
+            updateStepIndicator();
+            updateProgressBar();
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded',initializeApp);
+</script>
+</body>
+</html>

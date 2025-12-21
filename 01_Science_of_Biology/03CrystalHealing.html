@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science Detective: The Crystal Healing Investigation</title>
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 3px solid #26d0ce;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #1a2980;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.header h2 {
+    color: #666;
+    font-weight: 400;
+}
+
+.badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff6b6b;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    transform: rotate(5deg);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.step-container {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.step-container.active {
+    display: block;
+}
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.step-indicator:before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.step {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.step.active {
+    background: #26d0ce;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 4px rgba(38, 208, 206, 0.2);
+}
+
+.step.completed {
+    background: #1a2980;
+    color: white;
+}
+
+.question-box {
+    background: #f8f9fa;
+    border-left: 5px solid #26d0ce;
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.option {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.option:hover {
+    border-color: #26d0ce;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.option.selected {
+    border-color: #1a2980;
+    background: #f0f7ff;
+}
+
+.option.correct {
+    border-color: #4CAF50;
+    background: #f0fff4;
+}
+
+.option.incorrect {
+    border-color: #ff6b6b;
+    background: #fff0f0;
+}
+
+.option-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: #e9ecef;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.feedback {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.feedback.show { display: block; }
+.feedback.correct-feedback { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+.feedback.incorrect-feedback { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+
+.button {
+    background: #1a2980;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+    margin: 10px 5px;
+}
+
+.button:hover { background: #26d0ce; transform: translateY(-2px); }
+.button:disabled { background: #ccc; cursor: not-allowed; opacity: 0.5; }
+
+.progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #26d0ce, #1a2980);
+    width: 0%;
+    transition: width 0.5s;
+}
+
+.goal-identification, .reflection-phase {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: #e9f7ff;
+    border: 1px solid #26d0ce;
+}
+
+.reflection-phase { background: #fff0f0; border: 1px solid #ff6b6b; }
+
+.reflection-input {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.highlight { background: #fffacd; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="badge">Case #CS-001</div>
+    <div class="header">
+        <h1>🔬 Science Detective</h1>
+        <h2>The Crystal Healing Investigation</h2>
+        <p>A rigorous investigation into the claims of gemstone therapy.</p>
+    </div>
+
+    <div class="step-indicator">
+        <div class="step active" data-step="0">👁</div>
+        <div class="step" data-step="1">1</div>
+        <div class="step" data-step="2">2</div>
+        <div class="step" data-step="3">3</div>
+        <div class="step" data-step="4">4</div>
+        <div class="step" data-step="5">5</div>
+        <div class="step" data-step="6">6</div>
+        <div class="step" data-step="7">7</div>
+        <div class="step" data-step="8">8</div>
+        <div class="step" data-step="9">9</div>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="step-container active" id="step0">
+        <div class="goal-identification" id="goal0">
+            <h3>🎯 Goal Identification - Identifying Anecdotes</h3>
+            <p>What am I trying to master in this step?</p>
+            <input type="text" id="goal-input-0" class="reflection-input" placeholder="e.g. Recognizing subjective claims.">
+            <button class="button" onclick="startEngagement(0)">Begin Mastery</button>
+        </div>
+        <div class="content-engagement" id="engagement0" style="display:none;">
+            <div class="question-box">
+                <h3>🔍 STEP 1: Initial Observation</h3>
+                <p>You notice people claiming crystals "balance energy." Is this an empirical observation or an anecdote?</p>
+            </div>
+            <div class="options">
+                <div class="option" data-correct="true"><span class="option-number">A</span>An anecdote (subjective story)</div>
+                <div class="option" data-correct="false"><span class="option-number">B</span>A scientific law</div>
+            </div>
+            <div class="feedback correct-feedback">✅ Correct! Anecdotes are personal stories, not controlled data.</div>
+            <div class="feedback incorrect-feedback">❌ Not quite. Science requires controlled evidence.</div>
+            <button class="button" onclick="showReflection(0)" id="reflBtn0" disabled>Show Reflection</button>
+        </div>
+        <div class="reflection-phase" id="reflection0" style="display:none;">
+            <h3>💡 Reflection</h3>
+            <textarea class="reflection-input" placeholder="What did you learn?"></textarea>
+            <button class="button" onclick="nextStep(0)">Next Step</button>
+        </div>
+    </div>
+
+    <div class="completion-screen" id="completionScreen" style="display:none; text-align:center;">
+        <h2>Case Closed!</h2>
+        <p>You've completed the investigation.</p>
+        <button class="button" onclick="location.reload()">Restart Investigation</button>
+    </div>
+</div>
+
+<script>
+let currentStep = 0;
+const totalSteps = 10;
+
+function startEngagement(step) {
+    document.getElementById(`goal${step}`).style.display = 'none';
+    document.getElementById(`engagement${step}`).style.display = 'block';
+}
+
+function showReflection(step) {
+    document.getElementById(`reflection${step}`).style.display = 'block';
+}
+
+function nextStep(step) {
+    document.getElementById(`step${step}`).classList.remove('active');
+    currentStep++;
+    if(currentStep < totalSteps) {
+        const next = document.getElementById(`step${currentStep}`);
+        if(next) next.classList.add('active');
+        updateProgress();
+    } else {
+        document.getElementById('completionScreen').style.display = 'block';
+    }
+}
+
+function updateProgress() {
+    const percent = (currentStep / totalSteps) * 100;
+    document.getElementById('progressFill').style.width = percent + '%';
+    document.querySelectorAll('.step').forEach((s, idx) => {
+        if(idx < currentStep) s.className = 'step completed';
+        if(idx === currentStep) s.className = 'step active';
+    });
+}
+
+document.querySelectorAll('.option').forEach(opt => {
+    opt.addEventListener('click', function() {
+        const parent = this.parentElement.parentElement;
+        const isCorrect = this.getAttribute('data-correct') === 'true';
+        this.className = isCorrect ? 'option correct' : 'option incorrect';
+        parent.querySelector(isCorrect ? '.correct-feedback' : '.incorrect-feedback').style.display = 'block';
+        parent.querySelector('button[id^="reflBtn"]').disabled = false;
+    });
+});
+</script>
+</body>
+</html>
