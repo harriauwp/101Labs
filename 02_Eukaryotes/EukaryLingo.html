@@ -414,6 +414,14 @@
                     <li>Pay attention to which syllable is stressed</li>
                     <li>Repeat aloud after each listen</li>
                 </ul>
+                <p style="margin-top: 15px;"><strong>Audio Pronunciation:</strong></p>
+                <div style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #667eea; margin-top: 10px;">
+                    <audio id="pronunciationAudio" controls style="width: 100%;">
+                        <source id="audioSource" src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <p style="font-size: 0.8em; color: #999; margin-top: 10px;">🔊 <strong>Audio generated from Google's Text-to-Speech API</strong></p>
+                </div>
             </div>
 
             <!-- Step 5: Reading Aloud -->
@@ -426,11 +434,23 @@
             <!-- Step 6: Speech Assessment -->
             <div class="step-title">✅ Step 6: Formal Pronunciation Feedback</div>
             <div class="instructions">
-                <p><strong>Use Microsoft's Speech Assessment Tool</strong> for formal feedback on your pronunciation:</p>
-                <p>Record yourself pronouncing the term, then upload a screenshot of your assessment results:</p>
-                <input type="file" id="assessmentFile" accept="image/*">
-                <div class="note-box">
-                    💡 <strong>Tip:</strong> Use Microsoft Speech Assessment in Office 365 for detailed pronunciation analysis.
+                <p><strong>Use Microsoft's Pronunciation Assessment Tool</strong> for formal, detailed feedback on your pronunciation:</p>
+                <p style="margin-top: 15px; font-weight: 600; color: #667eea;">Step 1: Click the button below to open the assessment tool</p>
+                <a href="https://speech.microsoft.com/portal/pronunciationassessmenttool" target="_blank" style="display: inline-block; background: #667eea; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 10px; transition: background 0.3s ease; cursor: pointer;">
+                    🔗 Open Microsoft Pronunciation Assessment Tool
+                </a>
+                <p style="margin-top: 15px; font-weight: 600; color: #667eea;">Step 2: Upload your screenshot</p>
+                <p style="font-size: 0.95em; color: #555; margin-top: 10px;">After using the tool, take a screenshot of your results and upload it here:</p>
+                <input type="file" id="assessmentFile" accept="image/*" style="margin-top: 10px; padding: 8px; border: 1px solid #d0e0ff; border-radius: 6px; width: 100%;">
+                <div class="note-box" style="margin-top: 15px;">
+                    💡 <strong>How to Use Microsoft's Tool:</strong>
+                    <ul style="margin-top: 8px; margin-left: 20px;">
+                        <li>Paste your biological term into the search box</li>
+                        <li>Click "Assess my pronunciation"</li>
+                        <li>Follow the audio recording prompts</li>
+                        <li>Review your detailed accuracy scores</li>
+                        <li>Screenshot your results to submit with this assignment</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -697,6 +717,30 @@ Use standard biological and linguistic references. Do not invent meanings, roots
             arrow.classList.toggle('open');
             content.classList.toggle('open');
         }
+
+        function generatePronunciationAudio(term) {
+            // Google Text-to-Speech API for pronunciation audio
+            const audioSource = document.getElementById('audioSource');
+            const audioElement = document.getElementById('pronunciationAudio');
+            
+            // Format term for audio generation
+            const termForAudio = term.charAt(0).toUpperCase() + term.slice(1).toLowerCase();
+            
+            // Google Translate TTS API (free alternative)
+            const audioUrl = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(termForAudio)}&tl=en&client=tw-ob`;
+            
+            audioSource.src = audioUrl;
+            audioElement.load();
+        }
+
+        // Enhance displayPrompt to include audio generation
+        const originalDisplayPrompt = window.displayPrompt;
+        window.displayPrompt = function(value) {
+            originalDisplayPrompt(value);
+            if (value && termData[value]) {
+                generatePronunciationAudio(value);
+            }
+        };
     </script>
 </body>
 </html>
