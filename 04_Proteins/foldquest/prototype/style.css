@@ -132,3 +132,29 @@ p {
     transform: translateY(-10px);
   }
 }
+
+/* =========================
+   Backbone Residue Styling
+   ========================= */
+
+.residue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+}
+
+.backbone {
+  font-family: monospace;
+  margin-bottom: 4px;
+}
+
+.r-group {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
