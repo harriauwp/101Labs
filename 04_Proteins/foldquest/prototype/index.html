@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FoldQuest – Primary Structure Assembly</title>
+  <title>FoldQuest – Peptide Bond Formation</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🧬 FoldQuest: Building Primary Structure</h1>
-<p>Drag amino acids to assemble a polypeptide. Each peptide bond releases H₂O.</p>
+<h1>🧬 FoldQuest: Primary Structure Assembly</h1>
+<p>Drag amino acids to form a polypeptide. Observe dehydration reactions in real time.</p>
 
 <h2>Amino Acid Pool (Infinite)</h2>
 <div id="aa-pool"></div>
 
-<h2>Growing Polypeptide (N → C)</h2>
+<h2>Polypeptide Chain (N → C)</h2>
 <div id="chain" ondrop="dropAA(event)" ondragover="allowDrop(event)"></div>
 
-<div id="reactionFeedback"></div>
-<p><strong>Water molecules released:</strong> <span id="waterCount">0</span></p>
+<h3>Dehydration Products</h3>
+<p>Water molecules released: <strong><span id="waterCount">0</span></strong></p>
+<div id="waterPool"></div>
 
 <script src="game.js"></script>
 </body>
