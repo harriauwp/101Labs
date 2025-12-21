@@ -1,0 +1,100 @@
+:root {
+  --green: #016836;
+  --red: #c62828;
+  --blue: #1976d2;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+.lab-container {
+  max-width: 1200px;
+  margin: auto;
+  background: white;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.uwp-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--green);
+  padding: 10px;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 100%;
+}
+
+.sidebar {
+  padding: 10px;
+  background: #fafafa;
+  border-right: 1px solid #ccc;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+}
+
+.byproduct-tray {
+  height: 60px;
+  background: #e3f2fd;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.water {
+  border: 2px solid var(--blue);
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-weight: bold;
+  color: var(--blue);
+}
+
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.aa {
+  position: relative;
+  margin: 0 2px;
+}
+
+svg {
+  width: 200px;
+  height: 240px;
+}
+
+.atom {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.bond {
+  stroke: #333;
+  stroke-width: 2;
+}
+
+.peptide {
+  stroke: var(--red);
+  stroke-width: 4;
+}
