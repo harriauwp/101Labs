@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Biology Pronunciation Mastery System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 10px;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2e7d32;
+            padding-bottom: 12px;
+        }
+
+        h1 {
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.2;
+        }
+
+        .intro-section {
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .intro-section h2 {
+            color: #2e7d32;
+            margin-bottom: 6px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .intro-section p {
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .intro-section ol {
+            margin: 8px 0 8px 20px;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .intro-section li {
+            margin-bottom: 3px;
+        }
+
+        .term-selector {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .term-selector label {
+            display: block;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .term-selector select {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 2px solid #2e7d32;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            line-height: 1.2;
+        }
+
+        .workflow-steps {
+            display: none;
+        }
+
+        .workflow-steps.active {
+            display: block;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background: #2e7d32;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .step p {
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .ai-prompt-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .ai-prompt-box strong {
+            color: #2e7d32;
+        }
+
+        .copy-button {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: background 0.3s;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .copy-button:hover {
+            background: #1b5e20;
+        }
+
+        .copy-button:active {
+            transform: scale(0.98);
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #c8e6c9;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            resize: vertical;
+            margin: 8px 0;
+            line-height: 1.3;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        .no-paste {
+            background: #fff3e0 !important;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border: 2px solid #ffb74d;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .warning-box strong {
+            color: #f57c00;
+        }
+
+        .audio-section {
+            background: #e3f2fd;
+            border: 2px solid #42a5f5;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .audio-section h4 {
+            color: #1565c0;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .audio-section p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .audio-player {
+            margin: 10px 0;
+        }
+
+        #phoneticDisplay {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 8px 0;
+            line-height: 1.2;
+        }
+
+        .practice-sentence {
+            background: #f3e5f5;
+            border: 2px solid #ab47bc;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .practice-sentence h4 {
+            color: #ab47bc;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .sentence-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            padding: 12px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .highlight-term {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            font-weight: 600;
+        }
+
+        .assessment-link {
+            background: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 10px 0;
+            transition: background 0.3s;
+            line-height: 1.2;
+        }
+
+        .assessment-link:hover {
+            background: #1565c0;
+        }
+
+        .submission-section {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .submission-section h4 {
+            color: #c62828;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .submission-section p {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .complete-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+            line-height: 1.2;
+        }
+
+        .complete-button:hover {
+            background: #388e3c;
+        }
+
+        .complete-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .info-box {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .example-item {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #2e7d32;
+        }
+
+        .example-item label {
+            display: block;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 4px;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        #charCount {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        input[type="file"] {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border: 2px solid #ef5350;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+
+        ol {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        ol li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Plant Biology Pronunciation Mastery System (LeafLingo)</h1>
+            <p class="subtitle">Master the Language of Plant Biology Through Morphology, Etymology, and Speech Practice</p>
+        </header>
+
+        <div class="intro-section">
+            <h2>How This System Works</h2>
+            <p>This interactive system will help you become fluent in plant biology terminology through a proven 6-step
+                process:</p>
+            <ol>
+                <li><strong>Select a term</strong> from the dropdown menu</li>
+                <li><strong>Copy the AI prompt</strong> and paste it into an AI tool (ChatGPT, Claude, or Copilot)</li>
+                <li><strong>Explain</strong> the morpheme and etymology in your own words</li>
+                <li><strong>Apply</strong> the term with examples from your lab manual</li>
+                <li><strong>Listen</strong> to correct pronunciation and practice aloud</li>
+                <li><strong>Assess</strong> your pronunciation using Microsoft's Speech Assessment Tool</li>
+            </ol>
+            <p style="margin-top: 15px;">📚 <strong>Additional Resource:</strong> <a
+                    href="https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=2087&context=open_access_etds"
+                    target="_blank">Read more about biological terminology learning strategies</a></p>
+        </div>
+
+        <div class="term-selector">
+            <label for="termSelect">Select a Plant Biology Term to Master:</label>
+            <select id="termSelect">
+                <option value="">-- Choose a Term --</option>
+                <option value="absorptionspectrum">Absorption spectrum</option>
+                <option value="accessorypigment">Accessory pigment</option>
+                <option value="acetone">Acetone</option>
+                <option value="actionspectrum">Action spectrum</option>
+                <option value="airspace">Air space</option>
+                <option value="anthocyanin">Anthocyanin</option>
+                <option value="auxin">Auxin</option>
+                <option value="autotroph">Autotroph</option>
+                <option value="carotene">Carotene</option>
+                <option value="carotenoid">Carotenoid</option>
+                <option value="cellulose">Cellulose</option>
+                <option value="chlorophyll">Chlorophyll</option>
+                <option value="chloroplast">Chloroplast</option>
+                <option value="chromatography">Chromatography</option>
+                <option value="chromoplast">Chromoplast</option>
+                <option value="cuticle">Cuticle</option>
+                <option value="ethylene">Ethylene</option>
+                <option value="guardcell">Guard cell</option>
+                <option value="heterotroph">Heterotroph</option>
+                <option value="leafabscission">Leaf abscission</option>
+                <option value="mesophyll">Mesophyll</option>
+                <option value="mortars">Mortars</option>
+                <option value="organelle">Organelle</option>
+                <option value="origin">Origin</option>
+                <option value="oxygen">Oxygen</option>
+                <option value="palisademesophyll">Palisade mesophyll</option>
+                <option value="parenchyma">Parenchyma</option>
+                <option value="pectin">Pectin</option>
+                <option value="pheophytin">Pheophytin</option>
+                <option value="photosynthesis">Photosynthesis</option>
+                <option value="pigment">Pigment</option>
+                <option value="plastid">Plastid</option>
+                <option value="senescence">Senescence</option>
+                <option value="solventfront">Solvent front</option>
+                <option value="spectrophotometer">Spectrophotometer</option>
+                <option value="spongymesophyll">Spongy mesophyll</option>
+                <option value="stoma">Stoma/Stomata</option>
+                <option value="vascularbundle">Vascular bundle</option>
+                <option value="xanthophyll">Xanthophyll</option>
+                <option value="xylem">Xylem</option>
+                <option value="phloem">Phloem</option>
+            </select>
+        </div>
+
+        <div id="workflowSteps" class="workflow-steps">
+            <!-- STEP 1: AI PROMPT -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Generate AI Analysis</h3>
+                </div>
+                <p>Copy the prompt below and paste it into an AI tool (ChatGPT, Claude, or Copilot) to generate a
+                    comprehensive linguistic analysis.</p>
+
+                <div class="ai-prompt-box" id="aiPromptBox">
+                    <strong>AI Prompt:</strong><br><br>
+                    <span id="promptText"></span>
+                </div>
+
+                <button class="copy-button" onclick="copyPrompt()">📋 Copy Prompt to Clipboard</button>
+
+                <div class="info-box">
+                    <strong>💡 Tip:</strong> After getting the AI response, read it carefully. You'll need to
+                    explain it
+                    in your own words in the next step.
+                </div>
+            </div>
+
+            <!-- STEP 2: YOUR INTERPRETATION -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Demonstrate Your Understanding</h3>
+                </div>
+                <p>In your own words, explain what you learned about this term's morphemes (word parts) and
+                    etymology
+                    (word origin).</p>
+
+                <div class="warning-box">
+                    <strong>⚠️ No Copy-Paste Allowed:</strong> This field is protected. You must type your
+                    interpretation to demonstrate genuine understanding.
+                </div>
+
+                <label for="morphemeInput"
+                    style="font-weight: 600; color: #2e7d32; display: block; margin: 10px 0 4px;">Morpheme Breakdown
+                    &
+                    Etymology (150 characters minimum):</label>
+                <textarea id="morphemeInput" class="no-paste" rows="6"
+                    placeholder="Example: 'Chlorophyll breaks down into chloro- (green) from Greek chloros, and -phyll (leaf) from Greek phyllon. This literally means green leaf, which makes sense because...'"
+                    minlength="150" onpaste="return false;" ondrop="return false;"></textarea>
+
+                <div id="charCount">0 / 150 characters minimum</div>
+            </div>
+
+            <!-- STEP 3: LAB MANUAL EXAMPLES -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Connect to Lab Manual Examples</h3>
+                </div>
+                <p>Provide specific examples of where this term appears in your lab manual or how it relates to
+                    structures you've observed.</p>
+
+                <div class="examples-grid">
+                    <div class="example-item">
+                        <label>Lab Manual Example:</label>
+                        <input type="text" id="labExample" class="no-paste" placeholder="e.g., 'Exercise 6, page 6-5'"
+                            onpaste="return false;" ondrop="return false;">
+                    </div>
+
+                    <div class="example-item">
+                        <label>Specific Structure/Context:</label>
+                        <input type="text" id="labContext" class="no-paste"
+                            placeholder="e.g., 'Observed in leaf cross-section'" onpaste="return false;"
+                            ondrop="return false;">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Where to look:</strong> Search your lab manual for the term, check figures and
+                    diagrams,
+                    or think about where you've encountered related structures in your lab activities.
+                </div>
+            </div>
+
+            <!-- STEP 4: AUDIO PRONUNCIATION -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Listen to Proper Pronunciation</h3>
+                </div>
+                <p>Listen carefully to the correct pronunciation. Pay attention to syllable stress and phoneme
+                    patterns.
+                </p>
+
+                <div class="audio-section">
+                    <h4>🔊 Audio Pronunciation</h4>
+                    <div id="phoneticDisplay"></div>
+                    <div class="audio-player">
+                        <audio id="audioPlayer" controls style="width: 100%; max-width: 400px;">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <p>
+                        <strong>Listening Tips:</strong> Play the audio multiple times. Repeat aloud after each
+                        listen.
+                        Pay attention to which syllable is stressed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 5: PRACTICE SENTENCE -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Practice with Lab Manual Context</h3>
+                </div>
+                <p>Read this sentence from your lab manual out loud several times. Focus on pronouncing the
+                    highlighted
+                    term correctly.</p>
+
+                <div class="practice-sentence">
+                    <h4>📖 Your Practice Sentence:</h4>
+                    <div class="sentence-text" id="practiceSentence"></div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Practice Strategy:</strong> Read slowly at first, then gradually increase speed.
+                    Record
+                    yourself on your phone to compare with the audio from Step 4.
+                </div>
+            </div>
+
+            <!-- STEP 6: PRONUNCIATION ASSESSMENT -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Assess & Submit Your Pronunciation</h3>
+                </div>
+                <p>Now it's time to get formal feedback on your pronunciation using Microsoft's Speech Assessment
+                    Tool.
+                </p>
+
+                <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h4 style="color: #2e7d32; margin-bottom: 10px;">📝 Assessment Instructions:</h4>
+                    <ol style="margin-left: 20px; color: #555; line-height: 1.5;">
+                        <li>Click the link below to open Microsoft's Pronunciation Assessment Tool</li>
+                        <li>Click on the <strong>"Speaking"</strong> tab</li>
+                        <li>Press the microphone button to start recording</li>
+                        <li>Read the practice sentence clearly (from Step 5 above)</li>
+                        <li>Review your assessment scores</li>
+                        <li>Take a screenshot of your results</li>
+                        <li>Upload the screenshot using the form below</li>
+                    </ol>
+                </div>
+
+                <div style="text-align: center; margin: 15px 0;">
+                    <a href="https://speech.microsoft.com/portal/pronunciationassessmenttool" target="_blank"
+                        class="assessment-link">
+                        🎯 Open Pronunciation Assessment Tool
+                    </a>
+                </div>
+
+                <div class="submission-section">
+                    <h4>📤 Submit Your Screenshot</h4>
+                    <p>Upload your pronunciation assessment screenshot here:</p>
+                    <input type="file" id="screenshotUpload" accept="image/*">
+
+                    <div style="margin-top: 10px;">
+                        <label for="studentEmail"
+                            style="display: block; font-weight: 600; color: #c62828; margin-bottom: 4px;">Your
+                            Email:</label>
+                        <input type="email" id="studentEmail" placeholder="email@uwp.edu">
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <label for="instructorEmail"
+                            style="display: block; font-weight: 600; color: #c62828; margin-bottom: 4px;">Instructor
+                            Email:</label>
+                        <input type="email" id="instructorEmail" placeholder="harria@uwp.edu">
+                    </div>
+                </div>
+
+                <button class="complete-button" id="submitButton" onclick="submitAssignment()">
+                    ✅ Complete & Submit Assignment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const termData = {
+            absorptionspectrum: {
+                prompt: 'For the plant biology term "absorption spectrum," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'ab-SORP-shun SPEK-trum',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/absorption--_us_1.mp3',
+                sentence: 'The <span class="highlight-term">absorption spectrum</span> shows which wavelengths of light are absorbed by chlorophyll and other pigments.'
+            },
+            accessorypigment: {
+                prompt: 'For the plant biology term "accessory pigment," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'ak-SES-or-ee PIG-ment',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/accessory--_us_1.mp3',
+                sentence: 'Carotenoids function as <span class="highlight-term">accessory pigments</span> that capture light energy and transfer it to chlorophyll.'
+            },
+            acetone: {
+                prompt: 'For the plant biology term "acetone," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'ASS-eh-tone',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/acetone--_us_1.mp3',
+                sentence: '<span class="highlight-term">Acetone</span> is used as a solvent in chromatography to separate plant pigments.'
+            },
+            actionspectrum: {
+                prompt: 'For the plant biology term "action spectrum," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'AK-shun SPEK-trum',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/action--_us_1.mp3',
+                sentence: 'The <span class="highlight-term">action spectrum</span> shows the relative effectiveness of different wavelengths in driving photosynthesis.'
+            },
+            airspace: {
+                prompt: 'For the plant biology term "air space," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'AIR space',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/air--_us_1.mp3',
+                sentence: 'The spongy mesophyll contains extensive <span class="highlight-term">air spaces</span> that facilitate gas exchange.'
+            },
+            anthocyanin: {
+                prompt: 'For the plant biology term "anthocyanin," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'an-thoh-SY-uh-nin',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/anthocyanin--_us_1.mp3',
+                sentence: '<span class="highlight-term">Anthocyanins</span> are water-soluble pigments that produce red, purple, and blue colors in leaves and flowers.'
+            },
+            auxin: {
+                prompt: 'For the plant biology term "auxin," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in plant biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'AWK-sin',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/auxin--_us_1.mp3',
+                sentence: '<span class="highlight-term">Auxin</span> is a plant hormone that promotes cell elongation and influences plant growth.'
+            },
+            autotroph: {
+                prompt: 'For the plant biology term "autotroph," provide:\
