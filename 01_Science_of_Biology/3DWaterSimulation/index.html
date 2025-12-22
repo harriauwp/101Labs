@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Water Molecule Simulation</title>
+    <meta name="description" content="Interactive 3D visualization of water molecule with scientific explanation">
+    
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Orbit Controls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <h1 class="logo">
+                <i class="fas fa-water"></i> 3D Water Molecule
+            </h1>
+            <div class="nav-links">
+                <a href="#simulation" class="nav-link active">Simulation</a>
+                <a href="#theory" class="nav-link">Theory</a>
+                <a href="#controls" class="nav-link">Controls</a>
+                <a href="https://github.com/yourusername/3DWaterSimulation" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Panel: Simulation -->
+        <div class="panel simulation-panel" id="simulation">
+            <div class="panel-header">
+                <h2><i class="fas fa-atom"></i> Interactive Simulation</h2>
+                <div class="controls-info">
+                    <span class="control-key"><i class="fas fa-mouse-pointer"></i> Click & Drag: Rotate</span>
+                    <span class="control-key"><i class="fas fa-mouse"></i> Scroll: Zoom</span>
+                </div>
+            </div>
+            
+            <!-- 3D Canvas -->
+            <div id="canvas-container">
+                <canvas id="molecule-canvas"></canvas>
+                <div class="loading">Loading 3D Simulation...</div>
+            </div>
+            
+            <!-- Simulation Controls -->
+            <div class="simulation-controls">
+                <button id="reset-view" class="btn">
+                    <i class="fas fa-redo"></i> Reset View
+                </button>
+                <button id="toggle-rotation" class="btn">
+                    <i class="fas fa-sync-alt"></i> Auto-Rotate
+                </button>
+                <button id="show-charges" class="btn active">
+                    <i class="fas fa-bolt"></i> Show Charges
+                </button>
+                <button id="show-bond-angle" class="btn">
+                    <i class="fas fa-angle-right"></i> Show Angle (104.5°)
+                </button>
+                <button id="toggle-help" class="btn">
+                    <i class="fas fa-question-circle"></i> Help
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Panel: Information -->
+        <div class="panel info-panel">
+            <!-- Theory Section -->
+            <section id="theory">
+                <div class="section-header">
+                    <h2><i class="fas fa-book"></i> Scientific Background</h2>
+                </div>
+                
+                <div class="molecule-facts">
+                    <div class="fact-card">
+                        <div class="fact-icon" style="background: #ff4444;">
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Oxygen Atom</h3>
+                            <p><strong>Partial negative charge (δ⁻)</strong><br>
+                            More electronegative (3.44)<br>
+                            Larger atomic radius</p>
+                        </div>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon" style="background: #ffffff; color: #333;">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Hydrogen Atoms</h3>
+                            <p><strong>Partial positive charge (δ⁺)</strong><br>
+                            Less electronegative (2.20)<br>
+                            Smaller atomic radius</p>
+                        </div>
+                    </div>
+                    
+                    <div class="fact-card">
+                        <div class="fact-icon" style="background: #4CAF50;">
+                            <i class="fas fa-angle-right"></i>
+                        </div>
+                        <div class="fact-content">
+                            <h3>Molecular Geometry</h3>
+                            <p><strong>Bent shape: 104.5°</strong><br>
+                            Tetrahedral electron geometry<br>
+                            Polar covalent bonds</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Explanation -->
+                <div class="explanation">
+                    <h3><i class="fas fa-flask"></i> Water Molecule Properties</h3>
+                    <div class="content-card">
+                        <h4>Polarity and Hydrogen Bonding</h4>
+                        <p>Water's polarity creates a molecular dipole moment of 1.85 D. This polarity enables:</p>
+                        <ul>
+                            <li><strong>Hydrogen bonding</strong> between molecules</li>
+                            <li><strong>High surface tension</strong> (72.8 mN/m at 20°C)</li>
+                            <li><strong>Anomalous density</strong> (ice is less dense than water)</li>
+                            <li><strong>Excellent solvent properties</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="content-card">
+                        <h4>Molecular Structure Details</h4>
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <span class="spec-label">Chemical Formula</span>
+                                <span class="spec-value">H₂O</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Molar Mass</span>
+                                <span class="spec-value">18.015 g/mol</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">O-H Bond Length</span>
+                                <span class="spec-value">0.96 Å</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">H-O-H Angle</span>
+                                <span class="spec-value">104.45°</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Dipole Moment</span>
+                                <span class="spec-value">1.85 D</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Electron Geometry</span>
+                                <span class="spec-value">Tetrahedral</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls Section -->
+            <section id="controls">
+                <div class="section-header">
+                    <h2><i class="fas fa-gamepad"></i> Interactive Controls</h2>
+                </div>
+                
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <div class="control-desc">
+                            <h4>Mouse Controls</h4>
+                            <p>Left-click + drag: Rotate molecule<br>
+                            Scroll wheel: Zoom in/out<br>
+                            Right-click + drag: Pan view</p>
+                        </div>
+                    </div>
+                    
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <div class="control-desc">
+                            <h4>Keyboard Shortcuts</h4>
+                            <p>R: Reset view to default<br>
+                            A: Toggle auto-rotation<br>
+                            C: Toggle charge display<br>
+                            H: Show/hide help</p>
+                        </div>
+                    </div>
+                    
+                    <div class="control-item">
+                        <div class="control-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="control-desc">
+                            <h4>Touch Controls</h4>
+                            <p>Single finger drag: Rotate<br>
+                            Pinch: Zoom in/out<br>
+                            Two-finger drag: Pan view</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section class="how-it-works">
+                <div class="section-header">
+                    <h2><i class="fas fa-code"></i> How This Simulation Works</h2>
+                </div>
+                
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <div class="tech-icon" style="background: #000000;">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <span>Three.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon" style="background: #264de4;">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <span>CSS3</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon" style="background: #e34c26;">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <span>HTML5</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon" style="background: #61dafb;">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <span>WebGL</span>
+                    </div>
+                </div>
+                
+                <p class="tech-description">
+                    This simulation uses <strong>Three.js</strong> for 3D rendering and <strong>WebGL</strong> for hardware-accelerated graphics.
+                    The molecule geometry is based on actual crystallographic data with accurate bond lengths and angles.
+                </p>
+                
+                <div class="action-buttons">
+                    <a href="jupyter-notebook.ipynb" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> View Jupyter Notebook
+                    </a>
+                    <a href="threejs-molecule.html" class="btn btn-secondary">
+                        <i class="fas fa-cube"></i> Simple 3D Viewer
+                    </a>
+                    <a href="index-jupyter.html" class="btn btn-secondary">
+                        <i class="fas fa-chart-line"></i> Plotly Version
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-question-circle"></i> Help & Instructions</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>Interacting with the 3D Model</h4>
+                <ul>
+                    <li><strong>Rotation:</strong> Click and drag anywhere on the 3D model</li>
+                    <li><strong>Zoom:</strong> Use mouse scroll wheel or pinch on touchscreen</li>
+                    <li><strong>Pan:</strong> Right-click + drag or two-finger drag on touchscreen</li>
+                </ul>
+                
+                <h4>Understanding the Colors</h4>
+                <div class="color-legend">
+                    <div class="legend-item">
+                        <span class="color-dot" style="background: #ff4444;"></span>
+                        <span>Oxygen atom (δ⁻ negative charge)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-dot" style="background: #ffffff; border: 2px solid #ccc;"></span>
+                        <span>Hydrogen atoms (δ⁺ positive charge)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-dot" style="background: #cccccc;"></span>
+                        <span>Covalent bonds (electron sharing)</span>
+                    </div>
+                </div>
+                
+                <h4>Educational Features</h4>
+                <p>This simulation accurately represents:</p>
+                <ul>
+                    <li>Actual bond lengths (O-H: 0.96 Ångströms)</li>
+                    <li>Precise bond angle (104.5°)</li>
+                    <li>Partial charges based on electronegativity</li>
+                    <li>Tetrahedral electron pair geometry</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4><i class="fas fa-graduation-cap"></i> Educational Project</h4>
+                <p>Created by Maiken Kristiansen Revheim<br>
+                Computational Chemistry Visualization</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4><i class="fas fa-share-alt"></i> Share</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4><i class="fas fa-info-circle"></i> About</h4>
+                <p>Open source project for science education<br>
+                MIT Licensed - Free to use and modify</p>
+                <a href="LICENSE" class="license-link">View License</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 3D Water Molecule Simulation | Made with <i class="fas fa-heart" style="color: #ff4444;"></i> for science education</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
