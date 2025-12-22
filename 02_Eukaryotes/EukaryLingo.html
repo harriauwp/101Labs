@@ -300,6 +300,46 @@
         a {
             color: #667eea;
         }
+
+        .audio-section {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            margin-top: 10px;
+        }
+
+        .audio-section audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #5568d3;
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        #audioStatus {
+            color: #999;
+            font-size: 0.85em;
+            margin-left: 12px;
+        }
     </style>
 </head>
 
@@ -319,6 +359,9 @@
                 <li><strong>Listen</strong> to correct pronunciation and practice aloud</li>
                 <li><strong>Assess</strong> your pronunciation using Microsoft's Speech Assessment Tool</li>
             </ol>
+            <p style="margin-top: 15px;">📚 <strong>Additional Resource:</strong> <a
+                    href="https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=2087&context=open_access_etds"
+                    target="_blank">Read more about biological terminology learning strategies</a></p>
         </div>
 
         <div class="term-selector">
@@ -422,13 +465,14 @@
                     <li>Repeat aloud after each listen</li>
                 </ul>
                 <p style="margin-top: 15px;"><strong>Audio Pronunciation:</strong></p>
-                <div
-                    style="background: white; padding: 15px; border-radius: 6px; border-left: 3px solid #667eea; margin-top: 10px;">
-                    <button id="playAudioBtn" onclick="playPronunciation()"
-                        style="background: #667eea; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 1em; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: background 0.3s ease;">
+                <div class="audio-section">
+                    <audio id="audioPlayer" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                    <button id="playAudioBtn" onclick="playPronunciation()">
                         🔊 Play Pronunciation
                     </button>
-                    <span id="audioStatus" style="color: #999; font-size: 0.85em; margin-left: 12px;"></span>
+                    <span id="audioStatus"></span>
                 </div>
             </div>
 
@@ -476,278 +520,276 @@
     </div>
 
     <script>
-        // Term data: includes morpheme info, whether it has morphemes, and sample sentences
-        <script>
-            const termData = {
-                // Singular/Plural pairs
-                nucleus: {
+        const termData = {
+            // Singular/Plural pairs
+            nucleus: {
                 hasMorpheme: true,
-            singular: "Nucleus",
-            plural: "Nuclei",
-            pluralRule: "Latin -us changes to -i (second declension masculine noun)",
-            sample: "The <strong>nucleus</strong> controls cellular functions, and the cell contains multiple <strong>nuclei</strong> during division.",
-            phonetic: "NEW-klee-us / NEW-klee-eye",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleus--_us_1.mp3"
-        },
+                singular: "Nucleus",
+                plural: "Nuclei",
+                pluralRule: "Latin -us changes to -i (second declension masculine noun)",
+                sample: "The <strong>nucleus</strong> controls cellular functions, and the cell contains multiple <strong>nuclei</strong> during division.",
+                phonetic: "NEW-klee-us / NEW-klee-eye",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleus--_us_1.mp3"
+            },
             flagellum: {
                 hasMorpheme: true,
-            singular: "Flagellum",
-            plural: "Flagella",
-            pluralRule: "Latin -um changes to -a (second declension neuter noun)",
-            sample: "A single <strong>flagellum</strong> propels the bacterium, while multiple <strong>flagella</strong> create coordinated movement.",
-            phonetic: "fluh-JEL-um / fluh-JEL-uh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/flagellum--_us_1.mp3"
-        },
+                singular: "Flagellum",
+                plural: "Flagella",
+                pluralRule: "Latin -um changes to -a (second declension neuter noun)",
+                sample: "A single <strong>flagellum</strong> propels the bacterium, while multiple <strong>flagella</strong> create coordinated movement.",
+                phonetic: "fluh-JEL-um / fluh-JEL-uh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/flagellum--_us_1.mp3"
+            },
             cilium: {
                 hasMorpheme: true,
-            singular: "Cilium",
-            plural: "Cilia",
-            pluralRule: "Latin -um changes to -a (second declension neuter noun)",
-            sample: "Each <strong>cilium</strong> beats rhythmically, and the collective movement of <strong>cilia</strong> propels mucus.",
-            phonetic: "SIL-ee-um / SIL-ee-uh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cilium--_us_1.mp3"
-        },
+                singular: "Cilium",
+                plural: "Cilia",
+                pluralRule: "Latin -um changes to -a (second declension neuter noun)",
+                sample: "Each <strong>cilium</strong> beats rhythmically, and the collective movement of <strong>cilia</strong> propels mucus.",
+                phonetic: "SIL-ee-um / SIL-ee-uh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cilium--_us_1.mp3"
+            },
             pseudopodium: {
                 hasMorpheme: true,
-            singular: "Pseudopodium",
-            plural: "Pseudopodia",
-            pluralRule: "Latin -um changes to -a (second declension neuter noun); 'pseudo-' (false) + 'podium' (foot)",
-            sample: "The amoeba extends a <strong>pseudopodium</strong>, and multiple <strong>pseudopodia</strong> help it move and capture food.",
-            phonetic: "soo-doh-POH-dee-um / soo-doh-POH-dee-uh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/pseudopodium--_us_1.mp3"
-        },
+                singular: "Pseudopodium",
+                plural: "Pseudopodia",
+                pluralRule: "Latin -um changes to -a (second declension neuter noun); 'pseudo-' (false) + 'podium' (foot)",
+                sample: "The amoeba extends a <strong>pseudopodium</strong>, and multiple <strong>pseudopodia</strong> help it move and capture food.",
+                phonetic: "soo-doh-POH-dee-um / soo-doh-POH-dee-uh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/pseudopodium--_us_1.mp3"
+            },
             nucleolus: {
                 hasMorpheme: true,
-            singular: "Nucleolus",
-            plural: "Nucleoli",
-            pluralRule: "Latin -us changes to -i (second declension masculine noun); diminutive of 'nucleus'",
-            sample: "The <strong>nucleolus</strong> is visible within the nucleus, and some cells contain multiple <strong>nucleoli</strong>.",
-            phonetic: "new-KLEE-oh-lus / new-KLEE-oh-lye",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleolus--_us_1.mp3"
-        },
+                singular: "Nucleolus",
+                plural: "Nucleoli",
+                pluralRule: "Latin -us changes to -i (second declension masculine noun); diminutive of 'nucleus'",
+                sample: "The <strong>nucleolus</strong> is visible within the nucleus, and some cells contain multiple <strong>nucleoli</strong>.",
+                phonetic: "new-KLEE-oh-lus / new-KLEE-oh-lye",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleolus--_us_1.mp3"
+            },
             mitochondrion: {
                 hasMorpheme: true,
-            singular: "Mitochondrion",
-            plural: "Mitochondria",
-            pluralRule: "Greek -on changes to -a; 'mito-' (thread) + 'chondr-' (grain/granule)",
-            sample: "A single <strong>mitochondrion</strong> produces ATP, and hundreds of <strong>mitochondria</strong> power the cell.",
-            phonetic: "my-toh-KON-dree-on / my-toh-KON-dree-uh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/mitochondrion--_us_1.mp3"
-        },
+                singular: "Mitochondrion",
+                plural: "Mitochondria",
+                pluralRule: "Greek -on changes to -a; 'mito-' (thread) + 'chondr-' (grain/granule)",
+                sample: "A single <strong>mitochondrion</strong> produces ATP, and hundreds of <strong>mitochondria</strong> power the cell.",
+                phonetic: "my-toh-KON-dree-on / my-toh-KON-dree-uh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/mitochondrion--_us_1.mp3"
+            },
 
             // Organelles and structures
             ribosome: {
                 hasMorpheme: true,
-            sample: "The <strong>ribosome</strong> synthesizes proteins by reading mRNA codons.",
-            phonetic: "RY-boh-sohm",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/ribosome--_us_1.mp3"
-        },
+                sample: "The <strong>ribosome</strong> synthesizes proteins by reading mRNA codons.",
+                phonetic: "RY-boh-sohm",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/ribosome--_us_1.mp3"
+            },
             lysosome: {
                 hasMorpheme: true,
-            sample: "The <strong>lysosome</strong> breaks down waste using hydrolytic enzymes.",
-            phonetic: "LY-soh-sohm",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/lysosome--_us_1.mp3"
-        },
+                sample: "The <strong>lysosome</strong> breaks down waste using hydrolytic enzymes.",
+                phonetic: "LY-soh-sohm",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/lysosome--_us_1.mp3"
+            },
             nucleoid: {
                 hasMorpheme: true,
-            sample: "Bacterial DNA is contained in the <strong>nucleoid</strong>, which lacks a membrane.",
-            phonetic: "NEW-klee-oyd",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleoid--_us_1.mp3"
-        },
+                sample: "Bacterial DNA is contained in the <strong>nucleoid</strong>, which lacks a membrane.",
+                phonetic: "NEW-klee-oyd",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/nucleoid--_us_1.mp3"
+            },
             organelle: {
                 hasMorpheme: true,
-            sample: "Each <strong>organelle</strong> performs specific functions within the cell.",
-            phonetic: "or-guh-NEL",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/organelle--_us_1.mp3"
-        },
+                sample: "Each <strong>organelle</strong> performs specific functions within the cell.",
+                phonetic: "or-guh-NEL",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/organelle--_us_1.mp3"
+            },
             chloroplast: {
                 hasMorpheme: true,
-            sample: "The <strong>chloroplast</strong> performs photosynthesis in plant cells.",
-            phonetic: "KLOR-oh-plast",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chloroplast--_us_1.mp3"
-        },
+                sample: "The <strong>chloroplast</strong> performs photosynthesis in plant cells.",
+                phonetic: "KLOR-oh-plast",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chloroplast--_us_1.mp3"
+            },
             chromoplast: {
                 hasMorpheme: true,
-            sample: "The <strong>chromoplast</strong> contains red and yellow pigments in flower petals.",
-            phonetic: "KROH-moh-plast",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chromoplast--_us_1.mp3"
-        },
+                sample: "The <strong>chromoplast</strong> contains red and yellow pigments in flower petals.",
+                phonetic: "KROH-moh-plast",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chromoplast--_us_1.mp3"
+            },
             plastid: {
                 hasMorpheme: true,
-            sample: "The <strong>plastid</strong> is a double-membraned organelle found in plants.",
-            phonetic: "PLAS-tid",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/plastid--_us_1.mp3"
-        },
+                sample: "The <strong>plastid</strong> is a double-membraned organelle found in plants.",
+                phonetic: "PLAS-tid",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/plastid--_us_1.mp3"
+            },
             amyloplast: {
                 hasMorpheme: true,
-            sample: "The <strong>amyloplast</strong> stores starch in plant cells.",
-            phonetic: "AM-ih-loh-plast",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/amyloplast--_us_1.mp3"
-        },
+                sample: "The <strong>amyloplast</strong> stores starch in plant cells.",
+                phonetic: "AM-ih-loh-plast",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/amyloplast--_us_1.mp3"
+            },
             tonoplast: {
                 hasMorpheme: true,
-            sample: "The <strong>tonoplast</strong> membrane surrounds the vacuole in plant cells.",
-            phonetic: "TON-oh-plast",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/tonoplast--_us_1.mp3"
-        },
+                sample: "The <strong>tonoplast</strong> membrane surrounds the vacuole in plant cells.",
+                phonetic: "TON-oh-plast",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/tonoplast--_us_1.mp3"
+            },
             cytoplasm: {
                 hasMorpheme: true,
-            sample: "The <strong>cytoplasm</strong> is the gel-like substance containing organelles.",
-            phonetic: "SY-toh-plaz-um",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cytoplasm--_us_1.mp3"
-        },
+                sample: "The <strong>cytoplasm</strong> is the gel-like substance containing organelles.",
+                phonetic: "SY-toh-plaz-um",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cytoplasm--_us_1.mp3"
+            },
             cytoskeleton: {
                 hasMorpheme: true,
-            sample: "The <strong>cytoskeleton</strong> provides structural support and enables cell movement.",
-            phonetic: "sy-toh-SKEL-uh-ton",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cytoskeleton--_us_1.mp3"
-        },
+                sample: "The <strong>cytoskeleton</strong> provides structural support and enables cell movement.",
+                phonetic: "sy-toh-SKEL-uh-ton",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cytoskeleton--_us_1.mp3"
+            },
             microtubule: {
                 hasMorpheme: true,
-            sample: "The <strong>microtubule</strong> is composed of tubulin protein subunits.",
-            phonetic: "my-kroh-TOO-byool",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/microtubule--_us_1.mp3"
-        },
+                sample: "The <strong>microtubule</strong> is composed of tubulin protein subunits.",
+                phonetic: "my-kroh-TOO-byool",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/microtubule--_us_1.mp3"
+            },
             microfilament: {
                 hasMorpheme: true,
-            sample: "The <strong>microfilament</strong> is made of actin proteins and enables cell movement.",
-            phonetic: "my-kroh-FIL-uh-ment",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/microfilament--_us_1.mp3"
-        },
+                sample: "The <strong>microfilament</strong> is made of actin proteins and enables cell movement.",
+                phonetic: "my-kroh-FIL-uh-ment",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/microfilament--_us_1.mp3"
+            },
             chromatin: {
                 hasMorpheme: true,
-            sample: "The <strong>chromatin</strong> condenses into chromosomes during cell division.",
-            phonetic: "KROH-muh-tin",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chromatin--_us_1.mp3"
-        },
+                sample: "The <strong>chromatin</strong> condenses into chromosomes during cell division.",
+                phonetic: "KROH-muh-tin",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chromatin--_us_1.mp3"
+            },
             cell: {
                 hasMorpheme: false,
-            sample: "The <strong>cell</strong> is the basic unit of life.",
-            phonetic: "SEL",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cell--_us_1.mp3"
-        },
+                sample: "The <strong>cell</strong> is the basic unit of life.",
+                phonetic: "SEL",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cell--_us_1.mp3"
+            },
             cellwall: {
                 hasMorpheme: true,
-            sample: "The <strong>cell wall</strong> provides rigid support around the plant cell membrane.",
-            phonetic: "SEL WAWL",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cell--_us_1.mp3"
-        },
+                sample: "The <strong>cell wall</strong> provides rigid support around the plant cell membrane.",
+                phonetic: "SEL WAWL",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/cell--_us_1.mp3"
+            },
             golgi: {
                 hasMorpheme: false,
-            sample: "The <strong>Golgi apparatus</strong> modifies and packages proteins for export.",
-            phonetic: "GOHL-jee",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/golgi--_us_1.mp3"
-        },
+                sample: "The <strong>Golgi apparatus</strong> modifies and packages proteins for export.",
+                phonetic: "GOHL-jee",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/golgi--_us_1.mp3"
+            },
             parenchyma: {
                 hasMorpheme: true,
-            sample: "The <strong>parenchyma</strong> tissue in plants performs photosynthesis and storage.",
-            phonetic: "puh-REN-kih-muh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/parenchyma--_us_1.mp3"
-        },
+                sample: "The <strong>parenchyma</strong> tissue in plants performs photosynthesis and storage.",
+                phonetic: "puh-REN-kih-muh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/parenchyma--_us_1.mp3"
+            },
             pigment: {
                 hasMorpheme: true,
-            sample: "The <strong>pigment</strong> chlorophyll absorbs light energy for photosynthesis.",
-            phonetic: "PIG-ment",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/pigment--_us_1.mp3"
-        },
+                sample: "The <strong>pigment</strong> chlorophyll absorbs light energy for photosynthesis.",
+                phonetic: "PIG-ment",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/pigment--_us_1.mp3"
+            },
             chlorophyll: {
                 hasMorpheme: true,
-            sample: "The <strong>chlorophyll</strong> molecule captures light energy in the thylakoid membrane.",
-            phonetic: "KLOR-oh-fil",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chlorophyll--_us_1.mp3"
-        },
+                sample: "The <strong>chlorophyll</strong> molecule captures light energy in the thylakoid membrane.",
+                phonetic: "KLOR-oh-fil",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chlorophyll--_us_1.mp3"
+            },
             carotene: {
                 hasMorpheme: true,
-            sample: "The <strong>carotene</strong> pigment produces orange and yellow leaf colors in autumn.",
-            phonetic: "KAIR-uh-teen",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/carotene--_us_1.mp3"
-        },
+                sample: "The <strong>carotene</strong> pigment produces orange and yellow leaf colors in autumn.",
+                phonetic: "KAIR-uh-teen",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/carotene--_us_1.mp3"
+            },
 
             // Organism names (no morpheme)
             protist: {
                 hasMorpheme: false,
-            sample: "A <strong>protist</strong> is a eukaryotic organism, such as an amoeba or paramecium.",
-            phonetic: "PROH-tist",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/protist--_us_1.mp3"
-        },
+                sample: "A <strong>protist</strong> is a eukaryotic organism, such as an amoeba or paramecium.",
+                phonetic: "PROH-tist",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/protist--_us_1.mp3"
+            },
             euglena: {
                 hasMorpheme: false,
-            sample: "The <strong>Euglena</strong> is a protist that can photosynthesize or consume bacteria.",
-            phonetic: "yoo-GLEE-nuh",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/euglena--_us_1.mp3"
-        },
+                sample: "The <strong>Euglena</strong> is a protist that can photosynthesize or consume bacteria.",
+                phonetic: "yoo-GLEE-nuh",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/euglena--_us_1.mp3"
+            },
             chlamydomonas: {
                 hasMorpheme: false,
-            sample: "The <strong>Chlamydomonas</strong> is a green alga with two flagella.",
-            phonetic: "klam-id-oh-MOH-nas",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chlamydomonas--_us_1.mp3"
-        },
+                sample: "The <strong>Chlamydomonas</strong> is a green alga with two flagella.",
+                phonetic: "klam-id-oh-MOH-nas",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/chlamydomonas--_us_1.mp3"
+            },
             volvox: {
                 hasMorpheme: false,
-            sample: "The <strong>Volvox</strong> forms hollow spheres of thousands of cells.",
-            phonetic: "VOL-voks",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/volvox--_us_1.mp3"
-        },
+                sample: "The <strong>Volvox</strong> forms hollow spheres of thousands of cells.",
+                phonetic: "VOL-voks",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/volvox--_us_1.mp3"
+            },
 
             // Physiological/chemical processes
             osmoregulation: {
                 hasMorpheme: true,
-            sample: "The cell uses <strong>osmoregulation</strong> to maintain water balance across the membrane.",
-            phonetic: "oz-moh-reg-yoo-LAY-shun",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/osmoregulation--_us_1.mp3"
-        },
+                sample: "The cell uses <strong>osmoregulation</strong> to maintain water balance across the membrane.",
+                phonetic: "oz-moh-reg-yoo-LAY-shun",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/osmoregulation--_us_1.mp3"
+            },
             phagocytosis: {
                 hasMorpheme: true,
-            sample: "The white blood cell uses <strong>phagocytosis</strong> to engulf pathogens.",
-            phonetic: "fag-oh-sy-TOH-sis",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/phagocytosis--_us_1.mp3"
-        },
+                sample: "The white blood cell uses <strong>phagocytosis</strong> to engulf pathogens.",
+                phonetic: "fag-oh-sy-TOH-sis",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/phagocytosis--_us_1.mp3"
+            },
             macronucleus: {
                 hasMorpheme: true,
-            sample: "The <strong>macronucleus</strong> in a ciliate controls gene expression for daily functions.",
-            phonetic: "mak-roh-NEW-klee-us",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/macronucleus--_us_1.mp3"
-        },
+                sample: "The <strong>macronucleus</strong> in a ciliate controls gene expression for daily functions.",
+                phonetic: "mak-roh-NEW-klee-us",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/macronucleus--_us_1.mp3"
+            },
             hypotonic: {
                 hasMorpheme: true,
-            sample: "In a <strong>hypotonic</strong> solution, water enters the cell by osmosis.",
-            phonetic: "hy-poh-TON-ik",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/hypotonic--_us_1.mp3"
-        },
+                sample: "In a <strong>hypotonic</strong> solution, water enters the cell by osmosis.",
+                phonetic: "hy-poh-TON-ik",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/hypotonic--_us_1.mp3"
+            },
             neutrophil: {
                 hasMorpheme: true,
-            sample: "The <strong>neutrophil</strong> is the most abundant white blood cell.",
-            phonetic: "NOO-troh-fil",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/neutrophil--_us_1.mp3"
-        },
+                sample: "The <strong>neutrophil</strong> is the most abundant white blood cell.",
+                phonetic: "NOO-troh-fil",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/neutrophil--_us_1.mp3"
+            },
             leukocyte: {
                 hasMorpheme: true,
-            sample: "A <strong>leukocyte</strong> (white blood cell) helps defend against pathogens.",
-            phonetic: "LOO-koh-site",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/leukocyte--_us_1.mp3"
-        },
+                sample: "A <strong>leukocyte</strong> (white blood cell) helps defend against pathogens.",
+                phonetic: "LOO-koh-site",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/leukocyte--_us_1.mp3"
+            },
             platelet: {
                 hasMorpheme: false,
-            sample: "A <strong>platelet</strong> is a blood cell fragment that aids in clotting.",
-            phonetic: "PLAYT-let",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/platelet--_us_1.mp3"
-        },
+                sample: "A <strong>platelet</strong> is a blood cell fragment that aids in clotting.",
+                phonetic: "PLAYT-let",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/platelet--_us_1.mp3"
+            },
             actin: {
                 hasMorpheme: false,
-            sample: "The <strong>actin</strong> protein forms microfilaments in the cytoskeleton.",
-            phonetic: "AK-tin",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/actin--_us_1.mp3"
-        },
+                sample: "The <strong>actin</strong> protein forms microfilaments in the cytoskeleton.",
+                phonetic: "AK-tin",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/actin--_us_1.mp3"
+            },
             myosin: {
                 hasMorpheme: false,
-            sample: "The <strong>myosin</strong> protein interacts with actin to enable muscle contraction.",
-            phonetic: "MY-oh-sin",
-            audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/myosin--_us_1.mp3"
-        }
-    };
+                sample: "The <strong>myosin</strong> protein interacts with actin to enable muscle contraction.",
+                phonetic: "MY-oh-sin",
+                audio: "https://ssl.gstatic.com/dictionary/static/sounds/20200429/myosin--_us_1.mp3"
+            }
+        };
 
-            function displayPrompt(value) {
-        const promptArea = document.getElementById('promptArea');
+        function displayPrompt(value) {
+            const promptArea = document.getElementById('promptArea');
             const termTitle = document.getElementById('termTitle');
             const promptContent = document.getElementById('promptContent');
             const morphemeInput = document.getElementById('morphemeInput');
@@ -758,8 +800,8 @@
 
             if (!value || !termData[value]) {
                 promptArea.classList.remove('active');
-            return;
-        }
+                return;
+            }
 
             const term = termData[value];
             let titleText = value.charAt(0).toUpperCase() + value.slice(1);
@@ -767,11 +809,11 @@
             // Check if it's a singular/plural pair
             if (term.singular && term.plural) {
                 titleText = `${term.singular} (singular) & ${term.plural} (plural)`;
-            pluralNote.innerHTML = `<strong>📚 Pluralization Rule:</strong> ${term.pluralRule}`;
-            pluralNote.style.display = 'block';
-        } else {
+                pluralNote.innerHTML = `<strong>📚 Pluralization Rule:</strong> ${term.pluralRule}`;
+                pluralNote.style.display = 'block';
+            } else {
                 pluralNote.style.display = 'none';
-        }
+            }
 
             termTitle.textContent = titleText;
 
@@ -785,7 +827,7 @@
 - Examples of how the word is used in biology
 
 Use standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.`;
-        } else {
+            } else {
                 promptContent.textContent = `For the biological term "${value.charAt(0).toUpperCase() + value.slice(1)}," provide:
 - Its etymology, tracing the word to its original language(s) with literal meanings
 - Its phoneme (phonetic pronunciation)
@@ -793,57 +835,57 @@ Use standard biological and linguistic references. Do not invent meanings, roots
 - Examples of how the word is used in biology
 
 Use standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.`;
-        }
+            }
 
             // Set sample sentence
             if (term.sample) {
                 sampleSentence.innerHTML = term.sample;
-        }
+            }
 
             // Set audio source
             if (term.audio) {
                 audioPlayer.src = term.audio;
-        }
+            }
 
             // Clear text inputs for new term
             morphemeInput.value = '';
             examplesInput.value = '';
 
             promptArea.classList.add('active');
-    }
+        }
 
-            function togglePromptContent(header) {
-        const arrow = header.querySelector('.toggle-arrow');
+        function togglePromptContent(header) {
+            const arrow = header.querySelector('.toggle-arrow');
             const content = header.nextElementSibling;
 
             arrow.classList.toggle('open');
             content.classList.toggle('open');
-    }
+        }
 
-            function playPronunciation() {
-        const audioPlayer = document.getElementById('audioPlayer');
+        function playPronunciation() {
+            const audioPlayer = document.getElementById('audioPlayer');
             const statusEl = document.getElementById('audioStatus');
             const btnEl = document.getElementById('playAudioBtn');
 
             if (!audioPlayer.src) {
                 statusEl.textContent = '⚠️ Please select a term first';
-            return;
-        }
+                return;
+            }
 
             btnEl.disabled = true;
             statusEl.textContent = '🔊 Playing...';
-        
-        audioPlayer.play().then(() => {
+
+            audioPlayer.play().then(() => {
                 audioPlayer.onended = function () {
                     btnEl.disabled = false;
                     statusEl.textContent = '✓ Done';
                 };
-        }).catch(error => {
+            }).catch(error => {
                 btnEl.disabled = false;
-            statusEl.textContent = '⚠️ Unable to play audio';
-            console.error('Audio playback error:', error);
-        });
-    }
+                statusEl.textContent = '⚠️ Unable to play audio';
+                console.error('Audio playback error:', error);
+            });
+        }
     </script>
 </body>
 
