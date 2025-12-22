@@ -14,4 +14,4 @@ An interactive 3D visualization of a water molecule demonstrating its polar stru
 ## Local Usage
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/3d-water-molecule.git
+git clone https://github.com/harriauwp/water.git
