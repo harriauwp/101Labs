@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Molecule 3D - Plotly Version</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body style="background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 100%); color: white; padding: 20px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h1 style="text-align: center; color: #4fc3f7; margin-bottom: 30px;">
+            <i class="fas fa-water"></i> Water Molecule 3D Visualization (Plotly)
+        </h1>
+        
+        <div id="plotly-3d" style="width: 100%; height: 700px;"></div>
+        
+        <div style="margin-top: 30px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px;">
+            <h3 style="color: #4fc3f7;">Scientific Data</h3>
+            <p>This visualization shows the exact coordinates of a water molecule with accurate bond lengths and angles.</p>
+            <p>Use your mouse to rotate, zoom, and pan the 3D model.</p>
+        </div>
+        
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="index.html" style="color: #4fc3f7; text-decoration: none; padding: 10px 20px; border: 1px solid #4fc3f7; border-radius: 5px;">
+                ← Back to Main Simulation
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Water molecule coordinates (in Ångströms)
+        const atoms = [
+            { x: 0, y: 0, z: 0, element: 'O', color: 'red', size: 15 },
+            { x: 0.96, y: 0, z: 0, element: 'H', color: 'white', size: 10 },
+            { x: -0.96 * Math.cos(104.5/2 * Math.PI/180), y: 0.96 * Math.sin(104.5/2 * Math.PI/180), z: 0, element: 'H', color: 'white', size: 10 }
+        ];
+        
+        // Create traces for atoms
+        const atomTraces = atoms.map(atom => ({
+            x: [atom.x],
+            y: [atom.y],
+            z: [atom.z],
+            mode: 'markers',
+            marker: {
+                size: atom.size,
+                color: atom.color,
+                symbol: 'circle',
+                line: { color: 'black', width: 1 }
+            },
+            name: `${atom.element} atom`,
+            text: [`${atom.element} atom`],
+            hoverinfo: 'text'
+        }));
+        
+        // Create bonds
+        const bondTraces = [
+            {
+                x: [0, 0.96],
+                y: [0, 0],
+                z: [0, 0],
+                mode: 'lines',
+                line: { color: 'gray', width: 5 },
+                name: 'O-H bond',
+                hoverinfo: 'none'
+            },
+            {
+                x: [0, -0.96 * Math.cos(104.5/2 * Math.PI/180)],
+                y: [0, 0.96 * Math.sin(104.5/2 * Math.PI/180)],
+                z: [0, 0],
+                mode: 'lines',
+                line: { color: 'gray', width: 5 },
+                name: 'O-H bond',
+                hoverinfo: 'none'
+            }
+        ];
+        
+        // Combine all traces
+        const data = [...atomTraces, ...bondTraces];
+        
+        // Layout configuration
+        const layout = {
+            title: 'Water Molecule (H₂O) - 3D Structure',
+            scene: {
+                xaxis: { title: 'X (Å)' },
+                yaxis: { title: 'Y (Å)' },
+                zaxis: { title: 'Z (Å)' },
+                camera: {
+                    eye: { x: 1.5, y: 1.5, z: 1.5 }
+                },
+                bgcolor: 'rgba(10,10,40,0.8)'
+            },
+            paper_bgcolor: 'rgba(10,10,40,0.8)',
+            plot_bgcolor: 'rgba(10,10,40,0.8)',
+            font: { color: 'white' },
+            width: 1200,
+            height: 700,
+            showlegend: true
+        };
+        
+        // Create plot
+        Plotly.newPlot('plotly-3d', data, layout);
+    </script>
+</body>
+</html>
