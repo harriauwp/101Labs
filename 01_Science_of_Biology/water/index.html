@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Water Molecule Simulation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h2>Water Molecule (H₂O)</h2>
+        <p>Water is a polar molecule with:</p>
+        <ul>
+            <li>Oxygen (red): Partial negative charge</li>
+            <li>Hydrogen (white): Partial positive charge</li>
+            <li>Bond angle: ~104.5°</li>
+        </ul>
+        <p>Controls: Click and drag to rotate, scroll to zoom</p>
+    </div>
+    <script>
+        // Basic Three.js setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000022);
+        document.body.appendChild(renderer.domElement);
+        
+        // Lights
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 5, 5);
+        scene.add(light);
+        
+        const ambientLight = new THREE.AmbientLight(0x404040);
+        scene.add(ambientLight);
+        
+        // Create water molecule
+        const createMolecule = () => {
+            const group = new THREE.Group();
+            
+            // Oxygen atom (larger, red)
+            const oxygenGeometry = new THREE.SphereGeometry(1, 32, 32);
+            const oxygenMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0xff4444,
+                shininess: 100
+            });
+            const oxygen = new THREE.Mesh(oxygenGeometry, oxygenMaterial);
+            group.add(oxygen);
+            
+            // Hydrogen atoms (smaller, white)
+            const hydrogenGeometry = new THREE.SphereGeometry(0.6, 32, 32);
+            const hydrogenMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0xffffff,
+                shininess: 100
+            });
+            
+            const hydrogen1 = new THREE.Mesh(hydrogenGeometry, hydrogenMaterial);
+            const hydrogen2 = new THREE.Mesh(hydrogenGeometry, hydrogenMaterial);
+            
+            // Position hydrogen atoms at ~104.5° angle
+            hydrogen1.position.set(-0.8, 1.5, 0);
+            hydrogen2.position.set(0.8, 1.5, 0);
+            
+            group.add(hydrogen1);
+            group.add(hydrogen2);
+            
+            // Bonds
+            const bondMaterial = new THREE.MeshPhongMaterial({ color: 0xcccccc });
+            const bondGeometry = new THREE.CylinderGeometry(0.1, 0.1, 1.8);
+            
+            // OH bond 1
+            const bond1 = new THREE.Mesh(bondGeometry, bondMaterial);
+            bond1.position.set(-0.4, 0.75, 0);
+            bond1.rotation.z = Math.PI / 6;
+            group.add(bond1);
+            
+            // OH bond 2
+            const bond2 = new THREE.Mesh(bondGeometry, bondMaterial);
+            bond2.position.set(0.4, 0.75, 0);
+            bond2.rotation.z = -Math.PI / 6;
+            group.add(bond2);
+            
+            return group;
+        };
+        
+        const molecule = createMolecule();
+        scene.add(molecule);
+        
+        camera.position.z = 10;
+        
+        // Mouse controls
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+        const windowHalfX = window.innerWidth / 2;
+        const windowHalfY = window.innerHeight / 2;
+        
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX - windowHalfX);
+            mouseY = (event.clientY - windowHalfY);
+        });
+        
+        // Animation loop
+        const animate = () => {
+            requestAnimationFrame(animate);
+            
+            targetX = mouseX * 0.001;
+            targetY = mouseY * 0.001;
+            
+            molecule.rotation.y += (targetX - molecule.rotation.y) * 0.05;
+            molecule.rotation.x += (targetY - molecule.rotation.x) * 0.05;
+            
+            renderer.render(scene, camera);
+        };
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Zoom controls
+        window.addEventListener('wheel', (event) => {
+            camera.position.z += event.deltaY * 0.01;
+            camera.position.z = Math.max(5, Math.min(20, camera.position.z));
+        });
+        
+        animate();
+    </script>
+</body>
+</html>
