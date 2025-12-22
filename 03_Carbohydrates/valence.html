@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valence Electrons - Interactive Gamified Worksheet</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background: #ecf0f1;
+            height: 8px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 500px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .instruction {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .rule-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-style: italic;
+        }
+        
+        .rule-box strong {
+            color: #d99000;
+        }
+
+        /* Interactive Periodic Table Styles */
+        .periodic-table {
+            display: grid;
+            grid-template-columns: repeat(18, 1fr);
+            gap: 3px;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            font-size: 0.7em;
+        }
+
+        .element-cell {
+            aspect-ratio: 1;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: default; /* Default to not clickable */
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+        }
+
+        .element-cell:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .element-cell.clickable {
+            cursor: pointer;
+        }
+
+        .element-cell.clickable:hover {
+            background: #90caf9;
+        }
+
+        .element-cell.selected {
+            background: #4caf50 !important;
+            color: white;
+            border-color: #2e7d32;
+            transform: scale(1.15);
+        }
+
+        .element-cell.wrong {
+            background: #f44336 !important;
+            color: white;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .element-symbol {
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+
+        .element-number {
+            font-size: 0.8em;
+            color: #666;
+        }
+        
+        /* Group Labels for clickable step 3 */
+        .group-label {
+            text-align: center;
+            font-weight: bold;
+            color: #3498db;
+            padding: 5px;
+            font-size: 0.9em;
+            grid-row: 1;
+        }
+        
+        .group-label.clickable {
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        
+        .group-label.clickable:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        /* Block Colors */
+        .s-block { background: #ffebee; }
+        .p-block { background: #e3f2fd; }
+        .d-block { background: #fff9c4; }
+        .f-block { background: #f3e5f5; }
+
+        .empty-cell {
+            grid-column: span 1;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .feedback.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .element-display {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .result-box {
+            background: #eaf3f8;
+            border: 1px solid #3498db;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .direction-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .direction-button {
+            padding: 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            background: #e67e22;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .direction-button:hover {
+            background: #d35400;
+            transform: scale(1.05);
+        }
+
+        .completion {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .completion h2 {
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .legend {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            border: 1px solid #666;
+        }
+
+        @media (max-width: 768px) {
+            .periodic-table {
+                font-size: 0.5em;
+                gap: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Valence Electrons Interactive Worksheet</h1>
+            <div class="subtitle">Gamified learning with zero assumed knowledge</div>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="content">
+            <div class="step active" id="step1">
+                <h3>Step 1 & 2 – Select Your Element</h3>
+                <div class="instruction">
+                    <p>Click on any element in the periodic table below to begin your analysis.</p>
+                </div>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color s-block"></div>
+                        <span>s-block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color p-block"></div>
+                        <span>p-block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color d-block"></div>
+                        <span>d-block</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color f-block"></div>
+                        <span>f-block</span>
+                    </div>
+                </div>
+                
+                <div id="periodicTable1" class="periodic-table"></div>
+                
+                <div class="feedback" id="step1Feedback"></div>
+            </div>
+
+            <div class="step" id="step3">
+                <h3>Step 3 – Find the Group Number (1-18)</h3>
+                <div class="instruction">
+                    <p>Look at the numbers (1-18) at the TOP of each column.</p>
+                    <p><strong>Click on the group number</strong> for your element:</p>
+                    <div class="element-display" id="elementDisplay3"></div>
+                </div>
+                
+                <div id="periodicTable3" class="periodic-table"></div>
+                
+                <div class="feedback" id="step3Feedback"></div>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step4">
+                <h3>Step 4 – Identify the Block</h3>
+                <div class="instruction">
+                    <p>Without looking at the colors, apply these rules:</p>
+                </div>
+                
+                <div class="rule-box">
+                    <p>If the element is in **Group 1 or 2** → s-block</p>
+                    <p>If the element is in **Groups 3–12** → d-block</p>
+                    <p>If the element is in **Groups 13–18** → p-block</p>
+                    <p>If in the **separated bottom rows** → f-block</p>
+                </div>
+                
+                <div class="instruction">
+                    <p>Your element: <span class="element-display" id="elementDisplay4"></span></p>
+                    <p>Group: <strong><span id="displayGroup4"></span></strong></p>
+                    <p><strong>Click on your element to identify its block:</strong></p>
+                </div>
+                
+                <div id="periodicTable4" class="periodic-table"></div>
+                
+                <div class="feedback" id="step4Feedback"></div>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step5">
+                <h3>Step 5 – Identify the Classification</h3>
+                <div class="rule-box">
+                    <p>If in s-block or p-block (except H/He) → **Main-Group**</p>
+                    <p>If Hydrogen or Helium → **Special Case**</p>
+                    <p>If in d-block → **Transition**</p>
+                    <p>If in f-block → **Inner-Transition**</p>
+                </div>
+                
+                <div class="instruction">
+                    <p>Element: <span class="element-display" id="elementDisplay5"></span></p>
+                    <p>Block: <strong><span id="displayBlock5"></span></strong></p>
+                    <p>What is the classification?</p>
+                </div>
+                
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button class="btn-primary" onclick="selectClassification('main-group')">Main-Group</button>
+                    <button class="btn-primary" onclick="selectClassification('special case')">Special Case</button>
+                    <button class="btn-primary" onclick="selectClassification('transition')">Transition</button>
+                    <button class="btn-primary" onclick="selectClassification('inner-transition')">Inner-Transition</button>
+                </div>
+                
+                <div class="feedback" id="step5Feedback"></div>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step6">
+                <h3>Step 6 – Summary</h3>
+                <div class="result-box">
+                    <p><strong>Element:</strong> <span id="summaryElement"></span></p>
+                    <p><strong>Symbol:</strong> <span id="summarySymbol"></span></p>
+                    <p><strong>Group:</strong> <span id="summaryGroup"></span></p>
+                    <p><strong>Block:</strong> <span id="summaryBlock"></span></p>
+                    <p><strong>Classification:</strong> <span id="summaryClassification"></span></p>
+                </div>
+                
+                <button class="btn-primary" onclick="nextStep()">Continue to Valence Rules</button>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step7">
+                <h3>Step 7-8 – Determine Valence Electrons</h3>
+                <div class="instruction">
+                    <p>Element: <span class="element-display" id="elementDisplay7"></span></p>
+                </div>
+                
+                <div class="rule-box" id="valenceRule"></div>
+                
+                <div class="input-group">
+                    <label>Enter the number of valence electrons:</label>
+                    <input type="number" id="valenceInput" min="1" max="8" placeholder="Enter number">
+                </div>
+                
+                <div class="feedback" id="step7Feedback"></div>
+                
+                <button class="btn-primary" onclick="validateValence()">Submit</button>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step9">
+                <h3>Steps 9-12 – Bonding and Lone Pairs</h3>
+                <div class="instruction">
+                    <p>Element: <span class="element-display" id="elementDisplay9"></span></p>
+                    <p>Valence Electrons: <strong><span id="displayValence9"></span></strong></p>
+                </div>
+                
+                <div class="result-box">
+                    <p><strong>Octet Goal:</strong> <span id="octetGoal"></span> electrons (Rule 10.1)</p>
+                    <p><strong>Electrons Needed:</strong> <span id="electronsNeeded"></span> (Octet Goal - Valence)</p>
+                </div>
+                <div class="result-box">
+                    <p><strong>Bonds Formed:</strong> <span id="bondsFormed"></span> (Rule 11.1)</p>
+                    <p><strong>Lone Pairs:</strong> <span id="lonePairs"></span> (Rule 12.1)</p>
+                </div>
+                
+                <button class="btn-primary" onclick="nextStep()">Continue to Electronegativity</button>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="step10">
+                <h3>Step 13 – Electronegativity Trend Game</h3>
+                <div class="instruction">
+                    <p><strong>Question:</strong> In which direction does electronegativity INCREASE?</p>
+                    <p>Click the arrows to indicate the direction (Rule 13.1):</p>
+                </div>
+                
+                <div class="direction-grid">
+                    <button class="direction-button" onclick="selectTrend('up-left')">⬆️ & ⬅️ (Up & Left)</button>
+                    <button class="direction-button" onclick="selectTrend('up-right')">⬆️ & ➡️ (Up & Right)</button>
+                    <button class="direction-button" onclick="selectTrend('down-left')">⬇️ & ⬅️ (Down & Left)</button>
+                    <button class="direction-button" onclick="selectTrend('down-right')">⬇️ & ➡️ (Down & Right)</button>
+                </div>
+                
+                <div class="feedback" id="step10Feedback"></div>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="chargePrediction">
+                <h3>Step 14 – Predict Partial Charge</h3>
+                <div class="instruction">
+                    <p>Your element: <span class="element-display" id="elementDisplay11"></span></p>
+                    <p>Based on the trend, determine the electronegativity of this element:</p>
+                </div>
+                
+                <div class="result-box">
+                    <p>This element has a: <strong><span id="displayEN"></span></strong> electronegativity.</p>
+                </div>
+                
+                <div class="rule-box">
+                    <p><strong>Rule 14.1:</strong> The more electronegative atom becomes delta negative (&delta;<sup>-</sup>), the less becomes delta positive (&delta;<sup>+</sup>).</p>
+                    <p>Predicted Partial Charge in a bond: <strong><span id="displayCharge"></span></strong></p>
+                </div>
+
+                <div class="feedback" id="step11Feedback"></div>
+                <button class="btn-primary" onclick="nextStep()">Complete Worksheet</button>
+                <button class="btn-secondary" onclick="previousStep()">Previous</button>
+            </div>
+
+            <div class="step" id="completion">
+                <div class="completion">
+                    <h2>🎉 Worksheet Complete! 🎉</h2>
+                    <p>You have successfully analyzed the chemistry of:</p>
+                    <div class="element-display" id="finalElementDisplay"></div>
+                    <div class="rule-box">
+                        <p><strong>Valence Electrons:</strong> <span id="finalValence"></span></p>
+                        <p><strong>Bonds Formed:</strong> <span id="finalBonds"></span></p>
+                        <p><strong>Lone Pairs:</strong> <span id="finalLonePairs"></span></p>
+                        <p><strong>Electronegativity:</strong> <span id="finalEN"></span></p>
+                        <p><strong>Partial Charge Prediction:</strong> <span id="finalCharge"></span></p>
+                    </div>
+                    <button class="btn-primary" onclick="resetWorksheet()">Start Over</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enriched Element database with correct bonding/octet/EN data
+        const elements = [
+            {symbol: 'H', name: 'Hydrogen', number: 1, group: 1, period: 1, block: 's-block', classification: 'special case', valence: 1, octet: 2, bonds: 1, lonePairs: 0, en: 2.2, enLabel: 'medium-low', charge: '&delta;+'},
+            {symbol: 'He', name: 'Helium', number: 2, group: 18, period: 1, block: 's-block', classification: 'special case', valence: 2, octet: 2, bonds: 0, lonePairs: 1, en: 0, enLabel: 'low', charge: 'None'},
+            {symbol: 'Li', name: 'Lithium', number: 3, group: 1, period: 2, block: 's-block', classification: 'main-group', valence: 1, octet: 8, bonds: 1, lonePairs: 0, en: 0.98, enLabel: 'low', charge: '&delta;+'},
+            {symbol: 'Be', name: 'Beryllium', number: 4, group: 2, period: 2, block: 's-block', classification: 'main-group', valence: 2, octet: 8, bonds: 2, lonePairs: 0, en: 1.57, enLabel: 'medium', charge: '&delta;+'},
+            {symbol: 'B', name: 'Boron', number: 5, group: 13, period: 2, block: 'p-block', classification: 'main-group', valence: 3, octet: 8, bonds: 3, lonePairs: 0, en: 2.04, enLabel: 'medium', charge: '&delta;±'},
+            {symbol: 'C', name: 'Carbon', number: 6, group: 14, period: 2, block: 'p-block', classification: 'main-group', valence: 4, octet: 8, bonds: 4, lonePairs: 0, en: 2.55, enLabel: 'high', charge: '&delta;±'},
+            {symbol: 'N', name: 'Nitrogen', number: 7, group: 15, period: 2, block: 'p-block', classification: 'main-group', valence: 5, octet: 8, bonds: 3, lonePairs: 1, en: 3.04, enLabel: 'high', charge: '&delta;-'},
+            {symbol: 'O', name: 'Oxygen', number: 8, group: 16, period: 2, block: 'p-block', classification: 'main-group', valence: 6, octet: 8, bonds: 2, lonePairs: 2, en: 3.44, enLabel: 'high', charge: '&delta;-'},
+            {symbol: 'F', name: 'Fluorine', number: 9, group: 17, period: 2, block: 'p-block', classification: 'main-group', valence: 7, octet: 8, bonds: 1, lonePairs: 3, en: 3.98, enLabel: 'high', charge: '&delta;-'},
+            {symbol: 'Ne', name: 'Neon', number: 10, group: 18, period: 2, block: 'p-block', classification: 'main-group', valence: 8, octet: 8, bonds: 0, lonePairs: 4, en: 0, enLabel: 'low', charge: 'None'},
+            {symbol: 'Na', name: 'Sodium', number: 11, group: 1, period: 3, block: 's-block', classification: 'main-group', valence: 1, octet: 8, bonds: 1, lonePairs: 0, en: 0.93, enLabel: 'low', charge: '&delta;+'},
+            {symbol: 'Mg', name: 'Magnesium', number: 12, group: 2, period: 3, block: 's-block', classification: 'main-group', valence: 2, octet: 8, bonds: 2, lonePairs: 0, en: 1.31, enLabel: 'low', charge: '&delta;+'},
+            {symbol: 'Al', name: 'Aluminum', number: 13, group: 13, period: 3, block: 'p-block', classification: 'main-group', valence: 3, octet: 8, bonds: 3, lonePairs: 0, en: 1.61, enLabel: 'medium', charge: '&delta;+'},
+            {symbol: 'Si', name: 'Silicon', number: 14, group: 14, period: 3, block: 'p-block', classification: 'main-group', valence: 4, octet: 8, bonds: 4, lonePairs: 0, en: 1.90, enLabel: 'medium', charge: '&delta;±'},
+            {symbol: 'P', name: 'Phosphorus', number: 15, group: 15, period: 3, block: 'p-block', classification: 'main-group', valence: 5, octet: 8, bonds: 3, lonePairs: 1, en: 2.19, enLabel: 'medium', charge: '&delta;-'},
+            {symbol: 'S', name: 'Sulfur', number: 16, group: 16, period: 3, block: 'p-block', classification: 'main-group', valence: 6, octet: 8, bonds: 2, lonePairs: 2, en: 2.58, enLabel: 'high', charge: '&delta;-'},
+            {symbol: 'Cl', name: 'Chlorine', number: 17, group: 17, period: 3, block: 'p-block', classification: 'main-group', valence: 7, octet: 8, bonds: 1, lonePairs: 3, en: 3.16, enLabel: 'high', charge: '&delta;-'},
+            {symbol: 'Ar', name: 'Argon', number: 18, group: 18, period: 3, block: 'p-block', classification: 'main-group', valence: 8, octet: 8, bonds: 0, lonePairs: 4, en: 0, enLabel: 'low', charge: 'None'},
+            {symbol: 'K', name: 'Potassium', number: 19, group: 1, period: 4, block: 's-block', classification: 'main-group', valence: 1, octet: 8, bonds: 1, lonePairs: 0, en: 0.82, enLabel: 'low', charge: '&delta;+'},
+            {symbol: 'Ca', name: 'Calcium', number: 20, group: 2, period: 4, block: 's-block', classification: 'main-group', valence: 2, octet: 8, bonds: 2, lonePairs: 0, en: 1.00, enLabel: 'low', charge: '&delta;+'}
+        ];
+
+        // Map for easy lookup
+        const elementMap = elements.reduce((acc, el) => {
+            acc[el.symbol] = el;
+            return acc;
+        }, {});
+
+        let currentElement = null;
+        let userAnswers = {};
+        let currentStep = 'step1';
+
+        function getElementBySymbol(symbol) {
+            return elementMap[symbol];
+        }
+
+        // --- Core Table and Navigation Logic ---
+        function createPeriodicTable(containerId, mode = 'select') {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            
+            // Add group labels
+            for (let i = 1; i <= 18; i++) {
+                const label = document.createElement('div');
+                label.className = 'group-label';
+                label.textContent = i;
+                label.style.gridColumn = i;
+                if (mode === 'group-select') {
+                    label.classList.add('clickable');
+                    label.onclick = () => selectGroup(i);
+                }
+                container.appendChild(label);
+            }
+            
+            elements.forEach(el => {
+                const cell = document.createElement('div');
+                cell.className = `element-cell ${el.block}`;
+                cell.style.gridColumn = el.group;
+                cell.style.gridRow = el.period + 1; // +1 to account for group labels row
+                
+                cell.innerHTML = `
+                    <div class="element-number">${el.number}</div>
+                    <div class="element-symbol">${el.symbol}</div>
+                `;
+                
+                // Determine if cell is clickable
+                if (mode === 'select' || (mode === 'block-select' && el.symbol === currentElement.symbol)) {
+                    cell.classList.add('clickable');
+                }
+                
+                if (mode === 'select') {
+                    cell.onclick = () => selectElement(el);
+                } else if (mode === 'block-select' && el.symbol === currentElement.symbol) {
+                    cell.onclick = () => selectBlock();
+                }
+                
+                // Highlight selected element
+                if (currentElement && el.symbol === currentElement.symbol) {
+                    cell.classList.add('selected');
+                }
+                
+                container.appendChild(cell);
+            });
+            
+            // Add Lanthanides/Actinides empty space
+            const emptyCellStart = document.createElement('div');
+            emptyCellStart.className = 'empty-cell';
+            emptyCellStart.style.gridColumn = '3 / 18';
+            emptyCellStart.style.gridRow = '8'; // F-block starts at period 6+2
+            
+            // Placeholder for F-Block
+            const fBlockPlaceholder = document.createElement('div');
+            fBlockPlaceholder.className = 'element-cell f-block';
+            fBlockPlaceholder.style.gridColumn = '3 / 18';
+            fBlockPlaceholder.style.gridRow = '9';
+            fBlockPlaceholder.style.aspectRatio = 'initial';
+            fBlockPlaceholder.style.height = '40px';
+            fBlockPlaceholder.style.lineHeight = '40px';
+            fBlockPlaceholder.style.textAlign = 'center';
+            fBlockPlaceholder.style.border = 'none';
+            fBlockPlaceholder.style.cursor = 'default';
+            fBlockPlaceholder.innerHTML = 'F-Block (Inner-Transition Elements)';
+            
+            // container.appendChild(emptyCellStart);
+            // container.appendChild(fBlockPlaceholder);
+        }
+
+        function selectElement(el) {
+            currentElement = el;
+            userAnswers.element = el.symbol;
+            
+            document.getElementById('step1Feedback').className = 'feedback success';
+            document.getElementById('step1Feedback').textContent = `Selected: ${el.name} (${el.symbol})`;
+            
+            // Update display elements for all steps
+            document.querySelectorAll('[id^="elementDisplay"]').forEach(display => {
+                display.textContent = `${el.name} (${el.symbol})`;
+            });
+
+            setTimeout(() => nextStep(), 1000);
+        }
+
+        function selectGroup(group) {
+            const feedback = document.getElementById('step3Feedback');
+            if (group === currentElement.group) {
+                feedback.className = 'feedback success';
+                feedback.textContent = `Correct! Group ${group}`;
+                userAnswers.group = group;
+                setTimeout(() => nextStep(), 1000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = `Not quite. Look again at where ${currentElement.symbol} is located and the group number at the top.`;
+            }
+        }
+
+        function selectBlock() {
+            const feedback = document.getElementById('step4Feedback');
+            feedback.className = 'feedback success';
+            feedback.textContent = `Correct! ${currentElement.symbol} is in the ${currentElement.block}`;
+            userAnswers.block = currentElement.block;
+            setTimeout(() => nextStep(), 1000);
+        }
+
+        function selectClassification(classification) {
+            const feedback = document.getElementById('step5Feedback');
+            if (classification === currentElement.classification) {
+                feedback.className = 'feedback success';
+                feedback.textContent = `Correct! ${currentElement.classification}`;
+                userAnswers.classification = classification;
+                setTimeout(() => nextStep(), 1000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = 'Not quite. Review the rules and try again.';
+            }
+        }
+
+        function validateValence() {
+            const input = parseInt(document.getElementById('valenceInput').value);
+            const feedback = document.getElementById('step7Feedback');
+            
+            if (input === currentElement.valence) {
+                feedback.className = 'feedback success';
+                feedback.textContent = `Correct! ${currentElement.symbol} has ${input} valence electrons.`;
+                userAnswers.valence = input;
+                setTimeout(() => nextStep(), 1000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = 'Not quite. Check the rule you applied and try again.';
+            }
+        }
+
+        function selectTrend(direction) {
+            const feedback = document.getElementById('step10Feedback');
+            const correctTrend = 'up-right';
+            
+            // Determine the charge prediction for the next step before continuing
+            prepareChargePrediction();
+
+            if (direction === correctTrend) {
+                feedback.className = 'feedback success';
+                feedback.textContent = 'Correct! Electronegativity increases up and to the right.';
+                setTimeout(() => nextStep(), 1000);
+            } else {
+                feedback.className = 'feedback error';
+                feedback.textContent = 'Not quite. Think about which elements pull electrons most strongly (Hint: Fluorine). Try again.';
+            }
+        }
+        
+        function prepareChargePrediction() {
+            // This function prepares the data for the chargePrediction step
+            document.getElementById('displayEN').textContent = currentElement.enLabel;
+            
+            let chargeHTML = '';
+            if (currentElement.charge === 'None') {
+                chargeHTML = 'Negligible partial charge (Usually inert or symmetrical)';
+            } else if (currentElement.charge === '&delta;+') {
+                chargeHTML = '&delta;<sup>+</sup> (Partial Positive) Charge';
+            } else if (currentElement.charge === '&delta;-') {
+                chargeHTML = '&delta;<sup>-</sup> (Partial Negative) Charge';
+            } else if (currentElement.charge === '&delta;±') {
+                chargeHTML = '&delta;<sup>+</sup> or &delta;<sup>-</sup> (Depends on partner - Non-polarizing)';
+            }
+            
+            document.getElementById('displayCharge').innerHTML = chargeHTML;
+            userAnswers.enLabel = currentElement.enLabel;
+            userAnswers.predictedCharge = chargeHTML;
+        }
+
+
+        function showStep(stepId) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById(stepId).classList.add('active');
+            currentStep = stepId;
+            
+            if (stepId === 'step1') createPeriodicTable('periodicTable1', 'select');
+            
+            if (!currentElement && stepId !== 'step1') return; // Should not happen in normal flow
+
+            if (stepId === 'step3') {
+                createPeriodicTable('periodicTable3', 'group-select');
+            }
+            
+            if (stepId === 'step4') {
+                document.getElementById('displayGroup4').textContent = userAnswers.group;
+                createPeriodicTable('periodicTable4', 'block-select');
+            }
+            
+            if (stepId === 'step5') {
+                document.getElementById('displayBlock5').textContent = userAnswers.block;
+            }
+            
+            if (stepId === 'step6') {
+                document.getElementById('summaryElement').textContent = currentElement.name;
+                document.getElementById('summarySymbol').textContent = currentElement.symbol;
+                document.getElementById('summaryGroup').textContent = userAnswers.group;
+                document.getElementById('summaryBlock').textContent = userAnswers.block;
+                document.getElementById('summaryClassification').textContent = userAnswers.classification;
+            }
+            
+            if (stepId === 'step7') {
+                displayValenceRule();
+                document.getElementById('valenceInput').value = '';
+                document.getElementById('step7Feedback').style.display = 'none';
+            }
+            
+            if (stepId === 'step9') {
+                document.getElementById('displayValence9').textContent = userAnswers.valence;
+                calculateBondingInfo();
+            }
+            
+            if (stepId === 'chargePrediction') {
+                prepareChargePrediction();
+            }
+
+            if (stepId === 'completion') {
+                showCompletion();
+            }
+            
+            updateProgress();
+        }
+
+        function displayValenceRule() {
+            const ruleDiv = document.getElementById('valenceRule');
+            const classification = userAnswers.classification;
+            const group = userAnswers.group;
+            const symbol = currentElement.symbol;
+            
+            let ruleText = '';
+            
+            if (symbol === 'H') {
+                ruleText = '<strong>Rule A:</strong> Hydrogen has 1 valence electron.';
+            } else if (symbol === 'He') {
+                ruleText = '<strong>Rule B:</strong> Helium has 2 valence electrons.';
+            } else if (classification === 'main-group' && userAnswers.block === 's-block') {
+                ruleText = `<strong>Rule C:</strong> For main-group s-block elements, valence electrons = group number.<br>Group ${group} = <strong>${group}</strong> valence electrons.`;
+            } else if (classification === 'main-group' && userAnswers.block === 'p-block') {
+                const lastDigit = group % 10;
+                ruleText = `<strong>Rule D:</strong> For main-group p-block elements, valence electrons = last digit of group number.<br>Group ${group} → last digit = <strong>${lastDigit}</strong> valence electrons.`;
+            } else if (classification === 'transition' || classification === 'inner-transition') {
+                ruleText = '<strong>Rule E/F:</strong> Transition/Inner-transition elements usually have <strong>2</strong> valence electrons.';
+            }
+            
+            ruleDiv.innerHTML = ruleText;
+        }
+
+        function calculateBondingInfo() {
+            // Using pre-calculated data from the enriched element object
+            document.getElementById('octetGoal').textContent = currentElement.octet;
+            
+            const needed = currentElement.octet - currentElement.valence;
+            const bonds = currentElement.bonds;
+            const lonePairs = currentElement.lonePairs;
+
+            document.getElementById('electronsNeeded').textContent = `${currentElement.octet} - ${currentElement.valence} = ${needed}`;
+            document.getElementById('bondsFormed').textContent = bonds;
+            document.getElementById('lonePairs').textContent = lonePairs;
+            
+            userAnswers.bonds = bonds;
+            userAnswers.lonePairs = lonePairs;
+        }
+
+        function showCompletion() {
+            document.getElementById('finalElementDisplay').textContent = `${currentElement.name} (${currentElement.symbol})`;
+            document.getElementById('finalValence').textContent = userAnswers.valence;
+            document.getElementById('finalBonds').textContent = userAnswers.bonds;
+            document.getElementById('finalLonePairs').textContent = userAnswers.lonePairs;
+            document.getElementById('finalEN').textContent = userAnswers.enLabel;
+            document.getElementById('finalCharge').innerHTML = userAnswers.predictedCharge;
+        }
+
+        function nextStep() {
+            const steps = ['step1', 'step3', 'step4', 'step5', 'step6', 'step7', 'step9', 'step10', 'chargePrediction', 'completion'];
+            const currentIndex = steps.indexOf(currentStep);
+            if (currentIndex < steps.length - 1) {
+                showStep(steps[currentIndex + 1]);
+            }
+        }
+
+        function previousStep() {
+            const steps = ['step1', 'step3', 'step4', 'step5', 'step6', 'step7', 'step9', 'step10', 'chargePrediction', 'completion'];
+            const currentIndex = steps.indexOf(currentStep);
+            if (currentIndex > 0) {
+                showStep(steps[currentIndex - 1]);
+            }
+        }
+
+        function updateProgress() {
+            const steps = ['step1', 'step3', 'step4', 'step5', 'step6', 'step7', 'step9', 'step10', 'chargePrediction', 'completion'];
+            const currentIndex = steps.indexOf(currentStep);
+            const progress = (currentIndex / (steps.length - 1)) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+        }
+
+        function resetWorksheet() {
+            currentElement = null;
+            userAnswers = {};
+            document.getElementById('valenceInput').value = '';
+            // Clear all feedbacks
+            document.querySelectorAll('.feedback').forEach(f => f.style.display = 'none');
+            showStep('step1');
+        }
+
+        window.onload = () => {
+            showStep('step1');
+        };
+    </script>
+</body>
+</html>
