@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Pronunciation Mastery System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 10px;
+            line-height: 1.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #016836;
+            padding-bottom: 12px;
+        }
+
+        h1 {
+            color: #016836;
+            font-size: 28px;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #555;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.2;
+        }
+
+        .intro-section {
+            background: #e8f5e9;
+            border-left: 4px solid #016836;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .intro-section h2 {
+            color: #016836;
+            margin-bottom: 6px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .intro-section p {
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .intro-section ol {
+            margin: 8px 0 8px 20px;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .intro-section li {
+            margin-bottom: 3px;
+        }
+
+        .term-selector {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .term-selector label {
+            display: block;
+            font-weight: 600;
+            color: #016836;
+            margin-bottom: 8px;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+
+        .term-selector select {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 2px solid #016836;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            line-height: 1.2;
+        }
+
+        .workflow-steps {
+            display: none;
+        }
+
+        .workflow-steps.active {
+            display: block;
+        }
+
+        .step {
+            background: white;
+            border: 2px solid #c8e6c9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background: #016836;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            color: #016836;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .step p {
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .ai-prompt-box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .ai-prompt-box strong {
+            color: #016836;
+        }
+
+        .copy-button {
+            background: #016836;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: background 0.3s;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .copy-button:hover {
+            background: #00502f;
+        }
+
+        .copy-button:active {
+            transform: scale(0.98);
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #c8e6c9;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            resize: vertical;
+            margin: 8px 0;
+            line-height: 1.3;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #016836;
+        }
+
+        .no-paste {
+            background: #fff3e0 !important;
+        }
+
+        .warning-box {
+            background: #fff3e0;
+            border: 2px solid #ffb74d;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .warning-box strong {
+            color: #f57c00;
+        }
+
+        .audio-section {
+            background: #e3f2fd;
+            border: 2px solid #42a5f5;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .audio-section h4 {
+            color: #1565c0;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .audio-section p {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .audio-player {
+            margin: 10px 0;
+        }
+
+        #phoneticDisplay {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 8px 0;
+            line-height: 1.2;
+        }
+
+        .practice-sentence {
+            background: #f3e5f5;
+            border: 2px solid #ab47bc;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .practice-sentence h4 {
+            color: #ab47bc;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .sentence-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            padding: 12px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .highlight-term {
+            background: #ffeb3b;
+            padding: 2px 4px;
+            font-weight: 600;
+        }
+
+        .assessment-link {
+            background: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 10px 0;
+            transition: background 0.3s;
+            line-height: 1.2;
+        }
+
+        .assessment-link:hover {
+            background: #1565c0;
+        }
+
+        .submission-section {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .submission-section h4 {
+            color: #c62828;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        .submission-section p {
+            margin: 8px 0;
+            color: #555;
+            line-height: 1.3;
+        }
+
+        .complete-button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            margin-top: 15px;
+            width: 100%;
+            transition: background 0.3s;
+            line-height: 1.2;
+        }
+
+        .complete-button:hover {
+            background: #388e3c;
+        }
+
+        .complete-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .info-box {
+            background: #e1f5fe;
+            border-left: 4px solid #0288d1;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.3;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .example-item {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #016836;
+        }
+
+        .example-item label {
+            display: block;
+            font-weight: 600;
+            color: #016836;
+            margin-bottom: 4px;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        #charCount {
+            font-size: 11px;
+            color: #666;
+            margin-top: 4px;
+            line-height: 1.2;
+        }
+
+        input[type="file"] {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border: 2px solid #ef5350;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+
+        ol {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        ol li {
+            margin-bottom: 4px;
+        }
+
+        h4 {
+            line-height: 1.2;
+        }
+
+        strong {
+            line-height: 1.2;
+        }
+
+        label {
+            line-height: 1.2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎤 Biology Pronunciation Mastery System (LipiLingo)</h1>
+            <p class="subtitle">Master the Language of Biology Through Morphology, Etymology, and Speech Practice</p>
+        </header>
+
+        <div class="intro-section">
+            <h2>How This System Works</h2>
+            <p>This interactive system will help you become fluent in biological terminology through a proven 6-step
+                process:</p>
+            <ol>
+                <li><strong>Select a term</strong> from the dropdown menu</li>
+                <li><strong>Copy the AI prompt</strong> and paste it into an AI tool (ChatGPT, Claude, or Copilot)</li>
+                <li><strong>Explain</strong> the morpheme and etymology in your own words</li>
+                <li><strong>Apply</strong> the term with examples from your lab manual</li>
+                <li><strong>Listen</strong> to correct pronunciation and practice aloud</li>
+                <li><strong>Assess</strong> your pronunciation using Microsoft's Speech Assessment Tool</li>
+            </ol>
+            <p style="margin-top: 15px;">📚 <strong>Additional Resource:</strong> <a
+                    href="https://pdxscholar.library.pdx.edu/cgi/viewcontent.cgi?article=2087&context=open_access_etds"
+                    target="_blank">Read more about biological terminology learning strategies</a></p>
+        </div>
+
+        <div class="term-selector">
+            <label for="termSelect">Select a Biological Term to Master:</label>
+            <select id="termSelect">
+                <option value="">-- Choose a Term --</option>
+                <option value="adipose">Adipose</option>
+                <option value="amphipathic">Amphipathic</option>
+                <option value="carboxyl">Carboxyl</option>
+                <option value="cytoplasm">Cytoplasm</option>
+                <option value="dialysis">Dialysis</option>
+                <option value="diffusion">Diffusion</option>
+                <option value="esterlinkage">Ester linkage</option>
+                <option value="fat">Fat</option>
+                <option value="fattyacid">Fatty acid</option>
+                <option value="glycerol">Glycerol</option>
+                <option value="hydrocarbon">Hydrocarbon</option>
+                <option value="hydrophilic">Hydrophilic</option>
+                <option value="hydrophobic">Hydrophobic</option>
+                <option value="hydroxyl">Hydroxyl</option>
+                <option value="hypertonic">Hypertonic</option>
+                <option value="hypotonic">Hypotonic</option>
+                <option value="integralprotein">Integral protein</option>
+                <option value="isotonic">Isotonic</option>
+                <option value="lipid">Lipid</option>
+                <option value="membrane">Membrane</option>
+                <option value="osmosis">Osmosis</option>
+                <option value="phospholipid">Phospholipid</option>
+                <option value="plasmolysis">Plasmolysis</option>
+                <option value="plasmamembrane">Plasma membrane</option>
+                <option value="selectivelypermeable">Selectively permeable</option>
+                <option value="solution">Solution</option>
+                <option value="solute">Solute</option>
+                <option value="solvent">Solvent</option>
+                <option value="starch">Starch</option>
+                <option value="sterol">Sterol</option>
+                <option value="turgorpressure">Turgor pressure</option>
+            </select>
+        </div>
+
+        <div id="workflowSteps" class="workflow-steps">
+            <!-- STEP 1: AI PROMPT -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Generate AI Analysis</h3>
+                </div>
+                <p>Copy the prompt below and paste it into an AI tool (ChatGPT, Claude, or Copilot) to generate a
+                    comprehensive linguistic analysis.</p>
+
+                <div class="ai-prompt-box" id="aiPromptBox">
+                    <strong>AI Prompt:</strong><br><br>
+                    <span id="promptText"></span>
+                </div>
+
+                <button class="copy-button" onclick="copyPrompt()">📋 Copy Prompt to Clipboard</button>
+
+                <div class="info-box">
+                    <strong>💡 Tip:</strong> After getting the AI response, read it carefully. You'll need to
+                    explain it
+                    in your own words in the next step.
+                </div>
+            </div>
+
+            <!-- STEP 2: YOUR INTERPRETATION -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Demonstrate Your Understanding</h3>
+                </div>
+                <p>In your own words, explain what you learned about this term's morphemes (word parts) and
+                    etymology
+                    (word origin).</p>
+
+                <div class="warning-box">
+                    <strong>⚠️ No Copy-Paste Allowed:</strong> This field is protected. You must type your
+                    interpretation to demonstrate genuine understanding.
+                </div>
+
+                <label for="morphemeInput"
+                    style="font-weight: 600; color: #016836; display: block; margin: 10px 0 4px;">Morpheme Breakdown
+                    &
+                    Etymology (150 characters minimum):</label>
+                <textarea id="morphemeInput" class="no-paste" rows="6"
+                    placeholder="Example: 'Hydrophobic breaks down into hydro- (water) from Greek hydor, and -phobic (fearing) from Greek phobos. This literally means water-fearing, which describes molecules that repel water...'"
+                    minlength="150" onpaste="return false;" ondrop="return false;"></textarea>
+
+                <div id="charCount">0 / 150 characters minimum</div>
+            </div>
+
+            <!-- STEP 3: LAB MANUAL EXAMPLES -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Connect to Lab Manual Examples</h3>
+                </div>
+                <p>Provide specific examples of where this term appears in your lab manual or how it relates to
+                    structures you've observed.</p>
+
+                <div class="examples-grid">
+                    <div class="example-item">
+                        <label>Lab Manual Example:</label>
+                        <input type="text" id="labExample" class="no-paste" placeholder="e.g., 'Exercise 6, page 6-4'"
+                            onpaste="return false;" ondrop="return false;">
+                    </div>
+
+                    <div class="example-item">
+                        <label>Specific Structure/Context:</label>
+                        <input type="text" id="labContext" class="no-paste"
+                            placeholder="e.g., 'Observed in cell membrane model'" onpaste="return false;"
+                            ondrop="return false;">
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Where to look:</strong> Search your lab manual for the term, check figures and
+                    diagrams,
+                    or think about where you've encountered related structures in your lab activities.
+                </div>
+            </div>
+
+            <!-- STEP 4: AUDIO PRONUNCIATION -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Listen to Proper Pronunciation</h3>
+                </div>
+                <p>Listen carefully to the correct pronunciation. Pay attention to syllable stress and phoneme
+                    patterns.
+                </p>
+
+                <div class="audio-section">
+                    <h4>🔊 Audio Pronunciation</h4>
+                    <div id="phoneticDisplay"></div>
+                    <div class="audio-player">
+                        <audio id="audioPlayer" controls style="width: 100%; max-width: 400px;">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <p>
+                        <strong>Listening Tips:</strong> Play the audio multiple times. Repeat aloud after each
+                        listen.
+                        Pay attention to which syllable is stressed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- STEP 5: PRACTICE SENTENCE -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Practice with Lab Manual Context</h3>
+                </div>
+                <p>Read this sentence from your lab manual out loud several times. Focus on pronouncing the
+                    highlighted
+                    term correctly.</p>
+
+                <div class="practice-sentence">
+                    <h4>📖 Your Practice Sentence:</h4>
+                    <div class="sentence-text" id="practiceSentence"></div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Practice Strategy:</strong> Read slowly at first, then gradually increase speed.
+                    Record
+                    yourself on your phone to compare with the audio from Step 4.
+                </div>
+            </div>
+
+            <!-- STEP 6: PRONUNCIATION ASSESSMENT -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <h3 class="step-title">Assess & Submit Your Pronunciation</h3>
+                </div>
+                <p>Now it's time to get formal feedback on your pronunciation using Microsoft's Speech Assessment
+                    Tool.
+                </p>
+
+                <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                    <h4 style="color: #016836; margin-bottom: 10px;">📝 Assessment Instructions:</h4>
+                    <ol style="margin-left: 20px; color: #555; line-height: 1.5;">
+                        <li>Click the link below to open Microsoft's Pronunciation Assessment Tool</li>
+                        <li>Click on the <strong>"Speaking"</strong> tab</li>
+                        <li>Press the microphone button to start recording</li>
+                        <li>Read the practice sentence clearly (from Step 5 above)</li>
+                        <li>Review your assessment scores</li>
+                        <li>Take a screenshot of your results</li>
+                        <li>Upload the screenshot using the form below</li>
+                    </ol>
+                </div>
+
+                <div style="text-align: center; margin: 15px 0;">
+                    <a href="https://speech.microsoft.com/portal/pronunciationassessmenttool" target="_blank"
+                        class="assessment-link">
+                        🎯 Open Pronunciation Assessment Tool
+                    </a>
+                </div>
+
+                <div class="submission-section">
+                    <h4>📤 Submit Your Screenshot</h4>
+                    <p>Upload your pronunciation assessment screenshot here:</p>
+                    <input type="file" id="screenshotUpload" accept="image/*">
+
+                    <div style="margin-top: 10px;">
+                        <label for="studentEmail"
+                            style="display: block; font-weight: 600; color: #c62828; margin-bottom: 4px;">Your
+                            Email:</label>
+                        <input type="email" id="studentEmail" placeholder="email@uwp.edu">
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <label for="instructorEmail"
+                            style="display: block; font-weight: 600; color: #c62828; margin-bottom: 4px;">Instructor
+                            Email:</label>
+                        <input type="email" id="instructorEmail" placeholder="harria@uwp.edu">
+                    </div>
+                </div>
+
+                <button class="complete-button" id="submitButton" onclick="submitAssignment()">
+                    ✅ Complete & Submit Assignment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const termData = {
+            adipose: {
+                prompt: 'For the biological term "adipose," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'AD-ih-pohs',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/adipose--_us_1.mp3',
+                sentence: '<span class="highlight-term">Adipose</span> tissue stores energy in the form of fat and provides insulation for the body.'
+            },
+            amphipathic: {
+                prompt: 'For the biological term "amphipathic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'am-fih-PATH-ik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/amphipathic--_us_1.mp3',
+                sentence: '<span class="highlight-term">Amphipathic</span> molecules have both hydrophobic and hydrophilic regions, like phospholipids in cell membranes.'
+            },
+            carboxyl: {
+                prompt: 'For the biological term "carboxyl," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'kar-BOK-sil',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/carboxyl--_us_1.mp3',
+                sentence: 'Fatty acids contain a <span class="highlight-term">carboxyl</span> group at one end of their hydrocarbon chain.'
+            },
+            cytoplasm: {
+                prompt: 'For the biological term "cytoplasm," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'SY-toh-plaz-um',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/cytoplasm--_us_1.mp3',
+                sentence: 'The <span class="highlight-term">cytoplasm</span> is the gel-like substance inside the cell membrane that contains organelles.'
+            },
+            dialysis: {
+                prompt: 'For the biological term "dialysis," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'dy-AL-ih-sis',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/dialysis--_us_1.mp3',
+                sentence: '<span class="highlight-term">Dialysis</span> is the separation of small molecules from large molecules through a selectively permeable membrane.'
+            },
+            diffusion: {
+                prompt: 'For the biological term "diffusion," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'dih-FYOO-zhun',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/diffusion--_us_1.mp3',
+                sentence: '<span class="highlight-term">Diffusion</span> is the passive movement of molecules from high to low concentration.'
+            },
+            esterlinkage: {
+                prompt: 'For the biological term "ester linkage," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'ES-ter LINK-ij',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/ester--_us_1.mp3',
+                sentence: 'An <span class="highlight-term">ester linkage</span> bonds fatty acids to glycerol in triglyceride molecules.'
+            },
+            fat: {
+                prompt: 'For the biological term "fat," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'FAT',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/fat--_us_1.mp3',
+                sentence: '<span class="highlight-term">Fats</span> are lipids composed of glycerol and three fatty acids, used for energy storage.'
+            },
+            fattyacid: {
+                prompt: 'For the biological term "fatty acid," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'FAT-ee ASS-id',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/fatty--_us_1.mp3',
+                sentence: '<span class="highlight-term">Fatty acids</span> are long hydrocarbon chains with a carboxyl group at one end.'
+            },
+            glycerol: {
+                prompt: 'For the biological term "glycerol," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'GLIS-er-ol',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/glycerol--_us_1.mp3',
+                sentence: '<span class="highlight-term">Glycerol</span> is a three-carbon alcohol that forms the backbone of triglycerides.'
+            },
+            hydrocarbon: {
+                prompt: 'For the biological term "hydrocarbon," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'HY-droh-kar-bon',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hydrocarbon--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">hydrocarbon</span> is a molecule composed only of hydrogen and carbon atoms.'
+            },
+            hydrophilic: {
+                prompt: 'For the biological term "hydrophilic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'hy-droh-FIL-ik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hydrophilic--_us_1.mp3',
+                sentence: '<span class="highlight-term">Hydrophilic</span> molecules are attracted to water and dissolve easily in aqueous solutions.'
+            },
+            hydrophobic: {
+                prompt: 'For the biological term "hydrophobic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'hy-droh-FOH-bik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hydrophobic--_us_1.mp3',
+                sentence: '<span class="highlight-term">Hydrophobic</span> molecules repel water and do not dissolve in aqueous solutions.'
+            },
+            hydroxyl: {
+                prompt: 'For the biological term "hydroxyl," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'hy-DROK-sil',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hydroxyl--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">hydroxyl</span> group consists of an oxygen atom bonded to a hydrogen atom (-OH).'
+            },
+            hypertonic: {
+                prompt: 'For the biological term "hypertonic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'hy-per-TON-ik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hypertonic--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">hypertonic</span> solution has a higher solute concentration than the cell, causing water to leave the cell.'
+            },
+            hypotonic: {
+                prompt: 'For the biological term "hypotonic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'hy-poh-TON-ik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/hypotonic--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">hypotonic</span> solution has a lower solute concentration than the cell, causing water to enter the cell.'
+            },
+            integralprotein: {
+                prompt: 'For the biological term "integral protein," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'IN-teh-grul PROH-teen',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/integral--_us_1.mp3',
+                sentence: '<span class="highlight-term">Integral proteins</span> are permanently embedded in the cell membrane and often function as channels or receptors.'
+            },
+            isotonic: {
+                prompt: 'For the biological term "isotonic," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'eye-soh-TON-ik',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/isotonic--_us_1.mp3',
+                sentence: 'An <span class="highlight-term">isotonic</span> solution has the same solute concentration as the cell, with no net water movement.'
+            },
+            lipid: {
+                prompt: 'For the biological term "lipid," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'LIP-id',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/lipid--_us_1.mp3',
+                sentence: '<span class="highlight-term">Lipids</span> are hydrophobic biological molecules including fats, oils, and steroids.'
+            },
+            membrane: {
+                prompt: 'For the biological term "membrane," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'MEM-brayn',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/membrane--_us_1.mp3',
+                sentence: 'The cell <span class="highlight-term">membrane</span> is a selectively permeable barrier that surrounds the cell.'
+            },
+            osmosis: {
+                prompt: 'For the biological term "osmosis," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'oz-MOH-sis',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/osmosis--_us_1.mp3',
+                sentence: '<span class="highlight-term">Osmosis</span> is the diffusion of water across a selectively permeable membrane.'
+            },
+            phospholipid: {
+                prompt: 'For the biological term "phospholipid," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'fos-foh-LIP-id',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/phospholipid--_us_1.mp3',
+                sentence: '<span class="highlight-term">Phospholipids</span> have a hydrophilic head and hydrophobic tails, forming the bilayer of cell membranes.'
+            },
+            plasmolysis: {
+                prompt: 'For the biological term "plasmolysis," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'plaz-MOL-ih-sis',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/plasmolysis--_us_1.mp3',
+                sentence: '<span class="highlight-term">Plasmolysis</span> occurs when plant cells lose water and the membrane pulls away from the cell wall.'
+            },
+            plasmamembrane: {
+                prompt: 'For the biological term "plasma membrane," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'PLAZ-muh MEM-brayn',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/plasma--_us_1.mp3',
+                sentence: 'The <span class="highlight-term">plasma membrane</span> regulates what enters and exits the cell.'
+            },
+            selectivelypermeable: {
+                prompt: 'For the biological term "selectively permeable," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'seh-LEK-tiv-lee PER-mee-uh-bul',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/selectively--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">selectively permeable</span> membrane allows some substances to pass through while blocking others.'
+            },
+            solution: {
+                prompt: 'For the biological term "solution," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'soh-LOO-shun',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/solution--_us_1.mp3',
+                sentence: 'A <span class="highlight-term">solution</span> is a homogeneous mixture of solute dissolved in solvent.'
+            },
+            solute: {
+                prompt: 'For the biological term "solute," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'SOL-yoot',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/solute--_us_1.mp3',
+                sentence: 'The <span class="highlight-term">solute</span> is the substance that is dissolved in a solution.'
+            },
+            solvent: {
+                prompt: 'For the biological term "solvent," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'SOL-vent',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/solvent--_us_1.mp3',
+                sentence: 'Water is the universal <span class="highlight-term">solvent</span> in biological systems.'
+            },
+            starch: {
+                prompt: 'For the biological term "starch," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'STARCH',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/starch--_us_1.mp3',
+                sentence: '<span class="highlight-term">Starch</span> is a polysaccharide used by plants to store glucose.'
+            },
+            sterol: {
+                prompt: 'For the biological term "sterol," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'STER-ol or STEER-ol',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/sterol--_us_1.mp3',
+                sentence: 'Cholesterol is a <span class="highlight-term">sterol</span> that is an important component of cell membranes.'
+            },
+            turgorpressure: {
+                prompt: 'For the biological term "turgor pressure," provide:\n\n• Its morpheme breakdown (root(s) and suffix)\n• Its etymology, tracing the word to its original language(s) with literal meanings\n• Its phoneme\n• An audio of the word being pronounced\n• Examples of how the word is used in biology\n\nUse standard biological and linguistic references. Do not invent meanings, roots, or examples. If a component is uncertain, explicitly state that.',
+                phonetic: 'TER-gor PRESH-er',
+                audio: 'https://ssl.gstatic.com/dictionary/static/sounds/20200429/turgor--_us_1.mp3',
+                sentence: '<span class="highlight-term">Turgor pressure</span> is the force of water pushing against the cell wall in plant cells.'
+            }
+        };
+
+        // Event listener for term selection
+        document.getElementById('termSelect').addEventListener('change', function () {
+            const selectedTerm = this.value;
+            if (selectedTerm && termData[selectedTerm]) {
+                loadTermData(selectedTerm);
+                document.getElementById('workflowSteps').classList.add('active');
+                document.getElementById('workflowSteps').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                document.getElementById('workflowSteps').classList.remove('active');
+            }
+        });
+
+        // Load term data into the workflow
+        function loadTermData(term) {
+            const data = termData[term];
+            document.getElementById('promptText').textContent = data.prompt;
+            document.getElementById('phoneticDisplay').textContent = data.phonetic;
+            document.getElementById('audioPlayer').src = data.audio;
+            document.getElementById('practiceSentence').innerHTML = data.sentence;
+        }
+
+        // Copy prompt to clipboard
+        function copyPrompt() {
+            const promptText = document.getElementById('promptText').textContent;
+
+            if (!promptText || promptText.trim() === '') {
+                alert('⚠️ Please select a term first!');
+                return;
+            }
+
+            // Try modern clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(promptText).then(() => {
+                    alert('✅ Prompt copied to clipboard! Now paste it into your AI tool.');
+                }).catch(err => {
+                    console.error('Clipboard API failed:', err);
+                    fallbackCopy(promptText);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopy(promptText);
+            }
+        }
+
+        // Fallback copy method
+        function fallbackCopy(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    alert('✅ Prompt copied to clipboard! Now paste it into your AI tool.');
+                } else {
+                    alert('❌ Copy failed. Please select the text manually and press Ctrl+C (or Cmd+C on Mac).');
+                }
+            } catch (err) {
+                console.error('Fallback copy failed:', err);
+                alert('❌ Copy failed. Please select the text manually and press Ctrl+C (or Cmd+C on Mac).');
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Character counter for morpheme input
+        document.getElementById('morphemeInput').addEventListener('input', function () {
+            const length = this.value.length;
+            const display = document.getElementById('charCount');
+            display.textContent = `${length} / 150 characters minimum`;
+            if (length >= 150) {
+                display.style.color = '#4caf50';
+            } else {
+                display.style.color = '#666';
+            }
+        });
+
+        // Prevent paste in protected fields
+        const noPasteFields = document.querySelectorAll('.no-paste');
+        noPasteFields.forEach(field => {
+            field.addEventListener('paste', (e) => {
+                e.preventDefault();
+                alert('⚠️ Copying and pasting is disabled. Please type your response to demonstrate understanding.');
+            });
+            field.addEventListener('drop', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Submit assignment
+        function submitAssignment() {
+            const morpheme = document.getElementById('morphemeInput').value;
+            const labExample = document.getElementById('labExample').value;
+            const labContext = document.getElementById('labContext').value;
+            const screenshot = document.getElementById('screenshotUpload').files[0];
+            const studentEmail = document.getElementById('studentEmail').value;
+            const instructorEmail = document.getElementById('instructorEmail').value;
+
+            // Validation
+            if (morpheme.length < 150) {
+                alert('❌ Your morpheme explanation must be at least 150 characters.');
+                return;
+            }
+            if (!labExample || !labContext) {
+                alert('❌ Please provide both lab manual example and context.');
+                return;
+            }
+            if (!screenshot) {
+                alert('❌ Please upload your pronunciation assessment screenshot.');
+                return;
+            }
+            if (!studentEmail || !instructorEmail) {
+                alert('❌ Please provide both student and instructor email addresses.');
+                return;
+            }
+
+            // In a real implementation, this would send data to a server
+            alert('✅ Assignment submitted successfully!\n\nYour pronunciation assessment has been sent to your instructor.\n\nKeep practicing your biological terminology!');
+
+            // Reset for next term
+            document.getElementById('termSelect').value = '';
+            document.getElementById('workflowSteps').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
