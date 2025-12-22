@@ -1,0 +1,49 @@
+
+## **File 5: `package.json`**
+```json
+{
+  "name": "3d-water-molecule-simulation",
+  "version": "1.0.0",
+  "description": "Interactive 3D visualization of water molecule with scientific explanation",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=index.html",
+    "dev": "live-server --port=3000 --watch=.",
+    "build": "echo 'Build complete - this is a static site'",
+    "deploy": "gh-pages -d .",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "chemistry",
+    "3d",
+    "visualization",
+    "education",
+    "water",
+    "molecule",
+    "threejs",
+    "webgl",
+    "science"
+  ],
+  "author": "Maiken Kristiansen Revheim",
+  "contributors": [
+    "Your Name <your.email@example.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "gh-pages": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/3DWaterSimulation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/3DWaterSimulation/issues"
+  },
+  "homepage": "https://github.com/yourusername/3DWaterSimulation#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
