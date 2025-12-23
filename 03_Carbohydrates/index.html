@@ -161,7 +161,9 @@
             cursor: pointer;
         }
 
-        .btn:disabled { opacity: 0.5; }
+        .btn-secondary {
+            background: #666;
+        }
 
         @media (max-width: 768px) {
             .table, .table tr, .table td, .table th { display: block; width: 100%; }
@@ -197,39 +199,22 @@
             <tbody>
                 <tr>
                     <td class="level" rowspan="2">Atomic</td>
-                    <td class="category"><a href="valence.html">Oxygen and Hydrogen</a></td>
+                    <td class="category">Oxygen and Hydrogen</td>
                     <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_0">
-                            <span>Relate atomic structure of O and H to water polarity</span>
-                        </div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_0"><span>Relate atomic structure of O and H to water polarity</span></div>
                     </td>
-                    <td class="confidence">
-                        <div class="stars" data-id="g_0">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                    </td>
+                    <td class="confidence"><div class="stars" data-id="g_0"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div></td>
                 </tr>
                 <tr>
                     <td class="category">Carbon & Functional Groups</td>
                     <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_1">
-                            <span>Understand bonding principles relevant to carbon</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_2">
-                            <span>Identify functional groups: hydroxyl, carbonyl, & methyl</span>
-                        </div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_1"><span>Understand bonding principles relevant to carbon</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_2"><span>Identify functional groups: hydroxyl, carbonyl, & methyl</span></div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_1">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top:0.8rem"></div>
-                        <div class="stars" data-id="g_2">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
+                        <div class="stars" data-id="g_1"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_2"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
                     </td>
                 </tr>
 
@@ -237,75 +222,116 @@
                     <td class="level" rowspan="3">Molecular</td>
                     <td class="category">Water</td>
                     <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_3">
-                            <span>Learn properties of water (polarity, hydrogen bonding)</span>
-                        </div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_3"><span>Learn properties of water (polarity, hydrogen bonding)</span></div>
                     </td>
-                    <td class="confidence">
-                        <div class="stars" data-id="g_3">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                    </td>
+                    <td class="confidence"><div class="stars" data-id="g_3"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div></td>
                 </tr>
                 <tr>
                     <td class="category">Simple Carbohydrates</td>
                     <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_4">
-                            <span>Explore monosaccharide structures (glucose & fructose)</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_5">
-                            <span>Recognize isomers and ring forms</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_6">
-                            <span>Distinguish α and β anomers</span>
-                        </div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_4"><span>Explore monosaccharide structures (glucose & fructose)</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_5"><span>Recognize isomers and ring forms</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_6"><span>Distinguish α and β anomers and locate the anomeric carbon</span></div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_4">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top:0.8rem"></div>
-                        <div class="stars" data-id="g_5">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top:0.8rem"></div>
-                        <div class="stars" data-id="g_6">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
+                        <div class="stars" data-id="g_4"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_5"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_6"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category">Disaccharides</td>
+                    <td class="category">Disaccharides & Glycosidic Bonds</td>
                     <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_7">
-                            <span>Explain dehydration & hydrolysis</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_8">
-                            <span>Construct disaccharides</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_9">
-                            <span>Identify glycosidic linkages</span>
-                        </div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_7"><span>Explain dehydration synthesis and hydrolysis reactions</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_8"><span>Construct disaccharides (maltose, sucrose)</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_9"><span>Identify glycosidic linkages</span></div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_7">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top:0.8rem"></div>
-                        <div class="stars" data-id="g_8">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top:0.8rem"></div>
-                        <div class="stars" data-id="g_9">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
+                        <div class="stars" data-id="g_7"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_8"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_9"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="level">Macromolecular</td>
+                    <td class="category">Polysaccharides & Structural Diversity</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_10"><span>Distinguish starch, glycogen, and cellulose based on linkage and branching</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_11"><span>Differentiate starch and cellulose based reaction to iodine</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_12"><span>Relate polysaccharide structure to digestibility and biological function</span></div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_10"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_11"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_12"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="level">Organelles</td>
+                    <td class="category">Storage Structures</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_13"><span>Identify amyloplasts</span></div>
+                    </td>
+                    <td class="confidence"><div class="stars" data-id="g_13"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div></td>
+                </tr>
+
+                <tr>
+                    <td class="level">Cells</td>
+                    <td class="category">Plant Anatomy</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_14"><span>Identify cell types and relate to tissue organization (sunflower)</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_15"><span>Identify cell types - parenchyma & sclerenchyma (pear)</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_16"><span>Identify cell walls and amyloplasts (potato)</span></div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_14"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_15"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_16"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="level">Tissue</td>
+                    <td class="category">Plant Tissues (Sunflower)</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_17"><span>Identify tissue types and location - parenchyma, collenchyma, sclerenchyma</span></div>
+                    </td>
+                    <td class="confidence"><div class="stars" data-id="g_17"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div></td>
+                </tr>
+
+                <tr>
+                    <td class="level" rowspan="2">System</td>
+                    <td class="category">Transport</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_18"><span>Explain phloem transport and source-sink relationships</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_19"><span>Explain water transport</span></div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_18"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_19"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category">Biological Context</td>
+                    <td class="goals">
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_20"><span>Understand glucose transport and storage in plants (starch) and animals (glycogen)</span></div>
+                        <div class="goal-item"><input type="checkbox" class="goal-check" id="g_21"><span>Compare storage polysaccharides (starch vs glycogen)</span></div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_20"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
+                        <div style="margin-top:0.5rem"></div>
+                        <div class="stars" data-id="g_21"><span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span></div>
                     </td>
                 </tr>
             </tbody>
@@ -313,12 +339,12 @@
 
         <div class="actions">
             <button class="btn" id="nextBtn" disabled>Jump to Next Unchecked</button>
-            <button class="btn" id="resetBtn" style="background:#666">Reset All Progress</button>
+            <button class="btn btn-secondary" id="resetBtn">Reset All Progress</button>
         </div>
     </main>
 
     <script>
-        const STORAGE_KEY = 'carbs_lab_goals_tracker';
+        const STORAGE_KEY = 'carbs_lab_tracker_v2';
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
         const checkboxes = document.querySelectorAll('.goal-check');
         const starContainers = document.querySelectorAll('.stars');
@@ -331,43 +357,34 @@
             const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
             const percentage = Math.round((checked / total) * 100) || 0;
             progressFill.style.width = `${percentage}%`;
-            
             const nextUnchecked = Array.from(checkboxes).find(cb => !cb.checked);
             nextBtn.disabled = !nextUnchecked;
             if (nextUnchecked) nextBtn.dataset.target = nextUnchecked.id;
         }
 
         function loadState() {
-            checkboxes.forEach(cb => {
-                if (saved[cb.id]) cb.checked = saved[cb.id].checked || false;
-            });
+            checkboxes.forEach(cb => { if (saved[cb.id]) cb.checked = saved[cb.id].checked || false; });
             starContainers.forEach(container => {
                 const id = container.dataset.id;
                 if (saved[id]?.rating) {
-                    const stars = container.querySelectorAll('.star');
-                    stars.forEach(star => star.classList.toggle('on', Number(star.dataset.star) <= saved[id].rating));
+                    container.querySelectorAll('.star').forEach(star => star.classList.toggle('on', Number(star.dataset.star) <= saved[id].rating));
                 }
             });
             updateProgress();
         }
 
         function saveState() {
-            checkboxes.forEach(cb => {
-                if (!saved[cb.id]) saved[cb.id] = {};
-                saved[cb.id].checked = cb.checked;
-            });
+            checkboxes.forEach(cb => { if (!saved[cb.id]) saved[cb.id] = {}; saved[cb.id].checked = cb.checked; });
             localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
         }
 
         checkboxes.forEach(cb => cb.addEventListener('change', () => { saveState(); updateProgress(); }));
-
         starContainers.forEach(container => {
             container.addEventListener('click', e => {
                 if (!e.target.classList.contains('star')) return;
-                const containerId = container.dataset.id;
                 const rating = Number(e.target.dataset.star);
-                if (!saved[containerId]) saved[containerId] = {};
-                saved[containerId].rating = rating;
+                if (!saved[container.dataset.id]) saved[container.dataset.id] = {};
+                saved[container.dataset.id].rating = rating;
                 container.querySelectorAll('.star').forEach(star => star.classList.toggle('on', Number(star.dataset.star) <= rating));
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
             });
@@ -379,10 +396,7 @@
         });
 
         resetBtn.addEventListener('click', () => {
-            if (confirm('Clear all progress?')) {
-                localStorage.removeItem(STORAGE_KEY);
-                location.reload();
-            }
+            if (confirm('Clear all progress?')) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
         });
 
         loadState();
