@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #007FA3 0%, #005670 100%); /* UWP Blue gradient */
+            background: linear-gradient(135deg, #007FA3 0%, #005670 100%);
             min-height: 100vh;
             padding: 10px;
         }
@@ -30,18 +30,18 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
             margin-bottom: 15px;
-            border-top: 4px solid #FFD100; /* UWP Yellow accent */
+            border-top: 4px solid #FFD100;
         }
 
         h1 {
             font-size: 2.2em;
-            color: #002F6C; /* UWP Dark Blue */
+            color: #002F6C;
             margin-bottom: 5px;
         }
 
         .subtitle {
             font-size: 1.1em;
-            color: #5B6770; /* UWP Gray */
+            color: #5B6770;
         }
 
         .labs-grid {
@@ -62,6 +62,8 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            min-height: 180px;
+            justify-content: space-between;
         }
 
         .lab-card:hover {
@@ -70,21 +72,24 @@
             border-color: #FFD100;
         }
 
-        .lab-image {
+        .image-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
             width: 100%;
-            height: 110px;
-            object-fit: contain;
-            margin-bottom: 8px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
+            height: calc(100% - 30px);
         }
 
-        .lab-description {
-            color: #4a5568;
-            line-height: 1.35;
-            font-size: 0.85em;
-            flex-grow: 1;
-            margin-bottom: 8px;
+        .lab-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
 
         .lab-status {
@@ -94,9 +99,11 @@
             font-size: 0.75em;
             font-weight: bold;
             text-align: center;
-            background: #FFD100; /* UWP Yellow */
-            color: #002F6C; /* UWP Dark Blue */
-            align-self: flex-start;
+            background: #FFD100;
+            color: #002F6C;
+            align-self: center;
+            width: 100%;
+            margin-top: 8px;
         }
 
         footer {
@@ -105,7 +112,7 @@
             color: white;
             padding: 12px;
             font-size: 0.85em;
-            background-color: rgba(0, 47, 108, 0.8); /* UWP Dark Blue with transparency */
+            background-color: rgba(0, 47, 108, 0.8);
             border-radius: 4px;
         }
 
@@ -142,58 +149,69 @@
         </header>
         <div class="labs-grid">
             <a href="https://sites.google.com/view/mdlifehack/metacog10/metacog_dev_perplexity" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/00_metacognition.png" alt="Metacognition" class="lab-image">
-                <p class="lab-description">When Hard Work Doesn't Match Your Exam Score.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/00_metacognition.png" alt="Metacognition" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="01_Science_of_Biology/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/01_science_of_biology.png" alt="The Science of Biology" class="lab-image">
-                <p class="lab-description">Learn the fundamentals of the scientific process.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/01_science_of_biology.png" alt="The Science of Biology" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="02_Eukaryotes/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/02_eukaryotes.png" alt="Eukaryotes" class="lab-image">
-                <p class="lab-description">Examine cellular organelles and their functions using microscopy.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/02_eukaryotes.png" alt="Eukaryotes" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="03_Carbohydrates/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/03_carbohydrates.png" alt="Carbohydrates" class="lab-image">
-                <p class="lab-description">Explore the structure and function of carbohydrates, including monosaccharides, disaccharides, and polysaccharides.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/03_carbohydrates.png" alt="Carbohydrates" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="04_Proteins/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/04_proteins.png" alt="Proteins" class="lab-image">
-                <p class="lab-description">Study the molecular structures and biological roles of proteins.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/04_proteins.png" alt="Proteins" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="05_Lipids/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/05_lipids.png" alt="Lipids" class="lab-image">
-                <p class="lab-description">Examine selectively permeable membranes, transport, solution tonicity, and turgor pressure.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/05_lipids.png" alt="Lipids" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="06_Photosynthetic_Pigments/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/06_photosynthesis.png" alt="Photosynthesis" class="lab-image">
-                <p class="lab-description">Study how plants convert light energy into chemical energy.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/06_photosynthesis.png" alt="Photosynthesis" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="07_Nucleic Acids/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/07_nucleic_acids.png" alt="Nucleic Acids" class="lab-image">
-                <p class="lab-description">Study how the double helix replicates.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/07_nucleic_acids.png" alt="Nucleic Acids" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="08_Mitosis/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/08_mitosis.png" alt="Mitosis" class="lab-image">
-                <p class="lab-description">Study the processes of the cell cycle.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/08_mitosis.png" alt="Mitosis" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="09_Meiosis/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/09_meiosis.png" alt="Meiosis" class="lab-image">
-                <p class="lab-description">Study gamete production.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/09_meiosis.png" alt="Meiosis" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
             <a href="10_Genetics/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/10_genetics.png" alt="Genetics" class="lab-image">
-                <p class="lab-description">Study the Law of Segregation and the Law of Independent Assortment.</p>
+                <div class="image-container">
+                    <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/10_genetics.png" alt="Genetics" class="lab-image">
+                </div>
                 <span class="lab-status">Available</span>
             </a>
         </div>
