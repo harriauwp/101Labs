@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microscope Labeling Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-secondary {
+            background: #48bb78;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-reset {
+            background: #fc8181;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #f56565;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+
+        .game-info {
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .score {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .current-task {
+            font-size: 1.1em;
+            color: #333;
+            padding: 8px;
+            background: #fff;
+            border-radius: 6px;
+            border: 2px solid #667eea;
+            line-height: 1.4;
+        }
+
+        .game-area {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .microscope-container {
+            position: relative;
+            flex: 1;
+            min-width: 500px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .microscope-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-height: 550px;
+            object-fit: contain;
+        }
+
+        .hotspots-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .hotspot {
+            cursor: pointer;
+            pointer-events: all;
+            fill: rgba(102, 126, 234, 0.25);
+            stroke: rgba(102, 126, 234, 0.8);
+            stroke-width: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .hotspot:hover {
+            fill: rgba(102, 126, 234, 0.4);
+            stroke: rgba(102, 126, 234, 1);
+            stroke-width: 2;
+        }
+
+        .hotspot.correct {
+            fill: rgba(72, 187, 120, 0.3);
+            stroke: rgba(72, 187, 120, 1);
+            stroke-width: 2;
+        }
+
+        .hotspot.incorrect {
+            fill: rgba(252, 129, 129, 0.3);
+            stroke: rgba(252, 129, 129, 1);
+            stroke-width: 2;
+        }
+
+        .parts-list {
+            flex: 0 0 320px;
+            background: #f7fafc;
+            padding: 18px;
+            border-radius: 8px;
+            max-height: 550px;
+            overflow-y: auto;
+            margin-top: 0;
+        }
+
+        .parts-list h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .part-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #cbd5e0;
+            transition: all 0.3s ease;
+        }
+
+        .part-item.found {
+            border-left-color: #48bb78;
+            background: #f0fff4;
+        }
+
+        .part-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 0.95em;
+        }
+
+        .part-description {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 18px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none;
+        }
+
+        .completion-message.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mode-indicator {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .mode-explore {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+
+        .mode-quiz {
+            background: #fbd38d;
+            color: #7c2d12;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Microscope Labeling Game</h1>
+        <p class="subtitle">Learn the parts of a microscope by clicking on them!</p>
+
+        <div class="game-controls">
+            <button class="btn btn-primary" onclick="setMode('explore')">Explore Mode</button>
+            <button class="btn btn-secondary" onclick="setMode('quiz')">Quiz Mode</button>
+            <button class="btn btn-reset" onclick="resetGame()">Reset</button>
+        </div>
+
+        <div class="game-info">
+            <div class="score">Score: <span id="score">0</span> / 10</div>
+            <div class="current-task" id="currentTask">
+                Click "Explore Mode" to learn the parts or "Quiz Mode" to test yourself!
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="microscope-container">
+                <img src="https://raw.githubusercontent.com/harriauwp/Scope-Learn/main/images/image_1.png" 
+                     alt="Microscope" 
+                     class="microscope-img"
+                     id="microscopeImg"
+                     crossorigin="anonymous">
+                
+                <!-- Corrected SVG with properly positioned hotspots -->
+                <svg class="hotspots-svg" id="hotspotsSvg" viewBox="0 0 1310 1195" preserveAspectRatio="xMidYMid meet">
+                    <!-- Ocular Lens (Eyepiece) - Top right -->
+                    <circle class="hotspot" data-part="ocular" cx="1110" cy="85" r="18"></circle>
+                    
+                    <!-- Revolving Nosepiece - Below ocular -->
+                    <circle class="hotspot" data-part="nosepiece" cx="1020" cy="245" r="22"></circle>
+                    
+                    <!-- Objective Lenses - Bottom of nosepiece -->
+                    <ellipse class="hotspot" data-part="objectives" cx="1015" cy="360" rx="45" ry="15"></ellipse>
+                    
+                    <!-- Stage - Platform below objectives -->
+                    <rect class="hotspot" data-part="stage" x="850" cy="420" width="330" height="50" rx="4"></rect>
+                    
+                    <!-- Stage Clips - Two small rectangles on stage -->
+                    <rect class="hotspot" data-part="clips" x="880" y="430" width="50" height="12" rx="2"></rect>
+                    <rect class="hotspot" data-part="clips" x="1100" y="430" width="50" height="12" rx="2"></rect>
+                    
+                    <!-- Iris Diaphragm - Under the stage -->
+                    <circle class="hotspot" data-part="diaphragm" cx="1020" cy="510" r="28"></circle>
+                    
+                    <!-- Light Source - Bottom of microscope -->
+                    <rect class="hotspot" data-part="light" x="880" y="820" width="260" height="70" rx="8"></rect>
+                    
+                    <!-- Coarse Adjustment Knob - Left side -->
+                    <circle class="hotspot" data-part="coarse" cx="650" cy="580" r="28"></circle>
+                    
+                    <!-- Fine Adjustment Knob - Below coarse adjustment -->
+                    <circle class="hotspot" data-part="fine" cx="690" cy="640" r="20"></circle>
+                    
+                    <!-- Light Adjustment Knob - Near light source -->
+                    <circle class="hotspot" data-part="lightadj" cx="740" cy="810" r="20"></circle>
+                </svg>
+            </div>
+
+            <div class="parts-list">
+                <h3>Microscope Parts</h3>
+                <div id="partsList"></div>
+            </div>
+        </div>
+
+        <div class="completion-message" id="completionMessage">
+            🎉 Congratulations! You've identified all microscope parts correctly!
+        </div>
+    </div>
+
+    <script>
+        const parts = {
+            ocular: {
+                name: "Ocular Lens (Eyepiece)",
+                description: "The lens at the top that you look through. Magnifies by 10×."
+            },
+            nosepiece: {
+                name: "Revolving Nosepiece",
+                description: "Rotating turret that holds objective lenses and allows switching between them."
+            },
+            objectives: {
+                name: "Objective Lenses",
+                description: "Set of lenses providing bulk magnification (e.g., 4×, 10×, 40×)."
+            },
+            stage: {
+                name: "Stage",
+                description: "Flat platform where the slide/specimen is placed for viewing."
+            },
+            clips: {
+                name: "Stage Clips",
+                description: "Metal pieces that hold the glass slide firmly in place on the stage."
+            },
+            diaphragm: {
+                name: "Iris Diaphragm",
+                description: "Controls the amount of light passing through the specimen for contrast."
+            },
+            light: {
+                name: "Light Source",
+                description: "Lamp at the base that projects light up through the specimen."
+            },
+            coarse: {
+                name: "Coarse Adjustment Knob",
+                description: "Larger knob that moves the stage dramatically for approximate focus."
+            },
+            fine: {
+                name: "Fine Adjustment Knob",
+                description: "Smaller knob for precise adjustments to achieve sharp focus."
+            },
+            lightadj: {
+                name: "Light Adjustment Knob",
+                description: "Controls the intensity/brightness of the light source."
+            }
+        };
+
+        let gameMode = null;
+        let score = 0;
+        let foundParts = new Set();
+        let currentQuizPart = null;
+        let quizOrder = [];
+
+        function initGame() {
+            renderPartsList();
+            setupHotspots();
+        }
+
+        function renderPartsList() {
+            const listContainer = document.getElementById('partsList');
+            listContainer.innerHTML = '';
+            
+            Object.entries(parts).forEach(([key, part]) => {
+                const item = document.createElement('div');
+                item.className = 'part-item';
+                item.id = `part-${key}`;
+                item.innerHTML = `
+                    <div class="part-name">${part.name}</div>
+                    <div class="part-description">${part.description}</div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function setupHotspots() {
+            const hotspots = document.querySelectorAll('.hotspot');
+            hotspots.forEach(hotspot => {
+                hotspot.addEventListener('click', handleHotspotClick);
+            });
+        }
+
+        function handleHotspotClick(e) {
+            const partKey = e.target.dataset.part;
+            
+            if (!gameMode) {
+                alert('Please select a game mode first!');
+                return;
+            }
+
+            if (gameMode === 'explore') {
+                handleExploreClick(partKey, e.target);
+            } else if (gameMode === 'quiz') {
+                handleQuizClick(partKey, e.target);
+            }
+        }
+
+        function handleExploreClick(partKey, element) {
+            if (!foundParts.has(partKey)) {
+                foundParts.add(partKey);
+                score++;
+                updateScore();
+                
+                element.classList.add('correct');
+                document.getElementById(`part-${partKey}`).classList.add('found');
+                
+                showFeedback(`✓ ${parts[partKey].name}`, true);
+                
+                if (foundParts.size === Object.keys(parts).length) {
+                    setTimeout(showCompletion, 500);
+                }
+            }
+        }
+
+        function handleQuizClick(partKey, element) {
+            if (currentQuizPart === null) return;
+            
+            if (partKey === currentQuizPart) {
+                foundParts.add(partKey);
+                score++;
+                updateScore();
+                
+                element.classList.add('correct');
+                document.getElementById(`part-${partKey}`).classList.add('found');
+                
+                showFeedback(`✓ Correct! ${parts[partKey].name}`, true);
+                
+                setTimeout(() => {
+                    nextQuizQuestion();
+                }, 1500);
+            } else {
+                element.classList.add('incorrect');
+                showFeedback(`✗ Try again! Look for the ${parts[currentQuizPart].name}`, false);
+                
+                setTimeout(() => {
+                    element.classList.remove('incorrect');
+                }, 1000);
+            }
+        }
+
+        function setMode(mode) {
+            gameMode = mode;
+            resetGame();
+            
+            const taskElement = document.getElementById('currentTask');
+            
+            if (mode === 'explore') {
+                taskElement.innerHTML = 'Explore Mode <span class="mode-indicator mode-explore">EXPLORE</span><br>Click on any part to learn about it!';
+            } else if (mode === 'quiz') {
+                quizOrder = Object.keys(parts).sort(() => Math.random() - 0.5);
+                nextQuizQuestion();
+            }
+        }
+
+        function nextQuizQuestion() {
+            const remaining = quizOrder.filter(key => !foundParts.has(key));
+            
+            if (remaining.length === 0) {
+                showCompletion();
+                return;
+            }
+            
+            currentQuizPart = remaining[0];
+            const taskElement = document.getElementById('currentTask');
+            taskElement.innerHTML = `Quiz Mode <span class="mode-indicator mode-quiz">QUIZ</span><br>Find: <strong>${parts[currentQuizPart].name}</strong>`;
+        }
+
+        function showFeedback(message, isCorrect) {
+            const taskElement = document.getElementById('currentTask');
+            const originalContent = taskElement.innerHTML;
+            
+            taskElement.style.background = isCorrect ? '#f0fff4' : '#fff5f5';
+            taskElement.style.borderColor = isCorrect ? '#48bb78' : '#fc8181';
+            taskElement.innerHTML = message;
+            
+            if (gameMode === 'explore' || !isCorrect) {
+                setTimeout(() => {
+                    taskElement.style.background = '#fff';
+                    taskElement.style.borderColor = '#667eea';
+                    taskElement.innerHTML = originalContent;
+                }, 2000);
+            }
+        }
+
+        function showCompletion() {
+            document.getElementById('completionMessage').classList.add('show');
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+        }
+
+        function resetGame() {
+            score = 0;
+            foundParts.clear();
+            currentQuizPart = null;
+            updateScore();
+            
+            document.querySelectorAll('.hotspot').forEach(h => {
+                h.classList.remove('correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('.part-item').forEach(p => {
+                p.classList.remove('found');
+            });
+            
+            document.getElementById('completionMessage').classList.remove('show');
+            
+            if (gameMode === 'quiz') {
+                quizOrder = Object.keys(parts).sort(() => Math.random() - 0.5);
+                nextQuizQuestion();
+            }
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
