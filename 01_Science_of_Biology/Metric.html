@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Metric Prefix Chart</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #2ecc71;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: var(--light);
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background: var(--secondary);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        button:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        button.active {
+            background: var(--accent);
+        }
+        
+        .search-filter {
+            display: flex;
+            gap: 10px;
+        }
+        
+        input, select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 20px;
+        }
+        
+        .chart-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .info-panel {
+            flex: 1;
+            min-width: 300px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .chart {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .chart th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        
+        .chart td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .chart tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .chart tr:hover {
+            background-color: #e3f2fd;
+        }
+        
+        .prefix {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .symbol {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .power {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+        }
+        
+        .decimal {
+            font-family: 'Courier New', monospace;
+        }
+        
+        .visualization {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .scale-bar {
+            height: 30px;
+            background: linear-gradient(to right, #e74c3c, #3498db, #2ecc71);
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .example-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .example {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-left: 4px solid var(--secondary);
+            border-radius: 4px;
+        }
+        
+        .interactive-tool {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4fc;
+            border-radius: 8px;
+        }
+        
+        .converter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .converter input, .converter select {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .memory-aid {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff8e1;
+            border-radius: 8px;
+        }
+        
+        .mnemonic {
+            font-style: italic;
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .print-only {
+            display: none;
+        }
+        
+        /* Card View Styles */
+        .card-view {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .prefix-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .prefix-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .card-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .card-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .card-power {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            margin-bottom: 5px;
+        }
+        
+        /* Ladder View Styles */
+        .ladder-view {
+            display: none;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+        
+        .ladder-step {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-left: 4px solid var(--secondary);
+            margin-bottom: 5px;
+            background: white;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .ladder-step:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .ladder-name {
+            font-weight: bold;
+            color: var(--primary);
+            width: 80px;
+        }
+        
+        .ladder-symbol {
+            font-weight: bold;
+            color: var(--secondary);
+            width: 40px;
+        }
+        
+        .ladder-power {
+            color: var(--accent);
+            font-family: 'Courier New', monospace;
+            width: 80px;
+        }
+        
+        /* Train Track Conversion Styles */
+        .train-track {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            display: none;
+        }
+        
+        .conversion-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            justify-content: center;
+        }
+        
+        .fraction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 10px;
+        }
+        
+        .numerator, .denominator {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .numerator {
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .denominator {
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+        
+        .equals {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .view-toggle, .search-filter {
+                justify-content: center;
+            }
+        }
+        
+        @media print {
+            .no-print {
+                display: none;
+            }
+            
+            .print-only {
+                display: block;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Interactive Metric Prefix Chart</h1>
+            <p class="subtitle">Master metric prefixes from Giga to Pico with this comprehensive, multi-modal learning tool</p>
+        </header>
+        
+        <div class="controls no-print">
+            <div class="view-toggle">
+                <button id="tableViewBtn" class="active">Table View</button>
+                <button id="cardViewBtn">Card View</button>
+                <button id="ladderViewBtn">Ladder View</button>
+            </div>
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Search prefixes...">
+                <select id="filterSelect">
+                    <option value="all">All Prefixes</option>
+                    <option value="large">Large Prefixes (Giga to Kilo)</option>
+                    <option value="small">Small Prefixes (Milli to Pico)</option>
+                </select>
+                <button id="printBtn">Print Chart</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="chart-container">
+                <div class="print-only">
+                    <h2>Metric Prefix Reference Chart</h2>
+                    <p>Use this chart for quick reference during your MCAT preparation</p>
+                </div>
+                
+                <!-- Table View -->
+                <div id="tableView">
+                    <table class="chart" id="prefixTable">
+                        <thead>
+                            <tr>
+                                <th>Prefix</th>
+                                <th>Symbol</th>
+                                <th>Power of 10</th>
+                                <th>Decimal Equivalent</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prefixTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Card View -->
+                <div class="card-view" id="cardView">
+                    <!-- Cards will be populated by JavaScript -->
+                </div>
+                
+                <!-- Ladder View -->
+                <div class="ladder-view" id="ladderView">
+                    <!-- Ladder steps will be populated by JavaScript -->
+                </div>
+                
+                <div class="visualization no-print">
+                    <h3>Prefix Scale Visualization</h3>
+                    <div class="scale-bar"></div>
+                    <div class="scale-labels">
+                        <span>Giga (10⁹)</span>
+                        <span>Base (10⁰)</span>
+                        <span>Pico (10⁻¹²)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-panel no-print">
+                <h3>Prefix Details</h3>
+                <div id="prefixDetails">
+                    <p>Select a prefix from the table to see detailed information and examples.</p>
+                </div>
+                
+                <div class="interactive-tool">
+                    <h3>Conversion Tool</h3>
+                    <p>Practice converting between different metric prefixes using the "train track" method:</p>
+                    <div class="converter">
+                        <input type="number" id="convertValue" placeholder="Value" value="1" step="any">
+                        <select id="unitType">
+                            <option value="g">Grams (g)</option>
+                            <option value="m">Meters (m)</option>
+                            <option value="L">Liters (L)</option>
+                        </select>
+                        <select id="convertFrom">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <span>to</span>
+                        <select id="convertTo">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <button id="convertBtn">Convert</button>
+                    </div>
+                    <div class="train-track" id="trainTrack">
+                        <!-- Train track steps will be populated by JavaScript -->
+                    </div>
+                    <div class="result" id="conversionResult"></div>
+                </div>
+                
+                <div class="memory-aid">
+                    <h3>Memory Aid</h3>
+                    <p>Remember the order of prefixes with this mnemonic:</p>
+                    <div class="mnemonic" id="mnemonicText">
+                        "Great Giants Make Kings But Dwarfs Can't Make Mushrooms Naturally Perfect"
+                    </div>
+                    <p><strong>G</strong>iga, <strong>M</strong>ega, <strong>K</strong>ilo, 
+                    <strong>B</strong>ase, <strong>D</strong>eci, <strong>C</strong>enti, <strong>M</strong>illi, 
+                    <strong>M</strong>icro, <strong>N</strong>ano, <strong>P</strong>ico</p>
+                    <button id="customMnemonicBtn">Create Your Own Mnemonic</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="example-section no-print">
+            <h3>MCAT-Relevant Examples</h3>
+            <div class="example">
+                <h4>Cell Biology</h4>
+                <p>A typical eukaryotic cell is about 10-100 <strong>micrometers (μm)</strong> in diameter.</p>
+                <p>10 μm = 10 × 10⁻⁶ m = 1 × 10⁻⁵ m</p>
+            </div>
+            <div class="example">
+                <h4>Biochemistry</h4>
+                <p>DNA base pairs are approximately 0.34 <strong>nanometers (nm)</strong> apart.</p>
+                <p>0.34 nm = 0.34 × 10⁻⁹ m = 3.4 × 10⁻¹⁰ m</p>
+            </div>
+            <div class="example">
+                <h4>Pharmacology</h4>
+                <p>Drug concentrations are often measured in <strong>milligrams per milliliter (mg/mL)</strong>.</p>
+                <p>5 mg/mL = 5 × 10⁻³ g / 10⁻³ L = 5 g/L</p>
+            </div>
+            <div class="example">
+                <h4>Microscopy</h4>
+                <p>Light microscopes can resolve objects as small as 200 <strong>nanometers (nm)</strong>.</p>
+                <p>Electron microscopes can resolve objects smaller than 1 <strong>nanometer (nm)</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Metric prefixes data - removed Tera, added deka and hecto
+        const prefixes = [
+            { name: "Giga", symbol: "G", power: 9, decimal: "1,000,000,000", example: "Gigabyte (GB)" },
+            { name: "Mega", symbol: "M", power: 6, decimal: "1,000,000", example: "Megagram (Mg)" },
+            { name: "Kilo", symbol: "k", power: 3, decimal: "1,000", example: "Kilogram (kg)" },
+            { name: "Hecto", symbol: "h", power: 2, decimal: "100", example: "Hectoliter (hL)" },
+            { name: "Deka", symbol: "da", power: 1, decimal: "10", example: "Dekameter (dam)" },
+            { name: "Base", symbol: "", power: 0, decimal: "1", example: "Meter (m), Gram (g), Liter (L)" },
+            { name: "Deci", symbol: "d", power: -1, decimal: "0.1", example: "Deciliter (dL)" },
+            { name: "Centi", symbol: "c", power: -2, decimal: "0.01", example: "Centimeter (cm)" },
+            { name: "Milli", symbol: "m", power: -3, decimal: "0.001", example: "Milligram (mg)" },
+            { name: "Micro", symbol: "μ", power: -6, decimal: "0.000001", example: "Micrometer (μm)" },
+            { name: "Nano", symbol: "n", power: -9, decimal: "0.000000001", example: "Nanometer (nm)" },
+            { name: "Pico", symbol: "p", power: -12, decimal: "0.000000000001", example: "Picogram (pg)" }
+        ];
+
+        // DOM elements
+        const tableBody = document.getElementById('prefixTableBody');
+        const cardView = document.getElementById('cardView');
+        const ladderView = document.getElementById('ladderView');
+        const tableView = document.getElementById('tableView');
+        const prefixDetails = document.getElementById('prefixDetails');
+        const convertFrom = document.getElementById('convertFrom');
+        const convertTo = document.getElementById('convertTo');
+        const unitType = document.getElementById('unitType');
+        const convertBtn = document.getElementById('convertBtn');
+        const conversionResult = document.getElementById('conversionResult');
+        const trainTrack = document.getElementById('trainTrack');
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
+        const tableViewBtn = document.getElementById('tableViewBtn');
+        const cardViewBtn = document.getElementById('cardViewBtn');
+        const ladderViewBtn = document.getElementById('ladderViewBtn');
+        const printBtn = document.getElementById('printBtn');
+        const customMnemonicBtn = document.getElementById('customMnemonicBtn');
+
+        // Initialize the application
+        function init() {
+            populateTable();
+            populateCards();
+            populateLadder();
+            populateConversionDropdowns();
+            showPrefixDetails(prefixes[5]); // Show Base unit details by default
+        }
+
+        // Populate the table view
+        function populateTable() {
+            tableBody.innerHTML = '';
+            prefixes.forEach(prefix => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="prefix">${prefix.name}</td>
+                    <td class="symbol">${prefix.symbol}</td>
+                    <td class="power">10${formatPower(prefix.power)}</td>
+                    <td class="decimal">${prefix.decimal}</td>
+                    <td>${prefix.example}</td>
+                `;
+                row.addEventListener('click', () => showPrefixDetails(prefix));
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Populate the card view
+        function populateCards() {
+            cardView.innerHTML = '';
+            prefixes.forEach(prefix => {
+                const card = document.createElement('div');
+                card.className = 'prefix-card';
+                card.innerHTML = `
+                    <div class="card-name">${prefix.name}</div>
+                    <div class="card-symbol">${prefix.symbol}</div>
+                    <div class="card-power">10${formatPower(prefix.power)}</div>
+                    <div class="card-decimal">${prefix.decimal}</div>
+                `;
+                card.addEventListener('click', () => showPrefixDetails(prefix));
+                cardView.appendChild(card);
+            });
+        }
+
+        // Populate the ladder view
+        function populateLadder() {
+            ladderView.innerHTML = '';
+            // Sort from highest to lowest power
+            const sortedPrefixes = [...prefixes].sort((a, b) => b.power - a.power);
+            
+            sortedPrefixes.forEach(prefix => {
+                const step = document.createElement('div');
+                step.className = 'ladder-step';
+                step.innerHTML = `
+                    <div class="ladder-name">${prefix.name}</div>
+                    <div class="ladder-symbol">${prefix.symbol}</div>
+                    <div class="ladder-power">10${formatPower(prefix.power)}</div>
+                    <div class="ladder-decimal">${prefix.decimal}</div>
+                `;
+                step.addEventListener('click', () => showPrefixDetails(prefix));
+                ladderView.appendChild(step);
+            });
+        }
+
+        // Format power for display
+        function formatPower(power) {
+            if (power >= 0) {
+                return `<sup>${power}</sup>`;
+            } else {
+                return `<sup>-${Math.abs(power)}</sup>`;
+            }
+        }
+
+        // Show prefix details
+        function showPrefixDetails(prefix) {
+            prefixDetails.innerHTML = `
+                <h4>${prefix.name} (${prefix.symbol})</h4>
+                <p><strong>Power of 10:</strong> 10${formatPower(prefix.power)}</p>
+                <p><strong>Decimal:</strong> ${prefix.decimal}</p>
+                <p><strong>Example:</strong> ${prefix.example}</p>
+                <p><strong>MCAT Context:</strong> ${getMCATContext(prefix)}</p>
+            `;
+        }
+
+        // Get MCAT context for a prefix
+        function getMCATContext(prefix) {
+            const contexts = {
+                "Giga": "Genome sizes (e.g., human genome ~3 Gb)",
+                "Mega": "Enzyme concentrations, DNA lengths",
+                "Kilo": "Molecular weights (kDa), solution concentrations",
+                "Hecto": "Rarely used in MCAT contexts",
+                "Deka": "Rarely used in MCAT contexts",
+                "Base": "Standard units (meters, grams, liters)",
+                "Deci": "Blood pressure (mmHg), but not common in chemistry",
+                "Centi": "Centimeters for anatomical measurements",
+                "Milli": "Very common: milligrams, milliliters, millimolar (mM)",
+                "Micro": "Extremely common: micrometers (cell size), micrograms, micromolar (μM), microscope measurements",
+                "Nano": "Critical: nanometers (DNA, light wavelength), nanomolar (nM)",
+                "Pico": "Important: picomolar concentrations (hormones, receptors)"
+            };
+            
+            return contexts[prefix.name] || "Common in various scientific measurements";
+        }
+
+        // Populate conversion dropdowns
+        function populateConversionDropdowns() {
+            prefixes.forEach(prefix => {
+                const optionFrom = document.createElement('option');
+                optionFrom.value = prefix.power;
+                optionFrom.textContent = `${prefix.name} (${prefix.symbol})`;
+                
+                const optionTo = optionFrom.cloneNode(true);
+                
+                convertFrom.appendChild(optionFrom);
+                convertTo.appendChild(optionTo);
+            });
+            
+            // Set default values
+            convertFrom.value = -3; // Milli
+            convertTo.value = -6;   // Micro
+        }
+
+        // Perform conversion with train track method
+        function performConversion() {
+            const value = parseFloat(document.getElementById('convertValue').value);
+            const fromPower = parseInt(convertFrom.value);
+            const toPower = parseInt(convertTo.value);
+            const unit = unitType.value;
+            
+            if (isNaN(value)) {
+                conversionResult.textContent = "Please enter a valid number";
+                conversionResult.style.display = "block";
+                conversionResult.style.backgroundColor = "#ffebee";
+                trainTrack.style.display = "none";
+                return;
+            }
+            
+            const powerDifference = fromPower - toPower;
+            const result = value * Math.pow(10, powerDifference);
+            
+            const fromPrefix = prefixes.find(p => p.power === fromPower);
+            const toPrefix = prefixes.find(p => p.power === toPower);
+            
+            // Show train track method
+            trainTrack.innerHTML = '';
+            trainTrack.style.display = "block";
+            
+            const step = document.createElement('div');
+            step.className = 'conversion-step';
+            
+            // Create the train track visualization
+            let trackHTML = `
+                <div>${value} ${fromPrefix.symbol}${unit}</div>
+                <div class="fraction">
+                    <div class="numerator">1 ${toPrefix.symbol}${unit}</div>
+                    <div class="denominator">${Math.pow(10, toPower - fromPower)} ${fromPrefix.symbol}${unit}</div>
+                </div>
+                <div class="equals">=</div>
+                <div>${result} ${toPrefix.symbol}${unit}</div>
+            `;
+            
+            step.innerHTML = trackHTML;
+            trainTrack.appendChild(step);
+            
+            // Show the result
+            conversionResult.innerHTML = `
+                ${value} ${fromPrefix.symbol}${unit} = <span style="color: var(--accent);">${result}</span> ${toPrefix.symbol}${unit}
+            `;
+            conversionResult.style.display = "block";
+            conversionResult.style.backgroundColor = "#e8f5e9";
+        }
+
+        // Filter functionality
+        function filterContent() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filterValue = filterSelect.value;
+            
+            const filteredPrefixes = prefixes.filter(prefix => {
+                const matchesSearch = prefix.name.toLowerCase().includes(searchTerm) || 
+                                     prefix.symbol.toLowerCase().includes(searchTerm);
+                
+                let matchesFilter = true;
+                if (filterValue === "large") {
+                    matchesFilter = prefix.power >= 3;
+                } else if (filterValue === "small") {
+                    matchesFilter = prefix.power <= -3;
+                }
+                
+                return matchesSearch && matchesFilter;
+            });
+            
+            // Update table view
+            tableBody.innerHTML = '';
+            filteredPrefixes.forEach(prefix => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="prefix">${prefix.name}</td>
+                    <td class="symbol">${prefix.symbol}</td>
+                    <td class="power">10${formatPower(prefix.power)}</td>
+                    <td class="decimal">${prefix.decimal}</td>
+                    <td>${prefix.example}</td>
+                `;
+                row.addEventListener('click', () => showPrefixDetails(prefix));
+                tableBody.appendChild(row);
+            });
+            
+            // Update card view
+            cardView.innerHTML = '';
+            filteredPrefixes.forEach(prefix => {
+                const card = document.createElement('div');
+                card.className = 'prefix-card';
+                card.innerHTML = `
+                    <div class="card-name">${prefix.name}</div>
+                    <div class="card-symbol">${prefix.symbol}</div>
+                    <div class="card-power">10${formatPower(prefix.power)}</div>
+                    <div class="card-decimal">${prefix.decimal}</div>
+                `;
+                card.addEventListener('click', () => showPrefixDetails(prefix));
+                cardView.appendChild(card);
+            });
+            
+            // Update ladder view
+            ladderView.innerHTML = '';
+            const sortedPrefixes = [...filteredPrefixes].sort((a, b) => b.power - a.power);
+            sortedPrefixes.forEach(prefix => {
+                const step = document.createElement('div');
+                step.className = 'ladder-step';
+                step.innerHTML = `
+                    <div class="ladder-name">${prefix.name}</div>
+                    <div class="ladder-symbol">${prefix.symbol}</div>
+                    <div class="ladder-power">10${formatPower(prefix.power)}</div>
+                    <div class="ladder-decimal">${prefix.decimal}</div>
+                `;
+                step.addEventListener('click', () => showPrefixDetails(prefix));
+                ladderView.appendChild(step);
+            });
+        }
+
+        // View toggle functionality
+        function setActiveView(viewName) {
+            // Hide all views
+            tableView.style.display = 'none';
+            cardView.style.display = 'none';
+            ladderView.style.display = 'none';
+            
+            // Remove active class from all buttons
+            tableViewBtn.classList.remove('active');
+            cardViewBtn.classList.remove('active');
+            ladderViewBtn.classList.remove('active');
+            
+            // Show selected view and set active button
+            if (viewName === 'table') {
+                tableView.style.display = 'block';
+                tableViewBtn.classList.add('active');
+            } else if (viewName === 'card') {
+                cardView.style.display = 'grid';
+                cardViewBtn.classList.add('active');
+            } else if (viewName === 'ladder') {
+                ladderView.style.display = 'flex';
+                ladderViewBtn.classList.add('active');
+            }
+        }
+
+        // Print functionality
+        function printChart() {
+            window.print();
+        }
+
+        // Custom mnemonic functionality
+        function createCustomMnemonic() {
+            const customMnemonic = prompt("Create your own mnemonic for the metric prefixes (Giga, Mega, Kilo, Base, Deci, Centi, Milli, Micro, Nano, Pico):");
+            if (customMnemonic) {
+                document.getElementById('mnemonicText').textContent = `"${customMnemonic}"`;
+            }
+        }
+
+        // Event listeners
+        convertBtn.addEventListener('click', performConversion);
+        searchInput.addEventListener('input', filterContent);
+        filterSelect.addEventListener('change', filterContent);
+        tableViewBtn.addEventListener('click', () => setActiveView('table'));
+        cardViewBtn.addEventListener('click', () => setActiveView('card'));
+        ladderViewBtn.addEventListener('click', () => setActiveView('ladder'));
+        printBtn.addEventListener('click', printChart);
+        customMnemonicBtn.addEventListener('click', createCustomMnemonic);
+
+        // Initialize the application
+        init();
+    </script>
+</body>
+</html>
