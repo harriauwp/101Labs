@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>101Labs - The Lab Manual</title>
+    <title>101Labs - Biology Lab Manual</title>
     <style>
         * {
             margin: 0;
@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #007FA3 0%, #005670 100%); /* UWP Blue gradient */
             min-height: 100vh;
-            padding: 15px;
+            padding: 10px;
         }
 
         .container {
@@ -25,104 +25,88 @@
 
         header {
             background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            border-top: 4px solid #FFD100; /* UWP Yellow accent */
         }
 
         h1 {
-            font-size: 2.5em;
-            color: #2d3748;
+            font-size: 2.2em;
+            color: #002F6C; /* UWP Dark Blue */
             margin-bottom: 5px;
         }
 
         .subtitle {
-            font-size: 1.2em;
-            color: #718096;
+            font-size: 1.1em;
+            color: #5B6770; /* UWP Gray */
         }
 
         .labs-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .lab-card {
             background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.25s ease;
             text-decoration: none;
             color: inherit;
-            display: block;
             display: flex;
             flex-direction: column;
             height: 100%;
         }
 
         .lab-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            border-color: #FFD100;
         }
 
         .lab-image {
             width: 100%;
-            height: 120px;
+            height: 110px;
             object-fit: contain;
-            margin-bottom: 10px;
-            background-color: #f8f9fa;
-            border-radius: 6px;
-        }
-
-        .lab-number {
-            font-size: 1em;
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .lab-title {
-            font-size: 1.4em;
-            color: #2d3748;
             margin-bottom: 8px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
         }
 
         .lab-description {
             color: #4a5568;
-            line-height: 1.4;
-            margin-bottom: 10px;
-            font-size: 0.9em;
+            line-height: 1.35;
+            font-size: 0.85em;
             flex-grow: 1;
+            margin-bottom: 8px;
         }
 
         .lab-status {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
             font-weight: bold;
-        }
-
-        .status-complete {
-            background: #c6f6d5;
-            color: #22543d;
-        }
-
-        .status-upcoming {
-            background: #fed7d7;
-            color: #742a2a;
+            text-align: center;
+            background: #FFD100; /* UWP Yellow */
+            color: #002F6C; /* UWP Dark Blue */
+            align-self: flex-start;
         }
 
         footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             color: white;
-            padding: 15px;
-            font-size: 0.9em;
+            padding: 12px;
+            font-size: 0.85em;
+            background-color: rgba(0, 47, 108, 0.8); /* UWP Dark Blue with transparency */
+            border-radius: 4px;
         }
 
         @media (max-width:1200px) {
@@ -141,6 +125,12 @@
             .labs-grid {
                 grid-template-columns: 1fr;
             }
+            body {
+                padding: 8px;
+            }
+            .lab-card {
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -151,129 +141,64 @@
             <p class="subtitle">Laboratory Exercises</p>
         </header>
         <div class="labs-grid">
-            <!-- Pre-Lab: Metacognition -->
             <a href="https://sites.google.com/view/mdlifehack/metacog10/metacog_dev_perplexity" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/00_metacognition.png"
-                     alt="Metacognition - The Inner Coach"
-                     class="lab-image">
-                <div class="lab-number">Pre_Lab</div>
-                <h2 class="lab-title">Metacognition</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/00_metacognition.png" alt="Metacognition" class="lab-image">
                 <p class="lab-description">When Hard Work Doesn't Match Your Exam Score.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 01: The Science of Biology -->
             <a href="01_Science_of_Biology/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/01_science_of_biology.png"
-                     alt="The Science of Biology"
-                     class="lab-image">
-                <div class="lab-number">Lab 01</div>
-                <h2 class="lab-title">The Science of Biology</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/01_science_of_biology.png" alt="The Science of Biology" class="lab-image">
                 <p class="lab-description">Learn the fundamentals of the scientific process.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 02: Eukaryotes -->
             <a href="02_Eukaryotes/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/02_eukaryotes.png"
-                     alt="Eukaryotes - Architects of Life"
-                     class="lab-image">
-                <div class="lab-number">Lab 02</div>
-                <h2 class="lab-title">Eukaryotes</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/02_eukaryotes.png" alt="Eukaryotes" class="lab-image">
                 <p class="lab-description">Examine cellular organelles and their functions using microscopy.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 03: Carbohydrates -->
             <a href="03_Carbohydrates/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/03_carbohydrates.png"
-                     alt="Carbohydrates"
-                     class="lab-image">
-                <div class="lab-number">Lab 03</div>
-                <h2 class="lab-title">Carbohydrates</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/03_carbohydrates.png" alt="Carbohydrates" class="lab-image">
                 <p class="lab-description">Explore the structure and function of carbohydrates, including monosaccharides, disaccharides, and polysaccharides.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 04: Proteins -->
             <a href="04_Proteins/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/04_proteins.png"
-                     alt="Proteins - Builders of Life"
-                     class="lab-image">
-                <div class="lab-number">Lab 04</div>
-                <h2 class="lab-title">Proteins</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/04_proteins.png" alt="Proteins" class="lab-image">
                 <p class="lab-description">Study the molecular structures and biological roles of proteins.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 05: Lipids -->
             <a href="05_Lipids/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/05_lipids.png"
-                     alt="Lipids - Containers of Life"
-                     class="lab-image">
-                <div class="lab-number">Lab 05</div>
-                <h2 class="lab-title">Lipids</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/05_lipids.png" alt="Lipids" class="lab-image">
                 <p class="lab-description">Examine selectively permeable membranes, transport, solution tonicity, and turgor pressure.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 06: Photosynthesis -->
             <a href="06_Photosynthetic_Pigments/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/06_photosynthesis.png"
-                     alt="Photosynthesis - Power Source of Life"
-                     class="lab-image">
-                <div class="lab-number">Lab 06</div>
-                <h2 class="lab-title">Photosynthesis</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/06_photosynthesis.png" alt="Photosynthesis" class="lab-image">
                 <p class="lab-description">Study how plants convert light energy into chemical energy.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 07: Nucleic Acids -->
             <a href="07_Nucleic Acids/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/07_nucleic_acids.png"
-                     alt="Nucleic Acids"
-                     class="lab-image">
-                <div class="lab-number">Lab 07</div>
-                <h2 class="lab-title">Nucleic Acids</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/07_nucleic_acids.png" alt="Nucleic Acids" class="lab-image">
                 <p class="lab-description">Study how the double helix replicates.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 08: Mitosis -->
             <a href="08_Mitosis/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/08_mitosis.png"
-                     alt="Mitosis"
-                     class="lab-image">
-                <div class="lab-number">Lab 08</div>
-                <h2 class="lab-title">Mitosis</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/08_mitosis.png" alt="Mitosis" class="lab-image">
                 <p class="lab-description">Study the processes of the cell cycle.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 09: Meiosis -->
             <a href="09_Meiosis/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/09_meiosis.png"
-                     alt="Meiosis"
-                     class="lab-image">
-                <div class="lab-number">Lab 09</div>
-                <h2 class="lab-title">Meiosis</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/09_meiosis.png" alt="Meiosis" class="lab-image">
                 <p class="lab-description">Study gamete production.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
-
-            <!-- Lab 10: Genetics -->
             <a href="10_Genetics/index.html" class="lab-card">
-                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/10_genetics.png"
-                     alt="Genetics"
-                     class="lab-image">
-                <div class="lab-number">Lab 10</div>
-                <h2 class="lab-title">Genetics</h2>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/10_genetics.png" alt="Genetics" class="lab-image">
                 <p class="lab-description">Study the Law of Segregation and the Law of Independent Assortment.</p>
-                <span class="lab-status status-complete">Available</span>
+                <span class="lab-status">Available</span>
             </a>
         </div>
         <footer>
-            <p>&copy; 2025 101Labs Manual | Biology Laboratory Exercises</p>
+            <p>&copy; 2025 101Labs Manual | University of Wisconsin-Parkside Biology Laboratory Exercises</p>
         </footer>
     </div>
 </body>
