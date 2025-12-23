@@ -1,844 +1,862 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CH₂O Arcade: Fixed Edition</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eukaryotes Goals Tracker • UW-Parkside</title>
     <style>
         :root {
-            --bg-color: #121212;
-            --panel-bg: #1e1e1e;
-            --text-main: #ffffff;
-            --lvl0-green: #00e676;
-            --lvl1-yellow: #ffea00;
-            --lvl2-orange: #ff9100;
-            --lvl3-blue: #2979ff;
-            --lvl4-purple: #d500f9;
-            --lvl5-red: #ff1744;
-            --correct: #00c853;
-            --wrong: #d50000;
+            --uwp-green: #016836;
+            --uwp-light-green: #e8f5ec;
+            --accent-yellow: #FABA31;
+            --accent-light: #fef5e0;
+            --gray-50: #f9f9f9;
+            --gray-100: #f0f0f0;
+            --gray-200: #e5e5e5;
+            --gray-500: #777;
+            --gray-700: #444;
+            --gray-900: #111;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --transition: all 0.2s ease;
         }
 
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+        * {
+            box-sizing: border-box;
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-            user-select: none;
+            padding: 0;
         }
 
-        /* --- Header & HUD --- */
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.5;
+        }
+
+        /* Header */
         header {
-            background: var(--panel-bg);
-            padding: 10px 20px;
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #333;
-            z-index: 10;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        /* --- New Dedicated Instruction Bar --- */
-        #instruction-bar {
-            background: #2a2a2a;
-            border-bottom: 1px solid #444;
-            padding: 15px;
-            text-align: center;
-            color: var(--lvl1-yellow);
-            font-weight: bold;
-            font-size: 1.1em;
-            min-height: 24px;
-            z-index: 9;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .hud-stat {
-            font-weight: bold;
-        }
-
-        #xp-bar-container {
-            width: 200px;
-            height: 10px;
-            background: #333;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        #xp-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--lvl0-green), var(--lvl5-red));
-            transition: width 0.5s;
-        }
-
-        /* --- Main Game Area --- */
-        #game-stage {
-            flex: 1;
-            position: relative;
+        .logo {
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, #252525 0%, #121212 100%);
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            background: var(--uwp-green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--uwp-green);
+        }
+
+        .subtitle {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            max-width: 500px;
+        }
+
+        /* Main layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Progress section */
+        .progress-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .progress-stats {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background: var(--gray-100);
+            border-radius: 10px;
             overflow: hidden;
+            margin-bottom: 1rem;
         }
 
-        /* --- SVG Styles --- */
-        svg {
-            width: 100%;
+        .progress-bar {
             height: 100%;
-            max-width: 900px;
-            max-height: 700px;
+            background: var(--uwp-green);
+            border-radius: 10px;
+            transition: width 0.5s ease;
         }
 
-        .atom {
+        .progress-goal {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            font-style: italic;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+
+        /* Level sections */
+        .level-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .level-header {
+            background: var(--uwp-green);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card styling */
+        .category-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            background: var(--uwp-light-green);
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--uwp-green);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-link {
+            color: var(--gray-700);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link:hover {
+            color: var(--uwp-green);
+            text-decoration: underline;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goal-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .goal-item:last-child {
+            border-bottom: none;
+        }
+
+        .goal-checkbox {
+            margin-top: 0.2rem;
+            accent-color: var(--uwp-green);
             cursor: pointer;
-            transition: all 0.2s;
+            transform: scale(1.2);
         }
 
-        .atom circle {
-            fill: #333;
-            stroke: #fff;
-            stroke-width: 2px;
+        .goal-text {
+            flex-grow: 1;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        .atom text {
-            font-family: sans-serif;
-            font-size: 14px;
-            fill: #fff;
-            text-anchor: middle;
-            dominant-baseline: middle;
-            pointer-events: none;
+        .goal-stars {
+            display: flex;
+            gap: 0.2rem;
+            margin-top: 0.5rem;
         }
 
-        .bond {
-            stroke: #fff;
-            stroke-width: 2px;
+        .star {
+            font-size: 1.2rem;
+            color: var(--gray-200);
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        /* Interaction States */
-        .atom:hover circle {
-            fill: #555;
-            stroke: var(--lvl3-blue);
+        .star:hover {
             transform: scale(1.1);
         }
 
-        .atom.selected circle {
-            fill: var(--lvl3-blue);
+        .star.on {
+            color: var(--accent-yellow);
         }
 
-        .atom.correct circle {
-            fill: var(--correct);
-            stroke: var(--correct);
-        }
-
-        .atom.wrong circle {
-            fill: var(--wrong);
-            stroke: var(--wrong);
-        }
-
-        /* Target Hint Animation for stuck students */
-        @keyframes pulse {
-            0% {
-                stroke-width: 2px;
-                stroke: #fff;
-            }
-
-            50% {
-                stroke-width: 4px;
-                stroke: var(--lvl1-yellow);
-            }
-
-            100% {
-                stroke-width: 2px;
-                stroke: #fff;
-            }
-        }
-
-        .target-bond circle {
-            animation: pulse 2s infinite;
-        }
-
-        /* --- UI Overlay Panels --- */
-        .panel {
-            position: absolute;
-            background: rgba(30, 30, 30, 0.98);
-            border: 2px solid #fff;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 500px;
-            text-align: center;
-            display: none;
-            z-index: 100;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-        }
-
-        .panel.active {
-            display: block;
-            animation: popIn 0.3s ease;
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
         }
 
         .btn {
-            background: #333;
-            color: white;
-            border: 1px solid #fff;
-            padding: 10px 20px;
-            margin: 10px;
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
             cursor: pointer;
-            font-family: inherit;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .btn:hover {
-            background: #555;
-        }
-
-        /* Level Colors */
-        .lvl0 {
-            border-color: var(--lvl0-green);
-            color: var(--lvl0-green);
-        }
-
-        .lvl1 {
-            border-color: var(--lvl1-yellow);
-            color: var(--lvl1-yellow);
-        }
-
-        .lvl2 {
-            border-color: var(--lvl2-orange);
-            color: var(--lvl2-orange);
-        }
-
-        .lvl3 {
-            border-color: var(--lvl3-blue);
-            color: var(--lvl3-blue);
-        }
-
-        .lvl4 {
-            border-color: var(--lvl4-purple);
-            color: var(--lvl4-purple);
-        }
-
-        .lvl5 {
-            border-color: var(--lvl5-red);
-            color: var(--lvl5-red);
-        }
-
-        /* --- Level Selector (Bottom) --- */
-        #level-select {
-            display: flex;
-            justify-content: center;
-            background: var(--panel-bg);
-            padding: 15px;
-            border-top: 1px solid #333;
-        }
-
-        .lvl-node {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #555;
-            background: #000;
-            display: flex;
+            transition: var(--transition);
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin: 0 10px;
-            cursor: not-allowed;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--uwp-green);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #015429;
+            box-shadow: 0 4px 8px rgba(1, 104, 54, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        .btn:disabled {
             opacity: 0.5;
-            font-weight: bold;
+            cursor: not-allowed;
         }
 
-        .lvl-node.unlocked {
-            cursor: pointer;
-            opacity: 1;
-            border-color: #fff;
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-200);
         }
 
-        .lvl-node.completed {
-            background: #333;
-        }
-
-        @keyframes popIn {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
+            
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
-
 <body>
-
     <header>
-        <div>
-            <span style="font-size: 1.2em; font-weight:bold;">CH₂O ARCADE</span>
-            <span id="molecule-name" style="margin-left: 20px; color: #888;">Raw Atoms</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 15px;">
-            <div id="xp-bar-container">
-                <div id="xp-bar"></div>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">EU</div>
+                <div class="logo-text">Eukaryotes Goals Tracker</div>
             </div>
-            <span id="score" class="hud-stat">XP: 0</span>
+            <div class="subtitle">
+                Track your progress through eukaryote concepts. Check goals as you complete them and rate your confidence.
+            </div>
         </div>
     </header>
 
-    <div id="instruction-bar">Initialize System...</div>
+    <main class="container">
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <h2 class="progress-title">Learning Progress</h2>
+                <div class="progress-stats">
+                    <span id="completed-count">0</span> of <span id="total-count">0</span> goals completed
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-goal">I understand my goal → I hit the goal → I am confident → I can move on</p>
+        </section>
 
-    <div id="game-stage">
-        <svg id="chem-canvas" viewBox="0 0 800 600"></svg>
+        <!-- Concept Tables Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">📋</span>
+                Concept Tables
+            </div>
+            <div class="cards-grid" id="concept-tables-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
 
-        <div id="modal" class="panel active">
-            <h2 id="modal-title" class="lvl0">WELCOME TO THE LAB</h2>
-            <p id="modal-text">You start as raw atoms. Prove your mastery of Carbon, Hydrogen, and Oxygen to evolve into
-                complex polysaccharides.</p>
-            <button class="btn" onclick="Game.startLevel(0)">START LEVEL 0</button>
+        <!-- Plant Cells Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🌿</span>
+                Plant Cells
+            </div>
+            <div class="cards-grid" id="plant-cells-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Protists Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🦠</span>
+                Protists
+            </div>
+            <div class="cards-grid" id="protists-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Animal Cells Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🐄</span>
+                Animal Cells
+            </div>
+            <div class="cards-grid" id="animal-cells-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Animal Tissue Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🔬</span>
+                Animal Tissue
+            </div>
+            <div class="cards-grid" id="animal-tissue-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn btn-primary" id="next-unchecked">
+                <span>▶</span>
+                Next Unchecked Goal
+            </button>
+            <button class="btn btn-secondary" id="reset-progress">
+                <span>↺</span>
+                Reset All Progress
+            </button>
         </div>
+    </main>
 
-        <div id="boss-modal" class="panel">
-            <h2 style="color: var(--lvl5-red);">BOSS BATTLE</h2>
-            <p id="boss-question">Question goes here...</p>
-            <div id="boss-options"></div>
-        </div>
-    </div>
-
-    <div id="level-select">
-        <div class="lvl-node lvl0 unlocked" onclick="Game.startLevel(0)">0</div>
-        <div class="lvl-node lvl1" id="btn-lvl-1" onclick="Game.startLevel(1)">1</div>
-        <div class="lvl-node lvl2" id="btn-lvl-2" onclick="Game.startLevel(2)">2</div>
-        <div class="lvl-node lvl3" id="btn-lvl-3" onclick="Game.startLevel(3)">3</div>
-        <div class="lvl-node lvl4" id="btn-lvl-4" onclick="Game.startLevel(4)">4</div>
-        <div class="lvl-node lvl5" id="btn-lvl-5" onclick="Game.startLevel(5)">5</div>
-    </div>
+    <footer>
+        <p>UW-Parkside • Biology 101 Lab • Eukaryotes Goals Tracker</p>
+        <p>Progress is saved automatically in your browser</p>
+    </footer>
 
     <script>
-        /** * GAME ENGINE 
-         * Handles state, rendering, and logic
-         */
-        const Game = {
-            state: {
-                level: 0,
-                score: 0,
-                unlocked: 0, // Set to 4 to test Level 4 immediately if needed
-                clicks: 0
+        // Data structure for all goals
+        const eukaryotesData = [
+            // Concept Tables
+            {
+                level: "Concept Tables",
+                category: "EukaryLingo",
+                link: "https://harriauwp.github.io/101Labs/02_Eukaryotes/EukaryLingo.html",
+                goals: [
+                    { id: "g_0", text: "Pronounce biological terms related to Eukaryotes" }
+                ]
             },
-
-            // --- Configuration Data ---
-            levels: [
-                {
-                    id: 0,
-                    title: "LEVEL 0: CH₂O Bootcamp",
-                    color: "var(--lvl0-green)",
-                    intro: "Task: Identify the Hydroxyl Groups (-OH). Click all of them.",
-                },
-                {
-                    id: 1,
-                    title: "LEVEL 1: Functional Group Forge",
-                    color: "var(--lvl1-yellow)",
-                    intro: "Task: Find the Aldehyde Group (C=O at the end) in Glucose.",
-                },
-                {
-                    id: 2,
-                    title: "LEVEL 2: Carbon Counter Lab",
-                    color: "var(--lvl2-orange)",
-                    intro: "Task: Click Carbon 1 through 6 in the correct order.",
-                },
-                {
-                    id: 3,
-                    title: "LEVEL 3: Ring Builder Arena",
-                    color: "var(--lvl3-blue)",
-                    intro: "Task: Select ALPHA Glucose (OH pointing DOWN).",
-                },
-                {
-                    id: 4,
-                    title: "LEVEL 4: Bond Smith Workshop",
-                    color: "var(--lvl4-purple)",
-                    intro: "Task: Create Maltose. Click OH on C1 (Left) and OH on C4 (Right).",
-                },
-                {
-                    id: 5,
-                    title: "LEVEL 5: Polymer Architect",
-                    color: "var(--lvl5-red)",
-                    intro: "Task: Build Glycogen. Add linear chains and branches.",
-                }
-            ],
-
-            init() {
-                this.svg = document.getElementById('chem-canvas');
-                this.updateUI();
+            {
+                level: "Concept Tables",
+                category: "Plastid organelles",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_0", text: "Eukaryotic cell examples that contain a type of plastid organelle (chloroplasts/chromoplasts)" }
+                ]
             },
-
-            setInstruction(text) {
-                document.getElementById('instruction-bar').innerText = text;
+            {
+                level: "Concept Tables",
+                category: "Flagella",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_1", text: "Eukaryotic cell examples that possess flagella" }
+                ]
             },
-
-            startLevel(n) {
-                if (n > this.state.unlocked) return;
-                this.state.level = n;
-                this.state.clicks = 0;
-
-                // UI Reset
-                document.getElementById('modal').classList.remove('active');
-                document.getElementById('boss-modal').classList.remove('active');
-
-                const lvlInfo = this.levels[n];
-                document.getElementById('molecule-name').innerText = lvlInfo.title;
-                document.getElementById('molecule-name').style.color = lvlInfo.color;
-
-                // Permanent Instruction
-                this.setInstruction(lvlInfo.intro);
-
-                // Render Level Specifics
-                this.renderLevel(n);
+            {
+                level: "Concept Tables",
+                category: "Cilia",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_2", text: "Eukaryotic cell examples that possess cilia" }
+                ]
             },
-
-            renderLevel(n) {
-                this.svg.innerHTML = ''; // Clear canvas
-
-                if (n === 0) {
-                    // Level 0: Hydroxyl Hunt
-                    this.drawMolecule(400, 100, 'linear_glucose');
-                    this.setupClickEvents('hydroxyl');
-                }
-                else if (n === 1) {
-                    // Level 1: Aldehyde ID
-                    this.drawMolecule(250, 100, 'linear_glucose');
-                    this.drawMolecule(550, 100, 'linear_fructose');
-                    this.setupClickEvents('aldehyde');
-                }
-                else if (n === 2) {
-                    // Level 2: Carbon Counting
-                    this.drawMolecule(400, 100, 'linear_glucose_numbered');
-                    this.state.targetCarbon = 1;
-                }
-                else if (n === 3) {
-                    // Level 3: Alpha vs Beta
-                    this.drawMolecule(250, 200, 'alpha_glucose', 'mol-alpha');
-                    this.drawMolecule(550, 200, 'beta_glucose', 'mol-beta');
-
-                    // Add custom listeners for whole molecule selection
-                    document.getElementById('mol-alpha').addEventListener('click', () => this.levelComplete());
-                    document.getElementById('mol-beta').addEventListener('click', () => {
-                        this.setInstruction("Wrong! Beta has OH UP (think Balloon). Try again.");
-                        this.shakeEffect();
-                    });
-                }
-                else if (n === 4) {
-                    // Level 4: Bonding - THE FIX
-                    // We draw two molecules with specific IDs so we can target their atoms
-                    this.drawMolecule(300, 250, 'alpha_glucose', 'glucose-left');
-                    this.drawMolecule(500, 250, 'alpha_glucose', 'glucose-right');
-
-                    this.setupBondingEvents();
-                }
-                else if (n === 5) {
-                    // Level 5: Polymer
-                    this.svg.innerHTML = `
-                <text x="400" y="50" fill="white" text-anchor="middle" font-size="20">BUILD GLYCOGEN</text>
-                <g id="polymer-chain" transform="translate(100, 300)"></g>
-                <rect x="250" y="450" width="140" height="50" fill="#333" stroke="white" rx="5" style="cursor:pointer" onclick="Game.addMonomer('linear')"/>
-                <text x="320" y="480" fill="white" text-anchor="middle" pointer-events="none" font-weight="bold">+ α(1-4)</text>
-                <rect x="410" y="450" width="140" height="50" fill="#333" stroke="white" rx="5" style="cursor:pointer" onclick="Game.addMonomer('branch')"/>
-                <text x="480" y="480" fill="white" text-anchor="middle" pointer-events="none" font-weight="bold">+ α(1-6)</text>
-            `;
-                    this.state.polymerCount = 0;
-                    this.addMonomer('start');
-                }
+            {
+                level: "Concept Tables",
+                category: "Pseudopodia",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_3", text: "Eukaryotic cell examples that possess pseudopodia" }
+                ]
             },
-
-            // --- Interaction Logic ---
-
-            setupClickEvents(targetType) {
-                const atoms = document.querySelectorAll('.atom');
-                let remainingTargets = 0;
-
-                atoms.forEach(atom => {
-                    const type = atom.getAttribute('data-type');
-                    if (type === targetType) remainingTargets++;
-
-                    atom.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const clickedType = e.currentTarget.getAttribute('data-type');
-                        if (clickedType === targetType) {
-                            if (!e.currentTarget.classList.contains('correct')) {
-                                e.currentTarget.classList.add('correct');
-                                remainingTargets--;
-                                if (remainingTargets === 0) {
-                                    setTimeout(() => this.levelComplete(), 500);
-                                }
-                            }
-                        } else {
-                            e.currentTarget.classList.add('wrong');
-                            this.shakeEffect();
-                            this.setInstruction("Incorrect group! Try again.");
-                        }
-                    });
-                });
+            // Plant Cells
+            {
+                level: "Plant Cells",
+                category: "Onion epidermal cells",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Orion.html",
+                goals: [
+                    { id: "g_4", text: "Identify cell wall" },
+                    { id: "g_5", text: "Identify plasma membrane" },
+                    { id: "g_6", text: "Identify nucleus" },
+                    { id: "g_7", text: "Identify chromatin" },
+                    { id: "g_8", text: "Identify nucleolus" },
+                    { id: "g_9", text: "Understand staining techniques for visualizing nuclei" },
+                    { id: "g_10", text: "Estimate cell size" },
+                    { id: "g_11", text: "Relate cell size to surface area-to-volume ratio" }
+                ]
             },
-
-            handleCarbonClick(index, element) {
-                if (this.state.level !== 2) return;
-
-                if (index === this.state.targetCarbon) {
-                    element.classList.add('correct');
-                    // Add label
-                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                    text.setAttribute("x", parseFloat(element.querySelector('circle').getAttribute('cx')) + 25);
-                    text.setAttribute("y", element.querySelector('circle').getAttribute('cy'));
-                    text.setAttribute("fill", "#00e676");
-                    text.setAttribute("font-weight", "bold");
-                    text.textContent = "C" + index;
-                    this.svg.appendChild(text);
-
-                    this.state.targetCarbon++;
-                    if (this.state.targetCarbon > 6) {
-                        setTimeout(() => this.levelComplete(), 500);
-                    }
-                } else {
-                    this.setInstruction(`Look for C${this.state.targetCarbon}! (Top is C1 in Aldehydes)`);
-                    this.shakeEffect();
-                }
+            {
+                level: "Plant Cells",
+                category: "Parenchyma cells (carrot root)",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Carrot.html",
+                goals: [
+                    { id: "g_12", text: "Recognize chromoplasts" },
+                    { id: "g_13", text: "Identify pigment type (carotene)" },
+                    { id: "g_14", text: "Understand plastid diversity" },
+                    { id: "g_15", text: "Understand pigment function" },
+                    { id: "g_16", text: "Observe cell wall" },
+                    { id: "g_17", text: "Observe plasma membrane" }
+                ]
             },
-
-            setupBondingEvents() {
-                // 1. Identify the Target Atoms Logic
-                // In our drawing logic, the OH pointing DOWN on the RIGHT side is C1.
-                // The OH pointing DOWN on the LEFT side is C4.
-
-                const leftMol = document.getElementById('glucose-left');
-                const rightMol = document.getElementById('glucose-right');
-
-                // We find the specific child nodes based on their attributes set in drawMolecule
-                // This is robust because we are querying the specific molecule Group
-
-                // Find C1-OH on Left Molecule (The only OH on the far right X=100 side of the ring)
-                // In our drawMolecule alpha logic, C1 is drawn at x=100. The OH is at x=100.
-                // We look for the group transformed to translate(100, 110)
-                const target1 = leftMol.querySelector('g[transform="translate(100,110)"]');
-
-                // Find C4-OH on Right Molecule (The OH on the far left X=0 side of the ring)
-                // In our drawMolecule logic, C4 is at x=0. The OH is at x=0.
-                // We look for group transformed to translate(0, 110)
-                const target2 = rightMol.querySelector('g[transform="translate(0,110)"]');
-
-                if (target1) target1.classList.add('target-bond');
-                if (target2) target2.classList.add('target-bond');
-
-                // Add Click Listeners to ALL hydroxyls to handle right/wrong
-                const hydroxyls = document.querySelectorAll('.atom[data-type="hydroxyl"]');
-
-                hydroxyls.forEach(oh => {
-                    oh.addEventListener('click', (e) => {
-                        e.stopPropagation(); // prevent bubbling
-
-                        if (oh.classList.contains('target-bond')) {
-                            if (!oh.classList.contains('correct')) {
-                                oh.classList.add('correct');
-                                this.state.clicks++;
-
-                                if (this.state.clicks === 1) {
-                                    this.setInstruction("Good! Now click the other group to form water.");
-                                } else if (this.state.clicks === 2) {
-                                    this.setInstruction("Dehydration Synthesis Complete! H₂O Released.");
-                                    setTimeout(() => {
-                                        this.svg.innerHTML = '';
-                                        this.drawMolecule(350, 250, 'maltose');
-                                        setTimeout(() => this.levelComplete(), 2000);
-                                    }, 1000);
-                                }
-                            }
-                        } else {
-                            oh.classList.add('wrong');
-                            this.setInstruction("Wrong atoms! Bond C1 of one to C4 of the other.");
-                            this.shakeEffect();
-                        }
-                    });
-                });
+            {
+                level: "Plant Cells",
+                category: "Parenchyma cells (leaf)",
+                link: "#",
+                goals: [
+                    { id: "g_18", text: "Identify chloroplasts" },
+                    { id: "g_19", text: "Identify chlorophyll pigments" },
+                    { id: "g_20", text: "Estimate chloroplast number per cell" },
+                    { id: "g_21", text: "Estimate chloroplast size in micrometers" },
+                    { id: "g_22", text: "Explain cytoplasmic streaming" },
+                    { id: "g_23", text: "Explain role of cytoplasmic streaming in large plant cells" }
+                ]
             },
-
-            addMonomer(type) {
-                const container = document.getElementById('polymer-chain');
-                const count = this.state.polymerCount;
-
-                let cx = 0 + (count * 35);
-                let cy = 0;
-
-                if (type === 'start') {
-                    const hex = this.createHexagon(0, 0, '#fff');
-                    container.appendChild(hex);
-                } else if (type === 'linear') {
-                    const hex = this.createHexagon(cx, cy, '#00e676');
-                    const bond = this.createLine(cx - 35, cy, cx, cy);
-                    container.appendChild(bond);
-                    container.appendChild(hex);
-                } else if (type === 'branch') {
-                    cy = -35;
-                    cx = cx - 35;
-                    const hex = this.createHexagon(cx, cy, '#ff1744');
-                    const bond = this.createLine(cx, cy + 35, cx, cy);
-                    container.appendChild(bond);
-                    container.appendChild(hex);
-                    this.setInstruction("Alpha 1-6 Branch created!");
-                }
-
-                this.state.polymerCount++;
-                if (this.state.polymerCount > 5) {
-                    setTimeout(() => this.triggerBossBattle(), 1000);
-                }
+            // Protists
+            {
+                level: "Protists",
+                category: "Euglena",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Euglena.html",
+                goals: [
+                    { id: "g_24", text: "Observe chloroplasts" },
+                    { id: "g_25", text: "Observe flagellum" },
+                    { id: "g_26", text: "Compare plant-like features in protists" },
+                    { id: "g_27", text: "Compare animal-like features in protists" },
+                    { id: "g_28", text: "Understand flagellar locomotion" },
+                    { id: "g_29", text: "Understand evolutionary significance of flagella" }
+                ]
             },
-
-            createHexagon(x, y, color) {
-                const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                g.setAttribute("transform", `translate(${x},${y})`);
-                const poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-                poly.setAttribute("points", "-12,0 -6,-10 6,-10 12,0 6,10 -6,10");
-                poly.setAttribute("fill", color);
-                g.appendChild(poly);
-                return g;
+            {
+                level: "Protists",
+                category: "Paramecium",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Paramecium.html",
+                goals: [
+                    { id: "g_33", text: "Observe cilia" },
+                    { id: "g_34", text: "Observe macronucleus" },
+                    { id: "g_35", text: "Understand ciliary locomotion" },
+                    { id: "g_36", text: "Understand feeding mechanisms" }
+                ]
             },
-
-            createLine(x1, y1, x2, y2) {
-                const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                l.setAttribute("x1", x1); l.setAttribute("y1", y1);
-                l.setAttribute("x2", x2); l.setAttribute("y2", y2);
-                l.setAttribute("stroke", "white");
-                l.setAttribute("stroke-width", "3");
-                return l;
+            {
+                level: "Protists",
+                category: "Stentor",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Stentor.html",
+                goals: [
+                    { id: "g_37", text: "Identify cilia" },
+                    { id: "g_38", text: "Identify macronucleus" },
+                    { id: "g_39", text: "Identify food vacuoles" },
+                    { id: "g_40", text: "Identify contractile vacuole" },
+                    { id: "g_41", text: "Explain osmoregulation in freshwater protists" },
+                    { id: "g_42", text: "Compare sessile forms" },
+                    { id: "g_43", text: "Compare motile forms" }
+                ]
             },
-
-            // --- Win/Loss & Transitions ---
-
-            levelComplete() {
-                this.setInstruction("LEVEL COMPLETE!");
-
-                if (this.state.level === 5) {
-                    document.getElementById('modal-title').innerText = "MASTERY ACHIEVED";
-                    document.getElementById('modal-text').innerText = "You have evolved from CH₂O to Glycogen. You are ready for metabolism.";
-                    document.getElementById('modal').classList.add('active');
-                    return;
-                }
-
-                this.triggerBossBattle();
+            {
+                level: "Protists",
+                category: "Vorticella",
+                link: "#",
+                goals: [
+                    { id: "g_44", text: "Recognize sessile lifestyle" },
+                    { id: "g_45", text: "Understand ciliary feeding currents" },
+                    { id: "g_46", text: "Understand contractile stalk adaptation" }
+                ]
             },
-
-            triggerBossBattle() {
-                const modal = document.getElementById('boss-modal');
-                const qText = document.getElementById('boss-question');
-                const options = document.getElementById('boss-options');
-
-                modal.classList.add('active');
-                options.innerHTML = '';
-
-                const bosses = [
-                    { q: "What makes a sugar 'Polyhydroxy'?", a: "Multiple -OH groups", bad: ["Multiple Carbons", "Water rings"] },
-                    { q: "Why is Fructose a reducing sugar despite being a ketone?", a: "Tautomerization moves the carbonyl", bad: ["It isn't reducing", "It has 6 carbons"] },
-                    { q: "Which carbon is the 'Anomeric' carbon in Glucose?", a: "C1", bad: ["C6", "C4"] },
-                    { q: "In Beta-Glucose, where is the -OH group?", a: "UP (Equatorial)", bad: ["DOWN (Axial)", "Inside the ring"] },
-                    { q: "What reaction links monosaccharides?", a: "Dehydration Synthesis", bad: ["Hydrolysis", "Ionic Bonding"] },
-                    { q: "Why can't humans digest Cellulose?", a: "We lack enzymes for Beta 1-4 bonds", bad: ["It's too big", "It contains Nitrogen"] }
-                ];
-
-                const boss = bosses[this.state.level];
-                qText.innerText = boss.q;
-
-                const choices = [boss.a, ...boss.bad].sort(() => Math.random() - 0.5);
-
-                choices.forEach(c => {
-                    const btn = document.createElement('button');
-                    btn.className = 'btn';
-                    btn.innerText = c;
-                    btn.onclick = () => {
-                        if (c === boss.a) {
-                            this.state.score += 100;
-                            this.state.unlocked++;
-                            this.updateUI();
-                            modal.classList.remove('active');
-                            this.startLevel(this.state.level + 1);
-                        } else {
-                            this.setInstruction("Incorrect! Damage taken.");
-                            this.shakeEffect();
-                        }
-                    };
-                    options.appendChild(btn);
-                });
+            {
+                level: "Protists",
+                category: "Amoeba",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Amoeba.html",
+                goals: [
+                    { id: "g_47", text: "Observe pseudopodia" },
+                    { id: "g_48", text: "Observe cytoplasmic streaming" },
+                    { id: "g_49", text: "Explain amoeboid motion" },
+                    { id: "g_50", text: "Explain phagocytosis" },
+                    { id: "g_51", text: "Compare locomotion strategies among protists" }
+                ]
             },
-
-            updateUI() {
-                document.getElementById('score').innerText = `XP: ${this.state.score}`;
-                const pct = (this.state.unlocked / 6) * 100;
-                document.getElementById('xp-bar').style.width = `${pct}%`;
-
-                for (let i = 0; i <= 5; i++) {
-                    const node = document.getElementById(`btn-lvl-${i}`);
-                    if (node) {
-                        if (i <= this.state.unlocked) {
-                            node.classList.add('unlocked');
-                            node.style.cursor = "pointer";
-                        }
-                        if (i < this.state.unlocked) node.classList.add('completed');
-                    }
-                }
+            // Animal Cells
+            {
+                level: "Animal Cells",
+                category: "Bull sperm cells",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Sperm.html",
+                goals: [
+                    { id: "g_30", text: "Identify head structure" },
+                    { id: "g_31", text: "Identify flagellum structure" },
+                    { id: "g_32", text: "Relate flagellar function to reproductive success" }
+                ]
             },
-
-            shakeEffect() {
-                this.svg.style.transform = "translateX(5px)";
-                setTimeout(() => this.svg.style.transform = "translateX(-5px)", 50);
-                setTimeout(() => this.svg.style.transform = "translateX(0)", 100);
+            {
+                level: "Animal Cells",
+                category: "Human neutrophils",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Neutrophil.html",
+                goals: [
+                    { id: "g_52", text: "Identify lobed nucleus" },
+                    { id: "g_53", text: "Identify pseudopodia" },
+                    { id: "g_54", text: "Understand phagocytosis" },
+                    { id: "g_55", text: "Understand immune function" },
+                    { id: "g_56", text: "Compare amoeboid motion in animal cells vs protists" }
+                ]
             },
-
-            // --- SVG Drawing Helpers (The Chemistry Engine) ---
-
-            drawMolecule(x, y, type, idOverride) {
-                const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                g.setAttribute("id", idOverride || `mol-${type}`);
-                g.setAttribute("transform", `translate(${x},${y})`);
-
-                if (type.includes('linear')) {
-                    // Draw Linear Carbon Backbone
-                    for (let i = 0; i < 6; i++) {
-                        let cy = i * 50;
-                        if (i < 5) this.drawBond(g, 0, cy, 0, cy + 50);
-
-                        let interactionType = "carbon";
-                        if (type === 'linear_fructose' && i === 1) interactionType = "ketone";
-                        if (type.includes('glucose') && i === 0) interactionType = "aldehyde";
-
-                        const atomGroup = this.drawAtomGroup(0, cy, "C", interactionType);
-
-                        if (type === 'linear_glucose_numbered') {
-                            atomGroup.addEventListener('click', (e) => {
-                                e.stopPropagation();
-                                this.handleCarbonClick(i + 1, atomGroup);
-                            });
-                        }
-                        g.appendChild(atomGroup);
-
-                        // Draw Functionals
-                        if (interactionType === "aldehyde") {
-                            this.drawBond(g, 0, cy, 30, cy - 20);
-                            const o = this.drawAtomGroup(30, cy - 20, "O", "carbonyl");
-                            g.appendChild(o);
-                        } else if (interactionType === "ketone") {
-                            this.drawBond(g, 0, cy, 30, cy);
-                            const o = this.drawAtomGroup(30, cy, "O", "carbonyl");
-                            g.appendChild(o);
-                        } else {
-                            this.drawBond(g, 0, cy, 30, cy);
-                            const oh = this.drawAtomGroup(30, cy, "OH", "hydroxyl");
-                            g.appendChild(oh);
-                        }
-                    }
-                }
-                else if (type.includes('alpha_glucose') || type.includes('beta_glucose')) {
-                    // Haworth Projection Points
-                    const coords = [
-                        { x: 50, y: 0 }, { x: 100, y: 30 }, { x: 100, y: 80 },
-                        { x: 50, y: 110 }, { x: 0, y: 80 }, { x: 0, y: 30 }
-                    ];
-
-                    // Draw Ring Bonds
-                    for (let i = 0; i < 6; i++) {
-                        let next = (i + 1) % 6;
-                        this.drawBond(g, coords[i].x, coords[i].y, coords[next].x, coords[next].y);
-                    }
-
-                    // Oxygen in Ring
-                    const oRing = this.drawAtomGroup(100, 30, "O", "ether");
-                    g.appendChild(oRing);
-
-                    // --- C1 (Right Side) ---
-                    const c1 = this.drawAtomGroup(100, 80, "C", "carbon");
-                    g.appendChild(c1);
-
-                    // Alpha/Beta OH Logic
-                    const isAlpha = type.includes('alpha');
-                    const ohY = isAlpha ? 110 : 50;
-                    this.drawBond(g, 100, 80, 100, ohY);
-
-                    const oh1 = this.drawAtomGroup(100, ohY, "OH", "hydroxyl");
-                    g.appendChild(oh1); // This is C1-OH
-
-                    // --- C4 (Left Side) - THIS WAS MISSING ---
-                    const c4 = this.drawAtomGroup(0, 80, "C", "carbon");
-                    g.appendChild(c4); // Fix: Append C4 atom
-
-                    this.drawBond(g, 0, 80, 0, 110); // Bond down
-                    const oh4 = this.drawAtomGroup(0, 110, "OH", "hydroxyl");
-                    g.appendChild(oh4); // Fix: Append C4-OH (The click target)
-
-                    // --- C6 (Top Branch) ---
-                    this.drawBond(g, 0, 30, -20, 0);
-                    const c6 = this.drawAtomGroup(-20, 0, "CH2OH", "hydroxyl");
-                    g.appendChild(c6); // Fix: Append C6
-                }
-                else if (type === 'maltose') {
-                    const bondT = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                    bondT.setAttribute("x", 0); bondT.setAttribute("y", -30);
-                    bondT.setAttribute("fill", "var(--lvl4-purple)");
-                    bondT.setAttribute("text-anchor", "middle");
-                    bondT.setAttribute("font-size", "24px");
-                    bondT.textContent = "α(1→4) Bond Formed";
-                    g.appendChild(bondT);
-                    this.createPolymerVis(g);
-                }
-
-                this.svg.appendChild(g);
-            },
-
-            createPolymerVis(g) {
-                // Simple visual for result
-                const c1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                c1.setAttribute("r", 40); c1.setAttribute("cx", -50); c1.setAttribute("fill", "none"); c1.setAttribute("stroke", "white");
-                const c2 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                c2.setAttribute("r", 40); c2.setAttribute("cx", 50); c2.setAttribute("fill", "none"); c2.setAttribute("stroke", "white");
-                const link = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                link.setAttribute("r", 10); link.setAttribute("fill", "var(--lvl4-purple)");
-                g.appendChild(c1); g.appendChild(c2); g.appendChild(link);
-            },
-
-            drawAtomGroup(x, y, label, type) {
-                const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                g.setAttribute("class", "atom");
-                g.setAttribute("transform", `translate(${x},${y})`);
-                g.setAttribute("data-type", type);
-
-                const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                c.setAttribute("r", 15);
-
-                const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                t.textContent = label;
-                t.setAttribute("y", 1);
-
-                g.appendChild(c);
-                g.appendChild(t);
-
-                // Add svg to canvas temporarily to ensure it renders? 
-                // No, we append the Group later.
-                return g;
-            },
-
-            drawBond(parent, x1, y1, x2, y2) {
-                const l = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                l.setAttribute("x1", x1); l.setAttribute("y1", y1);
-                l.setAttribute("x2", x2); l.setAttribute("y2", y2);
-                l.setAttribute("class", "bond");
-                parent.appendChild(l);
+            // Animal Tissue
+            {
+                level: "Animal Tissue",
+                category: "Ciliated pseudostratified columnar epithelium (trachea)",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_CPCE.html",
+                goals: [
+                    { id: "g_57", text: "Identify ciliated border" },
+                    { id: "g_58", text: "Identify mucus-secreting cells" },
+                    { id: "g_59", text: "Explain cilia function in respiratory defense" },
+                    { id: "g_60", text: "Compare cilia structure in animal tissue vs protists" }
+                ]
             }
-        };
+        ];
 
-        // Start Game
-        Game.init();
+        // Storage key
+        const STORAGE_KEY = "eukaryotes_goals_tracker_modern_v1";
 
+        // Load saved data
+        let savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+        // Initialize the page
+        document.addEventListener("DOMContentLoaded", function() {
+            renderAllCards();
+            updateProgress();
+            setupEventListeners();
+        });
+
+        // Render all category cards
+        function renderAllCards() {
+            const levelContainers = {
+                "Concept Tables": document.getElementById("concept-tables-cards"),
+                "Plant Cells": document.getElementById("plant-cells-cards"),
+                "Protists": document.getElementById("protists-cards"),
+                "Animal Cells": document.getElementById("animal-cells-cards"),
+                "Animal Tissue": document.getElementById("animal-tissue-cards")
+            };
+
+            // Clear all containers
+            Object.values(levelContainers).forEach(container => {
+                container.innerHTML = "";
+            });
+
+            // Create and append cards
+            eukaryotesData.forEach(category => {
+                const container = levelContainers[category.level];
+                if (!container) return;
+
+                const card = createCategoryCard(category);
+                container.appendChild(card);
+            });
+        }
+
+        // Create a category card
+        function createCategoryCard(category) {
+            const card = document.createElement("div");
+            card.className = "category-card";
+            
+            // Create card header
+            const header = document.createElement("div");
+            header.className = "card-header";
+            
+            const title = document.createElement("div");
+            title.className = "card-title";
+            title.textContent = category.category;
+            
+            const link = document.createElement("a");
+            link.className = "card-link";
+            link.href = category.link;
+            link.target = "_blank";
+            link.innerHTML = `View resource <span>↗</span>`;
+            
+            header.appendChild(title);
+            if (category.link !== "#") {
+                header.appendChild(link);
+            }
+            
+            // Create card content with goals
+            const content = document.createElement("div");
+            content.className = "card-content";
+            
+            const goalsList = document.createElement("ul");
+            goalsList.className = "goals-list";
+            
+            category.goals.forEach(goal => {
+                const goalItem = document.createElement("li");
+                goalItem.className = "goal-item";
+                
+                // Checkbox
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = goal.id;
+                checkbox.className = "goal-checkbox";
+                checkbox.checked = savedData[goal.id] ? savedData[goal.id].checked : false;
+                
+                // Goal text
+                const goalText = document.createElement("div");
+                goalText.className = "goal-text";
+                goalText.textContent = goal.text;
+                
+                // Stars container
+                const starsContainer = document.createElement("div");
+                starsContainer.className = "goal-stars";
+                starsContainer.dataset.goalId = goal.id;
+                
+                // Create 5 stars
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement("span");
+                    star.className = "star";
+                    star.dataset.value = i;
+                    star.textContent = "★";
+                    
+                    // Check if this star should be "on"
+                    const rating = savedData[goal.id] ? savedData[goal.id].rating : 0;
+                    if (i <= rating) {
+                        star.classList.add("on");
+                    }
+                    
+                    starsContainer.appendChild(star);
+                }
+                
+                goalItem.appendChild(checkbox);
+                goalItem.appendChild(goalText);
+                goalItem.appendChild(starsContainer);
+                goalsList.appendChild(goalItem);
+            });
+            
+            content.appendChild(goalsList);
+            
+            // Assemble card
+            card.appendChild(header);
+            card.appendChild(content);
+            
+            return card;
+        }
+
+        // Update progress bar and counters
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll(".goal-checkbox");
+            const total = checkboxes.length;
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            // Update progress bar
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = `${percentage}%`;
+            
+            // Update counters
+            document.getElementById("completed-count").textContent = completed;
+            document.getElementById("total-count").textContent = total;
+            
+            // Update next button state
+            const nextButton = document.getElementById("next-unchecked");
+            const firstUnchecked = findFirstUnchecked();
+            nextButton.disabled = !firstUnchecked;
+        }
+
+        // Find first unchecked goal
+        function findFirstUnchecked() {
+            const checkboxes = document.querySelectorAll(".goal-checkbox");
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    return checkboxes[i];
+                }
+            }
+            return null;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Checkbox changes
+            document.addEventListener("change", function(e) {
+                if (e.target.classList.contains("goal-checkbox")) {
+                    const goalId = e.target.id;
+                    savedData[goalId] = savedData[goalId] || {};
+                    savedData[goalId].checked = e.target.checked;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+                    updateProgress();
+                }
+            });
+            
+            // Star rating clicks
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("star")) {
+                    const star = e.target;
+                    const starsContainer = star.parentElement;
+                    const goalId = starsContainer.dataset.goalId;
+                    const rating = parseInt(star.dataset.value);
+                    
+                    // Update star display
+                    const stars = starsContainer.querySelectorAll(".star");
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add("on");
+                        } else {
+                            s.classList.remove("on");
+                        }
+                    });
+                    
+                    // Save rating
+                    savedData[goalId] = savedData[goalId] || {};
+                    savedData[goalId].rating = rating;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+                }
+            });
+            
+            // Next unchecked button
+            document.getElementById("next-unchecked").addEventListener("click", function() {
+                const firstUnchecked = findFirstUnchecked();
+                if (firstUnchecked) {
+                    firstUnchecked.scrollIntoView({ behavior: "smooth", block: "center" });
+                    // Highlight the card
+                    const card = firstUnchecked.closest(".category-card");
+                    card.style.boxShadow = "0 0 0 3px rgba(1, 104, 54, 0.3)";
+                    setTimeout(() => {
+                        card.style.boxShadow = "";
+                    }, 2000);
+                }
+            });
+            
+            // Reset progress button
+            document.getElementById("reset-progress").addEventListener("click", function() {
+                if (confirm("Are you sure you want to reset all progress? This cannot be undone.")) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    savedData = {};
+                    renderAllCards();
+                    updateProgress();
+                }
+            });
+        }
     </script>
 </body>
-
 </html>
