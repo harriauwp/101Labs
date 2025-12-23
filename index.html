@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,11 +59,23 @@
             text-decoration: none;
             color: inherit;
             display: block;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .lab-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .lab-image {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
         }
 
         .lab-number {
@@ -85,6 +96,7 @@
             line-height: 1.4;
             margin-bottom: 10px;
             font-size: 0.9em;
+            flex-grow: 1;
         }
 
         .lab-status {
@@ -103,11 +115,6 @@
         .status-upcoming {
             background: #fed7d7;
             color: #742a2a;
-        }
-
-        .icon {
-            font-size: 1.8em;
-            margin-bottom: 8px;
         }
 
         footer {
@@ -137,88 +144,128 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <header>
             <h1>🧪 BIOS101 Labs</h1>
-            <p class="subtitle">Laboratory Exeercises</p>
+            <p class="subtitle">Laboratory Exercises</p>
         </header>
         <div class="labs-grid">
+            <!-- Pre-Lab: Metacognition -->
             <a href="https://sites.google.com/view/mdlifehack/metacog10/metacog_dev_perplexity" class="lab-card">
-                <div class="icon">🔭</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/00_metacognition.png"
+                     alt="Metacognition - The Inner Coach"
+                     class="lab-image">
                 <div class="lab-number">Pre_Lab</div>
                 <h2 class="lab-title">Metacognition</h2>
                 <p class="lab-description">When Hard Work Doesn't Match Your Exam Score.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 01: The Science of Biology -->
             <a href="01_Science_of_Biology/index.html" class="lab-card">
-                <div class="icon">🔬</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/01_science_of_biology.png"
+                     alt="The Science of Biology"
+                     class="lab-image">
                 <div class="lab-number">Lab 01</div>
                 <h2 class="lab-title">The Science of Biology</h2>
                 <p class="lab-description">Learn the fundamentals of the scientific process.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
-            <a href="02_Eukaryotes/index.html.html" class="lab-card">
-                <div class="icon">🔭</div>
+
+            <!-- Lab 02: Eukaryotes -->
+            <a href="02_Eukaryotes/index.html" class="lab-card">
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/02_eukaryotes.png"
+                     alt="Eukaryotes - Architects of Life"
+                     class="lab-image">
                 <div class="lab-number">Lab 02</div>
                 <h2 class="lab-title">Eukaryotes</h2>
                 <p class="lab-description">Examine cellular organelles and their functions using microscopy.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 03: Carbohydrates -->
             <a href="03_Carbohydrates/index.html" class="lab-card">
-                <div class="icon">🍞</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/03_carbohydrates.png"
+                     alt="Carbohydrates"
+                     class="lab-image">
                 <div class="lab-number">Lab 03</div>
                 <h2 class="lab-title">Carbohydrates</h2>
-                <p class="lab-description">Explore the structure and function of carbohydrates, including
-                    monosaccharides, disaccharides, and polysaccharides.</p>
+                <p class="lab-description">Explore the structure and function of carbohydrates, including monosaccharides, disaccharides, and polysaccharides.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 04: Proteins -->
             <a href="04_Proteins/index.html" class="lab-card">
-                <div class="icon">🧬</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/04_proteins.png"
+                     alt="Proteins - Builders of Life"
+                     class="lab-image">
                 <div class="lab-number">Lab 04</div>
                 <h2 class="lab-title">Proteins</h2>
-                <p class="lab-description">Study the molecular structures and biological roles of proteins.
-                </p>
+                <p class="lab-description">Study the molecular structures and biological roles of proteins.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 05: Lipids -->
             <a href="05_Lipids/index.html" class="lab-card">
-                <div class="icon">⚡</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/05_lipids.png"
+                     alt="Lipids - Containers of Life"
+                     class="lab-image">
                 <div class="lab-number">Lab 05</div>
                 <h2 class="lab-title">Lipids</h2>
                 <p class="lab-description">Examine selectively permeable membranes, transport, solution tonicity, and turgor pressure.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 06: Photosynthesis -->
             <a href="06_Photosynthetic_Pigments/index.html" class="lab-card">
-                <div class="icon">🌱</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/06_photosynthesis.png"
+                     alt="Photosynthesis - Power Source of Life"
+                     class="lab-image">
                 <div class="lab-number">Lab 06</div>
                 <h2 class="lab-title">Photosynthesis</h2>
                 <p class="lab-description">Study how plants convert light energy into chemical energy.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 07: Nucleic Acids -->
             <a href="07_Nucleic Acids/index.html" class="lab-card">
-                <div class="icon">🧫</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/07_nucleic_acids.png"
+                     alt="Nucleic Acids"
+                     class="lab-image">
                 <div class="lab-number">Lab 07</div>
                 <h2 class="lab-title">Nucleic Acids</h2>
                 <p class="lab-description">Study how the double helix replicates.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 08: Mitosis -->
             <a href="08_Mitosis/index.html" class="lab-card">
-                <div class="icon">🧪</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/08_mitosis.png"
+                     alt="Mitosis"
+                     class="lab-image">
                 <div class="lab-number">Lab 08</div>
                 <h2 class="lab-title">Mitosis</h2>
                 <p class="lab-description">Study the processes of the cell cycle.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 09: Meiosis -->
             <a href="09_Meiosis/index.html" class="lab-card">
-                <div class="icon">🦠</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/09_meiosis.png"
+                     alt="Meiosis"
+                     class="lab-image">
                 <div class="lab-number">Lab 09</div>
                 <h2 class="lab-title">Meiosis</h2>
                 <p class="lab-description">Study gamete production.</p>
                 <span class="lab-status status-complete">Available</span>
             </a>
+
+            <!-- Lab 10: Genetics -->
             <a href="10_Genetics/index.html" class="lab-card">
-                <div class="icon">🌿</div>
+                <img src="https://raw.githubusercontent.com/harriauwp/101Labs/main/images/10_genetics.png"
+                     alt="Genetics"
+                     class="lab-image">
                 <div class="lab-number">Lab 10</div>
                 <h2 class="lab-title">Genetics</h2>
                 <p class="lab-description">Study the Law of Segregation and the Law of Independent Assortment.</p>
