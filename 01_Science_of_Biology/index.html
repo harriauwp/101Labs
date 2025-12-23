@@ -9,228 +9,200 @@
         :root {
             --uwp-green: #016836;
             --accent: #FABA31;
-            --text: #111;
-            --muted: #666;
-            --border: #eee;
-            --bg-light: #f8f9fa;
+            --text: #000000;
+            --border: #e0e0e0;
+            --light-bg: #f9f9f9;
         }
 
-        * { box-sizing: border-box }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            margin: 0;
             font-family: system-ui, -apple-system, sans-serif;
             background: #fff;
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.3;
+            padding: 0;
         }
 
         header {
-            padding: .75rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-bottom: 2px solid var(--uwp-green);
-            background: var(--bg-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: .5rem;
+            background: #f5f5f5;
+            font-size: 0.85rem;
         }
 
         main {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0.5rem 0.8rem;
         }
 
         h1 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--uwp-green);
-            margin: 0 0 .75rem 0;
-        }
-
-        .progress-container {
-            margin-bottom: 1rem;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--uwp-green);
-            transition: width .3s ease;
+            margin: 0.3rem 0 0.4rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            font-size: .9rem;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+        }
+
+        .table th, .table td {
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.4rem;
+            vertical-align: top;
+            text-align: left;
         }
 
         .table th {
-            background: var(--bg-light);
-            padding: .75rem .5rem;
-            text-align: left;
+            background: var(--uwp-green);
+            color: white;
             font-weight: 600;
-            color: var(--uwp-green);
-            border-bottom: 2px solid var(--uwp-green);
-        }
-
-        .table td {
-            padding: .75rem .5rem;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.5rem;
         }
 
         .level {
+            background: #f0f0f0;
             font-weight: 600;
             color: var(--uwp-green);
-            white-space: nowrap;
-            padding-right: 1rem;
+            width: 12%;
+            text-align: center;
         }
 
         .category {
+            width: 25%;
             font-weight: 500;
-            color: var(--text);
+        }
+
+        .goals {
+            width: 45%;
+        }
+
+        .confidence {
+            width: 18%;
+            text-align: center;
         }
 
         .category a {
             color: var(--uwp-green);
             text-decoration: none;
-            transition: color .2s;
+            font-weight: 500;
         }
 
         .category a:hover {
-            color: var(--accent);
             text-decoration: underline;
         }
 
         .goal-item {
-            display: flex;
-            align-items: flex-start;
-            gap: .75rem;
-            margin-bottom: .75rem;
-            padding: .75rem;
-            background: #f8f9fa;
-            border-radius: 4px;
-            transition: background .2s;
-        }
-
-        .goal-item:hover {
-            background: #f0f2f5;
-        }
-
-        .goal-item:last-child {
-            margin-bottom: 0;
+            display: block;
+            margin: 0.2rem 0;
         }
 
         .goal-check {
-            flex-shrink: 0;
-            margin-top: .15rem;
-        }
-
-        .goal-content {
-            flex: 1;
-            min-width: 0;
+            margin-right: 0.3rem;
         }
 
         .goal-text {
-            margin-bottom: .5rem;
-            color: var(--text);
+            display: inline-block;
+            width: 90%;
         }
 
         .stars {
-            display: flex;
-            gap: .1rem;
+            display: inline-flex;
+            gap: 0.1rem;
+            justify-content: center;
+            width: 100%;
         }
 
         .star {
-            font-size: 16px;
+            font-size: 1rem;
             color: #ddd;
             cursor: pointer;
-            transition: color .2s;
+            transition: color 0.1s;
         }
 
         .star:hover {
-            color: var(--accent);
+            color: #f0c040;
         }
 
         .star.on {
             color: var(--accent);
         }
 
+        .progress-container {
+            margin: 0.5rem 0;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--uwp-green);
+            transition: width 0.3s;
+        }
+
         .actions {
             display: flex;
-            gap: .5rem;
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
+            gap: 0.4rem;
+            margin-top: 0.8rem;
         }
 
         .btn {
             background: var(--uwp-green);
             color: white;
             border: none;
-            border-radius: 4px;
-            padding: .5rem 1rem;
-            font-weight: 600;
+            border-radius: 3px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: background .2s, transform .1s;
+            transition: background 0.2s;
         }
 
-        .btn:hover:not(:disabled) {
+        .btn:hover {
             background: #00502f;
-            transform: translateY(-1px);
-        }
-
-        .btn:active:not(:disabled) {
-            transform: translateY(0);
         }
 
         .btn:disabled {
-            opacity: .5;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--uwp-green);
-            border: 1px solid var(--uwp-green);
-        }
-
-        .btn-secondary:hover:not(:disabled) {
-            background: var(--uwp-green);
+            background: #666;
             color: white;
         }
 
+        .btn-secondary:hover {
+            background: #444;
+        }
+
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: .25rem;
-            }
-            
             .table {
+                font-size: 0.8rem;
+            }
+            .table th, .table td {
+                padding: 0.25rem 0.3rem;
+            }
+            .level, .category, .goals, .confidence {
                 display: block;
-                overflow-x: auto;
+                width: 100%;
             }
-            
-            .table th,
-            .table td {
-                padding: .5rem .3rem;
-            }
-            
-            .goal-item {
-                flex-direction: column;
-                gap: .5rem;
-            }
-            
-            .actions {
-                flex-direction: column;
+            .table tr {
+                display: block;
+                margin-bottom: 0.5rem;
+                border: 1px solid var(--border);
             }
         }
     </style>
@@ -238,9 +210,10 @@
 
 <body>
     <header>
-        <div><strong>UW‑Parkside</strong> • Chapter 1: The Scientific Process</div>
-        <div style="font-size: .85rem; color: var(--muted);">Check goals and rate your confidence (★)</div>
+        <div><strong>UW‑Parkside</strong> • Chapter 1: The Scientific Process — Goals Tracker</div>
+        <div style="font-size: 0.75rem; margin-top: 0.1rem;">Check goals and rate confidence ★ (1-5)</div>
     </header>
+    
     <main>
         <h1>Track your learning progress</h1>
         
@@ -253,311 +226,287 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th width="15%">Level</th>
-                    <th width="25%">Category</th>
-                    <th>Goals</th>
+                    <th class="level">Level</th>
+                    <th class="category">Category (linked)</th>
+                    <th class="goals">Goals (each has ✓)</th>
+                    <th class="confidence">Confidence Level<br>(★ out of 5)</th>
                 </tr>
             </thead>
             <tbody>
+                <!-- METACOGNITION LEVEL (New first level) -->
+                <tr>
+                    <td class="level" rowspan="1">Metacognition</td>
+                    <td class="category"><a href='metacognition.html'>Metacognition</a></td>
+                    <td class="goals">
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="g_4">
+                            <span class="goal-text">Design and implement a study experiment to identify your most effective learning strategies through self-testing and data tracking</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_4">
+                            <span class="star" data-star="1">★</span>
+                            <span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span>
+                            <span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- SCIENTIFIC METHOD LEVEL -->
                 <tr>
                     <td class="level" rowspan="4">Scientific Method</td>
                     <td class="category"><a href='Overview.html'>Scientific Method Overview</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_0">
-                            <div class="goal-content">
-                                <div class="goal-text">Describe science as a way of knowing and how scientists ask and investigate questions</div>
-                                <div class="stars" data-id='g_0'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Describe science as a way of knowing and how scientists ask and investigate questions</span>
                         </div>
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_1">
-                            <div class="goal-content">
-                                <div class="goal-text">Explain the six steps: Observations → Questions → Hypotheses → Testing → Accepting/Rejecting → Replication</div>
-                                <div class="stars" data-id='g_1'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Explain the six steps: Observations → Questions → Hypotheses → Testing → Accepting/Rejecting → Replication</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_0">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                        <div style="margin-top: 0.3rem;"></div>
+                        <div class="stars" data-id="g_1">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+                
                 <tr>
                     <td class="category"><a href='Overview.html'>Hypothesis Engine</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_2">
-                            <div class="goal-content">
-                                <div class="goal-text">Formulate testable hypotheses and predictions (if–then) based on background research</div>
-                                <div class="stars" data-id='g_2'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Formulate testable hypotheses and predictions (if–then) based on background research</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_2">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td class="category"><a href='Pseudoscience.html'>Science Vs Pseudoscience</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_3">
-                            <div class="goal-content">
-                                <div class="goal-text">Distinguish science from non-science using testability and reproducibility criteria</div>
-                                <div class="stars" data-id='g_3'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category"><a href='metacognition.html'>Metacognition</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_4">
-                            <div class="goal-content">
-                                <div class="goal-text">Reflect on preconceptions and how evidence updates beliefs (metacognition)</div>
-                                <div class="stars" data-id='g_4'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="level" rowspan="3">Experimental Design</td>
-                    <td class="category"><a href='traintrack.html'>Train Track</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_5">
-                            <div class="goal-content">
-                                <div class="goal-text">Identify independent, dependent, and control variables; define control vs experimental groups</div>
-                                <div class="stars" data-id='g_5'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category"><a href='TrainTrackAdv.html'>Train Track (Advanced)</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_6">
-                            <div class="goal-content">
-                                <div class="goal-text">Design and critique controlled experiments; articulate predictions and outcomes</div>
-                                <div class="stars" data-id='g_6'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                
                 <tr>
                     <td class="category"><a href='ScienceDetective.html'>Science Detective</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_7">
-                            <div class="goal-content">
-                                <div class="goal-text">Analyze real studies (e.g., cinnamon and type 2 diabetes) to identify variables and controls</div>
-                                <div class="stars" data-id='g_7'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Analyze real studies (e.g., cinnamon and type 2 diabetes) to identify variables and controls</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_7">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+                
                 <tr>
-                    <td class="level" rowspan="3">Pseudoscience & Claims</td>
+                    <td class="category"><a href='ScienceDetective.html'>Science Detective (Advanced)</a></td>
+                    <td class="goals">
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="g_17">
+                            <span class="goal-text">Explain why hypotheses cannot be proven; only supported or rejected; iterate alternate hypotheses</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_17">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- PSEUDOSCIENCE & CLAIMS LEVEL -->
+                <tr>
+                    <td class="level" rowspan="4">Pseudoscience & Claims</td>
+                    <td class="category"><a href='Pseudoscience.html'>Science Vs Pseudoscience</a></td>
+                    <td class="goals">
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="g_3">
+                            <span class="goal-text">Distinguish science from non-science using testability and reproducibility criteria</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_3">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
                     <td class="category"><a href='01astrology.html'>Astrology</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_8">
-                            <div class="goal-content">
-                                <div class="goal-text">Apply testability: explain why astrological predictions lack mechanism and evidence</div>
-                                <div class="stars" data-id='g_8'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Apply testability: explain why astrological predictions lack mechanism and evidence</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_8">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+                
                 <tr>
                     <td class="category"><a href='03CrystalHealing.html'>Crystal Healing</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_9">
-                            <div class="goal-content">
-                                <div class="goal-text">Evaluate claims using hypothesis testing and controlled comparisons</div>
-                                <div class="stars" data-id='g_9'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Evaluate claims using hypothesis testing and controlled comparisons</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_9">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+                
                 <tr>
                     <td class="category"><a href='02EmilyRosa.html'>Therapeutic Touch Case Study</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_11">
-                            <div class="goal-content">
-                                <div class="goal-text">Examine case study methodology and replication in evaluating claims</div>
-                                <div class="stars" data-id='g_11'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Examine case study methodology and replication in evaluating claims</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_11">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+
+                <!-- EXPERIMENTAL DESIGN LEVEL -->
+                <tr>
+                    <td class="level" rowspan="2">Experimental Design</td>
+                    <td class="category"><a href='traintrack.html'>Train Track</a></td>
+                    <td class="goals">
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="g_5">
+                            <span class="goal-text">Identify independent, dependent, and control variables; define control vs experimental groups</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_5">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="category"><a href='TrainTrackAdv.html'>Train Track (Advanced)</a></td>
+                    <td class="goals">
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="g_6">
+                            <span class="goal-text">Design and critique controlled experiments; articulate predictions and outcomes</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_6">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- METRICS & SCALE LEVEL -->
                 <tr>
                     <td class="level" rowspan="2">Metrics & Scale</td>
                     <td class="category"><a href='MetricGames.html'>Metric Games</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_12">
-                            <div class="goal-content">
-                                <div class="goal-text">Perform metric conversions; express values in exponential form</div>
-                                <div class="stars" data-id='g_12'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Perform metric conversions; express values in exponential form</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_12">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+                
                 <tr>
                     <td class="category"><a href='Metric.html'>Size & Scale</a></td>
-                    <td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_13">
-                            <div class="goal-content">
-                                <div class="goal-text">Estimate sizes across biological scales (nm → µm → mm)</div>
-                                <div class="stars" data-id='g_13'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Estimate sizes across biological scales (nm → µm → mm)</span>
+                        </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_13">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
+
+                <!-- MICROSCOPY LEVEL -->
                 <tr>
-                    <td class="level">Microscopy</td>
-                    <td class="category"><a href='Microscope.html'>Microscope</a></td>
-                    <td>
+                    <td class="level" rowspan="2">Microscopy</td>
+                    <td class="category" rowspan="2"><a href='Microscope.html'>Microscope</a></td>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_15">
-                            <div class="goal-content">
-                                <div class="goal-text">Define magnification, resolution, contrast; compare LM vs EM resolution limits</div>
-                                <div class="stars" data-id='g_15'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Define magnification, resolution, contrast; compare LM vs EM resolution limits</span>
                         </div>
+                    </td>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_15">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="goals">
                         <div class="goal-item">
                             <input type="checkbox" class="goal-check" id="g_16">
-                            <div class="goal-content">
-                                <div class="goal-text">Identify parts and proper use; compute total magnification; determine field diameters</div>
-                                <div class="stars" data-id='g_16'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                            <span class="goal-text">Identify parts and proper use; compute total magnification; determine field diameters</span>
                         </div>
                     </td>
-                </tr>
-                <tr>
-                    <td class="level" rowspan="2">Practice & Application</td>
-                    <td class="category"><a href='ScienceDetective.html'>Science Detective</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_17">
-                            <div class="goal-content">
-                                <div class="goal-text">Explain why hypotheses cannot be proven; only supported or rejected; iterate alternate hypotheses</div>
-                                <div class="stars" data-id='g_17'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category"><a href='traintrack.html'>Train Track</a></td>
-                    <td>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_18">
-                            <div class="goal-content">
-                                <div class="goal-text">Repeat tests (replication) and discuss reproducibility as fraud detection</div>
-                                <div class="stars" data-id='g_18'>
-                                    <span class="star" data-star='1'>★</span>
-                                    <span class="star" data-star='2'>★</span>
-                                    <span class="star" data-star='3'>★</span>
-                                    <span class="star" data-star='4'>★</span>
-                                    <span class="star" data-star='5'>★</span>
-                                </div>
-                            </div>
+                    <td class="confidence">
+                        <div class="stars" data-id="g_16">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span>
+                            <span class="star" data-star="3">★</span><span class="star" data-star="4">★</span>
+                            <span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
@@ -565,7 +514,7 @@
         </table>
 
         <div class="actions">
-            <button class="btn" id="nextBtn" disabled>Jump to Next Unchecked ▶</button>
+            <button class="btn" id="nextBtn" disabled>Jump to Next Unchecked</button>
             <button class="btn btn-secondary" id="resetBtn">Reset All Progress</button>
         </div>
     </main>
