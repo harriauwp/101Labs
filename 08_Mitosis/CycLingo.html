@@ -318,10 +318,11 @@
             padding: 30px;
         }
 
+        /* UPDATED: Changed to 3-column grid */
         .phase-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
             margin-bottom: 30px;
         }
 
@@ -331,12 +332,14 @@
             }
         }
 
+        .placeholder-section,
         .microscope-section,
         .dna-section {
             display: flex;
             flex-direction: column;
         }
 
+        .placeholder-section h3,
         .microscope-section h3,
         .dna-section h3 {
             margin-top: 0;
@@ -349,12 +352,11 @@
             gap: 10px;
         }
 
-        /* UPDATED CSS FOR IMAGE ALIGNMENT START */
+        /* UPDATED CSS FOR IMAGE ALIGNMENT */
         .image-container {
             position: relative;
             width: 100%;
             height: 320px;
-            /* Fixed height to match DNA illustration */
             border-radius: 10px;
             overflow: hidden;
             background: #f8fafc;
@@ -364,14 +366,10 @@
         .microscope-image {
             width: 100%;
             height: 100%;
-            /* Fill the container height */
             object-fit: contain;
-            /* Maintain aspect ratio while fitting inside */
             display: block;
             transition: transform 0.3s ease;
         }
-
-        /* UPDATED CSS FOR IMAGE ALIGNMENT END */
 
         .microscope-image:hover {
             transform: scale(1.02);
@@ -379,7 +377,6 @@
 
         .image-caption {
             position: absolute;
-            /* Added to keep caption overlaying the fixed height image properly */
             bottom: 0;
             left: 0;
             right: 0;
@@ -400,7 +397,6 @@
         .dna-illustration {
             width: 100%;
             height: 320px;
-            /* Reference height */
             background: #f8fafc;
             border-radius: 10px;
             border: 2px solid var(--color-border);
@@ -735,19 +731,42 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="G1 Phase overview showing cellular structure"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>G1 Phase Overview</strong> - Cell growth and preparation for DNA replication.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Interphase Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Artist Rendition</h3>
                             <div class="image-container">
                                 <img src="images/G2.png"
                                     alt="G1 Phase cell showing dispersed chromatin stained with DAPI (blue)"
                                     class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>Chromatin Distribution</strong> - Uncondensed chromatin in G1 phase nucleus.
+                                    <div class="image-attribution">
+                                        <span>Scale: 5μm</span>
+                                        <span>Stain: DAPI (DNA)</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="dna-section">
                             <h3><span>🧬</span> Chromatin Organization</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 195" xmlns="http://www.w3.org/2000/svg">
-
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                             <stop offset="0%" stop-color="#60a5fa" />
@@ -765,7 +784,6 @@
                                         </filter>
 
                                         <g id="nucleosome" filter="url(#softShadow)">
-
                                             <circle cx="-9" cy="-9" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="0" cy="-12" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="9" cy="-9" r="6" fill="url(#histoneGradient)" />
@@ -774,16 +792,13 @@
                                             <circle cx="0" cy="12" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="-9" cy="9" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="-12" cy="0" r="6" fill="url(#histoneGradient)" />
-
                                             <circle cx="0" cy="0" r="9" fill="url(#histoneGradient)" opacity="0.95" />
-
                                             <path d="M -9 -15 C -14 -30, -10 -42, -4 -52" stroke="#8b3f6b"
                                                 stroke-width="1.8" fill="none" />
                                             <path d="M 0 -18 C 0 -34, 6 -44, 10 -54" stroke="#8b3f6b" stroke-width="1.8"
                                                 fill="none" />
                                             <path d="M 9 -15 C 14 -30, 10 -42, 4 -52" stroke="#8b3f6b"
                                                 stroke-width="1.8" fill="none" />
-
                                             <path d="M 15 0 C 32 4, 40 12, 48 18" stroke="#8b3f6b" stroke-width="1.8"
                                                 fill="none" />
                                             <path d="M 9 15 C 18 30, 14 42, 6 52" stroke="#8b3f6b" stroke-width="1.8"
@@ -794,7 +809,6 @@
                                                 stroke-width="1.8" fill="none" />
                                             <path d="M -15 0 C -32 4, -40 12, -48 18" stroke="#8b3f6b"
                                                 stroke-width="1.8" fill="none" />
-
                                             <path d="
         M -22 0
         C -18 -20, 18 -20, 22 0
@@ -826,9 +840,7 @@
                                     <text x="200" y="195" text-anchor="middle" font-size="11" fill="#6b7280">
                                         10 nm Fiber – Uncondensed Chromatin
                                     </text>
-
                                 </svg>
-
                             </div>
                         </div>
                     </div>
@@ -911,6 +923,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="S Phase overview showing DNA replication initiation"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>S Phase Overview</strong> - DNA synthesis and chromosome duplication.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Interphase Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Replication Factories</h3>
                             <div class="image-container">
@@ -931,6 +959,7 @@
                             <h3><span>🧬</span> Sister Chromatid Formation</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="sister1" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#8b5cf6" />
@@ -1066,6 +1095,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="G2 Phase overview showing cellular preparation for mitosis"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>G2 Phase Overview</strong> - Cell preparation and checkpoint before mitosis.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Interphase Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Pre-Mitotic Nucleus</h3>
                             <div class="image-container">
@@ -1085,6 +1130,7 @@
                             <h3><span>🧬</span> Replicated Chromosome Array</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="chromG2" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#f59e0b" />
@@ -1217,6 +1263,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="Prophase overview showing early mitotic events"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>Prophase Overview</strong> - Chromosome condensation and spindle formation begin.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Mitosis Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Early Mitotic Chromosomes</h3>
                             <div class="image-container">
@@ -1236,6 +1298,7 @@
                             <h3><span>🧬</span> Chromosome Compaction</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="condenseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#ef4444" />
@@ -1384,6 +1447,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="Metaphase overview showing chromosome alignment"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>Metaphase Overview</strong> - Chromosome alignment at the metaphase plate.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Mitosis Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Metaphase Plate</h3>
                             <div class="image-container">
@@ -1403,6 +1482,7 @@
                             <h3><span>🧬</span> Chromosome-Spindle Interface</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="metaphaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#10b981" />
@@ -1551,6 +1631,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="Anaphase overview showing chromosome separation"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>Anaphase Overview</strong> - Sister chromatid separation and movement to poles.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Mitosis Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Chromatid Separation</h3>
                             <div class="image-container">
@@ -1571,6 +1667,7 @@
                             <h3><span>🧬</span> Chromatid Segregation</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="anaGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#f59e0b" />
@@ -1728,6 +1825,22 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
+                        <!-- NEW: Added placeholder image section -->
+                        <div class="placeholder-section">
+                            <h3><span>🖼️</span> Phase Overview</h3>
+                            <div class="image-container">
+                                <img src="inter.png" alt="Telophase overview showing nuclear reformation"
+                                    class="microscope-image">
+                                <div class="image-caption">
+                                    <strong>Telophase Overview</strong> - Nuclear envelope reformation and chromosome decondensation.
+                                    <div class="image-attribution">
+                                        <span>Scale: 10μm</span>
+                                        <span>Source: Mitosis Reference</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div class="microscope-section">
                             <h3><span>🔬</span> Nuclear Reformation</h3>
                             <div class="image-container">
@@ -1747,6 +1860,7 @@
                             <h3><span>🧬</span> Chromatin Reformation</h3>
                             <div class="dna-illustration">
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- SVG content remains the same -->
                                     <defs>
                                         <linearGradient id="teloGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#3b82f6" />
