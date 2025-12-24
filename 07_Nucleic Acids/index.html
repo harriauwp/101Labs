@@ -4,7 +4,7 @@
 <head>
     <meta charset=utf-8>
     <meta name=viewport content='width=device-width,initial-scale=1'>
-    <title>07 • DNA & Nucleic Acids — Goals Tracker</title>
+    <title>08 • Mitosis & Cytokinesis — Goals Tracker</title>
     <style>
         :root {
             --uwp-green: #016836;
@@ -182,35 +182,17 @@
         .btn-secondary:hover {
             background: #444;
         }
-
-        @media (max-width: 768px) {
-            .table {
-                font-size: 0.8rem;
-            }
-            .table th, .table td {
-                padding: 0.25rem 0.3rem;
-            }
-            .level, .category, .goals, .confidence {
-                display: block;
-                width: 100%;
-            }
-            .table tr {
-                display: block;
-                margin-bottom: 0.5rem;
-                border: 1px solid var(--border);
-            }
-        }
     </style>
 </head>
 
 <body>
     <header>
-        <div><strong>UW‑Parkside</strong> • Chapter 7: Nucleic Acids, Chromatin, and Karyotypes</div>
+        <div><strong>UW‑Parkside</strong> • Chapter 8: Mitosis and Cytokinesis</div>
         <div style="font-size: 0.75rem; margin-top: 0.1rem;">Check goals and rate confidence ★ (1-5)</div>
     </header>
     
     <main>
-        <h1>Track your learning progress</h1>
+        <h1>Cell Cycle & Division Progress</h1>
         
         <div class="progress-container">
             <div class="progress-bar">
@@ -223,150 +205,122 @@
                 <tr>
                     <th class="level">Level</th>
                     <th class="category">Category (linked)</th>
-                    <th class="goals">Goals (each has ✓)</th>
-                    <th class="confidence">Confidence Level<br>(★ out of 5)</th>
+                    <th class="goals">Unified Learning Goals</th>
+                    <th class="confidence">Confidence Level</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="level" rowspan="2">Molecular Basics</td>
-                    <td class="category"><a href='DNALingo.html'>DNA Lingo & Atoms</a></td>
+                    <td class="level">Lingo</td>
+                    <td class="category"><a href='CycLIngo.html'>CycLIngo & Phonetics</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_0">
-                            <span class="goal-text">Identify elemental components (C, H, O, N, P) and recognize phosphorus as unique to the DNA backbone [cite: 13, 14]</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_1">
-                            <span class="goal-text">Pronounce and define submolecular components: Sugar, Phosphate, and Nitrogenous Bases (A, T, C, G, U) [cite: 13, 14]</span>
+                            <input type="checkbox" class="goal-check" id="m_0">
+                            <span class="goal-text">Properly pronounce and define biological terms related to the cell cycle and DNA organization.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_0">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top: 0.3rem;"></div>
-                        <div class="stars" data-id="g_1">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category"><a href='DNA_Structure.html'>DNA Structure</a></td>
-                    <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_2">
-                            <span class="goal-text">Understand base-pairing rules and the nature of hydrogen bonds (weak vs. strong) holding strands together [cite: 3, 15]</span>
-                        </div>
-                    </td>
-                    <td class="confidence">
-                        <div class="stars" data-id="g_2">
+                        <div class="stars" data-id="m_0">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="level" rowspan="2">Replication</td>
-                    <td class="category"><a href='Replication_Lab.html'>Semiconservative Replication</a></td>
+                    <td class="level" rowspan="2">Cell</td>
+                    <td class="category"><a href='CellCycle_Concepts.html'>Cell Cycle Phases</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_3">
-                            <span class="goal-text">Demonstrate semiconservative replication: unzipping hydrogen bonds and matching new partners [cite: 1, 2]</span>
+                            <input type="checkbox" class="goal-check" id="m_1">
+                            <span class="goal-text">Differentiate between Interphase (G1, S, G2) and the Mitotic Phase, identifying where DNA replication occurs.</span>
                         </div>
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_4">
-                            <span class="goal-text">Differentiate between leading and lagging strands; explain 5' to 3' directionality of DNA polymerase [cite: 2]</span>
+                            <input type="checkbox" class="goal-check" id="m_2">
+                            <span class="goal-text">Understand the physical state of DNA (chromatin vs. sister chromatids) and the role of centrosomes.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_3">
+                        <div class="stars" data-id="m_1">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                         <div style="margin-top: 0.3rem;"></div>
-                        <div class="stars" data-id="g_4">
+                        <div class="stars" data-id="m_2">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category"><a href='Spinach_Extraction.html'>DNA Extraction</a></td>
+                    <td class="category"><a href='Mitotic_Events.html'>Mitotic Stage Events</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_5">
-                            <span class="goal-text">Extract DNA from spinach using detergent and ethanol; identify the interphase layer [cite: 5, 6]</span>
+                            <input type="checkbox" class="goal-check" id="m_3">
+                            <span class="goal-text">Detail the progression of Prophase, Metaphase, Anaphase, and Telophase, including spindle formation and chromosome movement.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_5">
+                        <div class="stars" data-id="m_3">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="level" rowspan="2">Organization</td>
-                    <td class="category"><a href='Chromatin.html'>Chromatin & Histones</a></td>
+                    <td class="level" rowspan="2">Microscopy</td>
+                    <td class="category"><a href='Onion_Root.html'>Onion Root Tip Analysis</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_6">
-                            <span class="goal-text">Explain how DNA wraps around histones to form the "beads on a string" 10-nm fiber [cite: 4, 15]</span>
+                            <input type="checkbox" class="goal-check" id="m_4">
+                            <span class="goal-text">Prepare and observe an onion root tip squash to identify and sketch cells in various stages of mitosis.</span>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="m_5">
+                            <span class="goal-text">Label structural components including cell walls, chromosomes, and cell plates.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_6">
+                        <div class="stars" data-id="m_4">
+                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
+                        </div>
+                        <div style="margin-top: 0.3rem;"></div>
+                        <div class="stars" data-id="m_5">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category"><a href='Karyotypes.html'>Karyotype Analysis</a></td>
+                    <td class="category"><a href='Whitefish_Blastula.html'>Whitefish Blastula</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_7">
-                            <span class="goal-text">Identify chromosomal abnormalities (aneuploidy, trisomy, monosomy) using magnetic layouts [cite: 8, 9, 11]</span>
-                        </div>
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_8">
-                            <span class="goal-text">Define autosomes vs. sex chromosomes and explain why karyotypes cannot detect point mutations [cite: 8, 11]</span>
+                            <input type="checkbox" class="goal-check" id="m_6">
+                            <span class="goal-text">Observe animal cell mitosis to compare asters and cleavage furrows with plant cell structures.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_7">
-                            <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
-                        </div>
-                        <div style="margin-top: 0.3rem;"></div>
-                        <div class="stars" data-id="g_8">
+                        <div class="stars" data-id="m_6">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="level" rowspan="2">Cell Life</td>
-                    <td class="category"><a href='Apoptosis.html'>Apoptosis & Morphogenesis</a></td>
+                    <td class="level">Synthesis</td>
+                    <td class="category"><a href='Mitosis_Review.html'>Functional Review</a></td>
                     <td class="goals">
                         <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_9">
-                            <span class="goal-text">Define apoptosis (programmed cell death) and its role in development (morphogenesis) [cite: 12]</span>
+                            <input type="checkbox" class="goal-check" id="m_7">
+                            <span class="goal-text">Identify the roles of mitosis in single-celled organisms, zygotes, and adult multicellular organisms.</span>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-check" id="m_8">
+                            <span class="goal-text">Master the terminology of DNA forms (nicknames) across different phases of the cell cycle.</span>
                         </div>
                     </td>
                     <td class="confidence">
-                        <div class="stars" data-id="g_9">
+                        <div class="stars" data-id="m_7">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="category"><a href='Cell_Division.html'>Mitosis vs. Meiosis</a></td>
-                    <td class="goals">
-                        <div class="goal-item">
-                            <input type="checkbox" class="goal-check" id="g_10">
-                            <span class="goal-text">Compare 2n (diploid) vs. n (haploid) outcomes across somatic and germ cells [cite: 12, 17]</span>
-                        </div>
-                    </td>
-                    <td class="confidence">
-                        <div class="stars" data-id="g_10">
+                        <div style="margin-top: 0.3rem;"></div>
+                        <div class="stars" data-id="m_8">
                             <span class="star" data-star="1">★</span><span class="star" data-star="2">★</span><span class="star" data-star="3">★</span><span class="star" data-star="4">★</span><span class="star" data-star="5">★</span>
                         </div>
                     </td>
@@ -380,8 +334,10 @@
         </div>
     </main>
 
+    
+
     <script>
-        const STORAGE_KEY = 'dna_ch7_goals_tracker';
+        const STORAGE_KEY = 'mitosis_ch8_tracker';
         const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
         const checkboxes = document.querySelectorAll('.goal-check');
         const starContainers = document.querySelectorAll('.stars');
