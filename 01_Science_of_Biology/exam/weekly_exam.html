@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Exam - Lab 1</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .exam-section {
+            border-top: 4px solid var(--uwp-gold);
+            padding-top: 1rem;
+            margin-top: 2rem;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .input-group textarea, .input-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
+        <span>📋 Weekly Exam 1</span>
+    </header>
+
+    <div class="container">
+        
+        <div class="card" style="border-left: 5px solid var(--uwp-red);">
+            <h2>Exam Instructions (25 pts)</h2>
+            <p><strong>Allowed:</strong> Calculator for unit conversions.</p>
+            <p>This exam consists of three parts. The multiple-choice section will be auto-graded immediately. For the written sections, type your answers to save them locally (or write them on the paper provided by your TA).</p>
+        </div>
+
+        <div class="card exam-section">
+            <h3 style="color:var(--uwp-dark-blue);">Part 1: Short Answer & Calculation (10 pts)</h3>
+            <p class="small"><em>Show your work. Pay attention to significant figures and units.</em></p>
+
+            <div class="input-group">
+                <label>1. Field Diameter Calculation (5 pts)</label>
+                <p style="margin:0.5rem 0; font-size:0.9rem;">
+                    If the Low Power Diameter (LPD) at 4X is measured to be <strong>4.2 mm</strong>, calculate the High Power Diameter (HPD) at 40X. Show the formula used.
+                </p>
+                <textarea id="calc1" rows="4" placeholder="Type your calculation steps here..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>2. Organism Estimation (5 pts)</label>
+                <p style="margin:0.5rem 0; font-size:0.9rem;">
+                    You are viewing an organism under the 40X objective. It spans exactly half of the field of view diameter calculated above. Estimate the organism's size in <strong>micrometers (µm)</strong>.
+                </p>
+                <textarea id="calc2" rows="4" placeholder="Type your estimation steps here..."></textarea>
+            </div>
+            
+            <button class="btn" id="saveWrittenBtn">Save Written Answers</button>
+            <span id="saveStatus" style="color:var(--success); opacity:0; transition:opacity 0.5s; margin-left:1rem;">✓ Saved</span>
+        </div>
+
+        <div class="card exam-section">
+            <h3 style="color:var(--uwp-dark-blue);">Part 2: Concept Check (10 pts)</h3>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+
+        <div class="card exam-section">
+            <h3 style="color:var(--uwp-dark-blue);">Part 3: Applied Critique (5 pts)</h3>
+            <div class="input-group">
+                <label>Scenario:</label>
+                <p style="background:#f9f9f9; padding:1rem; border-left:3px solid #ccc; font-style:italic;">
+                    "I put a crystal on my forehead and my headache went away 10 minutes later; therefore, the crystal cured my headache."
+                </p>
+                <label for="critique">Evaluate this claim:</label>
+                <p style="font-size:0.9rem;">Identify the specific logical flaw in this conclusion regarding variables/controls, and propose one way to test it scientifically.</p>
+                <textarea id="critique" rows="5" placeholder="Your critique..."></textarea>
+            </div>
+            <button class="btn" id="saveCritiqueBtn">Save Critique</button>
+            <span id="critiqueStatus" style="color:var(--success); opacity:0; transition:opacity 0.5s; margin-left:1rem;">✓ Saved</span>
+        </div>
+
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        // --- 1. Load/Save Written Answers Logic ---
+        const EXAM_KEY = 'uwp_lab1_exam_written';
+        
+        function loadWritten() {
+            const data = JSON.parse(localStorage.getItem(EXAM_KEY) || '{}');
+            if(data.calc1) document.getElementById('calc1').value = data.calc1;
+            if(data.calc2) document.getElementById('calc2').value = data.calc2;
+            if(data.critique) document.getElementById('critique').value = data.critique;
+        }
+
+        function saveWritten(section) {
+            const data = JSON.parse(localStorage.getItem(EXAM_KEY) || '{}');
+            
+            if (section === 'part1') {
+                data.calc1 = document.getElementById('calc1').value;
+                data.calc2 = document.getElementById('calc2').value;
+                const status = document.getElementById('saveStatus');
+                status.style.opacity = '1';
+                setTimeout(() => status.style.opacity = '0', 2000);
+            } else if (section === 'part3') {
+                data.critique = document.getElementById('critique').value;
+                const status = document.getElementById('critiqueStatus');
+                status.style.opacity = '1';
+                setTimeout(() => status.style.opacity = '0', 2000);
+            }
+            localStorage.setItem(EXAM_KEY, JSON.stringify(data));
+        }
+
+        document.getElementById('saveWrittenBtn').addEventListener('click', () => saveWritten('part1'));
+        document.getElementById('saveCritiqueBtn').addEventListener('click', () => saveWritten('part3'));
+        
+        loadWritten();
+
+        // --- 2. Multiple Choice Questions (Part 2) ---
+        const examQuestions = [
+            { 
+                prompt: 'If you move the slide to the **left** while viewing it under the microscope, which way does the image appear to move?',
+                choices: ['Left', 'Right', 'Up', 'It does not move'], 
+                answer: 1,
+                explain: 'The microscope optics invert the image; movement appears opposite to reality.'
+            },
+            { 
+                prompt: 'Which variable is the "cause" that is manipulated by the researcher?',
+                choices: ['Dependent Variable', 'Independent Variable', 'Control Variable', 'Confounding Variable'], 
+                answer: 1,
+                explain: 'Independent = I change it. Dependent = Data collected.'
+            },
+            { 
+                prompt: 'Convert 0.045 mm to micrometers (µm).',
+                choices: ['4.5 µm', '45 µm', '450 µm', '0.45 µm'], 
+                answer: 1,
+                explain: '1 mm = 1000 µm. 0.045 * 1000 = 45.'
+            },
+            { 
+                prompt: 'Why is it impossible to "prove" a hypothesis is 100% true?',
+                choices: [
+                    'Because science is always wrong.', 
+                    'Because we can never test every possible instance; future evidence might reject it.', 
+                    'Because hypotheses are only guesses.'
+                ], 
+                answer: 1,
+                explain: 'Science relies on falsifiability. We support hypotheses with evidence, but a single future observation could theoretically disprove them.'
+            },
+            { 
+                prompt: 'Which objective lens provides the largest field of view?',
+                choices: ['4X (Scanning)', '10X (Low Power)', '40X (High Dry)', '100X (Oil)'], 
+                answer: 0,
+                explain: 'Magnification and Field of View are inversely related
