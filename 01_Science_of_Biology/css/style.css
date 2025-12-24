@@ -2,7 +2,7 @@
   --uwp-red: #C5050C;
   --uwp-gold: #F2A900;
   --uwp-dark-blue: #003B5C;
-  --uwp-light-blue: #0085CA;
+  --uwp-light-green: #016836;
   --success: #2e7d32;
   --warning: #F57C00;
   --danger: #c62828;
@@ -16,22 +16,22 @@ body {
   background: var(--bg);
   color: var(--text);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.25;
 }
 
 /* Header & Nav */
 header.global {
-  background: var(--uwp-dark-blue);
+  background: var(--uwp-light-green);
   color: white;
   border-bottom: 3px solid var(--uwp-gold);
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.0rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 header.global a { color: white; text-decoration: none; }
-header.global .home-link { font-weight: bold; font-size: 1.2rem; }
+header.global .home-link { font-weight: bold; font-size: 1.0rem; }
 
 .container {
   max-width: 1000px;
@@ -42,10 +42,10 @@ header.global .home-link { font-weight: bold; font-size: 1.2rem; }
 /* Cards & Sections */
 .card {
   background: var(--card-bg);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   border: 1px solid #ddd;
 }
 
@@ -53,22 +53,22 @@ h2 { color: var(--uwp-dark-blue); border-bottom: 2px solid var(--uwp-gold); padd
 h3 { color: var(--uwp-dark-blue); margin-top: 0; }
 
 /* Grid Layouts */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
 
 /* Buttons */
 .btn {
-  background: var(--uwp-dark-blue);
+  background: var(--uwp-light-green);
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   transition: 0.2s;
 }
-.btn:hover { background: var(--uwp-light-blue); }
+.btn:hover { background: var(--uwp-light-green); }
 .btn:disabled { background: #ccc; cursor: not-allowed; }
-.btn-back { background: #666; margin-bottom: 1rem; display: inline-block; text-decoration: none; font-size: 0.9rem; }
+.btn-back { background: #DBD9D6; margin-bottom: 1rem; display: inline-block; text-decoration: none; font-size: 0.9rem; }
 
 /* Quizzes */
 .quiz fieldset {
