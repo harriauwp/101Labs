@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experimental Design - PreLab</title>
+    <title>Microscopy - PreLab</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <header class="global">
         <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
-        <span>🧪 Experimental Design</span>
+        <span>🔬 Microscopy Foundations</span>
     </header>
 
     <div class="container">
         <div class="card">
-            <h2>Micro-Module: Designing Experiments</h2>
-            <p>A controlled experiment is one in which only one variable is changed at a time, while all others are kept constant. This allows the researcher to determine if the specific variable being tested is responsible for the observed results.</p>
+            <h2>Micro-Module: The Compound Microscope</h2>
+            <p>The compound light microscope is a precision instrument that uses two lens systems (ocular and objective) to magnify small specimens. Proper handling and understanding of its optics are essential for success in the lab.</p>
             
             
 
             <div style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
-                <h4>Key Definitions:</h4>
+                <h4>Core Concepts:</h4>
                 <ul>
-                    <li><strong>Independent Variable (IV):</strong> The factor you purposefully change or manipulate (the "cause").</li>
-                    <li><strong>Dependent Variable (DV):</strong> The factor you measure or observe (the "effect/data").</li>
-                    <li><strong>Control Variables:</strong> Factors kept exactly the same for all groups to prevent "noise" in the data.</li>
-                    <li><strong>Control Group:</strong> The baseline group that does not receive the experimental treatment.</li>
+                    <li><strong>Total Magnification:</strong> Calculated by multiplying the Ocular lens (usually 10X) by the Objective lens (4X, 10X, 40X, or 100X).</li>
+                    <li><strong>Inversion:</strong> The microscope optics flip the image both vertically and horizontally.</li>
+                    <li><strong>Field of View (FOV):</strong> The visible area seen through the oculars. As magnification increases, the FOV decreases.</li>
+                    <li><strong>Depth of Field:</strong> The thickness of the specimen that is in sharp focus.</li>
                 </ul>
             </div>
         </div>
 
         <div class="card">
-            <h3>Micro-Pretest: Experimental Design</h3>
-            <p class="small">Answer the following questions to verify your understanding of experimental variables.</p>
+            <h3>Micro-Pretest: Microscopy</h3>
+            <p class="small">Complete this quiz to unlock your lab run-sheet for the microscopy section.</p>
             <div id="result-area"></div>
             <div id="quiz-container" class="quiz"></div>
         </div>
@@ -42,47 +42,43 @@
     <script>
         const questions = [
             { 
-                prompt: 'A researcher tests the effect of different amounts of fertilizer on plant height. What is the Independent Variable?',
-                choices: ['The height of the plants', 'The amount of fertilizer', 'The type of plant used', 'The amount of sunlight'], 
+                prompt: 'If you are using the High-Power (40X) objective lens and a standard 10X ocular lens, what is the total magnification?',
+                choices: ['40X', '50X', '400X', '4000X'], 
+                answer: 2,
+                explain: 'Total Magnification = Ocular (10X) × Objective (40X) = 400X.'
+            },
+            { 
+                prompt: 'Which part of the microscope should you use to adjust the amount of light and the contrast of the specimen?',
+                choices: ['Ocular lens', 'Iris diaphragm', 'Coarse focus knob', 'Stage clips'], 
                 answer: 1,
-                explain: 'The amount of fertilizer is what the researcher is manually changing to see what happens.'
+                explain: 'The iris diaphragm controls the light cone reaching the specimen, impacting both brightness and contrast.'
             },
             { 
-                prompt: 'In the same plant experiment, what is the Dependent Variable?',
-                choices: ['The height of the plants', 'The amount of fertilizer', 'The type of soil', 'The duration of the study'], 
-                answer: 0,
-                explain: 'The height is the data being collected; it "depends" on the fertilizer.'
+                prompt: 'When moving the slide on the stage to the RIGHT, which way does the image appear to move through the oculars?',
+                choices: ['To the right', 'To the left', 'Upward', 'Downward'], 
+                answer: 1,
+                explain: 'Due to inversion, the image appears to move in the opposite direction of the actual slide movement.'
             },
             { 
-                prompt: 'Why is it important to have "Control Variables" (constants) like using the same type of plant and same amount of water?',
+                prompt: 'As you switch from the 10X objective to the 40X objective, what happens to the Field of View (FOV)?',
                 choices: [
-                    'To make the experiment more difficult', 
-                    'To ensure that any change in the Dependent Variable is actually caused by the Independent Variable', 
-                    'To increase the number of independent variables'
+                    'The FOV increases (you see more of the slide)', 
+                    'The FOV decreases (you see a smaller, more detailed area)', 
+                    'The FOV remains exactly the same'
                 ], 
                 answer: 1,
-                explain: 'Constants eliminate "confounding variables" that might accidentally influence your results.'
+                explain: 'Magnification and Field of View are inversely proportional. Higher magnification zooms in on a smaller area.'
             },
             { 
-                prompt: 'Which of the following describes a "Negative Control"?',
-                choices: [
-                    'A group where a response is expected', 
-                    'A group where no response is expected (e.g., giving a plant plain water instead of fertilizer)', 
-                    'A group that is ignored by the scientist'
-                ], 
+                prompt: 'Which focus knob should ONLY be used when the scanning (4X) objective is in place?',
+                choices: ['Fine focus knob', 'Coarse focus knob', 'Mechanical stage knob'], 
                 answer: 1,
-                explain: 'A negative control confirms the system is working by showing what happens when the treatment is absent.'
-            },
-            { 
-                prompt: 'True or False: A scientific experiment can have multiple independent variables tested simultaneously while remaining a "controlled" experiment.',
-                choices: ['True', 'False'], 
-                answer: 1,
-                explain: 'False. To maintain a controlled experiment, you should only manipulate one independent variable at a time.'
+                explain: 'The coarse focus moves the stage significantly. Using it with high-power objectives can crash the lens into the slide.'
             }
         ];
 
         // Initialize quiz with unique ID
-        initQuiz('prelab_exp_design', questions);
+        initQuiz('prelab_microscopy', questions);
     </script>
 </body>
 </html>
