@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudoscience & Claims - PreLab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
+        <span>🔍 Pseudoscience & Claims</span>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Micro-Module: Science vs. Pseudoscience</h2>
+            <p>Pseudoscience consists of statements, beliefs, or practices that claim to be both scientific and factual but are incompatible with the scientific method.</p>
+            
+            
+
+            <div style="background: #fff8e1; padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid #ffe082;">
+                <h4>Red Flags of Pseudoscience:</h4>
+                <ul>
+                    <li><strong>Anecdotal Evidence:</strong> Relying on personal "success stories" rather than controlled data.</li>
+                    <li><strong>Lack of Falsifiability:</strong> Making claims that cannot be proven wrong by any possible physical evidence.</li>
+                    <li><strong>Absence of Peer Review:</strong> Pitching ideas directly to the public or media without scientific scrutiny.</li>
+                    <li><strong>Static Beliefs:</strong> Refusing to change a claim even when contradictory evidence is presented.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Micro-Pretest: Evaluating Claims</h3>
+            <p class="small">Apply your knowledge of the scientific method to identify pseudoscience in the following scenarios.</p>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        const questions = [
+            { 
+                prompt: 'A company claims their "Energy Crystal" cures fatigue. When asked for proof, they provide 500 testimonials from happy customers. Why is this scientifically insufficient?',
+                choices: [
+                    'The sample size is too small.', 
+                    'Anecdotal evidence (testimonials) does not control for the placebo effect or other variables.', 
+                    'Crystals are not part of the physical world.',
+                    'The company did not charge enough for the crystals.'
+                ], 
+                answer: 1,
+                explain: 'Testimonials are anecdotes. Without a control group, we cannot know if the crystal caused the change or if it was simply the passage of time or a placebo effect.'
+            },
+            { 
+                prompt: 'Which of the following is a "Falsifiable" statement?',
+                choices: [
+                    'An invisible, undetectable dragon lives in my garage.', 
+                    'Drinking 32oz of water reduces headache duration by 20%.', 
+                    'The universe was created by an entity that exists outside of space and time.',
+                    'Your mood today is influenced by the alignment of stars trillions of miles away.'
+                ], 
+                answer: 1,
+                explain: 'To be falsifiable, there must be a way to measure and potentially disprove the claim. We can measure water intake and headache duration; we cannot measure "invisible/undetectable" dragons.'
+            },
+            { 
+                prompt: 'A core difference between science and pseudoscience is that science...',
+                choices: [
+                    '...is always 100% certain.', 
+                    '...is actively looking for evidence to disprove its own current hypotheses.', 
+                    '...never changes its mind.',
+                    '...relies on the authority of the person speaking.'
+                ], 
+                answer: 1,
+                explain: 'Science is self-correcting. It thrives on testing ideas and discarding those that fail to match the evidence.'
+            },
+            { 
+                prompt: 'If a claim is "unfalsifiable," it means:',
+                choices: [
+                    'It is definitely true.', 
+                    'It is definitely false.', 
+                    'It cannot be tested or disproven by any physical experiment.',
+                    'It has been proven by multiple scientists.'
+                ], 
+                answer: 2,
+                explain: 'Unfalsifiable claims are outside the realm of science because science requires the ability to test and potentially reject an idea.'
+            }
+        ];
+
+        // Initialize quiz with unique ID
+        initQuiz('prelab_pseudoscience', questions);
+    </script>
+</body>
+</html>
