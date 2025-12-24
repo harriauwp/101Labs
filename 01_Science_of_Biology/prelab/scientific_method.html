@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Method - PreLab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html">← Back to Hub</a>
+        <span>Scientific Method</span>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Micro-Module: The Process of Science</h2>
+            <p><strong>Goal:</strong> Distinguish science from non-science and articulate the iterative steps of the scientific method.</p>
+            <p>Science is not just a collection of facts; it is a way of knowing based on evidence, testing, and replication.</p>
+        </div>
+
+        <div class="card">
+            <h3>Micro-Pretest: Scientific Method</h3>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        // Questions specific to this module
+        const questions = [
+            { 
+                prompt: 'Which statement best distinguishes a hypothesis from a prediction?',
+                choices: [
+                  'A hypothesis is a testable explanation; a prediction is a specific if–then outcome.',
+                  'A hypothesis is an untestable belief; a prediction is a proven fact.',
+                  'A hypothesis is a measurement; a prediction is a law of nature.'
+                ], 
+                answer: 0,
+                explain: 'A hypothesis explains "why," while a prediction describes "what will happen" if the hypothesis is true.'
+            },
+            { 
+                prompt: 'Put the scientific method steps in order:',
+                choices: [
+                  'Observations → Questions → Hypotheses → Testing → Accept/Reject → Replication',
+                  'Hypotheses → Observations → Replication → Testing → Accept/Reject',
+                  'Questions → Replication → Testing → Hypotheses → Accept/Reject'
+                ], 
+                answer: 0,
+                explain: 'Observation typically sparks the question, leading to a hypothesis.'
+            },
+            { 
+                prompt: 'Why is replication central in science?',
+                choices: [ 
+                  'It increases reliability and detects unknown variables', 
+                  'It replaces controls', 
+                  'It eliminates all error after one trial' 
+                ], 
+                answer: 0,
+                explain: 'Replication ensures results aren\'t due to chance or specific errors.'
+            }
+        ];
+
+        // Initialize with unique ID 'prelab_sci_method'
+        initQuiz('prelab_sci_method', questions);
+    </script>
+</body>
+</html>
