@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -127,13 +128,33 @@
             border-radius: 4px;
         }
 
-        .legend-item.g1 .legend-color { background: var(--color-accent-g1); }
-        .legend-item.s .legend-color { background: var(--color-accent-s); }
-        .legend-item.g2 .legend-color { background: var(--color-accent-g2); }
-        .legend-item.prophase .legend-color { background: var(--color-accent-prophase); }
-        .legend-item.metaphase .legend-color { background: var(--color-accent-metaphase); }
-        .legend-item.anaphase .legend-color { background: var(--color-accent-anaphase); }
-        .legend-item.telophase .legend-color { background: var(--color-accent-telophase); }
+        .legend-item.g1 .legend-color {
+            background: var(--color-accent-g1);
+        }
+
+        .legend-item.s .legend-color {
+            background: var(--color-accent-s);
+        }
+
+        .legend-item.g2 .legend-color {
+            background: var(--color-accent-g2);
+        }
+
+        .legend-item.prophase .legend-color {
+            background: var(--color-accent-prophase);
+        }
+
+        .legend-item.metaphase .legend-color {
+            background: var(--color-accent-metaphase);
+        }
+
+        .legend-item.anaphase .legend-color {
+            background: var(--color-accent-anaphase);
+        }
+
+        .legend-item.telophase .legend-color {
+            background: var(--color-accent-telophase);
+        }
 
         .container {
             max-width: 1400px;
@@ -222,8 +243,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .phase-card {
@@ -250,13 +278,33 @@
             align-items: center;
         }
 
-        .phase-card.g1 .phase-header { background: var(--color-accent-g1); }
-        .phase-card.s .phase-header { background: var(--color-accent-s); }
-        .phase-card.g2 .phase-header { background: var(--color-accent-g2); }
-        .phase-card.prophase .phase-header { background: var(--color-accent-prophase); }
-        .phase-card.metaphase .phase-header { background: var(--color-accent-metaphase); }
-        .phase-card.anaphase .phase-header { background: var(--color-accent-anaphase); }
-        .phase-card.telophase .phase-header { background: var(--color-accent-telophase); }
+        .phase-card.g1 .phase-header {
+            background: var(--color-accent-g1);
+        }
+
+        .phase-card.s .phase-header {
+            background: var(--color-accent-s);
+        }
+
+        .phase-card.g2 .phase-header {
+            background: var(--color-accent-g2);
+        }
+
+        .phase-card.prophase .phase-header {
+            background: var(--color-accent-prophase);
+        }
+
+        .phase-card.metaphase .phase-header {
+            background: var(--color-accent-metaphase);
+        }
+
+        .phase-card.anaphase .phase-header {
+            background: var(--color-accent-anaphase);
+        }
+
+        .phase-card.telophase .phase-header {
+            background: var(--color-accent-telophase);
+        }
 
         .phase-label {
             font-size: 0.8em;
@@ -283,12 +331,14 @@
             }
         }
 
-        .microscope-section, .dna-section {
+        .microscope-section,
+        .dna-section {
             display: flex;
             flex-direction: column;
         }
 
-        .microscope-section h3, .dna-section h3 {
+        .microscope-section h3,
+        .dna-section h3 {
             margin-top: 0;
             margin-bottom: 20px;
             font-size: 1.2em;
@@ -409,10 +459,21 @@
             margin-right: 8px;
         }
 
-        .chromatin { background: #3b82f6; }
-        .replicated { background: #8b5cf6; }
-        .condensed { background: #ef4444; }
-        .single { background: #10b981; }
+        .chromatin {
+            background: #3b82f6;
+        }
+
+        .replicated {
+            background: #8b5cf6;
+        }
+
+        .condensed {
+            background: #ef4444;
+        }
+
+        .single {
+            background: #10b981;
+        }
 
         .key-features {
             background: var(--color-accent-g1);
@@ -549,6 +610,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="expert-header">
         <div class="expert-brand">
@@ -565,7 +627,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="phase-legend">
             <h3>🔄 Phase Color Legend</h3>
             <div class="legend-items">
@@ -604,8 +666,11 @@
     <div class="container">
         <div class="intro-section">
             <h2>🎯 Understanding DNA Nomenclature Across the Cell Cycle</h2>
-            <p>DNA structure undergoes dramatic changes throughout the cell cycle, each phase characterized by specific terminology that reflects its physical state, replication status, and functional role. This expert guide provides authoritative insights into DNA naming conventions with authentic microscopy, detailed schematics, and professional terminology explanations.</p>
-            
+            <p>DNA structure undergoes dramatic changes throughout the cell cycle, each phase characterized by specific
+                terminology that reflects its physical state, replication status, and functional role. This expert guide
+                provides authoritative insights into DNA naming conventions with authentic microscopy, detailed
+                schematics, and professional terminology explanations.</p>
+
             <div class="learning-objectives">
                 <h3>📖 Learning Objectives</h3>
                 <ul>
@@ -660,60 +725,116 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Artist Rendition</h3>
                             <div class="image-container">
-                                <img src="images/G2.png" 
-                                     alt="G1 Phase cell showing dispersed chromatin stained with DAPI (blue)" 
-                                     class="microscope-image">
+                                <img src="images/G2.png"
+                                    alt="G1 Phase cell showing dispersed chromatin stained with DAPI (blue)"
+                                    class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>G1 Phase Cell</strong> - Nucleus with uniformly dispersed chromatin. DAPI staining shows homogeneous distribution.
+                                    <strong>G1 Phase Cell</strong> - Nucleus with uniformly dispersed chromatin. DAPI
+                                    staining shows homogeneous distribution.
                                 </div>
                             </div>
                         </div>
                         <div class="dna-section">
                             <h3><span>🧬</span> Chromatin Organization</h3>
                             <div class="dna-illustration">
-                                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-                                    <!-- Nucleosome beads-on-a-string representation -->
+                                <svg viewBox="0 0 400 195" xmlns="http://www.w3.org/2000/svg">
+
                                     <defs>
-                                        <linearGradient id="beadGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.8"/>
-                                            <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.8"/>
+                                        <!-- DNA -->
+                                        <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#60a5fa" />
+                                            <stop offset="100%" stop-color="#2563eb" />
                                         </linearGradient>
-                                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                                            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="0.2"/>
+
+                                        <!-- Histone (pink/purple) -->
+                                        <radialGradient id="histoneGradient">
+                                            <stop offset="0%" stop-color="#f6c1dc" />
+                                            <stop offset="60%" stop-color="#c66aa0" />
+                                            <stop offset="100%" stop-color="#8b3f6b" />
+                                        </radialGradient>
+
+                                        <!-- Shadow -->
+                                        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="1.2" dy="1.2" stdDeviation="1.5" flood-opacity="0.25" />
                                         </filter>
+
+                                        <!-- FULL nucleosome: 8 histones + 8 tails -->
+                                        <g id="nucleosome" filter="url(#softShadow)">
+
+                                            <!-- Histone subunits (8) -->
+                                            <circle cx="-9" cy="-9" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="0" cy="-12" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="9" cy="-9" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="12" cy="0" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="9" cy="9" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="0" cy="12" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="-9" cy="9" r="6" fill="url(#histoneGradient)" />
+                                            <circle cx="-12" cy="0" r="6" fill="url(#histoneGradient)" />
+
+                                            <!-- Central core -->
+                                            <circle cx="0" cy="0" r="9" fill="url(#histoneGradient)" opacity="0.95" />
+
+                                            <!-- Histone tails (8) -->
+                                            <path d="M -9 -15 C -14 -30, -10 -42, -4 -52" stroke="#8b3f6b"
+                                                stroke-width="1.8" fill="none" />
+                                            <path d="M 0 -18 C 0 -34, 6 -44, 10 -54" stroke="#8b3f6b" stroke-width="1.8"
+                                                fill="none" />
+                                            <path d="M 9 -15 C 14 -30, 10 -42, 4 -52" stroke="#8b3f6b"
+                                                stroke-width="1.8" fill="none" />
+
+                                            <path d="M 15 0 C 32 4, 40 12, 48 18" stroke="#8b3f6b" stroke-width="1.8"
+                                                fill="none" />
+                                            <path d="M 9 15 C 18 30, 14 42, 6 52" stroke="#8b3f6b" stroke-width="1.8"
+                                                fill="none" />
+                                            <path d="M 0 18 C 0 34, -6 44, -10 54" stroke="#8b3f6b" stroke-width="1.8"
+                                                fill="none" />
+                                            <path d="M -9 15 C -18 30, -14 42, -6 52" stroke="#8b3f6b"
+                                                stroke-width="1.8" fill="none" />
+                                            <path d="M -15 0 C -32 4, -40 12, -48 18" stroke="#8b3f6b"
+                                                stroke-width="1.8" fill="none" />
+
+                                            <!-- DNA wrap (~1.7 turns) -->
+                                            <path d="
+        M -22 0
+        C -18 -20, 18 -20, 22 0
+        C 18 20, -18 20, -22 0
+        C -14 -12, 14 -12, 16 0" fill="none" stroke="url(#dnaGradient)" stroke-width="2.2" stroke-linecap="round" />
+                                        </g>
                                     </defs>
-                                    
-                                    <!-- DNA backbone -->
-                                    <path d="M50,150 Q100,140 150,150 Q200,160 250,150 Q300,140 350,150" 
-                                          stroke="#60a5fa" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
-                                    
+
+                                    <!-- Continuous DNA backbone -->
+                                    <path d="
+    M 20 105
+    C 60 90, 100 120, 140 105
+    C 180 90, 220 120, 260 105
+    C 300 90, 340 120, 380 105" fill="none" stroke="url(#dnaGradient)" stroke-width="2.2" />
+
                                     <!-- Nucleosomes -->
-                                    <g filter="url(#shadow)">
-                                        <circle cx="50" cy="150" r="15" fill="url(#beadGradient)"/>
-                                        <circle cx="150" cy="150" r="15" fill="url(#beadGradient)"/>
-                                        <circle cx="250" cy="150" r="15" fill="url(#beadGradient)"/>
-                                        <circle cx="350" cy="150" r="15" fill="url(#beadGradient)"/>
-                                        
-                                        <!-- Histone octamers -->
-                                        <circle cx="50" cy="150" r="8" fill="#1e40af" opacity="0.6"/>
-                                        <circle cx="150" cy="150" r="8" fill="#1e40af" opacity="0.6"/>
-                                        <circle cx="250" cy="150" r="8" fill="#1e40af" opacity="0.6"/>
-                                        <circle cx="350" cy="150" r="8" fill="#1e40af" opacity="0.6"/>
-                                    </g>
-                                    
+                                    <use href="#nucleosome" x="80" y="105" />
+                                    <use href="#nucleosome" x="160" y="105" />
+                                    <use href="#nucleosome" x="240" y="105" />
+                                    <use href="#nucleosome" x="320" y="105" />
+
                                     <!-- Labels -->
-                                    <text x="50" y="190" text-anchor="middle" font-size="12" fill="#374151">Nucleosome</text>
-                                    <text x="200" y="100" text-anchor="middle" font-size="14" fill="#1e40af" font-weight="bold">
+                                    <text x="80" y="150" text-anchor="middle" font-size="12" fill="#374151">
+                                        Nucleosome
+                                    </text>
+
+                                    <text x="200" y="35" text-anchor="middle" font-size="14" fill="#1e40af"
+                                        font-weight="bold">
                                         "Beads on a String"
                                     </text>
-                                    <text x="200" y="250" text-anchor="middle" font-size="11" fill="#6b7280">
-                                        10nm Fiber - Uncondensed Chromatin
+
+                                    <text x="200" y="195" text-anchor="middle" font-size="11" fill="#6b7280">
+                                        10 nm Fiber – Uncondensed Chromatin
                                     </text>
+
                                 </svg>
+
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -723,7 +844,8 @@
                                     Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    DNA + histone protein complex in an uncondensed, transcriptionally active state. Maintains 10nm fiber organization suitable for gene expression.
+                                    DNA + histone protein complex in an uncondensed, transcriptionally active state.
+                                    Maintains 10nm fiber organization suitable for gene expression.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -732,7 +854,8 @@
                                     Uncondensed Chromosome
                                 </div>
                                 <div class="name-reason">
-                                    Emphasizes extended, uncondensed nature of individual chromosomes. DNA remains in relaxed conformation for accessibility to transcription machinery.
+                                    Emphasizes extended, uncondensed nature of individual chromosomes. DNA remains in
+                                    relaxed conformation for accessibility to transcription machinery.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -741,7 +864,8 @@
                                     Single Chromosome
                                 </div>
                                 <div class="name-reason">
-                                    Each chromosome consists of one DNA molecule (one chromatid). Chromosome number = 2n, DNA content = 2C (diploid complement).
+                                    Each chromosome consists of one DNA molecule (one chromatid). Chromosome number =
+                                    2n, DNA content = 2C (diploid complement).
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -750,11 +874,12 @@
                                     Nucleosome Fiber
                                 </div>
                                 <div class="name-reason">
-                                    Primary structural unit: 147bp DNA wrapped around histone octamer core. Forms repeating "beads on a string" visible in electron microscopy.
+                                    Primary structural unit: 147bp DNA wrapped around histone octamer core. Forms
+                                    repeating "beads on a string" visible in electron microscopy.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -792,11 +917,12 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Replication Factories</h3>
                             <div class="image-container">
-                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&crop=center" 
-                                     alt="S Phase showing replication foci visualized with EdU labeling" 
-                                     class="microscope-image">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&crop=center"
+                                    alt="S Phase showing replication foci visualized with EdU labeling"
+                                    class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>Active DNA Replication</strong> - EdU labeling shows replication foci throughout nucleus.
+                                    <strong>Active DNA Replication</strong> - EdU labeling shows replication foci
+                                    throughout nucleus.
                                     <div class="image-attribution">
                                         <span>Scale: 5μm</span>
                                         <span>Stain: EdU (replication sites)</span>
@@ -810,57 +936,67 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="sister1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#8b5cf6"/>
-                                            <stop offset="100%" stop-color="#7c3aed"/>
+                                            <stop offset="0%" stop-color="#8b5cf6" />
+                                            <stop offset="100%" stop-color="#7c3aed" />
                                         </linearGradient>
                                         <linearGradient id="sister2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#a78bfa"/>
-                                            <stop offset="100%" stop-color="#8b5cf6"/>
+                                            <stop offset="0%" stop-color="#a78bfa" />
+                                            <stop offset="100%" stop-color="#8b5cf6" />
                                         </linearGradient>
                                         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                                            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8b5cf6" flood-opacity="0.3"/>
+                                            <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="#8b5cf6"
+                                                flood-opacity="0.3" />
                                         </filter>
                                     </defs>
-                                    
+
                                     <!-- Replication bubble -->
-                                    <rect x="100" y="100" width="200" height="100" rx="10" fill="#f3f4f6" stroke="#d1d5db" stroke-width="2"/>
-                                    <text x="200" y="130" text-anchor="middle" font-size="14" fill="#8b5cf6" font-weight="bold">
+                                    <rect x="100" y="100" width="200" height="100" rx="10" fill="#f3f4f6"
+                                        stroke="#d1d5db" stroke-width="2" />
+                                    <text x="200" y="130" text-anchor="middle" font-size="14" fill="#8b5cf6"
+                                        font-weight="bold">
                                         Replication Bubble
                                     </text>
-                                    
+
                                     <!-- Parental strand -->
-                                    <path d="M50,150 Q150,140 200,150 Q250,160 350,150" 
-                                          stroke="#8b5cf6" stroke-width="3" fill="none" opacity="0.7"/>
-                                    
+                                    <path d="M50,150 Q150,140 200,150 Q250,160 350,150" stroke="#8b5cf6"
+                                        stroke-width="3" fill="none" opacity="0.7" />
+
                                     <!-- Replication forks -->
-                                    <circle cx="100" cy="150" r="8" fill="#10b981"/>
-                                    <circle cx="300" cy="150" r="8" fill="#10b981"/>
-                                    
+                                    <circle cx="100" cy="150" r="8" fill="#10b981" />
+                                    <circle cx="300" cy="150" r="8" fill="#10b981" />
+
                                     <!-- Newly synthesized strands -->
-                                    <path d="M100,150 Q150,180 200,170" stroke="url(#sister1)" stroke-width="2" fill="none"/>
-                                    <path d="M100,150 Q150,120 200,130" stroke="url(#sister1)" stroke-width="2" fill="none"/>
-                                    
-                                    <path d="M300,150 Q250,180 200,170" stroke="url(#sister2)" stroke-width="2" fill="none"/>
-                                    <path d="M300,150 Q250,120 200,130" stroke="url(#sister2)" stroke-width="2" fill="none"/>
-                                    
+                                    <path d="M100,150 Q150,180 200,170" stroke="url(#sister1)" stroke-width="2"
+                                        fill="none" />
+                                    <path d="M100,150 Q150,120 200,130" stroke="url(#sister1)" stroke-width="2"
+                                        fill="none" />
+
+                                    <path d="M300,150 Q250,180 200,170" stroke="url(#sister2)" stroke-width="2"
+                                        fill="none" />
+                                    <path d="M300,150 Q250,120 200,130" stroke="url(#sister2)" stroke-width="2"
+                                        fill="none" />
+
                                     <!-- Sister chromatids forming -->
                                     <g filter="url(#glow)" transform="translate(200, 170)">
-                                        <circle r="15" fill="url(#sister1)"/>
-                                        <circle r="15" fill="url(#sister2)" cx="40"/>
-                                        <line x1="15" y1="0" x2="25" y2="0" stroke="#1e40af" stroke-width="3"/>
+                                        <circle r="15" fill="url(#sister1)" />
+                                        <circle r="15" fill="url(#sister2)" cx="40" />
+                                        <line x1="15" y1="0" x2="25" y2="0" stroke="#1e40af" stroke-width="3" />
                                     </g>
-                                    
+
                                     <!-- Labels -->
-                                    <text x="200" y="80" text-anchor="middle" font-size="14" fill="#8b5cf6" font-weight="bold">
+                                    <text x="200" y="80" text-anchor="middle" font-size="14" fill="#8b5cf6"
+                                        font-weight="bold">
                                         Semi-Conservative Replication
                                     </text>
-                                    <text x="100" y="190" text-anchor="middle" font-size="12" fill="#10b981">Replication Fork</text>
-                                    <text x="200" y="220" text-anchor="middle" font-size="12" fill="#8b5cf6">Sister Chromatids</text>
+                                    <text x="100" y="190" text-anchor="middle" font-size="12" fill="#10b981">Replication
+                                        Fork</text>
+                                    <text x="200" y="220" text-anchor="middle" font-size="12" fill="#8b5cf6">Sister
+                                        Chromatids</text>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -870,7 +1006,8 @@
                                     Replicated Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    Chromatin containing two identical DNA molecules (sister chromatids) per chromosome. Maintains uncondensed state while doubling DNA content.
+                                    Chromatin containing two identical DNA molecules (sister chromatids) per chromosome.
+                                    Maintains uncondensed state while doubling DNA content.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -879,7 +1016,8 @@
                                     Replicated Chromosome
                                 </div>
                                 <div class="name-reason">
-                                    Each chromosome now consists of two sister chromatids joined at centromere. Structure remains uncondensed despite replication completion.
+                                    Each chromosome now consists of two sister chromatids joined at centromere.
+                                    Structure remains uncondensed despite replication completion.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -888,7 +1026,8 @@
                                     Sister Chromatids
                                 </div>
                                 <div class="name-reason">
-                                    Identical DNA molecules produced by semi-conservative replication, held together by cohesin complexes at centromere until anaphase.
+                                    Identical DNA molecules produced by semi-conservative replication, held together by
+                                    cohesin complexes at centromere until anaphase.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -897,11 +1036,12 @@
                                     Replication Foci
                                 </div>
                                 <div class="name-reason">
-                                    Localized sites of DNA synthesis containing multiple replication forks. Visualized as discrete nuclear spots in microscopy.
+                                    Localized sites of DNA synthesis containing multiple replication forks. Visualized
+                                    as discrete nuclear spots in microscopy.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -939,11 +1079,11 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Pre-Mitotic Nucleus</h3>
                             <div class="image-container">
-                                <img src="G2.png" 
-                                     alt="G2 Phase cell showing intact nuclear envelope" 
-                                     class="microscope-image">
+                                <img src="G2.png" alt="G2 Phase cell showing intact nuclear envelope"
+                                    class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>G2 Phase Preparation</strong> - Nucleus remains intact with replicated DNA, preparing for mitosis.
+                                    <strong>G2 Phase Preparation</strong> - Nucleus remains intact with replicated DNA,
+                                    preparing for mitosis.
                                     <div class="image-attribution">
                                         <span>Scale: 10μm</span>
                                         <span>Stain: Lamin B1 (nuclear envelope)</span>
@@ -957,69 +1097,76 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="chromG2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#f59e0b"/>
-                                            <stop offset="100%" stop-color="#d97706"/>
+                                            <stop offset="0%" stop-color="#f59e0b" />
+                                            <stop offset="100%" stop-color="#d97706" />
                                         </linearGradient>
                                     </defs>
-                                    
+
                                     <!-- Nuclear envelope -->
-                                    <circle cx="200" cy="150" r="120" fill="none" stroke="#fbbf24" stroke-width="3" stroke-dasharray="5,5"/>
-                                    
+                                    <circle cx="200" cy="150" r="120" fill="none" stroke="#fbbf24" stroke-width="3"
+                                        stroke-dasharray="5,5" />
+
                                     <!-- Multiple replicated chromosomes -->
                                     <g transform="translate(200, 150)">
                                         <!-- Chromosome 1 -->
                                         <g transform="rotate(0)">
-                                            <line x1="-40" y1="0" x2="40" y2="0" stroke="url(#chromG2)" stroke-width="4" stroke-linecap="round"/>
-                                            <line x1="-40" y1="0" x2="-40" y2="-30" stroke="#f59e0b" stroke-width="2"/>
-                                            <line x1="40" y1="0" x2="40" y2="-30" stroke="#f59e0b" stroke-width="2"/>
-                                            <circle cx="0" cy="0" r="6" fill="#1e40af"/>
+                                            <line x1="-40" y1="0" x2="40" y2="0" stroke="url(#chromG2)" stroke-width="4"
+                                                stroke-linecap="round" />
+                                            <line x1="-40" y1="0" x2="-40" y2="-30" stroke="#f59e0b" stroke-width="2" />
+                                            <line x1="40" y1="0" x2="40" y2="-30" stroke="#f59e0b" stroke-width="2" />
+                                            <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
-                                        
+
                                         <!-- Chromosome 2 -->
                                         <g transform="rotate(60)">
-                                            <line x1="-35" y1="0" x2="35" y2="0" stroke="url(#chromG2)" stroke-width="4" stroke-linecap="round"/>
-                                            <line x1="-35" y1="0" x2="-35" y2="-25" stroke="#f59e0b" stroke-width="2"/>
-                                            <line x1="35" y1="0" x2="35" y2="-25" stroke="#f59e0b" stroke-width="2"/>
-                                            <circle cx="0" cy="0" r="6" fill="#1e40af"/>
+                                            <line x1="-35" y1="0" x2="35" y2="0" stroke="url(#chromG2)" stroke-width="4"
+                                                stroke-linecap="round" />
+                                            <line x1="-35" y1="0" x2="-35" y2="-25" stroke="#f59e0b" stroke-width="2" />
+                                            <line x1="35" y1="0" x2="35" y2="-25" stroke="#f59e0b" stroke-width="2" />
+                                            <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
-                                        
+
                                         <!-- Chromosome 3 -->
                                         <g transform="rotate(120)">
-                                            <line x1="-30" y1="0" x2="30" y2="0" stroke="url(#chromG2)" stroke-width="4" stroke-linecap="round"/>
-                                            <line x1="-30" y1="0" x2="-30" y2="-20" stroke="#f59e0b" stroke-width="2"/>
-                                            <line x1="30" y1="0" x2="30" y2="-20" stroke="#f59e0b" stroke-width="2"/>
-                                            <circle cx="0" cy="0" r="6" fill="#1e40af"/>
+                                            <line x1="-30" y1="0" x2="30" y2="0" stroke="url(#chromG2)" stroke-width="4"
+                                                stroke-linecap="round" />
+                                            <line x1="-30" y1="0" x2="-30" y2="-20" stroke="#f59e0b" stroke-width="2" />
+                                            <line x1="30" y1="0" x2="30" y2="-20" stroke="#f59e0b" stroke-width="2" />
+                                            <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
-                                        
+
                                         <!-- Chromosome 4 -->
                                         <g transform="rotate(180)">
-                                            <line x1="-25" y1="0" x2="25" y2="0" stroke="url(#chromG2)" stroke-width="4" stroke-linecap="round"/>
-                                            <line x1="-25" y1="0" x2="-25" y2="-15" stroke="#f59e0b" stroke-width="2"/>
-                                            <line x1="25" y1="0" x2="25" y2="-15" stroke="#f59e0b" stroke-width="2"/>
-                                            <circle cx="0" cy="0" r="6" fill="#1e40af"/>
+                                            <line x1="-25" y1="0" x2="25" y2="0" stroke="url(#chromG2)" stroke-width="4"
+                                                stroke-linecap="round" />
+                                            <line x1="-25" y1="0" x2="-25" y2="-15" stroke="#f59e0b" stroke-width="2" />
+                                            <line x1="25" y1="0" x2="25" y2="-15" stroke="#f59e0b" stroke-width="2" />
+                                            <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Labels -->
-                                    <text x="200" y="50" text-anchor="middle" font-size="14" fill="#f59e0b" font-weight="bold">
+                                    <text x="200" y="50" text-anchor="middle" font-size="14" fill="#f59e0b"
+                                        font-weight="bold">
                                         Replicated Chromosomes in Nucleus
                                     </text>
                                     <text x="200" y="280" text-anchor="middle" font-size="12" fill="#6b7280">
                                         Each contains two sister chromatids
                                     </text>
-                                    
+
                                     <!-- Legend -->
                                     <g transform="translate(320, 50)">
-                                        <rect x="0" y="0" width="60" height="20" fill="#fef3c7" rx="4"/>
-                                        <circle cx="10" cy="10" r="4" fill="#1e40af"/>
-                                        <line x1="20" y1="10" x2="50" y2="10" stroke="#f59e0b" stroke-width="3"/>
-                                        <text x="30" y="25" text-anchor="middle" font-size="10" fill="#374151">Chromosome</text>
+                                        <rect x="0" y="0" width="60" height="20" fill="#fef3c7" rx="4" />
+                                        <circle cx="10" cy="10" r="4" fill="#1e40af" />
+                                        <line x1="20" y1="10" x2="50" y2="10" stroke="#f59e0b" stroke-width="3" />
+                                        <text x="30" y="25" text-anchor="middle" font-size="10"
+                                            fill="#374151">Chromosome</text>
                                     </g>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -1029,7 +1176,8 @@
                                     Replicated Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    DNA remains in chromatin state but with complete replication. Sister chromatids held together by cohesin complexes, ready for condensation.
+                                    DNA remains in chromatin state but with complete replication. Sister chromatids held
+                                    together by cohesin complexes, ready for condensation.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1038,7 +1186,8 @@
                                     Sister Chromatid Pairs
                                 </div>
                                 <div class="name-reason">
-                                    Each chromosome consists of tightly associated sister chromatids. Cohesin rings maintain cohesion until anaphase separation signal.
+                                    Each chromosome consists of tightly associated sister chromatids. Cohesin rings
+                                    maintain cohesion until anaphase separation signal.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1047,11 +1196,12 @@
                                     Pre-Condensation Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    Chromatin poised for mitotic condensation. Histone modifications begin preparing for chromosome compaction.
+                                    Chromatin poised for mitotic condensation. Histone modifications begin preparing for
+                                    chromosome compaction.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -1089,11 +1239,11 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Early Mitotic Chromosomes</h3>
                             <div class="image-container">
-                                <img src="images/EarlyProphase.png" 
-                                     alt="Prophase showing condensing chromosomes" 
-                                     class="microscope-image">
+                                <img src="images/EarlyProphase.png" alt="Prophase showing condensing chromosomes"
+                                    class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>Chromosome Condensation</strong> - Chromosomes becoming visible as distinct threads.
+                                    <strong>Chromosome Condensation</strong> - Chromosomes becoming visible as distinct
+                                    threads.
                                     <div class="image-attribution">
                                         <span>Scale: 5μm</span>
                                         <span>Stain: Hoechst (DNA)</span>
@@ -1107,70 +1257,84 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="condenseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#ef4444"/>
-                                            <stop offset="100%" stop-color="#dc2626"/>
+                                            <stop offset="0%" stop-color="#ef4444" />
+                                            <stop offset="100%" stop-color="#dc2626" />
                                         </linearGradient>
                                     </defs>
-                                    
+
                                     <!-- Condensation progression -->
                                     <g transform="translate(50, 50)">
                                         <!-- Stage 1: Chromatin -->
-                                        <circle cx="0" cy="0" r="15" fill="#3b82f6" opacity="0.3"/>
-                                        <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#6b7280">Chromatin</text>
-                                        <path d="M15,0 L100,0" stroke="#d1d5db" stroke-width="2" stroke-dasharray="5,5"/>
-                                        
+                                        <circle cx="0" cy="0" r="15" fill="#3b82f6" opacity="0.3" />
+                                        <text x="0" y="-25" text-anchor="middle" font-size="10"
+                                            fill="#6b7280">Chromatin</text>
+                                        <path d="M15,0 L100,0" stroke="#d1d5db" stroke-width="2"
+                                            stroke-dasharray="5,5" />
+
                                         <!-- Stage 2: 30nm fiber -->
                                         <g transform="translate(100, 0)">
-                                            <rect x="-20" y="-15" width="40" height="30" rx="8" fill="#4f46e5" opacity="0.5"/>
-                                            <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#6b7280">30nm Fiber</text>
+                                            <rect x="-20" y="-15" width="40" height="30" rx="8" fill="#4f46e5"
+                                                opacity="0.5" />
+                                            <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#6b7280">30nm
+                                                Fiber</text>
                                         </g>
-                                        <path d="M120,0 L200,0" stroke="#d1d5db" stroke-width="2" stroke-dasharray="5,5"/>
-                                        
+                                        <path d="M120,0 L200,0" stroke="#d1d5db" stroke-width="2"
+                                            stroke-dasharray="5,5" />
+
                                         <!-- Stage 3: Chromosome loops -->
                                         <g transform="translate(200, 0)">
-                                            <ellipse cx="0" cy="0" rx="25" ry="15" fill="url(#condenseGrad)" opacity="0.6"/>
-                                            <text x="0" y="-25" text-anchor="middle" font-size="10" fill="#6b7280">Loops</text>
+                                            <ellipse cx="0" cy="0" rx="25" ry="15" fill="url(#condenseGrad)"
+                                                opacity="0.6" />
+                                            <text x="0" y="-25" text-anchor="middle" font-size="10"
+                                                fill="#6b7280">Loops</text>
                                         </g>
-                                        <path d="M225,0 L300,0" stroke="#d1d5db" stroke-width="2" stroke-dasharray="5,5"/>
-                                        
+                                        <path d="M225,0 L300,0" stroke="#d1d5db" stroke-width="2"
+                                            stroke-dasharray="5,5" />
+
                                         <!-- Stage 4: Condensed chromosome -->
                                         <g transform="translate(300, 0)">
-                                            <path d="M-25,-20 L25,-20 L25,20 L-25,20 Z" 
-                                                  fill="url(#condenseGrad)" rx="5" ry="5"/>
-                                            <line x1="0" y1="-20" x2="0" y2="20" stroke="#1e40af" stroke-width="2"/>
-                                            <circle cx="-15" cy="0" r="3" fill="#1e40af"/>
-                                            <circle cx="15" cy="0" r="3" fill="#1e40af"/>
-                                            <text x="0" y="-35" text-anchor="middle" font-size="10" fill="#6b7280">Condensed</text>
+                                            <path d="M-25,-20 L25,-20 L25,20 L-25,20 Z" fill="url(#condenseGrad)" rx="5"
+                                                ry="5" />
+                                            <line x1="0" y1="-20" x2="0" y2="20" stroke="#1e40af" stroke-width="2" />
+                                            <circle cx="-15" cy="0" r="3" fill="#1e40af" />
+                                            <circle cx="15" cy="0" r="3" fill="#1e40af" />
+                                            <text x="0" y="-35" text-anchor="middle" font-size="10"
+                                                fill="#6b7280">Condensed</text>
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Spindle formation -->
                                     <g transform="translate(200, 150)">
                                         <!-- Centrosomes -->
-                                        <circle cx="-100" cy="-50" r="10" fill="#f97316" opacity="0.8"/>
-                                        <circle cx="100" cy="-50" r="10" fill="#f97316" opacity="0.8"/>
-                                        
+                                        <circle cx="-100" cy="-50" r="10" fill="#f97316" opacity="0.8" />
+                                        <circle cx="100" cy="-50" r="10" fill="#f97316" opacity="0.8" />
+
                                         <!-- Spindle microtubules -->
-                                        <line x1="-100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2" opacity="0.4"/>
-                                        <line x1="100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2" opacity="0.4"/>
-                                        
+                                        <line x1="-100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2"
+                                            opacity="0.4" />
+                                        <line x1="100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2"
+                                            opacity="0.4" />
+
                                         <!-- Chromosomes -->
                                         <g transform="translate(0, 0)">
-                                            <ellipse cx="0" cy="0" rx="15" ry="25" fill="url(#condenseGrad)" opacity="0.8"/>
-                                            <line x1="-10" y1="-15" x2="10" y2="-15" stroke="#1e40af" stroke-width="3"/>
-                                            <line x1="-10" y1="15" x2="10" y2="15" stroke="#1e40af" stroke-width="3"/>
+                                            <ellipse cx="0" cy="0" rx="15" ry="25" fill="url(#condenseGrad)"
+                                                opacity="0.8" />
+                                            <line x1="-10" y1="-15" x2="10" y2="-15" stroke="#1e40af"
+                                                stroke-width="3" />
+                                            <line x1="-10" y1="15" x2="10" y2="15" stroke="#1e40af" stroke-width="3" />
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Labels -->
-                                    <text x="200" y="250" text-anchor="middle" font-size="14" fill="#ef4444" font-weight="bold">
+                                    <text x="200" y="250" text-anchor="middle" font-size="14" fill="#ef4444"
+                                        font-weight="bold">
                                         Progressive Chromosome Condensation
                                     </text>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -1180,7 +1344,8 @@
                                     Condensing Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes actively compacting from chromatin to mitotic chromosomes. Condensin complexes drive progressive compaction.
+                                    Chromosomes actively compacting from chromatin to mitotic chromosomes. Condensin
+                                    complexes drive progressive compaction.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1189,7 +1354,8 @@
                                     Mitotic Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes becoming visible under light microscope. Characteristic X-shape emerges as sister chromatids condense together.
+                                    Chromosomes becoming visible under light microscope. Characteristic X-shape emerges
+                                    as sister chromatids condense together.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1198,7 +1364,8 @@
                                     Replicated Chromosome
                                 </div>
                                 <div class="name-reason">
-                                    Each chromosome consists of two sister chromatids. Replication completed in S phase; cohesion maintained despite condensation.
+                                    Each chromosome consists of two sister chromatids. Replication completed in S phase;
+                                    cohesion maintained despite condensation.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1207,11 +1374,12 @@
                                     Prophase Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Specifically refers to chromosomes in prophase condensation state. Nuclear envelope still partially intact.
+                                    Specifically refers to chromosomes in prophase condensation state. Nuclear envelope
+                                    still partially intact.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -1249,9 +1417,9 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Metaphase Plate</h3>
                             <div class="image-container">
-                                <img src="https://images.unsplash.com/photo-1559757149-e9b2c7e8fc9d?w=800&h=500&fit=crop&crop=center" 
-                                     alt="Metaphase showing chromosomes aligned at cell equator" 
-                                     class="microscope-image">
+                                <img src="https://images.unsplash.com/photo-1559757149-e9b2c7e8fc9d?w=800&h=500&fit=crop&crop=center"
+                                    alt="Metaphase showing chromosomes aligned at cell equator"
+                                    class="microscope-image">
                                 <div class="image-caption">
                                     <strong>Metaphase Alignment</strong> - Chromosomes maximally condensed and aligned.
                                     <div class="image-attribution">
@@ -1267,70 +1435,83 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="metaphaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#10b981"/>
-                                            <stop offset="100%" stop-color="#059669"/>
+                                            <stop offset="0%" stop-color="#10b981" />
+                                            <stop offset="100%" stop-color="#059669" />
                                         </linearGradient>
-                                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                            <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                                            orient="auto">
+                                            <polygon points="0 0, 10 3.5, 0 7" fill="#10b981" />
                                         </marker>
                                     </defs>
-                                    
+
                                     <!-- Spindle apparatus -->
-                                    <line x1="200" y1="20" x2="200" y2="280" stroke="#d1d5db" stroke-width="2" stroke-dasharray="5,5"/>
-                                    
+                                    <line x1="200" y1="20" x2="200" y2="280" stroke="#d1d5db" stroke-width="2"
+                                        stroke-dasharray="5,5" />
+
                                     <!-- Spindle poles -->
                                     <g>
-                                        <circle cx="200" cy="30" r="12" fill="#10b981" opacity="0.8"/>
-                                        <circle cx="200" cy="270" r="12" fill="#10b981" opacity="0.8"/>
+                                        <circle cx="200" cy="30" r="12" fill="#10b981" opacity="0.8" />
+                                        <circle cx="200" cy="270" r="12" fill="#10b981" opacity="0.8" />
                                         <text x="200" y="25" text-anchor="middle" font-size="10" fill="white">+</text>
                                         <text x="200" y="275" text-anchor="middle" font-size="10" fill="white">-</text>
                                     </g>
-                                    
+
                                     <!-- Kinetochore microtubules -->
                                     <g>
-                                        <line x1="200" y1="40" x2="150" y2="150" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)"/>
-                                        <line x1="200" y1="40" x2="250" y2="150" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)"/>
-                                        <line x1="200" y1="260" x2="150" y2="150" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)"/>
-                                        <line x1="200" y1="260" x2="250" y2="150" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)"/>
+                                        <line x1="200" y1="40" x2="150" y2="150" stroke="#10b981" stroke-width="2"
+                                            opacity="0.6" marker-end="url(#arrowhead)" />
+                                        <line x1="200" y1="40" x2="250" y2="150" stroke="#10b981" stroke-width="2"
+                                            opacity="0.6" marker-end="url(#arrowhead)" />
+                                        <line x1="200" y1="260" x2="150" y2="150" stroke="#10b981" stroke-width="2"
+                                            opacity="0.6" marker-end="url(#arrowhead)" />
+                                        <line x1="200" y1="260" x2="250" y2="150" stroke="#10b981" stroke-width="2"
+                                            opacity="0.6" marker-end="url(#arrowhead)" />
                                     </g>
-                                    
+
                                     <!-- Metaphase chromosomes -->
                                     <g transform="translate(200, 150)">
                                         <!-- Chromosome 1 -->
                                         <g transform="translate(-50, 0)">
-                                            <rect x="-15" y="-20" width="30" height="40" rx="5" fill="url(#metaphaseGrad)"/>
-                                            <circle cx="-8" cy="0" r="4" fill="#1e40af"/>
-                                            <circle cx="8" cy="0" r="4" fill="#1e40af"/>
-                                            <line x1="-8" y1="-15" x2="-8" y2="15" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="8" y1="-15" x2="8" y2="15" stroke="#1e40af" stroke-width="2"/>
+                                            <rect x="-15" y="-20" width="30" height="40" rx="5"
+                                                fill="url(#metaphaseGrad)" />
+                                            <circle cx="-8" cy="0" r="4" fill="#1e40af" />
+                                            <circle cx="8" cy="0" r="4" fill="#1e40af" />
+                                            <line x1="-8" y1="-15" x2="-8" y2="15" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="8" y1="-15" x2="8" y2="15" stroke="#1e40af" stroke-width="2" />
                                         </g>
-                                        
+
                                         <!-- Chromosome 2 -->
                                         <g transform="translate(0, 0)">
-                                            <rect x="-12" y="-25" width="24" height="50" rx="5" fill="url(#metaphaseGrad)"/>
-                                            <circle cx="0" cy="-15" r="3" fill="#1e40af"/>
-                                            <circle cx="0" cy="15" r="3" fill="#1e40af"/>
-                                            <line x1="-5" y1="-10" x2="-5" y2="10" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="5" y1="-10" x2="5" y2="10" stroke="#1e40af" stroke-width="2"/>
+                                            <rect x="-12" y="-25" width="24" height="50" rx="5"
+                                                fill="url(#metaphaseGrad)" />
+                                            <circle cx="0" cy="-15" r="3" fill="#1e40af" />
+                                            <circle cx="0" cy="15" r="3" fill="#1e40af" />
+                                            <line x1="-5" y1="-10" x2="-5" y2="10" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="5" y1="-10" x2="5" y2="10" stroke="#1e40af" stroke-width="2" />
                                         </g>
-                                        
+
                                         <!-- Chromosome 3 -->
                                         <g transform="translate(50, 0)">
-                                            <rect x="-10" y="-18" width="20" height="36" rx="5" fill="url(#metaphaseGrad)"/>
-                                            <circle cx="-5" cy="0" r="3" fill="#1e40af"/>
-                                            <circle cx="5" cy="0" r="3" fill="#1e40af"/>
-                                            <line x1="-5" y1="-12" x2="-5" y2="12" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="5" y1="-12" x2="5" y2="12" stroke="#1e40af" stroke-width="2"/>
+                                            <rect x="-10" y="-18" width="20" height="36" rx="5"
+                                                fill="url(#metaphaseGrad)" />
+                                            <circle cx="-5" cy="0" r="3" fill="#1e40af" />
+                                            <circle cx="5" cy="0" r="3" fill="#1e40af" />
+                                            <line x1="-5" y1="-12" x2="-5" y2="12" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="5" y1="-12" x2="5" y2="12" stroke="#1e40af" stroke-width="2" />
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Metaphase plate line -->
-                                    <line x1="50" y1="150" x2="350" y2="150" stroke="#10b981" stroke-width="3" opacity="0.3" stroke-dasharray="10,5"/>
-                                    
+                                    <line x1="50" y1="150" x2="350" y2="150" stroke="#10b981" stroke-width="3"
+                                        opacity="0.3" stroke-dasharray="10,5" />
+
                                     <!-- Labels -->
-                                    <text x="200" y="20" text-anchor="middle" font-size="12" fill="#10b981">Spindle Pole</text>
-                                    <text x="200" y="290" text-anchor="middle" font-size="12" fill="#10b981">Spindle Pole</text>
-                                    <text x="200" y="100" text-anchor="middle" font-size="14" fill="#10b981" font-weight="bold">
+                                    <text x="200" y="20" text-anchor="middle" font-size="12" fill="#10b981">Spindle
+                                        Pole</text>
+                                    <text x="200" y="290" text-anchor="middle" font-size="12" fill="#10b981">Spindle
+                                        Pole</text>
+                                    <text x="200" y="100" text-anchor="middle" font-size="14" fill="#10b981"
+                                        font-weight="bold">
                                         Metaphase Plate
                                     </text>
                                     <text x="200" y="200" text-anchor="middle" font-size="11" fill="#6b7280">
@@ -1340,7 +1521,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -1350,7 +1531,8 @@
                                     Metaphase Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes at peak condensation, aligned at metaphase plate. Characteristic shape allows easy identification and karyotyping.
+                                    Chromosomes at peak condensation, aligned at metaphase plate. Characteristic shape
+                                    allows easy identification and karyotyping.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1359,7 +1541,8 @@
                                     Kinetochore-Bound Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes attached to spindle microtubules via kinetochores. Proper bipolar attachment essential for accurate segregation.
+                                    Chromosomes attached to spindle microtubules via kinetochores. Proper bipolar
+                                    attachment essential for accurate segregation.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1368,11 +1551,12 @@
                                     Sister Chromatid Pairs
                                 </div>
                                 <div class="name-reason">
-                                    Each chromosome consists of two chromatids held together until anaphase. Cohesin resistance counteracts spindle forces.
+                                    Each chromosome consists of two chromatids held together until anaphase. Cohesin
+                                    resistance counteracts spindle forces.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -1410,11 +1594,12 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Chromatid Separation</h3>
                             <div class="image-container">
-                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop&crop=center" 
-                                     alt="Anaphase showing sister chromatids moving to opposite poles" 
-                                     class="microscope-image">
+                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop&crop=center"
+                                    alt="Anaphase showing sister chromatids moving to opposite poles"
+                                    class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>Anaphase Movement</strong> - Sister chromatids separate and move toward spindle poles.
+                                    <strong>Anaphase Movement</strong> - Sister chromatids separate and move toward
+                                    spindle poles.
                                     <div class="image-attribution">
                                         <span>Scale: 5μm</span>
                                         <span>Stain: DAPI (DNA)</span>
@@ -1428,87 +1613,99 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="anaGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#f59e0b"/>
-                                            <stop offset="100%" stop-color="#d97706"/>
+                                            <stop offset="0%" stop-color="#f59e0b" />
+                                            <stop offset="100%" stop-color="#d97706" />
                                         </linearGradient>
                                         <linearGradient id="anaGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#f97316"/>
-                                            <stop offset="100%" stop-color="#ea580c"/>
+                                            <stop offset="0%" stop-color="#f97316" />
+                                            <stop offset="100%" stop-color="#ea580c" />
                                         </linearGradient>
-                                        <marker id="anaArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                                            <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b"/>
+                                        <marker id="anaArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+                                            orient="auto">
+                                            <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b" />
                                         </marker>
                                     </defs>
-                                    
+
                                     <!-- Separating chromatids -->
                                     <g>
                                         <!-- Moving to top pole -->
                                         <g transform="translate(100, 80)">
-                                            <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad1)"/>
-                                            <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="8" y1="-10" x2="8" y2="10" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,15 Q0,40 0,60" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad1)" />
+                                            <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="8" y1="-10" x2="8" y2="10" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,15 Q0,40 0,60" stroke="#f59e0b" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
-                                        
+
                                         <g transform="translate(200, 100)">
-                                            <rect x="-10" y="-12" width="20" height="24" rx="5" fill="url(#anaGrad1)"/>
-                                            <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="5" y1="-8" x2="5" y2="8" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,12 Q0,35 0,55" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-10" y="-12" width="20" height="24" rx="5" fill="url(#anaGrad1)" />
+                                            <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="5" y1="-8" x2="5" y2="8" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,12 Q0,35 0,55" stroke="#f59e0b" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
-                                        
+
                                         <g transform="translate(300, 90)">
-                                            <rect x="-8" y="-10" width="16" height="20" rx="5" fill="url(#anaGrad1)"/>
-                                            <line x1="-4" y1="-6" x2="-4" y2="6" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="4" y1="-6" x2="4" y2="6" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,10 Q0,30 0,50" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-8" y="-10" width="16" height="20" rx="5" fill="url(#anaGrad1)" />
+                                            <line x1="-4" y1="-6" x2="-4" y2="6" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="4" y1="-6" x2="4" y2="6" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,10 Q0,30 0,50" stroke="#f59e0b" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
-                                        
+
                                         <!-- Moving to bottom pole -->
                                         <g transform="translate(100, 220)">
-                                            <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad2)"/>
-                                            <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="8" y1="-10" x2="8" y2="10" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,-15 Q0,-40 0,-60" stroke="#f97316" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad2)" />
+                                            <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="8" y1="-10" x2="8" y2="10" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,-15 Q0,-40 0,-60" stroke="#f97316" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
-                                        
+
                                         <g transform="translate(200, 200)">
-                                            <rect x="-10" y="-12" width="20" height="24" rx="5" fill="url(#anaGrad2)"/>
-                                            <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="5" y1="-8" x2="5" y2="8" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,-12 Q0,-35 0,-55" stroke="#f97316" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-10" y="-12" width="20" height="24" rx="5" fill="url(#anaGrad2)" />
+                                            <line x1="-5" y1="-8" x2="-5" y2="8" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="5" y1="-8" x2="5" y2="8" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,-12 Q0,-35 0,-55" stroke="#f97316" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
-                                        
+
                                         <g transform="translate(300, 210)">
-                                            <rect x="-8" y="-10" width="16" height="20" rx="5" fill="url(#anaGrad2)"/>
-                                            <line x1="-4" y1="-6" x2="-4" y2="6" stroke="#1e40af" stroke-width="2"/>
-                                            <line x1="4" y1="-6" x2="4" y2="6" stroke="#1e40af" stroke-width="2"/>
-                                            <path d="M0,-10 Q0,-30 0,-50" stroke="#f97316" stroke-width="2" fill="none" marker-end="url(#anaArrow)"/>
+                                            <rect x="-8" y="-10" width="16" height="20" rx="5" fill="url(#anaGrad2)" />
+                                            <line x1="-4" y1="-6" x2="-4" y2="6" stroke="#1e40af" stroke-width="2" />
+                                            <line x1="4" y1="-6" x2="4" y2="6" stroke="#1e40af" stroke-width="2" />
+                                            <path d="M0,-10 Q0,-30 0,-50" stroke="#f97316" stroke-width="2" fill="none"
+                                                marker-end="url(#anaArrow)" />
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Spindle poles -->
-                                    <circle cx="200" cy="30" r="10" fill="#f59e0b" opacity="0.8"/>
-                                    <circle cx="200" cy="270" r="10" fill="#f97316" opacity="0.8"/>
-                                    
+                                    <circle cx="200" cy="30" r="10" fill="#f59e0b" opacity="0.8" />
+                                    <circle cx="200" cy="270" r="10" fill="#f97316" opacity="0.8" />
+
                                     <!-- Separase activity indicator -->
                                     <g transform="translate(200, 150)">
-                                        <circle r="20" fill="#ef4444" opacity="0.3"/>
-                                        <text x="0" y="5" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Separase</text>
-                                        <text x="0" y="40" text-anchor="middle" font-size="10" fill="#ef4444">Cleaves Cohesin</text>
+                                        <circle r="20" fill="#ef4444" opacity="0.3" />
+                                        <text x="0" y="5" text-anchor="middle" font-size="12" fill="white"
+                                            font-weight="bold">Separase</text>
+                                        <text x="0" y="40" text-anchor="middle" font-size="10" fill="#ef4444">Cleaves
+                                            Cohesin</text>
                                     </g>
-                                    
+
                                     <!-- Labels -->
-                                    <text x="200" y="20" text-anchor="middle" font-size="12" fill="#f59e0b">Anaphase A: Poleward Movement</text>
-                                    <text x="200" y="280" text-anchor="middle" font-size="12" fill="#f97316">Daughter Chromosomes</text>
-                                    <text x="200" y="150" text-anchor="middle" font-size="14" fill="#ef4444" font-weight="bold">
+                                    <text x="200" y="20" text-anchor="middle" font-size="12" fill="#f59e0b">Anaphase A:
+                                        Poleward Movement</text>
+                                    <text x="200" y="280" text-anchor="middle" font-size="12" fill="#f97316">Daughter
+                                        Chromosomes</text>
+                                    <text x="200" y="150" text-anchor="middle" font-size="14" fill="#ef4444"
+                                        font-weight="bold">
                                         Cohesin Cleavage
                                     </text>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -1518,7 +1715,8 @@
                                     Daughter Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Following sister chromatid separation, each chromatid becomes an individual chromosome moving toward opposite poles.
+                                    Following sister chromatid separation, each chromatid becomes an individual
+                                    chromosome moving toward opposite poles.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1527,7 +1725,8 @@
                                     Separating Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes actively moving apart. Maintain condensed state during movement via microtubule depolymerization.
+                                    Chromosomes actively moving apart. Maintain condensed state during movement via
+                                    microtubule depolymerization.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1536,11 +1735,12 @@
                                     Single Chromosomes
                                 </div>
                                 <div class="name-reason">
-                                    Each DNA molecule now functions as independent chromosome. Chromosome count temporarily doubles (4n) before cytokinesis.
+                                    Each DNA molecule now functions as independent chromosome. Chromosome count
+                                    temporarily doubles (4n) before cytokinesis.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -1578,11 +1778,11 @@
                         <div class="microscope-section">
                             <h3><span>🔬</span> Nuclear Reformation</h3>
                             <div class="image-container">
-                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop&crop=center" 
-                                     alt="Telophase showing reforming nuclei at opposite poles" 
-                                     class="microscope-image">
+                                <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=500&fit=crop&crop=center"
+                                    alt="Telophase showing reforming nuclei at opposite poles" class="microscope-image">
                                 <div class="image-caption">
-                                    <strong>Nuclear Reformation</strong> - Chromosomes decondense as nuclear envelopes reform.
+                                    <strong>Nuclear Reformation</strong> - Chromosomes decondense as nuclear envelopes
+                                    reform.
                                     <div class="image-attribution">
                                         <span>Scale: 10μm</span>
                                         <span>Stain: Lamin B1 (nuclear envelope)</span>
@@ -1596,81 +1796,95 @@
                                 <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <linearGradient id="teloGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#3b82f6"/>
-                                            <stop offset="100%" stop-color="#1d4ed8"/>
+                                            <stop offset="0%" stop-color="#3b82f6" />
+                                            <stop offset="100%" stop-color="#1d4ed8" />
                                         </linearGradient>
                                     </defs>
-                                    
+
                                     <!-- Two reforming nuclei -->
                                     <g>
                                         <!-- Top nucleus -->
-                                        <circle cx="150" cy="100" r="60" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="15,5" opacity="0.6"/>
-                                        <text x="150" y="70" text-anchor="middle" font-size="12" fill="#3b82f6">Reforming Nucleus</text>
-                                        
+                                        <circle cx="150" cy="100" r="60" fill="none" stroke="#3b82f6" stroke-width="3"
+                                            stroke-dasharray="15,5" opacity="0.6" />
+                                        <text x="150" y="70" text-anchor="middle" font-size="12"
+                                            fill="#3b82f6">Reforming Nucleus</text>
+
                                         <!-- Decondensing chromatin in top nucleus -->
                                         <g transform="translate(150, 100)">
                                             <!-- Chromosome decondensation -->
                                             <g transform="translate(-30, -20)" opacity="0.8">
-                                                <ellipse cx="0" cy="0" rx="8" ry="15" fill="url(#teloGrad)"/>
-                                                <path d="M-5,-10 C-15,-5 -15,5 -5,10 C5,10 15,5 15,-5 C5,-10 -5,-10" 
-                                                      fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.4"/>
+                                                <ellipse cx="0" cy="0" rx="8" ry="15" fill="url(#teloGrad)" />
+                                                <path d="M-5,-10 C-15,-5 -15,5 -5,10 C5,10 15,5 15,-5 C5,-10 -5,-10"
+                                                    fill="none" stroke="#3b82f6" stroke-width="2" opacity="0.4" />
                                             </g>
-                                            
+
                                             <g transform="translate(20, 10)" opacity="0.6">
-                                                <ellipse cx="0" cy="0" rx="6" ry="12" fill="url(#teloGrad)"/>
-                                                <circle cx="0" cy="0" r="10" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
+                                                <ellipse cx="0" cy="0" rx="6" ry="12" fill="url(#teloGrad)" />
+                                                <circle cx="0" cy="0" r="10" fill="none" stroke="#3b82f6"
+                                                    stroke-width="1" opacity="0.3" />
                                             </g>
-                                            
+
                                             <g transform="translate(0, 25)" opacity="0.4">
-                                                <circle cx="0" cy="0" r="8" fill="url(#teloGrad)"/>
-                                                <circle cx="0" cy="0" r="12" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.2"/>
+                                                <circle cx="0" cy="0" r="8" fill="url(#teloGrad)" />
+                                                <circle cx="0" cy="0" r="12" fill="none" stroke="#3b82f6"
+                                                    stroke-width="1" opacity="0.2" />
                                             </g>
                                         </g>
-                                        
+
                                         <!-- Bottom nucleus -->
-                                        <circle cx="250" cy="200" r="60" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="15,5" opacity="0.6"/>
-                                        <text x="250" y="170" text-anchor="middle" font-size="12" fill="#3b82f6">Reforming Nucleus</text>
-                                        
+                                        <circle cx="250" cy="200" r="60" fill="none" stroke="#3b82f6" stroke-width="3"
+                                            stroke-dasharray="15,5" opacity="0.6" />
+                                        <text x="250" y="170" text-anchor="middle" font-size="12"
+                                            fill="#3b82f6">Reforming Nucleus</text>
+
                                         <!-- Decondensed chromatin in bottom nucleus -->
                                         <g transform="translate(250, 200)">
                                             <!-- Chromatin dots -->
-                                            <circle cx="-20" cy="-15" r="4" fill="#3b82f6" opacity="0.7"/>
-                                            <circle cx="0" cy="-20" r="5" fill="#3b82f6" opacity="0.7"/>
-                                            <circle cx="20" cy="-10" r="4" fill="#3b82f6" opacity="0.7"/>
-                                            <circle cx="-15" cy="10" r="5" fill="#3b82f6" opacity="0.7"/>
-                                            <circle cx="15" cy="15" r="4" fill="#3b82f6" opacity="0.7"/>
-                                            <circle cx="5" cy="0" r="6" fill="#3b82f6" opacity="0.7"/>
-                                            
+                                            <circle cx="-20" cy="-15" r="4" fill="#3b82f6" opacity="0.7" />
+                                            <circle cx="0" cy="-20" r="5" fill="#3b82f6" opacity="0.7" />
+                                            <circle cx="20" cy="-10" r="4" fill="#3b82f6" opacity="0.7" />
+                                            <circle cx="-15" cy="10" r="5" fill="#3b82f6" opacity="0.7" />
+                                            <circle cx="15" cy="15" r="4" fill="#3b82f6" opacity="0.7" />
+                                            <circle cx="5" cy="0" r="6" fill="#3b82f6" opacity="0.7" />
+
                                             <!-- Connecting lines -->
-                                            <line x1="-20" y1="-15" x2="0" y2="-20" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
-                                            <line x1="0" y1="-20" x2="20" y2="-10" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
-                                            <line x1="-15" y1="10" x2="5" y2="0" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
-                                            <line x1="15" y1="15" x2="5" y2="0" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
+                                            <line x1="-20" y1="-15" x2="0" y2="-20" stroke="#3b82f6" stroke-width="1"
+                                                opacity="0.3" />
+                                            <line x1="0" y1="-20" x2="20" y2="-10" stroke="#3b82f6" stroke-width="1"
+                                                opacity="0.3" />
+                                            <line x1="-15" y1="10" x2="5" y2="0" stroke="#3b82f6" stroke-width="1"
+                                                opacity="0.3" />
+                                            <line x1="15" y1="15" x2="5" y2="0" stroke="#3b82f6" stroke-width="1"
+                                                opacity="0.3" />
                                         </g>
                                     </g>
-                                    
+
                                     <!-- Cleavage furrow -->
-                                    <line x1="50" y1="150" x2="350" y2="150" stroke="#ef4444" stroke-width="4" opacity="0.8"/>
-                                    <text x="200" y="145" text-anchor="middle" font-size="12" fill="#ef4444" font-weight="bold">
+                                    <line x1="50" y1="150" x2="350" y2="150" stroke="#ef4444" stroke-width="4"
+                                        opacity="0.8" />
+                                    <text x="200" y="145" text-anchor="middle" font-size="12" fill="#ef4444"
+                                        font-weight="bold">
                                         Cleavage Furrow
                                     </text>
-                                    
+
                                     <!-- Decondensation arrow -->
                                     <g transform="translate(50, 50)">
-                                        <path d="M0,0 Q50,30 100,0" stroke="#3b82f6" stroke-width="2" fill="none"/>
-                                        <polygon points="100,0 90,-5 90,5" fill="#3b82f6"/>
-                                        <text x="50" y="-10" text-anchor="middle" font-size="11" fill="#3b82f6">Decondensation</text>
+                                        <path d="M0,0 Q50,30 100,0" stroke="#3b82f6" stroke-width="2" fill="none" />
+                                        <polygon points="100,0 90,-5 90,5" fill="#3b82f6" />
+                                        <text x="50" y="-10" text-anchor="middle" font-size="11"
+                                            fill="#3b82f6">Decondensation</text>
                                     </g>
-                                    
+
                                     <!-- Labels -->
-                                    <text x="200" y="280" text-anchor="middle" font-size="14" fill="#3b82f6" font-weight="bold">
+                                    <text x="200" y="280" text-anchor="middle" font-size="14" fill="#3b82f6"
+                                        font-weight="bold">
                                         Nuclear Envelope Reformation & Chromatin Decondensation
                                     </text>
                                 </svg>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="terminology-section">
                         <h4><span>📚</span> DNA Terminology Matrix</h4>
                         <div class="terminology-grid">
@@ -1680,7 +1894,8 @@
                                     Decondensing Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    Chromosomes actively returning to chromatin state. Histone deacetylation and other modifications facilitate decompaction.
+                                    Chromosomes actively returning to chromatin state. Histone deacetylation and other
+                                    modifications facilitate decompaction.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1689,7 +1904,8 @@
                                     Post-Mitotic Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    Chromatin in newly formed nuclei. Transcription machinery reassembles as chromatin returns to interphase configuration.
+                                    Chromatin in newly formed nuclei. Transcription machinery reassembles as chromatin
+                                    returns to interphase configuration.
                                 </div>
                             </div>
                             <div class="dna-name">
@@ -1698,11 +1914,12 @@
                                     Daughter Nuclei Chromatin
                                 </div>
                                 <div class="name-reason">
-                                    Chromatin organized into two separate nuclei. Each nucleus contains complete diploid chromosome set (2n).
+                                    Chromatin organized into two separate nuclei. Each nucleus contains complete diploid
+                                    chromosome set (2n).
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="key-features">
                             <h4>🎯 Key Structural Features</h4>
                             <div class="features-grid">
@@ -1727,12 +1944,13 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="interactive-quiz">
             <div class="quiz-content">
                 <h3>🧪 Interactive Knowledge Check</h3>
                 <div class="quiz-question">
-                    <p><strong>Question:</strong> During which phase does DNA transition from being called "sister chromatids" to "daughter chromosomes"?</p>
+                    <p><strong>Question:</strong> During which phase does DNA transition from being called "sister
+                        chromatids" to "daughter chromosomes"?</p>
                     <div class="quiz-options">
                         <div class="quiz-option" onclick="checkAnswer(this, 'correct')">Anaphase</div>
                         <div class="quiz-option" onclick="checkAnswer(this, 'incorrect')">Metaphase</div>
@@ -1755,7 +1973,8 @@
 
     <footer>
         <p>🧬 DNA Naming Expert System v2.0 | Certified Educational Resource | © 2024 Cell Biology Institute</p>
-        <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;">All images are illustrative representations. Scientific accuracy verified by peer review.</p>
+        <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;">All images are illustrative representations.
+            Scientific accuracy verified by peer review.</p>
     </footer>
 
     <div class="accessibility-tools">
@@ -1774,25 +1993,25 @@
             contents.forEach(content => {
                 content.classList.remove('active');
             });
-            
+
             // Remove active from all tabs
             const tabs = document.querySelectorAll('.phase-tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
-            
+
             // Show selected content
             const selectedContent = document.getElementById(phaseName);
             if (selectedContent) {
                 selectedContent.classList.add('active');
             }
-            
+
             // Mark selected tab as active
             event.target.classList.add('active');
-            
+
             // Update current phase index
             currentPhaseIndex = phases.indexOf(phaseName);
-            
+
             // Smooth scroll to top of phase
             window.scrollTo({
                 top: selectedContent.offsetTop - 100,
@@ -1827,7 +2046,7 @@
                     opt.innerHTML += result === 'correct' ? ' ✓' : ' ✗';
                 }
             });
-            
+
             // Show explanation after delay
             setTimeout(() => {
                 const explanation = document.createElement('div');
@@ -1836,20 +2055,20 @@
                 explanation.style.background = 'rgba(255, 255, 255, 0.2)';
                 explanation.style.borderRadius = '6px';
                 explanation.style.fontSize = '0.95em';
-                
+
                 if (result === 'correct') {
                     explanation.innerHTML = '<strong>Correct!</strong> The transition from "sister chromatids" to "daughter chromosomes" occurs during anaphase when cohesin is cleaved and chromatids separate.';
                 } else {
                     explanation.innerHTML = '<strong>Incorrect.</strong> The correct answer is Anaphase. Sister chromatids become individual daughter chromosomes only after they separate at the centromere.';
                 }
-                
+
                 element.parentElement.parentElement.appendChild(explanation);
             }, 500);
         }
 
         function toggleContrast() {
             document.body.classList.toggle('high-contrast');
-            
+
             // Update contrast mode variables
             if (document.body.classList.contains('high-contrast')) {
                 document.documentElement.style.setProperty('--color-bg-primary', '#000000');
@@ -1891,7 +2110,7 @@
                     tab.setAttribute('aria-selected', 'false');
                 }
             });
-            
+
             // Add ARIA labels to phase content
             const contents = document.querySelectorAll('.phase-content');
             contents.forEach((content, index) => {
@@ -1901,4 +2120,5 @@
         });
     </script>
 </body>
+
 </html>
