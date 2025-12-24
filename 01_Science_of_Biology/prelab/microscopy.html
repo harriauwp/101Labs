@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Design - PreLab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
+        <span>🧪 Experimental Design</span>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Micro-Module: Designing Experiments</h2>
+            <p>A controlled experiment is one in which only one variable is changed at a time, while all others are kept constant. This allows the researcher to determine if the specific variable being tested is responsible for the observed results.</p>
+            
+            
+
+            <div style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                <h4>Key Definitions:</h4>
+                <ul>
+                    <li><strong>Independent Variable (IV):</strong> The factor you purposefully change or manipulate (the "cause").</li>
+                    <li><strong>Dependent Variable (DV):</strong> The factor you measure or observe (the "effect/data").</li>
+                    <li><strong>Control Variables:</strong> Factors kept exactly the same for all groups to prevent "noise" in the data.</li>
+                    <li><strong>Control Group:</strong> The baseline group that does not receive the experimental treatment.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Micro-Pretest: Experimental Design</h3>
+            <p class="small">Answer the following questions to verify your understanding of experimental variables.</p>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        const questions = [
+            { 
+                prompt: 'A researcher tests the effect of different amounts of fertilizer on plant height. What is the Independent Variable?',
+                choices: ['The height of the plants', 'The amount of fertilizer', 'The type of plant used', 'The amount of sunlight'], 
+                answer: 1,
+                explain: 'The amount of fertilizer is what the researcher is manually changing to see what happens.'
+            },
+            { 
+                prompt: 'In the same plant experiment, what is the Dependent Variable?',
+                choices: ['The height of the plants', 'The amount of fertilizer', 'The type of soil', 'The duration of the study'], 
+                answer: 0,
+                explain: 'The height is the data being collected; it "depends" on the fertilizer.'
+            },
+            { 
+                prompt: 'Why is it important to have "Control Variables" (constants) like using the same type of plant and same amount of water?',
+                choices: [
+                    'To make the experiment more difficult', 
+                    'To ensure that any change in the Dependent Variable is actually caused by the Independent Variable', 
+                    'To increase the number of independent variables'
+                ], 
+                answer: 1,
+                explain: 'Constants eliminate "confounding variables" that might accidentally influence your results.'
+            },
+            { 
+                prompt: 'Which of the following describes a "Negative Control"?',
+                choices: [
+                    'A group where a response is expected', 
+                    'A group where no response is expected (e.g., giving a plant plain water instead of fertilizer)', 
+                    'A group that is ignored by the scientist'
+                ], 
+                answer: 1,
+                explain: 'A negative control confirms the system is working by showing what happens when the treatment is absent.'
+            },
+            { 
+                prompt: 'True or False: A scientific experiment can have multiple independent variables tested simultaneously while remaining a "controlled" experiment.',
+                choices: ['True', 'False'], 
+                answer: 1,
+                explain: 'False. To maintain a controlled experiment, you should only manipulate one independent variable at a time.'
+            }
+        ];
+
+        // Initialize quiz with unique ID
+        initQuiz('prelab_exp_design', questions);
+    </script>
+</body>
+</html>
