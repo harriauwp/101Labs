@@ -349,9 +349,11 @@
             gap: 10px;
         }
 
+        /* UPDATED CSS FOR IMAGE ALIGNMENT START */
         .image-container {
             position: relative;
             width: 100%;
+            height: 320px; /* Fixed height to match DNA illustration */
             border-radius: 10px;
             overflow: hidden;
             background: #f8fafc;
@@ -360,16 +362,22 @@
 
         .microscope-image {
             width: 100%;
-            height: auto;
+            height: 100%; /* Fill the container height */
+            object-fit: cover; /* Maintain aspect ratio while filling */
             display: block;
             transition: transform 0.3s ease;
         }
+        /* UPDATED CSS FOR IMAGE ALIGNMENT END */
 
         .microscope-image:hover {
             transform: scale(1.02);
         }
 
         .image-caption {
+            position: absolute; /* Added to keep caption overlaying the fixed height image properly */
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 15px;
             background: rgba(0, 0, 0, 0.8);
             color: white;
@@ -386,7 +394,7 @@
 
         .dna-illustration {
             width: 100%;
-            height: 320px;
+            height: 320px; /* Reference height */
             background: #f8fafc;
             border-radius: 10px;
             border: 2px solid var(--color-border);
@@ -713,7 +721,6 @@
             </button>
         </div>
 
-        <!-- G1 PHASE -->
         <div id="g1" class="phase-content active" role="tabpanel" aria-labelledby="g1-tab">
             <div class="phase-card g1">
                 <div class="phase-header">
@@ -740,28 +747,23 @@
                                 <svg viewBox="0 0 400 195" xmlns="http://www.w3.org/2000/svg">
 
                                     <defs>
-                                        <!-- DNA -->
                                         <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                             <stop offset="0%" stop-color="#60a5fa" />
                                             <stop offset="100%" stop-color="#2563eb" />
                                         </linearGradient>
 
-                                        <!-- Histone (pink/purple) -->
                                         <radialGradient id="histoneGradient">
                                             <stop offset="0%" stop-color="#f6c1dc" />
                                             <stop offset="60%" stop-color="#c66aa0" />
                                             <stop offset="100%" stop-color="#8b3f6b" />
                                         </radialGradient>
 
-                                        <!-- Shadow -->
                                         <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
                                             <feDropShadow dx="1.2" dy="1.2" stdDeviation="1.5" flood-opacity="0.25" />
                                         </filter>
 
-                                        <!-- FULL nucleosome: 8 histones + 8 tails -->
                                         <g id="nucleosome" filter="url(#softShadow)">
 
-                                            <!-- Histone subunits (8) -->
                                             <circle cx="-9" cy="-9" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="0" cy="-12" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="9" cy="-9" r="6" fill="url(#histoneGradient)" />
@@ -771,10 +773,8 @@
                                             <circle cx="-9" cy="9" r="6" fill="url(#histoneGradient)" />
                                             <circle cx="-12" cy="0" r="6" fill="url(#histoneGradient)" />
 
-                                            <!-- Central core -->
                                             <circle cx="0" cy="0" r="9" fill="url(#histoneGradient)" opacity="0.95" />
 
-                                            <!-- Histone tails (8) -->
                                             <path d="M -9 -15 C -14 -30, -10 -42, -4 -52" stroke="#8b3f6b"
                                                 stroke-width="1.8" fill="none" />
                                             <path d="M 0 -18 C 0 -34, 6 -44, 10 -54" stroke="#8b3f6b" stroke-width="1.8"
@@ -793,7 +793,6 @@
                                             <path d="M -15 0 C -32 4, -40 12, -48 18" stroke="#8b3f6b"
                                                 stroke-width="1.8" fill="none" />
 
-                                            <!-- DNA wrap (~1.7 turns) -->
                                             <path d="
         M -22 0
         C -18 -20, 18 -20, 22 0
@@ -802,20 +801,17 @@
                                         </g>
                                     </defs>
 
-                                    <!-- Continuous DNA backbone -->
                                     <path d="
     M 20 105
     C 60 90, 100 120, 140 105
     C 180 90, 220 120, 260 105
     C 300 90, 340 120, 380 105" fill="none" stroke="url(#dnaGradient)" stroke-width="2.2" />
 
-                                    <!-- Nucleosomes -->
                                     <use href="#nucleosome" x="80" y="105" />
                                     <use href="#nucleosome" x="160" y="105" />
                                     <use href="#nucleosome" x="240" y="105" />
                                     <use href="#nucleosome" x="320" y="105" />
 
-                                    <!-- Labels -->
                                     <text x="80" y="150" text-anchor="middle" font-size="12" fill="#374151">
                                         Nucleosome
                                     </text>
@@ -905,7 +901,6 @@
             </div>
         </div>
 
-        <!-- S PHASE -->
         <div id="s" class="phase-content" role="tabpanel" aria-labelledby="s-tab">
             <div class="phase-card s">
                 <div class="phase-header">
@@ -949,7 +944,6 @@
                                         </filter>
                                     </defs>
 
-                                    <!-- Replication bubble -->
                                     <rect x="100" y="100" width="200" height="100" rx="10" fill="#f3f4f6"
                                         stroke="#d1d5db" stroke-width="2" />
                                     <text x="200" y="130" text-anchor="middle" font-size="14" fill="#8b5cf6"
@@ -957,15 +951,12 @@
                                         Replication Bubble
                                     </text>
 
-                                    <!-- Parental strand -->
                                     <path d="M50,150 Q150,140 200,150 Q250,160 350,150" stroke="#8b5cf6"
                                         stroke-width="3" fill="none" opacity="0.7" />
 
-                                    <!-- Replication forks -->
                                     <circle cx="100" cy="150" r="8" fill="#10b981" />
                                     <circle cx="300" cy="150" r="8" fill="#10b981" />
 
-                                    <!-- Newly synthesized strands -->
                                     <path d="M100,150 Q150,180 200,170" stroke="url(#sister1)" stroke-width="2"
                                         fill="none" />
                                     <path d="M100,150 Q150,120 200,130" stroke="url(#sister1)" stroke-width="2"
@@ -976,14 +967,12 @@
                                     <path d="M300,150 Q250,120 200,130" stroke="url(#sister2)" stroke-width="2"
                                         fill="none" />
 
-                                    <!-- Sister chromatids forming -->
                                     <g filter="url(#glow)" transform="translate(200, 170)">
                                         <circle r="15" fill="url(#sister1)" />
                                         <circle r="15" fill="url(#sister2)" cx="40" />
                                         <line x1="15" y1="0" x2="25" y2="0" stroke="#1e40af" stroke-width="3" />
                                     </g>
 
-                                    <!-- Labels -->
                                     <text x="200" y="80" text-anchor="middle" font-size="14" fill="#8b5cf6"
                                         font-weight="bold">
                                         Semi-Conservative Replication
@@ -1067,7 +1056,6 @@
             </div>
         </div>
 
-        <!-- G2 PHASE -->
         <div id="g2" class="phase-content" role="tabpanel" aria-labelledby="g2-tab">
             <div class="phase-card g2">
                 <div class="phase-header">
@@ -1102,13 +1090,10 @@
                                         </linearGradient>
                                     </defs>
 
-                                    <!-- Nuclear envelope -->
                                     <circle cx="200" cy="150" r="120" fill="none" stroke="#fbbf24" stroke-width="3"
                                         stroke-dasharray="5,5" />
 
-                                    <!-- Multiple replicated chromosomes -->
                                     <g transform="translate(200, 150)">
-                                        <!-- Chromosome 1 -->
                                         <g transform="rotate(0)">
                                             <line x1="-40" y1="0" x2="40" y2="0" stroke="url(#chromG2)" stroke-width="4"
                                                 stroke-linecap="round" />
@@ -1117,7 +1102,6 @@
                                             <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
 
-                                        <!-- Chromosome 2 -->
                                         <g transform="rotate(60)">
                                             <line x1="-35" y1="0" x2="35" y2="0" stroke="url(#chromG2)" stroke-width="4"
                                                 stroke-linecap="round" />
@@ -1126,7 +1110,6 @@
                                             <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
 
-                                        <!-- Chromosome 3 -->
                                         <g transform="rotate(120)">
                                             <line x1="-30" y1="0" x2="30" y2="0" stroke="url(#chromG2)" stroke-width="4"
                                                 stroke-linecap="round" />
@@ -1135,7 +1118,6 @@
                                             <circle cx="0" cy="0" r="6" fill="#1e40af" />
                                         </g>
 
-                                        <!-- Chromosome 4 -->
                                         <g transform="rotate(180)">
                                             <line x1="-25" y1="0" x2="25" y2="0" stroke="url(#chromG2)" stroke-width="4"
                                                 stroke-linecap="round" />
@@ -1145,7 +1127,6 @@
                                         </g>
                                     </g>
 
-                                    <!-- Labels -->
                                     <text x="200" y="50" text-anchor="middle" font-size="14" fill="#f59e0b"
                                         font-weight="bold">
                                         Replicated Chromosomes in Nucleus
@@ -1154,7 +1135,6 @@
                                         Each contains two sister chromatids
                                     </text>
 
-                                    <!-- Legend -->
                                     <g transform="translate(320, 50)">
                                         <rect x="0" y="0" width="60" height="20" fill="#fef3c7" rx="4" />
                                         <circle cx="10" cy="10" r="4" fill="#1e40af" />
@@ -1227,7 +1207,6 @@
             </div>
         </div>
 
-        <!-- PROPHASE -->
         <div id="prophase" class="phase-content" role="tabpanel" aria-labelledby="prophase-tab">
             <div class="phase-card prophase">
                 <div class="phase-header">
@@ -1262,16 +1241,13 @@
                                         </linearGradient>
                                     </defs>
 
-                                    <!-- Condensation progression -->
                                     <g transform="translate(50, 50)">
-                                        <!-- Stage 1: Chromatin -->
                                         <circle cx="0" cy="0" r="15" fill="#3b82f6" opacity="0.3" />
                                         <text x="0" y="-25" text-anchor="middle" font-size="10"
                                             fill="#6b7280">Chromatin</text>
                                         <path d="M15,0 L100,0" stroke="#d1d5db" stroke-width="2"
                                             stroke-dasharray="5,5" />
 
-                                        <!-- Stage 2: 30nm fiber -->
                                         <g transform="translate(100, 0)">
                                             <rect x="-20" y="-15" width="40" height="30" rx="8" fill="#4f46e5"
                                                 opacity="0.5" />
@@ -1281,7 +1257,6 @@
                                         <path d="M120,0 L200,0" stroke="#d1d5db" stroke-width="2"
                                             stroke-dasharray="5,5" />
 
-                                        <!-- Stage 3: Chromosome loops -->
                                         <g transform="translate(200, 0)">
                                             <ellipse cx="0" cy="0" rx="25" ry="15" fill="url(#condenseGrad)"
                                                 opacity="0.6" />
@@ -1291,7 +1266,6 @@
                                         <path d="M225,0 L300,0" stroke="#d1d5db" stroke-width="2"
                                             stroke-dasharray="5,5" />
 
-                                        <!-- Stage 4: Condensed chromosome -->
                                         <g transform="translate(300, 0)">
                                             <path d="M-25,-20 L25,-20 L25,20 L-25,20 Z" fill="url(#condenseGrad)" rx="5"
                                                 ry="5" />
@@ -1303,19 +1277,15 @@
                                         </g>
                                     </g>
 
-                                    <!-- Spindle formation -->
                                     <g transform="translate(200, 150)">
-                                        <!-- Centrosomes -->
                                         <circle cx="-100" cy="-50" r="10" fill="#f97316" opacity="0.8" />
                                         <circle cx="100" cy="-50" r="10" fill="#f97316" opacity="0.8" />
 
-                                        <!-- Spindle microtubules -->
                                         <line x1="-100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2"
                                             opacity="0.4" />
                                         <line x1="100" y1="-50" x2="0" y2="0" stroke="#f97316" stroke-width="2"
                                             opacity="0.4" />
 
-                                        <!-- Chromosomes -->
                                         <g transform="translate(0, 0)">
                                             <ellipse cx="0" cy="0" rx="15" ry="25" fill="url(#condenseGrad)"
                                                 opacity="0.8" />
@@ -1325,7 +1295,6 @@
                                         </g>
                                     </g>
 
-                                    <!-- Labels -->
                                     <text x="200" y="250" text-anchor="middle" font-size="14" fill="#ef4444"
                                         font-weight="bold">
                                         Progressive Chromosome Condensation
@@ -1405,7 +1374,6 @@
             </div>
         </div>
 
-        <!-- METAPHASE -->
         <div id="metaphase" class="phase-content" role="tabpanel" aria-labelledby="metaphase-tab">
             <div class="phase-card metaphase">
                 <div class="phase-header">
@@ -1444,11 +1412,9 @@
                                         </marker>
                                     </defs>
 
-                                    <!-- Spindle apparatus -->
                                     <line x1="200" y1="20" x2="200" y2="280" stroke="#d1d5db" stroke-width="2"
                                         stroke-dasharray="5,5" />
 
-                                    <!-- Spindle poles -->
                                     <g>
                                         <circle cx="200" cy="30" r="12" fill="#10b981" opacity="0.8" />
                                         <circle cx="200" cy="270" r="12" fill="#10b981" opacity="0.8" />
@@ -1456,7 +1422,6 @@
                                         <text x="200" y="275" text-anchor="middle" font-size="10" fill="white">-</text>
                                     </g>
 
-                                    <!-- Kinetochore microtubules -->
                                     <g>
                                         <line x1="200" y1="40" x2="150" y2="150" stroke="#10b981" stroke-width="2"
                                             opacity="0.6" marker-end="url(#arrowhead)" />
@@ -1468,9 +1433,7 @@
                                             opacity="0.6" marker-end="url(#arrowhead)" />
                                     </g>
 
-                                    <!-- Metaphase chromosomes -->
                                     <g transform="translate(200, 150)">
-                                        <!-- Chromosome 1 -->
                                         <g transform="translate(-50, 0)">
                                             <rect x="-15" y="-20" width="30" height="40" rx="5"
                                                 fill="url(#metaphaseGrad)" />
@@ -1480,7 +1443,6 @@
                                             <line x1="8" y1="-15" x2="8" y2="15" stroke="#1e40af" stroke-width="2" />
                                         </g>
 
-                                        <!-- Chromosome 2 -->
                                         <g transform="translate(0, 0)">
                                             <rect x="-12" y="-25" width="24" height="50" rx="5"
                                                 fill="url(#metaphaseGrad)" />
@@ -1490,7 +1452,6 @@
                                             <line x1="5" y1="-10" x2="5" y2="10" stroke="#1e40af" stroke-width="2" />
                                         </g>
 
-                                        <!-- Chromosome 3 -->
                                         <g transform="translate(50, 0)">
                                             <rect x="-10" y="-18" width="20" height="36" rx="5"
                                                 fill="url(#metaphaseGrad)" />
@@ -1501,11 +1462,9 @@
                                         </g>
                                     </g>
 
-                                    <!-- Metaphase plate line -->
                                     <line x1="50" y1="150" x2="350" y2="150" stroke="#10b981" stroke-width="3"
                                         opacity="0.3" stroke-dasharray="10,5" />
 
-                                    <!-- Labels -->
                                     <text x="200" y="20" text-anchor="middle" font-size="12" fill="#10b981">Spindle
                                         Pole</text>
                                     <text x="200" y="290" text-anchor="middle" font-size="12" fill="#10b981">Spindle
@@ -1582,7 +1541,6 @@
             </div>
         </div>
 
-        <!-- ANAPHASE -->
         <div id="anaphase" class="phase-content" role="tabpanel" aria-labelledby="anaphase-tab">
             <div class="phase-card anaphase">
                 <div class="phase-header">
@@ -1626,9 +1584,7 @@
                                         </marker>
                                     </defs>
 
-                                    <!-- Separating chromatids -->
                                     <g>
-                                        <!-- Moving to top pole -->
                                         <g transform="translate(100, 80)">
                                             <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad1)" />
                                             <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2" />
@@ -1653,7 +1609,6 @@
                                                 marker-end="url(#anaArrow)" />
                                         </g>
 
-                                        <!-- Moving to bottom pole -->
                                         <g transform="translate(100, 220)">
                                             <rect x="-12" y="-15" width="24" height="30" rx="5" fill="url(#anaGrad2)" />
                                             <line x1="-8" y1="-10" x2="-8" y2="10" stroke="#1e40af" stroke-width="2" />
@@ -1679,11 +1634,9 @@
                                         </g>
                                     </g>
 
-                                    <!-- Spindle poles -->
                                     <circle cx="200" cy="30" r="10" fill="#f59e0b" opacity="0.8" />
                                     <circle cx="200" cy="270" r="10" fill="#f97316" opacity="0.8" />
 
-                                    <!-- Separase activity indicator -->
                                     <g transform="translate(200, 150)">
                                         <circle r="20" fill="#ef4444" opacity="0.3" />
                                         <text x="0" y="5" text-anchor="middle" font-size="12" fill="white"
@@ -1692,7 +1645,6 @@
                                             Cohesin</text>
                                     </g>
 
-                                    <!-- Labels -->
                                     <text x="200" y="20" text-anchor="middle" font-size="12" fill="#f59e0b">Anaphase A:
                                         Poleward Movement</text>
                                     <text x="200" y="280" text-anchor="middle" font-size="12" fill="#f97316">Daughter
@@ -1766,7 +1718,6 @@
             </div>
         </div>
 
-        <!-- TELOPHASE -->
         <div id="telophase" class="phase-content" role="tabpanel" aria-labelledby="telophase-tab">
             <div class="phase-card telophase">
                 <div class="phase-header">
@@ -1801,17 +1752,13 @@
                                         </linearGradient>
                                     </defs>
 
-                                    <!-- Two reforming nuclei -->
                                     <g>
-                                        <!-- Top nucleus -->
                                         <circle cx="150" cy="100" r="60" fill="none" stroke="#3b82f6" stroke-width="3"
                                             stroke-dasharray="15,5" opacity="0.6" />
                                         <text x="150" y="70" text-anchor="middle" font-size="12"
                                             fill="#3b82f6">Reforming Nucleus</text>
 
-                                        <!-- Decondensing chromatin in top nucleus -->
                                         <g transform="translate(150, 100)">
-                                            <!-- Chromosome decondensation -->
                                             <g transform="translate(-30, -20)" opacity="0.8">
                                                 <ellipse cx="0" cy="0" rx="8" ry="15" fill="url(#teloGrad)" />
                                                 <path d="M-5,-10 C-15,-5 -15,5 -5,10 C5,10 15,5 15,-5 C5,-10 -5,-10"
@@ -1831,15 +1778,12 @@
                                             </g>
                                         </g>
 
-                                        <!-- Bottom nucleus -->
                                         <circle cx="250" cy="200" r="60" fill="none" stroke="#3b82f6" stroke-width="3"
                                             stroke-dasharray="15,5" opacity="0.6" />
                                         <text x="250" y="170" text-anchor="middle" font-size="12"
                                             fill="#3b82f6">Reforming Nucleus</text>
 
-                                        <!-- Decondensed chromatin in bottom nucleus -->
                                         <g transform="translate(250, 200)">
-                                            <!-- Chromatin dots -->
                                             <circle cx="-20" cy="-15" r="4" fill="#3b82f6" opacity="0.7" />
                                             <circle cx="0" cy="-20" r="5" fill="#3b82f6" opacity="0.7" />
                                             <circle cx="20" cy="-10" r="4" fill="#3b82f6" opacity="0.7" />
@@ -1847,7 +1791,6 @@
                                             <circle cx="15" cy="15" r="4" fill="#3b82f6" opacity="0.7" />
                                             <circle cx="5" cy="0" r="6" fill="#3b82f6" opacity="0.7" />
 
-                                            <!-- Connecting lines -->
                                             <line x1="-20" y1="-15" x2="0" y2="-20" stroke="#3b82f6" stroke-width="1"
                                                 opacity="0.3" />
                                             <line x1="0" y1="-20" x2="20" y2="-10" stroke="#3b82f6" stroke-width="1"
@@ -1859,7 +1802,6 @@
                                         </g>
                                     </g>
 
-                                    <!-- Cleavage furrow -->
                                     <line x1="50" y1="150" x2="350" y2="150" stroke="#ef4444" stroke-width="4"
                                         opacity="0.8" />
                                     <text x="200" y="145" text-anchor="middle" font-size="12" fill="#ef4444"
@@ -1867,7 +1809,6 @@
                                         Cleavage Furrow
                                     </text>
 
-                                    <!-- Decondensation arrow -->
                                     <g transform="translate(50, 50)">
                                         <path d="M0,0 Q50,30 100,0" stroke="#3b82f6" stroke-width="2" fill="none" />
                                         <polygon points="100,0 90,-5 90,5" fill="#3b82f6" />
@@ -1875,7 +1816,6 @@
                                             fill="#3b82f6">Decondensation</text>
                                     </g>
 
-                                    <!-- Labels -->
                                     <text x="200" y="280" text-anchor="middle" font-size="14" fill="#3b82f6"
                                         font-weight="bold">
                                         Nuclear Envelope Reformation & Chromatin Decondensation
