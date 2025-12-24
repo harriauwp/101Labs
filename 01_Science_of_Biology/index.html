@@ -5,68 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab 1: Hub</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Compact Overrides */
+        body { line-height: 1.2; }
+        .container { max-width: 900px; margin: 0.5rem auto; padding: 0 0.5rem; }
+        .card { padding: 0.8rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.1rem; margin: 0 0 0.4rem 0; padding-bottom: 0.2rem; }
+        h3 { font-size: 1rem; margin: 0 0 0.3rem 0; }
+        p { margin: 0.2rem 0; font-size: 0.85rem; }
+        .btn { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
+        .btn-back { margin-bottom: 0.3rem; }
+        .grid-2 { gap: 0.5rem; }
+        header.global { padding: 0.5rem 1rem; }
+        ul { margin: 0.3rem 0; }
+        input[type="datetime-local"] { padding: 0.2rem; font-size: 0.8rem; }
+    </style>
 </head>
 <body>
     <header class="global">
-        <span class="home-link">🧬 Lab 1: Scientific Process</span>
-        <span style="font-size:0.9rem">UW-Parkside Biological Sciences</span>
+        <span class="home-link">🧬 Lab 1 Hub</span>
+        <span style="font-size:0.8rem">UW-Parkside Biology</span>
     </header>
 
     <div class="container">
-        
-        <div class="card" style="border-left: 5px solid var(--uwp-gold);">
-            <h3>⚙️ Lab Configuration</h3>
-            <p>Please set your lab start time to synchronize your assignments.</p>
-            <input type="datetime-local" id="labStart" style="padding:0.5rem;">
-            <span id="saveStatus" style="color:green; margin-left:1rem; opacity:0; transition:opacity 0.5s;">✓ Saved</span>
+        <div class="card" style="border-left: 4px solid var(--uwp-gold); display: flex; align-items: center; justify-content: space-between;">
+            <div>
+                <h3>⚙️ Sync</h3>
+                <input type="datetime-local" id="labStart">
+            </div>
+            <span id="saveStatus" style="color:green; opacity:0; font-size: 0.8rem;">✓ Saved</span>
         </div>
 
         <div class="grid-2">
             <div>
                 <h2 style="color:var(--uwp-red)">⏳ Pre-Lab (30 pts)</h2>
-                <p class="small">Complete these micro-modules before class.</p>
-                
                 <div class="card">
-                    <h3>1. Foundations</h3>
-                    <ul style="list-style:none; padding:0;">
-                        <li><a href="prelab/scientific_method.html" class="btn btn-back" style="width:100%">Scientific Method</a></li>
-                        <li><a href="prelab/pseudoscience.html" class="btn btn-back" style="width:100%">Pseudoscience & Claims</a></li>
-                        <li><a href="prelab/experimental_design.html" class="btn btn-back" style="width:100%">Experimental Design</a></li>
-                    </ul>
+                    <h3>Foundations</h3>
+                    <a href="prelab/scientific_method.html" class="btn btn-back" style="width:100%">Scientific Method</a>
+                    <a href="prelab/pseudoscience.html" class="btn btn-back" style="width:100%">Pseudoscience</a>
+                    <a href="prelab/experimental_design.html" class="btn btn-back" style="width:100%">Exp. Design</a>
                 </div>
-
                 <div class="card">
-                    <h3>2. Skills</h3>
-                    <ul style="list-style:none; padding:0;">
-                        <li><a href="prelab/metrics_scale.html" class="btn btn-back" style="width:100%">Metrics & Scale</a></li>
-                        <li><a href="prelab/microscopy.html" class="btn btn-back" style="width:100%">Microscopy</a></li>
-                    </ul>
+                    <h3>Skills</h3>
+                    <a href="prelab/metrics_scale.html" class="btn btn-back" style="width:100%">Metrics & Scale</a>
+                    <a href="prelab/microscopy.html" class="btn btn-back" style="width:100%">Microscopy</a>
                 </div>
             </div>
 
             <div>
-                <h2 style="color:var(--uwp-light-blue)">🧪 During Lab (20 pts)</h2>
+                <h2 style="color:var(--uwp-light-blue)">🧪 Lab & Mastery</h2>
                 <div class="card">
-                    <a href="during_lab/run_sheet.html" class="btn" style="width:100%; text-align:center; background:var(--uwp-dark-blue)">
-                        Open Digital Run Sheet
-                    </a>
-                    <p style="font-size:0.85rem; margin-top:0.5rem; color:#666;">
-                        Includes checklists for: Safety, Focusing, Field Diameter, Wet Mounts.
-                    </p>
+                    <a href="during_lab/run_sheet.html" class="btn" style="width:100%; background:var(--uwp-dark-blue)">Open Run Sheet</a>
                 </div>
 
-                <h2 style="color:var(--success)">📝 Post-Lab (25 pts)</h2>
                 <div class="card">
-                    <p>Mastery retrieval practice. Unlocks after lab.</p>
-                    <a href="postlab/mastery_hub.html" class="btn" style="width:100%; text-align:center; background:var(--success)">
-                        Go to Mastery Hub
-                    </a>
+                    <h3 style="color:var(--success)">📝 Post-Lab (25 pts)</h3>
+                    <a href="postlab/mastery_hub.html" class="btn" style="width:100%; background:var(--success)">Mastery Hub</a>
                 </div>
 
-                <h2>📋 Exam & Extra</h2>
-                <div class="grid-2">
-                    <a href="exam/weekly_exam.html" class="btn btn-back" style="text-align:center">Weekly Exam</a>
-                    <a href="extra/metacognition.html" class="btn btn-back" style="text-align:center">Metacognition</a>
+                <div class="card" style="background:#eee;">
+                    <h3>📋 Assessment</h3>
+                    <div class="grid-2">
+                        <a href="exam/weekly_exam.html" class="btn" style="padding:0.4rem 0; text-align:center;">Exam</a>
+                        <a href="extra/metacognition.html" class="btn" style="padding:0.4rem 0; text-align:center; background:#666;">Meta</a>
+                    </div>
+                    <a href="extra/evidence_design.html" style="display:block; text-align:center; font-size:0.7rem; margin-top:0.4rem; color:#666;">Evidence-Based Design</a>
                 </div>
             </div>
         </div>
@@ -74,10 +77,8 @@
 
     <script src="js/lab_app.js"></script>
     <script>
-        // Local logic for the date picker
         const dateInput = document.getElementById('labStart');
         const savedState = loadState();
-        
         if (savedState.labStart) dateInput.value = savedState.labStart;
 
         dateInput.addEventListener('change', (e) => {
@@ -85,7 +86,7 @@
             saveState(savedState);
             const status = document.getElementById('saveStatus');
             status.style.opacity = '1';
-            setTimeout(() => status.style.opacity = '0', 2000);
+            setTimeout(() => status.style.opacity = '0', 1500);
         });
     </script>
 </body>
