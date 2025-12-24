@@ -353,7 +353,8 @@
         .image-container {
             position: relative;
             width: 100%;
-            height: 320px; /* Fixed height to match DNA illustration */
+            height: 320px;
+            /* Fixed height to match DNA illustration */
             border-radius: 10px;
             overflow: hidden;
             background: #f8fafc;
@@ -362,11 +363,14 @@
 
         .microscope-image {
             width: 100%;
-            height: 100%; /* Fill the container height */
-            object-fit: contain; /* Maintain aspect ratio while filling */
+            height: 100%;
+            /* Fill the container height */
+            object-fit: contain;
+            /* Maintain aspect ratio while fitting inside */
             display: block;
             transition: transform 0.3s ease;
         }
+
         /* UPDATED CSS FOR IMAGE ALIGNMENT END */
 
         .microscope-image:hover {
@@ -374,7 +378,8 @@
         }
 
         .image-caption {
-            position: absolute; /* Added to keep caption overlaying the fixed height image properly */
+            position: absolute;
+            /* Added to keep caption overlaying the fixed height image properly */
             bottom: 0;
             left: 0;
             right: 0;
@@ -394,7 +399,8 @@
 
         .dna-illustration {
             width: 100%;
-            height: 320px; /* Reference height */
+            height: 320px;
+            /* Reference height */
             background: #f8fafc;
             border-radius: 10px;
             border: 2px solid var(--color-border);
