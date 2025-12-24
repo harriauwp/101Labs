@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post-Lab Mastery - Lab 1</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
+        <span>📝 Post-Lab Mastery Hub</span>
+    </header>
+
+    <div class="container">
+        
+        <div class="card" style="border-left: 5px solid var(--success);">
+            <h2>Mastery Retrieval Practice (25 pts)</h2>
+            <p>This module tests your ability to apply lab concepts in new contexts. Unlike the pretests, these questions are <strong>interleaved</strong> (mixed together) to strengthen long-term memory.</p>
+            <p><em>Requirement: Achieve 80% or higher to demonstrate mastery.</em></p>
+        </div>
+
+        <div class="card">
+            <h3>Cumulative Mastery Quiz</h3>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+
+        <div class="card" style="background: #e3f2fd; border: none;">
+            <h4>💡 Mastery Tip</h4>
+            <p class="small">If you struggle with the conversion questions, revisit the <strong>Metrics & Scale</strong> module in the Pre-Lab folder before your next attempt.</p>
+        </div>
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        // Interleaved questions covering all lab topics
+        const masteryQuestions = [
+            { 
+                prompt: 'You are looking at a specimen using the 40X objective lens. What is the TOTAL magnification?',
+                choices: ['40X', '400X', '44X', '1000X'], 
+                answer: 1,
+                explain: 'Total Magnification = Ocular (10X) × Objective (40X) = 400X.'
+            },
+            { 
+                prompt: 'In a controlled experiment, which group provides a baseline for comparison?',
+                choices: ['The experimental group', 'The independent group', 'The control group', 'The variable group'], 
+                answer: 2,
+                explain: 'The control group is kept under standard conditions to compare against the experimental changes.'
+            },
+            { 
+                prompt: 'Convert 5.2 micrometers (µm) into nanometers (nm).',
+                choices: ['0.0052 nm', '520 nm', '5,200 nm', '52,000 nm'], 
+                answer: 2,
+                explain: '1 µm = 1000 nm. 5.2 × 1000 = 5,200.'
+            },
+            { 
+                prompt: 'While observing a slide, you notice the image is very "flat" and lacks detail. Which microscope part should you adjust to increase contrast?',
+                choices: ['Fine focus knob', 'Iris diaphragm', 'Stage clips', 'Ocular lens'], 
+                answer: 1,
+                explain: 'The iris diaphragm controls the amount of light and depth of field, which directly affects contrast.'
+            },
+            { 
+                prompt: 'A scientist proposes that "plants grow taller when exposed to classical music." What is the Dependent Variable in this study?',
+                choices: ['The type of music', 'The height of the plants', 'The amount of water given', 'The species of plant'], 
+                answer: 1,
+                explain: 'The height is the outcome being measured (the data), making it the dependent variable.'
+            },
+            { 
+                prompt: 'Which of the following is a characteristic of Pseudoscience?',
+                choices: [
+                    'Heavy reliance on anecdotal evidence (personal stories)', 
+                    'Frequent revision of ideas based on new data', 
+                    'Openness to peer review', 
+                    'Use of falsifiable hypotheses'
+                ], 
+                answer: 0,
+                explain: 'Pseudoscience often relies on "it worked for me" stories rather than controlled, replicable data.'
+            },
+            { 
+                prompt: 'The width of a field of view at 10X is 2.0 mm. What is the width in micrometers (µm)?',
+                choices: ['20 µm', '200 µm', '2,000 µm', '0.002 µm'], 
+                answer: 2,
+                explain: '2.0 mm × 1000 µm/mm = 2,000 µm.'
+            },
+            { 
+                prompt: 'If a slide contains the letter "e", how will it appear through the ocular lens?',
+                choices: ['Upside down and backwards', 'Right side up but backwards', 'Upside down but not backwards', 'Exactly as it appears on the slide'], 
+                answer: 0,
+                explain: 'The compound microscope inverts and reverses the image (Inversion).'
+            }
+        ];
+
+        // Initialize the quiz with a unique ID for tracking progress
+        initQuiz('postlab_mastery_final', masteryQuestions);
+    </script>
+</body>
+</html>
