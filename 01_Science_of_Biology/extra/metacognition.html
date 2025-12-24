@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metacognition - Lab 1</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
+        <span>🧠 Metacognition</span>
+    </header>
+
+    <div class="container">
+        
+        <div class="card" style="border-left: 5px solid var(--uwp-gold);">
+            <h3>About This Module</h3>
+            <p><strong>Goal:</strong> Design and implement a study experiment to identify your most effective learning strategies through self-testing and data tracking.</p>
+            <p class="small" style="color:#666;">This section is optional and ungraded, but highly recommended for long-term retention.</p>
+        </div>
+
+        <div class="card">
+            <h3>Weekly Study Experiment Log</h3>
+            <p>Use the text area below to log your study experiments for this week. Consider these prompts:</p>
+            <ul>
+                <li><strong>Spacing:</strong> What spacing schedules did you try? (e.g., studying 20 mins every day vs. 2 hours once)</li>
+                <li><strong>Attention:</strong> Which pretest items shaped your attention during the lab?</li>
+                <li><strong>Interleaving:</strong> How did mixing topics (metrics ↔ microscopy) affect your recall compared to studying them in blocks?</li>
+            </ul>
+
+            <label for="metaLog" style="font-weight:bold; display:block; margin-top:1rem;">Your Reflection:</label>
+            <textarea id="metaLog" rows="10" style="width:100%; padding:0.5rem; margin-top:0.5rem; border:1px solid #ccc; border-radius:4px; font-family:inherit;" placeholder="Type your reflection here..."></textarea>
+            
+            <div style="margin-top:1rem; display:flex; justify-content:space-between; align-items:center;">
+                <button id="saveLog" class="btn">Save Reflection</button>
+                <span id="saveStatus" style="color:var(--success); opacity:0; transition:opacity 0.5s;">✓ Saved to browser</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const LOG_KEY = 'uwp_lab1_metacognition';
+        const logInput = document.getElementById('metaLog');
+        const saveBtn = document.getElementById('saveLog');
+        const statusMsg = document.getElementById('saveStatus');
+
+        // Load saved text
+        const savedText = localStorage.getItem(LOG_KEY);
+        if (savedText) {
+            logInput.value = savedText;
+        }
+
+        // Save on click
+        saveBtn.addEventListener('click', () => {
+            localStorage.setItem(LOG_KEY, logInput.value);
+            statusMsg.style.opacity = '1';
+            setTimeout(() => {
+                statusMsg.style.opacity = '0';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
