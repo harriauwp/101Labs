@@ -323,7 +323,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 30px;
-            margin-bottom: 30px;
         }
 
         @media (max-width: 1024px) {
@@ -731,176 +730,172 @@
                 </div>
                 <div class="phase-body">
                     <div class="phase-grid">
-                        <!-- NEW: Added placeholder image section -->
                         <div class="placeholder-section">
                             <h3><span>🖼️</span> Microscope Image</h3>
                             <div class="image-container">
                                 <img src="images/inter.png" alt="G1 Phase overview showing cellular structure"
                                     class="microscope-image">
-                            </div>
                         </div>
                     </div>
-
                     <div class="microscope-section">
                         <h3><span>🔬</span> Artist Rendition</h3>
                         <div class="image-container">
                             <img src="images/G2.png"
                                 alt="G1 Phase cell showing dispersed chromatin stained with DAPI (blue)"
                                 class="microscope-image">
-
                         </div>
                     </div>
-                </div>
-                <div class="dna-section">
-                    <h3><span>🧬</span> Chromatin Organization</h3>
-                    <div class="dna-illustration">
-                        <svg viewBox="0 0 400 195" xmlns="http://www.w3.org/2000/svg">
-                            <!-- SVG content remains the same -->
-                            <defs>
-                                <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#60a5fa" />
-                                    <stop offset="100%" stop-color="#2563eb" />
-                                </linearGradient>
+                    <div class="dna-section">
+                        <h3><span>🧬</span> Chromatin Organization</h3>
+                        <div class="dna-illustration">
+                            <svg viewBox="0 0 400 195" xmlns="http://www.w3.org/2000/svg">
+                                <!-- SVG content remains the same -->
+                                <defs>
+                                    <linearGradient id="dnaGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stop-color="#60a5fa" />
+                                        <stop offset="100%" stop-color="#2563eb" />
+                                    </linearGradient>
 
-                                <radialGradient id="histoneGradient">
-                                    <stop offset="0%" stop-color="#f6c1dc" />
-                                    <stop offset="60%" stop-color="#c66aa0" />
-                                    <stop offset="100%" stop-color="#8b3f6b" />
-                                </radialGradient>
+                                    <radialGradient id="histoneGradient">
+                                        <stop offset="0%" stop-color="#f6c1dc" />
+                                        <stop offset="60%" stop-color="#c66aa0" />
+                                        <stop offset="100%" stop-color="#8b3f6b" />
+                                    </radialGradient>
 
-                                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="1.2" dy="1.2" stdDeviation="1.5" flood-opacity="0.25" />
-                                </filter>
+                                    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="1.2" dy="1.2" stdDeviation="1.5" flood-opacity="0.25" />
+                                    </filter>
 
-                                <g id="nucleosome" filter="url(#softShadow)">
-                                    <circle cx="-9" cy="-9" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="0" cy="-12" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="9" cy="-9" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="12" cy="0" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="9" cy="9" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="0" cy="12" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="-9" cy="9" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="-12" cy="0" r="6" fill="url(#histoneGradient)" />
-                                    <circle cx="0" cy="0" r="9" fill="url(#histoneGradient)" opacity="0.95" />
-                                    <path d="M -9 -15 C -14 -30, -10 -42, -4 -52" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M 0 -18 C 0 -34, 6 -44, 10 -54" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M 9 -15 C 14 -30, 10 -42, 4 -52" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M 15 0 C 32 4, 40 12, 48 18" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M 9 15 C 18 30, 14 42, 6 52" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M 0 18 C 0 34, -6 44, -10 54" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M -9 15 C -18 30, -14 42, -6 52" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="M -15 0 C -32 4, -40 12, -48 18" stroke="#8b3f6b" stroke-width="1.8"
-                                        fill="none" />
-                                    <path d="
+                                    <g id="nucleosome" filter="url(#softShadow)">
+                                        <circle cx="-9" cy="-9" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="0" cy="-12" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="9" cy="-9" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="12" cy="0" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="9" cy="9" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="0" cy="12" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="-9" cy="9" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="-12" cy="0" r="6" fill="url(#histoneGradient)" />
+                                        <circle cx="0" cy="0" r="9" fill="url(#histoneGradient)" opacity="0.95" />
+                                        <path d="M -9 -15 C -14 -30, -10 -42, -4 -52" stroke="#8b3f6b"
+                                            stroke-width="1.8" fill="none" />
+                                        <path d="M 0 -18 C 0 -34, 6 -44, 10 -54" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M 9 -15 C 14 -30, 10 -42, 4 -52" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M 15 0 C 32 4, 40 12, 48 18" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M 9 15 C 18 30, 14 42, 6 52" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M 0 18 C 0 34, -6 44, -10 54" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M -9 15 C -18 30, -14 42, -6 52" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="M -15 0 C -32 4, -40 12, -48 18" stroke="#8b3f6b" stroke-width="1.8"
+                                            fill="none" />
+                                        <path d="
         M -22 0
         C -18 -20, 18 -20, 22 0
         C 18 20, -18 20, -22 0
         C -14 -12, 14 -12, 16 0" fill="none" stroke="url(#dnaGradient)" stroke-width="2.2" stroke-linecap="round" />
-                                </g>
-                            </defs>
+                                    </g>
+                                </defs>
 
-                            <path d="
+                                <path d="
     M 20 105
     C 60 90, 100 120, 140 105
     C 180 90, 220 120, 260 105
     C 300 90, 340 120, 380 105" fill="none" stroke="url(#dnaGradient)" stroke-width="2.2" />
 
-                            <use href="#nucleosome" x="80" y="105" />
-                            <use href="#nucleosome" x="160" y="105" />
-                            <use href="#nucleosome" x="240" y="105" />
-                            <use href="#nucleosome" x="320" y="105" />
+                                <use href="#nucleosome" x="80" y="105" />
+                                <use href="#nucleosome" x="160" y="105" />
+                                <use href="#nucleosome" x="240" y="105" />
+                                <use href="#nucleosome" x="320" y="105" />
 
-                            <text x="80" y="150" text-anchor="middle" font-size="12" fill="#374151">
-                                Nucleosome
-                            </text>
+                                <text x="80" y="150" text-anchor="middle" font-size="12" fill="#374151">
+                                    Nucleosome
+                                </text>
 
-                            <text x="200" y="35" text-anchor="middle" font-size="14" fill="#1e40af" font-weight="bold">
-                                "Beads on a String"
-                            </text>
+                                <text x="200" y="35" text-anchor="middle" font-size="14" fill="#1e40af"
+                                    font-weight="bold">
+                                    "Beads on a String"
+                                </text>
 
-                            <text x="200" y="195" text-anchor="middle" font-size="11" fill="#6b7280">
-                                10 nm Fiber – Uncondensed Chromatin
-                            </text>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div class="terminology-section">
-                <h4><span>📚</span> DNA Terminology Matrix</h4>
-                <div class="terminology-grid">
-                    <div class="dna-name">
-                        <div class="name-title">
-                            <span class="structure-indicator chromatin"></span>
-                            Chromatin
-                        </div>
-                        <div class="name-reason">
-                            DNA + histone protein complex in an uncondensed, transcriptionally active state.
-                            Maintains 10nm fiber organization suitable for gene expression.
-                        </div>
-                    </div>
-                    <div class="dna-name">
-                        <div class="name-title">
-                            <span class="structure-indicator single"></span>
-                            Uncondensed Chromosome
-                        </div>
-                        <div class="name-reason">
-                            Emphasizes extended, uncondensed nature of individual chromosomes. DNA remains in
-                            relaxed conformation for accessibility to transcription machinery.
-                        </div>
-                    </div>
-                    <div class="dna-name">
-                        <div class="name-title">
-                            <span class="structure-indicator single"></span>
-                            Single Chromosome
-                        </div>
-                        <div class="name-reason">
-                            Each chromosome consists of one DNA molecule (one chromatid). Chromosome number =
-                            2n, DNA content = 2C (diploid complement).
-                        </div>
-                    </div>
-                    <div class="dna-name">
-                        <div class="name-title">
-                            <span class="structure-indicator chromatin"></span>
-                            Nucleosome Fiber
-                        </div>
-                        <div class="name-reason">
-                            Primary structural unit: 147bp DNA wrapped around histone octamer core. Forms
-                            repeating "beads on a string" visible in electron microscopy.
+                                <text x="200" y="195" text-anchor="middle" font-size="11" fill="#6b7280">
+                                    10 nm Fiber – Uncondensed Chromatin
+                                </text>
+                            </svg>
                         </div>
                     </div>
                 </div>
 
-                <div class="key-features">
-                    <h4>🎯 Key Structural Features</h4>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <strong>DNA State:</strong> Unreplicated, uncondensed
+                <div class="terminology-section">
+                    <h4><span>📚</span> DNA Terminology Matrix</h4>
+                    <div class="terminology-grid">
+                        <div class="dna-name">
+                            <div class="name-title">
+                                <span class="structure-indicator chromatin"></span>
+                                Chromatin
+                            </div>
+                            <div class="name-reason">
+                                DNA + histone protein complex in an uncondensed, transcriptionally active state.
+                                Maintains 10nm fiber organization suitable for gene expression.
+                            </div>
                         </div>
-                        <div class="feature-item">
-                            <strong>Chromosome Count:</strong> 2n (diploid)
+                        <div class="dna-name">
+                            <div class="name-title">
+                                <span class="structure-indicator single"></span>
+                                Uncondensed Chromosome
+                            </div>
+                            <div class="name-reason">
+                                Emphasizes extended, uncondensed nature of individual chromosomes. DNA remains in
+                                relaxed conformation for accessibility to transcription machinery.
+                            </div>
                         </div>
-                        <div class="feature-item">
-                            <strong>DNA Content:</strong> 2C
+                        <div class="dna-name">
+                            <div class="name-title">
+                                <span class="structure-indicator single"></span>
+                                Single Chromosome
+                            </div>
+                            <div class="name-reason">
+                                Each chromosome consists of one DNA molecule (one chromatid). Chromosome number =
+                                2n, DNA content = 2C (diploid complement).
+                            </div>
                         </div>
-                        <div class="feature-item">
-                            <strong>Visualization:</strong> Diffuse nuclear staining
+                        <div class="dna-name">
+                            <div class="name-title">
+                                <span class="structure-indicator chromatin"></span>
+                                Nucleosome Fiber
+                            </div>
+                            <div class="name-reason">
+                                Primary structural unit: 147bp DNA wrapped around histone octamer core. Forms
+                                repeating "beads on a string" visible in electron microscopy.
+                            </div>
                         </div>
-                        <div class="feature-item">
-                            <strong>Function:</strong> Transcription, growth
+                    </div>
+
+                    <div class="key-features">
+                        <h4>🎯 Key Structural Features</h4>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <strong>DNA State:</strong> Unreplicated, uncondensed
+                            </div>
+                            <div class="feature-item">
+                                <strong>Chromosome Count:</strong> 2n (diploid)
+                            </div>
+                            <div class="feature-item">
+                                <strong>DNA Content:</strong> 2C
+                            </div>
+                            <div class="feature-item">
+                                <strong>Visualization:</strong> Diffuse nuclear staining
+                            </div>
+                            <div class="feature-item">
+                                <strong>Function:</strong> Transcription, growth
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div id="s" class="phase-content" role="tabpanel" aria-labelledby="s-tab">
