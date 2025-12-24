@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics & Scale - PreLab</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="global">
+        <a href="../index.html">← Back to Hub</a>
+        <span>Metrics & Scale</span>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h3>Micro-Pretest: Metrics</h3>
+            <div id="result-area"></div>
+            <div id="quiz-container" class="quiz"></div>
+        </div>
+    </div>
+
+    <script src="../js/lab_app.js"></script>
+    <script>
+        const questions = [
+            { 
+                prompt: 'Convert 334 nm to meters (m).',
+                choices: ['3.34×10⁻⁷ m', '3.34×10⁻⁶ m', '3.34×10⁻⁹ m'], 
+                answer: 0,
+                explain: '1 nm = 10⁻⁹ m. Moving the decimal for scientific notation gives 10⁻⁷.'
+            },
+            { 
+                prompt: 'Convert 21.2 L to mL.',
+                choices: ['2.12×10³ mL', '2.12×10⁴ mL', '2.12×10² mL'], 
+                answer: 1,
+                explain: '21.2 L = 21,200 mL.'
+            }
+            // Add remaining metrics questions here...
+        ];
+        initQuiz('prelab_metrics', questions);
+    </script>
+</body>
+</html>
