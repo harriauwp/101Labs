@@ -1,0 +1,92 @@
+:root {
+  --uwp-red: #C5050C;
+  --uwp-gold: #F2A900;
+  --uwp-dark-blue: #003B5C;
+  --uwp-light-blue: #0085CA;
+  --success: #2e7d32;
+  --warning: #F57C00;
+  --danger: #c62828;
+  --bg: #f5f5f5;
+  --text: #212121;
+  --card-bg: #ffffff;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Header & Nav */
+header.global {
+  background: var(--uwp-dark-blue);
+  color: white;
+  border-bottom: 3px solid var(--uwp-gold);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header.global a { color: white; text-decoration: none; }
+header.global .home-link { font-weight: bold; font-size: 1.2rem; }
+
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Cards & Sections */
+.card {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+  border: 1px solid #ddd;
+}
+
+h2 { color: var(--uwp-dark-blue); border-bottom: 2px solid var(--uwp-gold); padding-bottom: 0.5rem; }
+h3 { color: var(--uwp-dark-blue); margin-top: 0; }
+
+/* Grid Layouts */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+
+/* Buttons */
+.btn {
+  background: var(--uwp-dark-blue);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover { background: var(--uwp-light-blue); }
+.btn:disabled { background: #ccc; cursor: not-allowed; }
+.btn-back { background: #666; margin-bottom: 1rem; display: inline-block; text-decoration: none; font-size: 0.9rem; }
+
+/* Quizzes */
+.quiz fieldset {
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 6px;
+}
+.quiz fieldset.correct { border-color: var(--success); background: #f1fff3; }
+.quiz fieldset.incorrect { border-color: var(--danger); background: #fff1f1; }
+.explain { 
+  display: none; margin-top: 0.5rem; padding: 0.5rem; 
+  background: #e3f2fd; border-radius: 4px; font-size: 0.9rem; 
+}
+
+/* Status Badges */
+.badge { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem; color: white; font-weight: bold; }
+.badge.pending { background: #999; }
+.badge.passed { background: var(--success); }
+.badge.locked { background: var(--danger); }
