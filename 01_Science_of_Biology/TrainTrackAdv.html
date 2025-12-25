@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,11 @@
             padding: 20px;
             background-color: #f4f7f9;
         }
-        h1 { color: #2c3e50; }
+
+        h1 {
+            color: #2c3e50;
+        }
+
         .controls-container {
             width: 90%;
             max-width: 1100px;
@@ -23,6 +28,7 @@
             justify-content: center;
             flex-wrap: wrap;
         }
+
         .instructions-block {
             border: 1px solid #bdc3c7;
             background-color: #fff;
@@ -31,18 +37,20 @@
             border-radius: 8px;
             width: 90%;
             max-width: 1100px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         .selector-group {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .selector-group label {
             font-weight: bold;
             color: #34495e;
         }
-        
+
         /* Pill Button Styling for Level Selector */
         .pill-button-group {
             display: flex;
@@ -50,6 +58,7 @@
             border-radius: 5px;
             overflow: hidden;
         }
+
         .pill-button-group button {
             padding: 8px 15px;
             font-size: 1em;
@@ -61,14 +70,17 @@
             color: #3498db;
             border-right: 1px solid #3498db;
         }
+
         .pill-button-group button:last-child {
             border-right: none;
         }
+
         .pill-button-group button.active {
             background-color: #3498db;
             color: white;
             font-weight: bold;
         }
+
         .pill-button-group button:hover:not(.active) {
             background-color: #ecf0f1;
         }
@@ -77,6 +89,7 @@
         .radio-group input[type="radio"] {
             display: none;
         }
+
         .radio-group label {
             padding: 8px 15px;
             font-size: 1em;
@@ -88,7 +101,8 @@
             transition: all 0.2s;
             margin-left: 5px;
         }
-        .radio-group input[type="radio"]:checked + label {
+
+        .radio-group input[type="radio"]:checked+label {
             background-color: #2ecc71;
             color: white;
             font-weight: bold;
@@ -103,24 +117,34 @@
             background-color: white;
             cursor: pointer;
         }
+
         .ref-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.8em;
         }
-        .ref-table th, .ref-table td {
+
+        .ref-table th,
+        .ref-table td {
             border: 1px solid #bdc3c7;
             padding: 2px 4px;
             text-align: center;
             height: 20px;
         }
-        .ref-table th { background-color: #34495e; color: white; }
-        .ref-table tr:nth-child(even) { background-color: #f2f2f2; }
+
+        .ref-table th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .ref-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
         /* Train Track Styling (derived from original source) */
         .track-wrapper {
             background-color: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
@@ -128,6 +152,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         .step-label {
             align-self: flex-start;
             font-weight: bold;
@@ -137,6 +162,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+
         .train-track-model {
             display: flex;
             align-items: center;
@@ -145,11 +171,13 @@
             transition: all 0.3s ease;
             position: relative;
         }
+
         .track-connector {
             font-size: 2em;
             color: #bdc3c7;
             margin: 5px 0;
         }
+
         .cell {
             display: flex;
             flex-direction: column;
@@ -159,7 +187,11 @@
             position: relative;
             transition: all 0.3s ease;
         }
-        .cell.hidden { display: none; }
+
+        .cell.hidden {
+            display: none;
+        }
+
         .track-line {
             width: 100%;
             height: 4px;
@@ -169,6 +201,7 @@
             transform: translateY(-50%);
             z-index: 0;
         }
+
         .cell:not(:last-child)::after {
             content: '';
             position: absolute;
@@ -179,16 +212,22 @@
             background-color: #2c3e50;
             z-index: 1;
         }
-        .cell.no-border::after { display: none; }
-        .numerator, .denominator {
+
+        .cell.no-border::after {
+            display: none;
+        }
+
+        .numerator,
+        .denominator {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 15px 10px;
-            z-index: 2; 
+            z-index: 2;
             height: 60px;
             width: 100%;
         }
+
         input {
             font-family: inherit;
             font-size: 1.1em;
@@ -199,16 +238,33 @@
             margin: 0 4px;
             transition: border-color 0.2s;
         }
-        input:focus { border-color: #3498db; outline: none; }
+
+        input:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
         input[readonly] {
             background-color: #e9ecef;
             color: #7f8c8d;
             border-color: #dcdcdc;
             cursor: not-allowed;
         }
-        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-        .val-input { width: 70px; }
-        .unit-input { width: 80px; }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .val-input {
+            width: 70px;
+        }
+
+        .unit-input {
+            width: 80px;
+        }
+
         .fixed-one {
             font-size: 1.5em;
             font-weight: bold;
@@ -216,16 +272,19 @@
             margin-right: 5px;
             user-select: none;
         }
+
         .scientific-group {
             display: flex;
             align-items: center;
-            background-color: rgba(255,255,255,0.9);
+            background-color: rgba(255, 255, 255, 0.9);
         }
+
         .base-ten {
             font-size: 1.4em;
             font-weight: bold;
             margin-right: 2px;
         }
+
         .exponent-input {
             width: 45px;
             height: 25px;
@@ -233,12 +292,17 @@
             margin-bottom: 15px;
             border: 2px solid #95a5a6;
         }
-        .rewrite-input { margin-bottom: 0; }
+
+        .rewrite-input {
+            margin-bottom: 0;
+        }
+
         .equals-sign {
             font-size: 2.5em;
             color: #2c3e50;
             padding: 0 15px;
         }
+
         .right-column-stack {
             display: flex;
             flex-direction: column;
@@ -246,6 +310,7 @@
             min-width: 350px;
             margin-left: 10px;
         }
+
         .info-box {
             display: flex;
             flex-direction: column;
@@ -255,22 +320,45 @@
             border: 1px solid #bdc3c7;
             width: 100%;
         }
-        .result-row { margin-bottom: 10px; width: 100%; }
+
+        .result-row {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
         .result-label {
             display: block;
             font-size: 0.85em;
             color: #7f8c8d;
             margin-bottom: 3px;
         }
-        .result-input-wrapper { display: flex; align-items: center; }
-        .answer-input { width: 120px; text-align: left; }
+
+        .result-input-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .answer-input {
+            width: 120px;
+            text-align: left;
+        }
+
         .final-unit-label {
             margin-left: 8px;
             font-weight: bold;
             color: #2c3e50;
         }
-        .correct { border-color: #27ae60 !important; background-color: #eafaf1 !important; }
-        .incorrect { border-color: #c0392b !important; background-color: #fdedec !important; }
+
+        .correct {
+            border-color: #27ae60 !important;
+            background-color: #eafaf1 !important;
+        }
+
+        .incorrect {
+            border-color: #c0392b !important;
+            background-color: #fdedec !important;
+        }
+
         .btn-container {
             display: flex;
             gap: 15px;
@@ -279,6 +367,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
+
         button {
             padding: 12px 24px;
             font-size: 1em;
@@ -288,24 +377,51 @@
             cursor: pointer;
             transition: transform 0.1s;
         }
-        button:active { transform: scale(0.98); }
-        .btn-new { background-color: #f1c40f; color: #333; }
-        .btn-new:hover { background-color: #f39c12; }
-        .btn-calc { background-color: #2ecc71; color: white; }
-        .btn-calc:hover { background-color: #27ae60; }
-        .btn-check { background-color: #3498db; color: white; }
-        .btn-check:hover { background-color: #2980b9; }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .btn-new {
+            background-color: #f1c40f;
+            color: #333;
+        }
+
+        .btn-new:hover {
+            background-color: #f39c12;
+        }
+
+        .btn-calc {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        .btn-calc:hover {
+            background-color: #27ae60;
+        }
+
+        .btn-check {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-check:hover {
+            background-color: #2980b9;
+        }
+
         .status-msg {
             font-weight: bold;
             margin-left: 10px;
             font-size: 1.1em;
         }
+
         .cancelled {
             text-decoration: line-through;
             text-decoration-thickness: 3px;
             text-decoration-color: #e74c3c;
             opacity: 0.6;
         }
+
         .mcat-badge {
             background-color: #9b59b6;
             color: white;
@@ -315,6 +431,7 @@
             font-weight: bold;
             margin-left: 10px;
         }
+
         /* Custom Dropdown/Input Group for Compound Units */
         .compound-unit-selector {
             display: flex;
@@ -322,6 +439,7 @@
             gap: 5px;
             align-items: center;
         }
+
         .unit-part-input {
             display: flex;
             align-items: center;
@@ -329,53 +447,70 @@
             border-radius: 4px;
             padding: 2px;
         }
+
         .unit-part-input select {
             padding: 5px;
             font-size: 0.9em;
             border: none;
             border-radius: 0;
         }
+
         .unit-part-input select:first-child {
             border-right: 1px solid #ccc;
         }
+
         .compound-unit-display {
             font-size: 1.1em;
             font-weight: bold;
             color: #2c3e50;
         }
+
         .unit-frac-line {
             font-size: 1.5em;
             font-weight: bold;
         }
-
     </style>
 </head>
+
 <body>
-    <h1>🚆 Advanced Metric Conversion — Compound Units <span class="mcat-badge">MCAT Edition</span></h1>
+    <div
+        style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px;">
+        <a href="index.html" style="color: #333; text-decoration: none; font-size: 1em;">← Back to Hub</a>
+        <h3 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);">🚆 Advanced Metric Conversion
+            — Compound Units <span class="mcat-badge">MCAT Edition</span></h3>
+        <div style="width: 100px;"></div>
+    </div>
 
     <div class="controls-container">
-        
+
         <div class="radio-group" role="radiogroup" aria-label="Conversion Type">
-            <input type="radio" id="type-conc" name="conversion-type" value="concentration" checked onchange="generateProblem()">
+            <input type="radio" id="type-conc" name="conversion-type" value="concentration" checked
+                onchange="generateProblem()">
             <label for="type-conc" aria-checked="true">Concentration</label>
             <input type="radio" id="type-density" name="conversion-type" value="density" onchange="generateProblem()">
             <label for="type-density" aria-checked="false">Density</label>
         </div>
 
         <div class="pill-button-group" role="group" aria-label="Difficulty Level">
-            <button id="level-medium" class="active" onclick="setLevel('medium', this)" aria-pressed="true">Level 2: Medium (2 Steps)</button>
-            <button id="level-hard" onclick="setLevel('hard', this)" aria-pressed="false">Level 3: Hard (3 Steps)</button>
+            <button id="level-medium" class="active" onclick="setLevel('medium', this)" aria-pressed="true">Level 2:
+                Medium (2 Steps)</button>
+            <button id="level-hard" onclick="setLevel('hard', this)" aria-pressed="false">Level 3: Hard (3
+                Steps)</button>
         </div>
-        
+
         <button class="btn-new" onclick="generateProblem()">🔄 New Problem</button>
     </div>
 
     <div class="instructions-block" style="margin: 0; padding: 0;">
-        <p id="problem-text" style="font-size: 1.3em; font-weight: bold; color: #2c3e50; margin: 2px 0 4px 0; padding: 0; line-height: 1.2;">Select Type and Level, then click 'New Problem'</p>
+        <p id="problem-text"
+            style="font-size: 1.3em; font-weight: bold; color: #2c3e50; margin: 2px 0 4px 0; padding: 0; line-height: 1.2;">
+            Select Type and Level, then click 'New Problem'</p>
         <p style="margin: 6px 0 2px 0; padding: 0;"><strong>Instructions (Dimensional Analysis):</strong></p>
         <ul style="margin: 0 0 6px 0; padding: 0 0 0 20px;">
-            <li style="margin: 0 0 2px 0; padding: 0;"><strong>Step 1:</strong> Set up conversion factors. Enter **Units** and **Exponents**. Click on units to show **Cancellation**.</li>
-            <li style="margin: 0 0 2px 0; padding: 0;"><strong>Step 2:</strong> Rewrite factors by moving Exponents to numerator. <span style="color:#e74c3c; font-weight:bold;">Flip the signs!</span></li>
+            <li style="margin: 0 0 2px 0; padding: 0;"><strong>Step 1:</strong> Set up conversion factors. Enter
+                **Units** and **Exponents**. Click on units to show **Cancellation**.</li>
+            <li style="margin: 0 0 2px 0; padding: 0;"><strong>Step 2:</strong> Rewrite factors by moving Exponents to
+                numerator. <span style="color:#e74c3c; font-weight:bold;">Flip the signs!</span></li>
             <li style="margin: 0; padding: 0;"><strong>Step 3:</strong> Calculate and Check your final answer.</li>
         </ul>
     </div>
@@ -387,7 +522,8 @@
                 <div class="cell" id="start-cell">
                     <div class="track-line"></div>
                     <div class="numerator">
-                        <input type="text" id="start-val" class="val-input" placeholder="Value" oninput="validateInput(this)" aria-label="Starting Value">
+                        <input type="text" id="start-val" class="val-input" placeholder="Value"
+                            oninput="validateInput(this)" aria-label="Starting Value">
                         <div class="compound-unit-display" id="start-unit-display"></div>
                     </div>
                     <div class="denominator"></div>
@@ -396,15 +532,18 @@
                 <div class="cell" id="step-1-cell">
                     <div class="track-line"></div>
                     <div class="numerator">
-                       <span class="fixed-one">1</span>
-                       <input type="text" id="unit-n1" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 1 Numerator Unit">
+                        <span class="fixed-one">1</span>
+                        <input type="text" id="unit-n1" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 1 Numerator Unit">
                     </div>
                     <div class="denominator">
                         <div class="scientific-group">
                             <span class="base-ten">10</span>
-                            <input type="number" id="exp-d1" class="exponent-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 1 Denominator Exponent">
+                            <input type="number" id="exp-d1" class="exponent-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 1 Denominator Exponent">
                         </div>
-                        <input type="text" id="unit-d1" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 1 Denominator Unit">
+                        <input type="text" id="unit-d1" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 1 Denominator Unit">
                     </div>
                 </div>
 
@@ -412,14 +551,17 @@
                     <div class="track-line"></div>
                     <div class="numerator">
                         <span class="fixed-one">1</span>
-                        <input type="text" id="unit-n2" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 2 Numerator Unit">
+                        <input type="text" id="unit-n2" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 2 Numerator Unit">
                     </div>
                     <div class="denominator">
                         <div class="scientific-group">
                             <span class="base-ten">10</span>
-                            <input type="number" id="exp-d2" class="exponent-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 2 Denominator Exponent">
+                            <input type="number" id="exp-d2" class="exponent-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 2 Denominator Exponent">
                         </div>
-                        <input type="text" id="unit-d2" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 2 Denominator Unit">
+                        <input type="text" id="unit-d2" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 2 Denominator Unit">
                     </div>
                 </div>
 
@@ -427,17 +569,20 @@
                     <div class="track-line"></div>
                     <div class="numerator">
                         <span class="fixed-one">1</span>
-                        <input type="text" id="unit-n3" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 3 Numerator Unit">
+                        <input type="text" id="unit-n3" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 3 Numerator Unit">
                     </div>
                     <div class="denominator">
                         <div class="scientific-group">
                             <span class="base-ten">10</span>
-                            <input type="number" id="exp-d3" class="exponent-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 3 Denominator Exponent">
+                            <input type="number" id="exp-d3" class="exponent-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 3 Denominator Exponent">
                         </div>
-                        <input type="text" id="unit-d3" class="unit-input unit-box" placeholder="Unit" onfocus="this.select()" aria-label="Conversion Factor 3 Denominator Unit">
+                        <input type="text" id="unit-d3" class="unit-input unit-box" placeholder="Unit"
+                            onfocus="this.select()" aria-label="Conversion Factor 3 Denominator Unit">
                     </div>
                 </div>
-                
+
                 <div class="cell no-border">
                     <span class="equals-sign">=</span>
                     <div class="compound-unit-display" id="target-unit-display"></div>
@@ -448,7 +593,7 @@
 
             <div class="step-label">Step 2: Rewrite (Move Denominators Up & Flip Signs)</div>
             <div class="train-track-model" id="step2-track">
-               <div class="cell">
+                <div class="cell">
                     <div class="track-line"></div>
                     <div class="numerator">
                         <input type="text" id="rewrite-val" class="val-input" readonly placeholder="Start Value">
@@ -461,7 +606,8 @@
                     <div class="numerator">
                         <div class="scientific-group">
                             <span class="base-ten">× 10</span>
-                            <input type="number" id="exp-flip-1" class="exponent-input rewrite-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 1 Flipped Exponent">
+                            <input type="number" id="exp-flip-1" class="exponent-input rewrite-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 1 Flipped Exponent">
                         </div>
                     </div>
                     <div class="denominator"></div>
@@ -472,18 +618,20 @@
                     <div class="numerator">
                         <div class="scientific-group">
                             <span class="base-ten">× 10</span>
-                            <input type="number" id="exp-flip-2" class="exponent-input rewrite-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 2 Flipped Exponent">
+                            <input type="number" id="exp-flip-2" class="exponent-input rewrite-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 2 Flipped Exponent">
                         </div>
                     </div>
                     <div class="denominator"></div>
                 </div>
-             
+
                 <div class="cell hidden" id="rewrite-3-cell">
                     <div class="track-line"></div>
                     <div class="numerator">
                         <div class="scientific-group">
                             <span class="base-ten">× 10</span>
-                            <input type="number" id="exp-flip-3" class="exponent-input rewrite-input" placeholder="?" onfocus="this.select()" aria-label="Conversion Factor 3 Flipped Exponent">
+                            <input type="number" id="exp-flip-3" class="exponent-input rewrite-input" placeholder="?"
+                                onfocus="this.select()" aria-label="Conversion Factor 3 Flipped Exponent">
                         </div>
                     </div>
                     <div class="denominator"></div>
@@ -497,14 +645,44 @@
             <div class="info-box">
                 <h3 style="margin: 0 0 5px 0; color:#2c3e50; font-size:1em;">Metric Prefixes</h3>
                 <table class="ref-table">
-                    <thead><tr><th>Prefix</th><th>Sym</th><th>10<sup>x</sup></th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Prefix</th>
+                            <th>Sym</th>
+                            <th>10<sup>x</sup></th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr><td>kilo</td><td>k</td><td>10<sup>3</sup></td></tr>
-                        <tr><td><strong>Base</strong></td><td>(m,g,L,mol)</td><td>10<sup>0</sup></td></tr>
-                        <tr><td>deci</td><td>d</td><td>10<sup>-1</sup></td></tr>
-                        <tr><td>centi</td><td>c</td><td>10<sup>-2</sup></td></tr>
-                        <tr><td>milli</td><td>m</td><td>10<sup>-3</sup></td></tr>
-                        <tr><td>micro</td><td>µ</td><td>10<sup>-6</sup></td></tr>
+                        <tr>
+                            <td>kilo</td>
+                            <td>k</td>
+                            <td>10<sup>3</sup></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Base</strong></td>
+                            <td>(m,g,L,mol)</td>
+                            <td>10<sup>0</sup></td>
+                        </tr>
+                        <tr>
+                            <td>deci</td>
+                            <td>d</td>
+                            <td>10<sup>-1</sup></td>
+                        </tr>
+                        <tr>
+                            <td>centi</td>
+                            <td>c</td>
+                            <td>10<sup>-2</sup></td>
+                        </tr>
+                        <tr>
+                            <td>milli</td>
+                            <td>m</td>
+                            <td>10<sup>-3</sup></td>
+                        </tr>
+                        <tr>
+                            <td>micro</td>
+                            <td>µ</td>
+                            <td>10<sup>-6</sup></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -513,14 +691,30 @@
                 <h3 style="margin: 0 0 5px 0; color:#9b59b6; font-size:1em;">MCAT Core Unit Equalities</h3>
                 <table class="ref-table">
                     <tbody>
-                        <tr><td>1 M = 1 mol/L</td></tr>
-                        <tr><td>1 L = 10<sup>3</sup> mL</td></tr>
-                        <tr><td>1 mL = 1 cm<sup>3</sup></td></tr>
-                        <tr><td>1 m<sup>3</sup> = 10<sup>3</sup> L</td></tr>
-                        <tr><td>1 mol = 10<sup>3</sup> mmol</td></tr>
-                        <tr><td>1 mmol = 10<sup>3</sup> μmol</td></tr>
-                        <tr><td>1 kg = 10<sup>3</sup> g</td></tr>
-                        <tr><td>1 g = 10<sup>3</sup> mg</td></tr>
+                        <tr>
+                            <td>1 M = 1 mol/L</td>
+                        </tr>
+                        <tr>
+                            <td>1 L = 10<sup>3</sup> mL</td>
+                        </tr>
+                        <tr>
+                            <td>1 mL = 1 cm<sup>3</sup></td>
+                        </tr>
+                        <tr>
+                            <td>1 m<sup>3</sup> = 10<sup>3</sup> L</td>
+                        </tr>
+                        <tr>
+                            <td>1 mol = 10<sup>3</sup> mmol</td>
+                        </tr>
+                        <tr>
+                            <td>1 mmol = 10<sup>3</sup> μmol</td>
+                        </tr>
+                        <tr>
+                            <td>1 kg = 10<sup>3</sup> g</td>
+                        </tr>
+                        <tr>
+                            <td>1 g = 10<sup>3</sup> mg</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -530,14 +724,16 @@
                 <div class="result-row">
                     <label class="result-label">Scientific Notation (3 sig figs):</label>
                     <div class="result-input-wrapper">
-                        <input type="text" id="ans-sci" class="answer-input" placeholder="a.bce±d" readonly aria-label="Final Answer in Scientific Notation">
+                        <input type="text" id="ans-sci" class="answer-input" placeholder="a.bce±d" readonly
+                            aria-label="Final Answer in Scientific Notation">
                         <span class="final-unit-label target-unit-display"></span>
                     </div>
                 </div>
                 <div class="result-row">
                     <label class="result-label">Decimal (3 sig figs):</label>
                     <div class="result-input-wrapper">
-                        <input type="text" id="ans-dec" class="answer-input" placeholder="0.000..." readonly aria-label="Final Answer in Decimal Form">
+                        <input type="text" id="ans-dec" class="answer-input" placeholder="0.000..." readonly
+                            aria-label="Final Answer in Decimal Form">
                         <span class="final-unit-label target-unit-display"></span>
                     </div>
                 </div>
@@ -552,29 +748,47 @@
         <span id="check-status" class="status-msg"></span>
     </div>
 
-    <div style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; width: 90%; max-width: 1100px; background-color: #f8f8f8;">
+    <div
+        style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; width: 90%; max-width: 1100px; background-color: #f8f8f8;">
         <h3 style="margin-top: 0;">Custom Problem Setup</h3>
         <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-            
+
             <div class="compound-unit-selector">
                 <label>Start Unit:</label>
                 <div class="unit-part-input">
-                    <select id="custom-start-num-pre" aria-label="Starting Numerator Prefix" onchange="updateCustomUnits()">
+                    <select id="custom-start-num-pre" aria-label="Starting Numerator Prefix"
+                        onchange="updateCustomUnits()">
                         <option value="">(None)</option>
-                        <option value="k">k</option><option value="d">d</option><option value="c">c</option><option value="m">m</option><option value="µ">µ</option>
+                        <option value="k">k</option>
+                        <option value="d">d</option>
+                        <option value="c">c</option>
+                        <option value="m">m</option>
+                        <option value="µ">µ</option>
                     </select>
-                    <select id="custom-start-num-unit" aria-label="Starting Numerator Unit" onchange="updateCustomUnits()">
-                        <option value="mol">mol</option><option value="g">g</option><option value="kg">kg</option>
+                    <select id="custom-start-num-unit" aria-label="Starting Numerator Unit"
+                        onchange="updateCustomUnits()">
+                        <option value="mol">mol</option>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
                     </select>
                 </div>
                 <span class="unit-frac-line">/</span>
                 <div class="unit-part-input">
-                    <select id="custom-start-den-pre" aria-label="Starting Denominator Prefix" onchange="updateCustomUnits()">
+                    <select id="custom-start-den-pre" aria-label="Starting Denominator Prefix"
+                        onchange="updateCustomUnits()">
                         <option value="">(None)</option>
-                        <option value="k">k</option><option value="d">d</option><option value="c">c</option><option value="m">m</option><option value="µ">µ</option>
+                        <option value="k">k</option>
+                        <option value="d">d</option>
+                        <option value="c">c</option>
+                        <option value="m">m</option>
+                        <option value="µ">µ</option>
                     </select>
-                    <select id="custom-start-den-unit" aria-label="Starting Denominator Unit" onchange="updateCustomUnits()">
-                        <option value="L">L</option><option value="g">g</option><option value="m³">m³</option><option value="cm³">cm³</option>
+                    <select id="custom-start-den-unit" aria-label="Starting Denominator Unit"
+                        onchange="updateCustomUnits()">
+                        <option value="L">L</option>
+                        <option value="g">g</option>
+                        <option value="m³">m³</option>
+                        <option value="cm³">cm³</option>
                     </select>
                 </div>
             </div>
@@ -582,29 +796,47 @@
             <div class="compound-unit-selector">
                 <label>Target Unit:</label>
                 <div class="unit-part-input">
-                    <select id="custom-target-num-pre" aria-label="Target Numerator Prefix" onchange="updateCustomUnits()">
+                    <select id="custom-target-num-pre" aria-label="Target Numerator Prefix"
+                        onchange="updateCustomUnits()">
                         <option value="">(None)</option>
-                        <option value="k">k</option><option value="d">d</option><option value="c">c</option><option value="m">m</option><option value="µ">µ</option>
+                        <option value="k">k</option>
+                        <option value="d">d</option>
+                        <option value="c">c</option>
+                        <option value="m">m</option>
+                        <option value="µ">µ</option>
                     </select>
-                    <select id="custom-target-num-unit" aria-label="Target Numerator Unit" onchange="updateCustomUnits()">
-                        <option value="mol">mol</option><option value="g">g</option><option value="kg">kg</option>
+                    <select id="custom-target-num-unit" aria-label="Target Numerator Unit"
+                        onchange="updateCustomUnits()">
+                        <option value="mol">mol</option>
+                        <option value="g">g</option>
+                        <option value="kg">kg</option>
                     </select>
                 </div>
                 <span class="unit-frac-line">/</span>
                 <div class="unit-part-input">
-                    <select id="custom-target-den-pre" aria-label="Target Denominator Prefix" onchange="updateCustomUnits()">
+                    <select id="custom-target-den-pre" aria-label="Target Denominator Prefix"
+                        onchange="updateCustomUnits()">
                         <option value="">(None)</option>
-                        <option value="k">k</option><option value="d">d</option><option value="c">c</option><option value="m">m</option><option value="µ">µ</option>
+                        <option value="k">k</option>
+                        <option value="d">d</option>
+                        <option value="c">c</option>
+                        <option value="m">m</option>
+                        <option value="µ">µ</option>
                     </select>
-                    <select id="custom-target-den-unit" aria-label="Target Denominator Unit" onchange="updateCustomUnits()">
-                        <option value="L">L</option><option value="g">g</option><option value="m³">m³</option><option value="cm³">cm³</option>
+                    <select id="custom-target-den-unit" aria-label="Target Denominator Unit"
+                        onchange="updateCustomUnits()">
+                        <option value="L">L</option>
+                        <option value="g">g</option>
+                        <option value="m³">m³</option>
+                        <option value="cm³">cm³</option>
                     </select>
                 </div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <label for="custom-start-val">Custom Start Value:</label>
-                <input type="text" id="custom-start-val" value="1.0" class="val-input" placeholder="e.g., 1.0" oninput="updateCustomUnits()">
+                <input type="text" id="custom-start-val" value="1.0" class="val-input" placeholder="e.g., 1.0"
+                    oninput="updateCustomUnits()">
                 <button class="btn-new" onclick="generateCustomProblem()">Generate Custom Problem</button>
             </div>
         </div>
@@ -616,11 +848,11 @@
     <script>
         // --- Core Data Structures ---
         const prefixes = [
-            {sym: 'k', exp: 3}, {sym: '', exp: 0}, 
-            {sym: 'd', exp: -1}, {sym: 'c', exp: -2}, {sym: 'm', exp: -3},
-            {sym: 'µ', exp: -6}
+            { sym: 'k', exp: 3 }, { sym: '', exp: 0 },
+            { sym: 'd', exp: -1 }, { sym: 'c', exp: -2 }, { sym: 'm', exp: -3 },
+            { sym: 'µ', exp: -6 }
         ];
-        
+
         // Conversions defined as 1 <unitA> = 10^x <unitB>
         const unitEqualities = {
             'M': { unitB: 'mol/L', exponent: 0, steps: 1 }, // 1 M = 1 mol/L (definition)
@@ -698,7 +930,7 @@
                     if (p.sym === 'm' && unit === 'm³') continue; // m³ is a base unit for volume
                     if (p.sym === 'm' && unit.length === 1) continue; // Base unit 'm' (meter) not used in MCAT problems here
                     if (p.sym === 'm' && unit === 'mol') continue; // Base unit 'mol'
-                    
+
                     const baseUnit = unit.substring(p.sym.length);
                     if (baseUnit in unitEqualities || ['mol', 'g', 'L', 'm³', 'cm³', 'kg', 'mg', 'mmol', 'μmol'].includes(baseUnit)) {
                         return { sym: p.sym, exp: p.exp, base: baseUnit };
@@ -715,7 +947,7 @@
 
             const numPrefix = getPrefix(numerator);
             const denPrefix = getPrefix(denominator);
-            
+
             return {
                 num: { unit: numerator, prefix: numPrefix.sym, base: numPrefix.base, exp: numPrefix.exp },
                 den: { unit: denominator, prefix: denPrefix.sym, base: denPrefix.base, exp: denPrefix.exp }
@@ -730,7 +962,7 @@
 
         function formatDec(value) {
             if (value === 0) return '0.00';
-            return parseFloat(value.toPrecision(SIG_FIGS)).toLocaleString('en-US', {useGrouping: false});
+            return parseFloat(value.toPrecision(SIG_FIGS)).toLocaleString('en-US', { useGrouping: false });
         }
 
         // --- Unit Matching & Step Enforcement ---
@@ -751,14 +983,14 @@
             if (start.num.unit === target.num.unit && start.den.unit === target.den.unit) {
                 return 0; // Same unit
             }
-            
+
             // Step 1: Numerator conversion
             // This counts as a step if the prefix changes OR the base unit changes.
             if (start.num.unit !== target.num.unit) {
                 // If it's a simple prefix change (like µmol to mol), this is one step: 1 mol / 10^6 µmol
                 // If the base changes (like M to mol/L), we assume M is handled by a separate conversion (1 M = 1 mol/L)
                 // The complexity is in identifying the type of change.
-                
+
                 // Simplified: Check if prefixes differ, OR if the non-prefixed parts differ.
                 const startNumBase = start.num.base || start.num.unit;
                 const targetNumBase = target.num.base || target.num.unit;
@@ -789,36 +1021,36 @@
                     steps++;
                 }
             }
-            
+
             // This is a complex problem for a simple script. For MCAT-style problems,
             // we simplify based on the total number of distinct changes:
             // 1. Numerator unit change (unit base or prefix)
             // 2. Denominator unit change (unit base or prefix)
             // 3. Overall compound unit definition change (e.g., M to mol/L)
-            
+
             // Re-evaluating the specific problem sets' steps:
             // Conc L2 (2 steps): mol/L -> mmol/mL (Num prefix change: mol->mmol, Den unit change: L->mL) = 2 steps
             // Conc L3 (3 steps): μmol/mL -> mol/m³ (Num: μmol->mol, Den: mL->m³) = 3 steps (two prefix/base steps + one L->m³ base step)
             // Density L2 (2 steps): g/mL -> kg/L (Num: g->kg, Den: mL->L) = 2 steps
             // Density L3 (3 steps): kg/m³ -> g/mL (Num: kg->g, Den: m³->mL) = 3 steps (kg->g, m³->L, L->mL)
-            
+
             // The step count is the total number of non-identity conversion factors needed.
             // Simplified calculation: 1 if num changes, 1 if den changes. Max 2 for compound unit.
             // If num or den change requires multiple base-changes (e.g. m³ -> cm³ is 2 steps: m³->L, L->mL=cm³)
-            
+
             const numChange = start.num.unit !== target.num.unit;
             const denChange = start.den.unit !== target.den.unit;
-            
+
             let totalSteps = 0;
             if (numChange) totalSteps++;
             if (denChange) totalSteps++;
-            
+
             // Hardcode adjustment for common 3-step MCAT problems:
             // A change from a large volume unit to a small one (m³ to mL/cm³) or vice-versa,
             // combined with a mass/mole prefix change (kg/mol to g/mmol/µmol)
             const is3StepVolumeChange = (start.den.unit === 'm³' && (target.den.unit === 'mL' || target.den.unit === 'cm³')) ||
-                                       (target.den.unit === 'm³' && (start.den.unit === 'mL' || start.den.unit === 'cm³'));
-            
+                (target.den.unit === 'm³' && (start.den.unit === 'mL' || start.den.unit === 'cm³'));
+
             if (totalSteps === 2 && is3StepVolumeChange) {
                 totalSteps = 3; // The m³ to mL/cm³ conversion takes two steps: m³->L and L->mL/cm³
             }
@@ -833,34 +1065,34 @@
                 // For simplicity matching the problem sets:
                 return currentProblem.activeSteps;
             }
-            
+
             return totalSteps || (startUnit === targetUnit ? 0 : 1);
         }
 
         // --- Main Logic & UI Functions ---
 
-        window.onload = function() {
+        window.onload = function () {
             // Initialize with default settings
             document.getElementById('type-conc').checked = true;
             document.getElementById('level-medium').classList.add('active');
             generateProblem();
         };
 
-        function getRandomItem(arr) { 
+        function getRandomItem(arr) {
             return arr[Math.floor(Math.random() * arr.length)];
         }
-        
+
         function validateInput(input) {
-             const val = input.value;
-             // Allow numbers, scientific notation format (e.g., 1.23e-4), and negative sign
-             if (!/^-?\d*\.?\d*(e[+-]?\d+)?$/.test(val)) {
+            const val = input.value;
+            // Allow numbers, scientific notation format (e.g., 1.23e-4), and negative sign
+            if (!/^-?\d*\.?\d*(e[+-]?\d+)?$/.test(val)) {
                 input.value = val.slice(0, -1);
-             }
+            }
         }
 
         function clearWorkspace() {
             document.querySelectorAll('input').forEach(i => {
-                if(!i.readOnly) i.value = '';
+                if (!i.readOnly) i.value = '';
                 i.classList.remove('correct', 'incorrect', 'cancelled');
             });
             document.querySelectorAll('.answer-input').forEach(i => i.value = '');
@@ -882,7 +1114,7 @@
             currentProblem.activeSteps = currentProblem.level === 'medium' ? 2 : 3;
 
             clearWorkspace();
-            
+
             let problem;
             if (customProblem) {
                 problem = customProblem;
@@ -892,7 +1124,7 @@
             } else {
                 const problems = problemSets[currentProblem.type][currentProblem.level];
                 problem = getRandomItem(problems);
-                
+
                 // Parse the start string (e.g., '5.00 μmol/mL')
                 const parts = problem.start.split(' ');
                 currentProblem.startVal = parts[0];
@@ -903,19 +1135,19 @@
             document.getElementById('problem-text').innerHTML = `Convert **${currentProblem.startVal} ${currentProblem.startUnit}** to **${currentProblem.targetUnit}**`;
             document.getElementById('start-val').value = currentProblem.startVal;
             document.getElementById('rewrite-val').value = currentProblem.startVal;
-            
+
             // Display compound units
             document.getElementById('start-unit-display').innerHTML = formatCompoundUnitDisplay(currentProblem.startUnit);
             document.getElementById('target-unit-display').innerHTML = formatCompoundUnitDisplay(currentProblem.targetUnit);
             document.querySelectorAll('.target-unit-display').forEach(el => el.innerHTML = formatCompoundUnitDisplay(currentProblem.targetUnit));
-            
+
             // Re-apply event listeners for unit cancellation
             document.querySelectorAll('.unit-box').forEach(box => {
                 box.removeEventListener('click', toggleCancelled);
                 box.addEventListener('click', toggleCancelled);
             });
         }
-        
+
         function generateCustomProblem() {
             const startNumPre = document.getElementById('custom-start-num-pre').value;
             const startNumUnit = document.getElementById('custom-start-num-unit').value;
@@ -932,7 +1164,7 @@
 
             const minSteps = determineMinSteps(startUnit, endUnit);
             const activeSteps = currentProblem.level === 'medium' ? 2 : 3;
-            
+
             document.getElementById('custom-unit-validation-msg').textContent = '';
 
             if (minSteps > activeSteps) {
@@ -943,20 +1175,20 @@
                 document.getElementById('custom-unit-validation-msg').textContent = `Error: This conversion requires ${minSteps} steps, but Level ${activeSteps} requires at least 2 steps.`;
                 return;
             }
-            
+
             generateProblem({ startVal: startVal, startUnit: startUnit, endUnit: endUnit });
         }
 
         function formatCompoundUnitDisplay(compoundUnit) {
-             const parts = compoundUnit.split('/');
-             if (parts.length > 1) {
-                 return `<span>${parts[0]}</span><span class="unit-frac-line">/</span><span>${parts[1]}</span>`;
-             }
-             return `<span>${compoundUnit}</span>`;
+            const parts = compoundUnit.split('/');
+            if (parts.length > 1) {
+                return `<span>${parts[0]}</span><span class="unit-frac-line">/</span><span>${parts[1]}</span>`;
+            }
+            return `<span>${compoundUnit}</span>`;
         }
 
         function toggleCancelled() {
-            if(this.value.trim() !== "") this.classList.toggle('cancelled');
+            if (this.value.trim() !== "") this.classList.toggle('cancelled');
         }
 
         function updateCustomUnits() {
@@ -979,12 +1211,12 @@
             document.getElementById('custom-unit-validation-msg').textContent = '';
 
             if (minSteps > activeSteps) {
-                 document.getElementById('custom-unit-validation-msg').textContent = `This conversion requires ${minSteps} steps. Level ${activeSteps} is selected.`;
+                document.getElementById('custom-unit-validation-msg').textContent = `This conversion requires ${minSteps} steps. Level ${activeSteps} is selected.`;
             } else if (minSteps < 2) {
                 document.getElementById('custom-unit-validation-msg').textContent = `This conversion requires ${minSteps} steps. Level ${activeSteps} requires at least 2 steps.`;
             }
         }
-        
+
         // --- Calculation and Validation ---
 
         /*
@@ -996,7 +1228,7 @@
         function calculateRequiredExponent(oldUnit, newUnit) {
             const oldParsed = getPrefix(oldUnit);
             const newParsed = getPrefix(newUnit);
-            
+
             // Case 1: Base Unit Change (e.g., L to mL, mol to mmol)
             // Use unitEqualities
             if (oldUnit in unitEqualities && newUnit === unitEqualities[oldUnit].unitB) {
@@ -1004,7 +1236,7 @@
             } else if (newUnit in unitEqualities && oldUnit === unitEqualities[newUnit].unitB) {
                 return -unitEqualities[newUnit].exponent; // E.g., 1 mL = 10^-3 L -> exp is -3
             }
-            
+
             // Case 2: Prefix Change (e.g., kL to L, or µL to L)
             // The relationship is 1 * <Base Unit> = 10^x * <Prefixed Unit>
             // The value * 10^Prefix_Old / 10^Prefix_New
@@ -1021,22 +1253,22 @@
                 // Wait, it's 1 * newUnit = 10^x * oldUnit
                 // 1 cL = 10^-2 L. 1 mL = 10^-3 L.
                 // 1 cL * (1 mL / 10^-1 cL) is wrong.
-                
+
                 // The factor in the denominator is 10^x * oldUnit. We need 1 * newUnit.
                 // If old is base unit (exp=0) and new is prefixed (exp=P), 
                 // Factor is: 1 * baseUnit / 10^P * prefixedUnit. Denom Exp is P. (Correct for old format)
-                
+
                 // Let's use the actual exponent for the unit in the denominator:
                 // E.g., Convert L (denom) to mL (num). 1 L = 10^3 mL. Denom Exp is 3.
                 // Convert L (denom) to kL (num). 1 L = 10^-3 kL. Denom Exp is -3.
-                
+
                 // The exponent is: (Exponent of new unit) - (Exponent of old unit)
                 return oldParsed.exp - newParsed.exp;
             }
-            
+
             // Case 3: Mixed (e.g., L to cm³)
             // This case relies on the user setting up multiple steps (L->mL, mL->cm³).
-            
+
             // This function is complex. Given the constraints, we only need to validate the step,
             // not *solve* for the conversion path. We will simplify the calculation:
 
@@ -1050,11 +1282,11 @@
                     return -unitEqualities[newUnit].exponent;
                 }
             }
-            
+
             // If it's a prefix change, use the prefix exponents
             // Target unit (numerator) is 10^x relative to old unit (denominator).
             // Exponent should be: 
-            return oldParsed.exp - newParsed.exp; 
+            return oldParsed.exp - newParsed.exp;
         }
 
         function calculateSetup() {
@@ -1068,30 +1300,30 @@
                 feedback.style.color = "#e74c3c";
                 return;
             }
-            
+
             // 1. Check Unit Cancellation
             const stepUnits = [
-                {id:'start-unit-display', w:1, unit: currentProblem.startUnit}, 
-                {id:'unit-n1', w:1, expId: 'exp-d1', flipId: 'exp-flip-1'}, 
-                {id:'unit-d1', w:-1, expId: 'exp-d1', flipId: 'exp-flip-1'}
+                { id: 'start-unit-display', w: 1, unit: currentProblem.startUnit },
+                { id: 'unit-n1', w: 1, expId: 'exp-d1', flipId: 'exp-flip-1' },
+                { id: 'unit-d1', w: -1, expId: 'exp-d1', flipId: 'exp-flip-1' }
             ];
             if (currentProblem.activeSteps >= 2) {
-                stepUnits.push({id:'unit-n2', w:1, expId: 'exp-d2', flipId: 'exp-flip-2'}, {id:'unit-d2', w:-1, expId: 'exp-d2', flipId: 'exp-flip-2'});
+                stepUnits.push({ id: 'unit-n2', w: 1, expId: 'exp-d2', flipId: 'exp-flip-2' }, { id: 'unit-d2', w: -1, expId: 'exp-d2', flipId: 'exp-flip-2' });
             }
             if (currentProblem.activeSteps >= 3) {
-                stepUnits.push({id:'unit-n3', w:1, expId: 'exp-d3', flipId: 'exp-flip-3'}, {id:'unit-d3', w:-1, expId: 'exp-d3', flipId: 'exp-flip-3'});
+                stepUnits.push({ id: 'unit-n3', w: 1, expId: 'exp-d3', flipId: 'exp-flip-3' }, { id: 'unit-d3', w: -1, expId: 'exp-d3', flipId: 'exp-flip-3' });
             }
 
             let expTotal = 0;
             let setupValid = true;
-            
+
             // Check Exponents and Flip Signs
             for (let i = 1; i <= currentProblem.activeSteps; i++) {
                 const expD = document.getElementById(`exp-d${i}`);
                 const expFlip = document.getElementById(`exp-flip-${i}`);
                 const unitN = document.getElementById(`unit-n${i}`).value.trim();
                 const unitD = document.getElementById(`unit-d${i}`).value.trim();
-                
+
                 expD.classList.remove('incorrect', 'correct');
                 expFlip.classList.remove('incorrect', 'correct');
 
@@ -1104,7 +1336,7 @@
                     feedback.style.color = "#e74c3c";
                     break;
                 }
-                
+
                 // Simplified Exponent Validation (just checking the flip)
                 if (expFlipVal !== -1 * expDVal) {
                     setupValid = false;
@@ -1123,10 +1355,10 @@
 
             // 2. Perform Calculation
             currentSolution = startVal * Math.pow(10, expTotal);
-            
+
             document.getElementById('ans-sci').value = formatSci(currentSolution);
             document.getElementById('ans-dec').value = formatDec(currentSolution);
-            
+
             feedback.textContent = `✅ Setup & Rewrite verified! Total Exponent: 10^${expTotal}. Final Value Calculated.`;
             feedback.style.color = "#27ae60";
         }
@@ -1134,16 +1366,16 @@
         function checkFinalUnit() {
             const status = document.getElementById('check-status');
             const feedback = document.getElementById('setup-feedback');
-            
+
             if (currentSolution === null) {
                 alert("Please click '1. Verify Setup & Signs' first.");
                 return;
             }
-            
+
             // Unit Tally Logic
             let tally = {};
             let unitsToTally = [];
-            
+
             // Add initial unit parts (numerator +1, denominator -1)
             const startParts = currentProblem.startUnit.split('/');
             unitsToTally.push({ unit: startParts[0].trim(), w: 1, cancelled: false });
@@ -1155,32 +1387,32 @@
             for (let i = 1; i <= currentProblem.activeSteps; i++) {
                 const unitN = document.getElementById(`unit-n${i}`);
                 const unitD = document.getElementById(`unit-d${i}`);
-                
+
                 const unitNVal = unitN.value.trim();
                 const unitDVal = unitD.value.trim();
-                
+
                 unitsToTally.push({ unit: unitNVal, w: 1, cancelled: unitN.classList.contains('cancelled') });
                 unitsToTally.push({ unit: unitDVal, w: -1, cancelled: unitD.classList.contains('cancelled') });
             }
-            
+
             // Tally non-cancelled units
             unitsToTally.forEach(item => {
                 if (!item.cancelled) {
                     const parts = item.unit.split('/');
                     tally[parts[0]] = (tally[parts[0]] || 0) + item.w;
-                    if(parts[1]) tally[parts[1]] = (tally[parts[1]] || 0) - item.w;
+                    if (parts[1]) tally[parts[1]] = (tally[parts[1]] || 0) - item.w;
                 }
             });
 
             // Target Unit Tally
             const targetParts = currentProblem.targetUnit.split('/');
-            let targetTally = {[targetParts[0]]: 1};
-            if(targetParts.length > 1) targetTally[targetParts[1]] = -1;
+            let targetTally = { [targetParts[0]]: 1 };
+            if (targetParts.length > 1) targetTally[targetParts[1]] = -1;
 
             let match = true;
-            for(let key in targetTally) if(tally[key] !== targetTally[key]) match = false;
-            for(let key in tally) if(!targetTally[key] && tally[key] !== 0) match = false;
-            
+            for (let key in targetTally) if (tally[key] !== targetTally[key]) match = false;
+            for (let key in tally) if (!targetTally[key] && tally[key] !== 0) match = false;
+
             if (match) {
                 status.textContent = `✅ Final Unit Correct: ${currentProblem.targetUnit}`;
                 status.style.color = "#27ae60";
@@ -1192,7 +1424,8 @@
                 feedback.style.color = "#e74c3c";
             }
         }
-        
+
     </script>
 </body>
+
 </html>
