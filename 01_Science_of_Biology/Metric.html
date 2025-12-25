@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,49 +14,49 @@
             --dark: #34495e;
             --success: #2ecc71;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f5f7fa;
             color: var(--dark);
             line-height: 1.6;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-        
-        header {
+
+            {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 25px;
             text-align: center;
         }
-        
+
         h1 {
             font-size: 2.2rem;
             margin-bottom: 10px;
         }
-        
+
         .subtitle {
             font-size: 1.1rem;
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
         }
-        
+
         .controls {
             display: flex;
             justify-content: space-between;
@@ -65,12 +66,12 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .view-toggle {
             display: flex;
             gap: 10px;
         }
-        
+
         button {
             padding: 8px 15px;
             border: none;
@@ -81,39 +82,40 @@
             transition: all 0.3s;
             font-weight: 500;
         }
-        
+
         button:hover {
             background: var(--primary);
             transform: translateY(-2px);
         }
-        
+
         button.active {
             background: var(--accent);
         }
-        
+
         .search-filter {
             display: flex;
             gap: 10px;
         }
-        
-        input, select {
+
+        input,
+        select {
             padding: 8px 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        
+
         .main-content {
             display: flex;
             flex-wrap: wrap;
             padding: 20px;
             gap: 20px;
         }
-        
+
         .chart-container {
             flex: 1;
             min-width: 300px;
         }
-        
+
         .info-panel {
             flex: 1;
             min-width: 300px;
@@ -121,80 +123,80 @@
             padding: 20px;
             border-radius: 8px;
         }
-        
+
         .chart {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
-        
+
         .chart th {
             background: var(--primary);
             color: white;
             padding: 12px 15px;
             text-align: left;
         }
-        
+
         .chart td {
             padding: 12px 15px;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .chart tr:nth-child(even) {
             background-color: #f8f9fa;
         }
-        
+
         .chart tr:hover {
             background-color: #e3f2fd;
         }
-        
+
         .prefix {
             font-weight: bold;
             color: var(--primary);
         }
-        
+
         .symbol {
             font-weight: bold;
             color: var(--secondary);
         }
-        
+
         .power {
             color: var(--accent);
             font-family: 'Courier New', monospace;
         }
-        
+
         .decimal {
             font-family: 'Courier New', monospace;
         }
-        
+
         .visualization {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin-top: 20px;
         }
-        
+
         .scale-bar {
             height: 30px;
             background: linear-gradient(to right, #e74c3c, #3498db, #2ecc71);
             border-radius: 5px;
             position: relative;
         }
-        
+
         .scale-labels {
             display: flex;
             justify-content: space-between;
             margin-top: 5px;
             font-size: 0.9rem;
         }
-        
+
         .example-section {
             margin-top: 30px;
             padding: 20px;
             background: #f8f9fa;
             border-radius: 8px;
         }
-        
+
         .example {
             margin: 15px 0;
             padding: 15px;
@@ -202,14 +204,14 @@
             border-left: 4px solid var(--secondary);
             border-radius: 4px;
         }
-        
+
         .interactive-tool {
             margin-top: 30px;
             padding: 20px;
             background: #e8f4fc;
             border-radius: 8px;
         }
-        
+
         .converter {
             display: flex;
             flex-wrap: wrap;
@@ -217,12 +219,13 @@
             align-items: center;
             margin-top: 15px;
         }
-        
-        .converter input, .converter select {
+
+        .converter input,
+        .converter select {
             flex: 1;
             min-width: 120px;
         }
-        
+
         .result {
             margin-top: 15px;
             padding: 15px;
@@ -230,14 +233,14 @@
             border-radius: 5px;
             font-weight: bold;
         }
-        
+
         .memory-aid {
             margin-top: 30px;
             padding: 20px;
             background: #fff8e1;
             border-radius: 8px;
         }
-        
+
         .mnemonic {
             font-style: italic;
             text-align: center;
@@ -247,11 +250,11 @@
             border-radius: 5px;
             font-size: 1.1rem;
         }
-        
+
         .print-only {
             display: none;
         }
-        
+
         /* Card View Styles */
         .card-view {
             display: none;
@@ -259,49 +262,49 @@
             gap: 15px;
             margin-top: 20px;
         }
-        
+
         .prefix-card {
             background: white;
             border-radius: 8px;
             padding: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s;
             cursor: pointer;
         }
-        
+
         .prefix-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
-        
+
         .card-name {
             font-size: 1.2rem;
             font-weight: bold;
             color: var(--primary);
             margin-bottom: 5px;
         }
-        
+
         .card-symbol {
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--secondary);
             margin-bottom: 10px;
         }
-        
+
         .card-power {
             color: var(--accent);
             font-family: 'Courier New', monospace;
             margin-bottom: 5px;
         }
-        
+
         /* Ladder View Styles */
         .ladder-view {
             display: none;
             flex-direction: column;
             margin-top: 20px;
         }
-        
+
         .ladder-step {
             display: flex;
             align-items: center;
@@ -311,29 +314,29 @@
             background: white;
             border-radius: 0 5px 5px 0;
         }
-        
+
         .ladder-step:nth-child(even) {
             background: #f8f9fa;
         }
-        
+
         .ladder-name {
             font-weight: bold;
             color: var(--primary);
             width: 80px;
         }
-        
+
         .ladder-symbol {
             font-weight: bold;
             color: var(--secondary);
             width: 40px;
         }
-        
+
         .ladder-power {
             color: var(--accent);
             font-family: 'Courier New', monospace;
             width: 80px;
         }
-        
+
         /* Train Track Conversion Styles */
         .train-track {
             margin-top: 15px;
@@ -343,84 +346,89 @@
             font-family: 'Courier New', monospace;
             display: none;
         }
-        
+
         .conversion-step {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
             justify-content: center;
         }
-        
+
         .fraction {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0 10px;
         }
-        
-        .numerator, .denominator {
+
+        .numerator,
+        .denominator {
             padding: 5px 10px;
             border: 1px solid #ddd;
         }
-        
+
         .numerator {
             border-bottom: none;
             border-radius: 5px 5px 0 0;
         }
-        
+
         .denominator {
             border-top: none;
             border-radius: 0 0 5px 5px;
         }
-        
+
         .equals {
             margin: 0 10px;
             font-weight: bold;
         }
-        
+
         @media (max-width: 768px) {
             .main-content {
                 flex-direction: column;
             }
-            
+
             .controls {
                 flex-direction: column;
             }
-            
-            .view-toggle, .search-filter {
+
+            .view-toggle,
+            .search-filter {
                 justify-content: center;
             }
         }
-        
+
         @media print {
             .no-print {
                 display: none;
             }
-            
+
             .print-only {
                 display: block;
                 text-align: center;
                 margin-bottom: 20px;
             }
-            
+
             body {
                 background: white;
                 padding: 0;
             }
-            
+
             .container {
                 box-shadow: none;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header>
+            <a href="../index.html" style="color:white; text-decoration:none;">← Back to Hub</a>
             <h1>Interactive Metric Prefix Chart</h1>
-            <p class="subtitle">Master metric prefixes from Giga to Pico with this comprehensive, multi-modal learning tool</p>
+            <p class="subtitle">Master metric prefixes from Giga to Pico with this comprehensive, multi-modal learning
+                tool</p>
         </header>
-        
+
         <div class="controls no-print">
             <div class="view-toggle">
                 <button id="tableViewBtn" class="active">Table View</button>
@@ -437,14 +445,14 @@
                 <button id="printBtn">Print Chart</button>
             </div>
         </div>
-        
+
         <div class="main-content">
             <div class="chart-container">
                 <div class="print-only">
                     <h2>Metric Prefix Reference Chart</h2>
                     <p>Use this chart for quick reference during your MCAT preparation</p>
                 </div>
-                
+
                 <!-- Table View -->
                 <div id="tableView">
                     <table class="chart" id="prefixTable">
@@ -462,17 +470,17 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <!-- Card View -->
                 <div class="card-view" id="cardView">
                     <!-- Cards will be populated by JavaScript -->
                 </div>
-                
+
                 <!-- Ladder View -->
                 <div class="ladder-view" id="ladderView">
                     <!-- Ladder steps will be populated by JavaScript -->
                 </div>
-                
+
                 <div class="visualization no-print">
                     <h3>Prefix Scale Visualization</h3>
                     <div class="scale-bar"></div>
@@ -483,13 +491,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="info-panel no-print">
                 <h3>Prefix Details</h3>
                 <div id="prefixDetails">
                     <p>Select a prefix from the table to see detailed information and examples.</p>
                 </div>
-                
+
                 <div class="interactive-tool">
                     <h3>Conversion Tool</h3>
                     <p>Practice converting between different metric prefixes using the "train track" method:</p>
@@ -514,21 +522,22 @@
                     </div>
                     <div class="result" id="conversionResult"></div>
                 </div>
-                
+
                 <div class="memory-aid">
                     <h3>Memory Aid</h3>
                     <p>Remember the order of prefixes with this mnemonic:</p>
                     <div class="mnemonic" id="mnemonicText">
                         "Great Giants Make Kings But Dwarfs Can't Make Mushrooms Naturally Perfect"
                     </div>
-                    <p><strong>G</strong>iga, <strong>M</strong>ega, <strong>K</strong>ilo, 
-                    <strong>B</strong>ase, <strong>D</strong>eci, <strong>C</strong>enti, <strong>M</strong>illi, 
-                    <strong>M</strong>icro, <strong>N</strong>ano, <strong>P</strong>ico</p>
+                    <p><strong>G</strong>iga, <strong>M</strong>ega, <strong>K</strong>ilo,
+                        <strong>B</strong>ase, <strong>D</strong>eci, <strong>C</strong>enti, <strong>M</strong>illi,
+                        <strong>M</strong>icro, <strong>N</strong>ano, <strong>P</strong>ico
+                    </p>
                     <button id="customMnemonicBtn">Create Your Own Mnemonic</button>
                 </div>
             </div>
         </div>
-        
+
         <div class="example-section no-print">
             <h3>MCAT-Relevant Examples</h3>
             <div class="example">
@@ -639,7 +648,7 @@
             ladderView.innerHTML = '';
             // Sort from highest to lowest power
             const sortedPrefixes = [...prefixes].sort((a, b) => b.power - a.power);
-            
+
             sortedPrefixes.forEach(prefix => {
                 const step = document.createElement('div');
                 step.className = 'ladder-step';
@@ -690,7 +699,7 @@
                 "Nano": "Critical: nanometers (DNA, light wavelength), nanomolar (nM)",
                 "Pico": "Important: picomolar concentrations (hormones, receptors)"
             };
-            
+
             return contexts[prefix.name] || "Common in various scientific measurements";
         }
 
@@ -700,13 +709,13 @@
                 const optionFrom = document.createElement('option');
                 optionFrom.value = prefix.power;
                 optionFrom.textContent = `${prefix.name} (${prefix.symbol})`;
-                
+
                 const optionTo = optionFrom.cloneNode(true);
-                
+
                 convertFrom.appendChild(optionFrom);
                 convertTo.appendChild(optionTo);
             });
-            
+
             // Set default values
             convertFrom.value = -3; // Milli
             convertTo.value = -6;   // Micro
@@ -718,7 +727,7 @@
             const fromPower = parseInt(convertFrom.value);
             const toPower = parseInt(convertTo.value);
             const unit = unitType.value;
-            
+
             if (isNaN(value)) {
                 conversionResult.textContent = "Please enter a valid number";
                 conversionResult.style.display = "block";
@@ -726,20 +735,20 @@
                 trainTrack.style.display = "none";
                 return;
             }
-            
+
             const powerDifference = fromPower - toPower;
             const result = value * Math.pow(10, powerDifference);
-            
+
             const fromPrefix = prefixes.find(p => p.power === fromPower);
             const toPrefix = prefixes.find(p => p.power === toPower);
-            
+
             // Show train track method
             trainTrack.innerHTML = '';
             trainTrack.style.display = "block";
-            
+
             const step = document.createElement('div');
             step.className = 'conversion-step';
-            
+
             // Create the train track visualization
             let trackHTML = `
                 <div>${value} ${fromPrefix.symbol}${unit}</div>
@@ -750,10 +759,10 @@
                 <div class="equals">=</div>
                 <div>${result} ${toPrefix.symbol}${unit}</div>
             `;
-            
+
             step.innerHTML = trackHTML;
             trainTrack.appendChild(step);
-            
+
             // Show the result
             conversionResult.innerHTML = `
                 ${value} ${fromPrefix.symbol}${unit} = <span style="color: var(--accent);">${result}</span> ${toPrefix.symbol}${unit}
@@ -766,21 +775,21 @@
         function filterContent() {
             const searchTerm = searchInput.value.toLowerCase();
             const filterValue = filterSelect.value;
-            
+
             const filteredPrefixes = prefixes.filter(prefix => {
-                const matchesSearch = prefix.name.toLowerCase().includes(searchTerm) || 
-                                     prefix.symbol.toLowerCase().includes(searchTerm);
-                
+                const matchesSearch = prefix.name.toLowerCase().includes(searchTerm) ||
+                    prefix.symbol.toLowerCase().includes(searchTerm);
+
                 let matchesFilter = true;
                 if (filterValue === "large") {
                     matchesFilter = prefix.power >= 3;
                 } else if (filterValue === "small") {
                     matchesFilter = prefix.power <= -3;
                 }
-                
+
                 return matchesSearch && matchesFilter;
             });
-            
+
             // Update table view
             tableBody.innerHTML = '';
             filteredPrefixes.forEach(prefix => {
@@ -795,7 +804,7 @@
                 row.addEventListener('click', () => showPrefixDetails(prefix));
                 tableBody.appendChild(row);
             });
-            
+
             // Update card view
             cardView.innerHTML = '';
             filteredPrefixes.forEach(prefix => {
@@ -810,7 +819,7 @@
                 card.addEventListener('click', () => showPrefixDetails(prefix));
                 cardView.appendChild(card);
             });
-            
+
             // Update ladder view
             ladderView.innerHTML = '';
             const sortedPrefixes = [...filteredPrefixes].sort((a, b) => b.power - a.power);
@@ -834,12 +843,12 @@
             tableView.style.display = 'none';
             cardView.style.display = 'none';
             ladderView.style.display = 'none';
-            
+
             // Remove active class from all buttons
             tableViewBtn.classList.remove('active');
             cardViewBtn.classList.remove('active');
             ladderViewBtn.classList.remove('active');
-            
+
             // Show selected view and set active button
             if (viewName === 'table') {
                 tableView.style.display = 'block';
@@ -880,4 +889,5 @@
         init();
     </script>
 </body>
+
 </html>
