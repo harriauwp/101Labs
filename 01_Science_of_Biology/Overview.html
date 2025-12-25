@@ -1,881 +1,984 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Scientific Process Arcade: PreMed Edition</title>
-<style>
-  :root {
-    --primary: #4f46e5;
-    --secondary: #10b981;
-    --accent: #f59e0b;
-    --danger: #ef4444;
-    --dark: #1e293b;
-    --light: #f8fafc;
-    --card-bg: #ffffff;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scientific Process Arcade: PreMed Edition</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-  body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: #f1f5f9;
-    color: var(--dark);
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    padding-bottom: 3rem;
-  }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            padding-bottom: 3rem;
+        }
 
-  /* --- Header & Nav --- */
-  header {
-    background: linear-gradient(135deg, var(--primary), #4338ca);
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
+        /* --- Header & Nav --- */
+        header {
+            background: linear-gradient(135deg, var(--primary), #4338ca);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-  h1 { margin: 0; font-size: 1.4rem; }
-  .subtitle { font-size: 0.85rem; opacity: 0.9; margin-top: 0.3rem; }
+        h1 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
 
-  .nav-scroller {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 0.8rem;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-  }
+        .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
 
-  .tab-btn {
-    background: var(--light);
-    color: var(--dark);
-    border: 1px solid #e2e8f0;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+        .nav-scroller {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0.8rem;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
 
-  .tab-btn:hover { background: #e0e7ff; }
-  
-  .tab-btn.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-    transform: scale(1.05);
-  }
+        .tab-btn {
+            background: var(--light);
+            color: var(--dark);
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
 
-  /* --- Main Container --- */
-  main {
-    max-width: 1000px; /* Widened slightly for the 2-col layout */
-    margin: 1rem auto;
-    padding: 0 1rem;
-  }
+        .tab-btn:hover {
+            background: #e0e7ff;
+        }
 
-  .section-view { display: none; animation: fadeIn 0.4s ease; }
-  .section-view.active { display: block; }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+        /* --- Main Container --- */
+        main {
+            max-width: 1000px;
+            /* Widened slightly for the 2-col layout */
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
 
-  /* --- General UI Components --- */
-  .timer-box {
-    background: var(--dark);
-    color: var(--accent);
-    font-family: monospace;
-    font-size: 1.5rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-  }
+        .section-view {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
 
-  .game-area {
-    background: white;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    min-height: 400px; 
-  }
+        .section-view.active {
+            display: block;
+        }
 
-  .intro-screen {
-    padding: 1rem;
-  }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-  .intro-screen h2 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-  
-  .intro-screen p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  .instruction-box {
-    background: #eff6ff;
-    border-left: 4px solid var(--primary);
-    padding: 0.8rem;
-    text-align: left;
-    margin: 0.5rem auto;
-    max-width: 600px;
-    border-radius: 0 8px 8px 0;
-    font-size: 0.9rem;
-  }
-  
-  .instruction-box h3 { margin-top: 0; color: var(--primary); font-size: 1rem; }
+        /* --- General UI Components --- */
+        .timer-box {
+            background: var(--dark);
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 1.5rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
 
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    margin-top: 0.8rem;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: #4338ca; }
+        .game-area {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            min-height: 400px;
+        }
 
-  /* --- Study Cards --- */
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-  .term-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1rem;
-    box-shadow: var(--shadow);
-    border-left: 5px solid var(--primary);
-    transition: transform 0.2s;
-    text-align: left;
-    position: relative;
-  }
-  .term-card:hover { transform: translateY(-3px); }
-  .term-title { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
-  .memory-device {
-    background: #e0f2fe; color: #0369a1; font-size: 0.7rem;
-    padding: 0.1rem 0.5rem; border-radius: 4px; font-weight: 700;
-    text-transform: uppercase; margin-bottom: 0.3rem; display: inline-block;
-  }
-  
-  .card-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.8rem;
-  }
-  .icon-btn {
-    background: #f1f5f9;
-    border: none;
-    padding: 0.4rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s;
-  }
-  .icon-btn:hover { background: #cbd5e1; }
-  .icon-btn.record-active { 
-    background: var(--danger); 
-    color: white; 
-    animation: pulse 1.5s infinite; 
-  }
+        .intro-screen {
+            padding: 1rem;
+        }
 
-  /* --- Scenario Styles (Including Selection Screen) --- */
-  
-  /* COMPACT LIST FIX START */
-  .scenario-list {
-      text-align: left;
-      /* Grid Layout for Compactness */
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* Two columns */
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      padding: 0;
-  }
+        .intro-screen h2 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
 
-  /* Make single column on very small phones */
-  @media (max-width: 600px) {
-    .scenario-list {
-      grid-template-columns: 1fr;
-    }
-  }
+        .intro-screen p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
 
-  .scenario-item {
-      padding: 6px 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      cursor: pointer;
-      background: #f8fafc;
-      transition: all 0.2s;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.85rem; /* Smaller font */
-      line-height: 1.3;
-  }
-  .scenario-item:hover {
-      background: #e0e7ff;
-      border-color: var(--primary);
-      transform: translateY(-2px);
-  }
-  .scenario-item span.time {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.85em;
-      white-space: nowrap;
-      margin-left: 8px;
-  }
-  /* COMPACT LIST FIX END */
+        .instruction-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 0.8rem;
+            text-align: left;
+            margin: 0.5rem auto;
+            max-width: 600px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
 
-  .scenario-text {
-    background: #fffbeb;
-    border-left: 4px solid var(--accent);
-    padding: 1rem;
-    text-align: left;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-  .scenario-options button {
-    display: block;
-    width: 100%;
-    margin: 0.4rem 0;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.2s;
-    font-size: 0.95rem;
-  }
-  .scenario-options button:hover { background: #f8fafc; border-color: var(--primary); }
+        .instruction-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1rem;
+        }
 
-  .completion-message {
-    padding: 1.5rem;
-    background: #ecfdf5;
-    border: 2px solid var(--secondary);
-    border-radius: 12px;
-    margin-top: 1rem;
-  }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 0.8rem;
+            transition: background 0.2s;
+        }
 
-  /* --- MODAL STYLES (Fixed Task 1) --- */
-  .modal {
-    display: none; /* HIDDEN BY DEFAULT */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
-    justify-content: center;
-    align-items: center;
-  }
+        .btn-primary:hover {
+            background: #4338ca;
+        }
 
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 2rem;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    animation: zoomIn 0.3s ease;
-  }
+        /* --- Study Cards --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
 
-  @keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+        .term-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+            transition: transform 0.2s;
+            text-align: left;
+            position: relative;
+        }
 
-  .trophy { font-size: 4rem; margin-bottom: 1rem; }
+        .term-card:hover {
+            transform: translateY(-3px);
+        }
 
-  /* Match Styles */
-  .match-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1rem;
-  }
-  .match-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-  }
-  .match-card {
-      background: #f1f5f9;
-      border: 2px solid #cbd5e1;
-      padding: 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 0.9rem;
-  }
-  .match-card:hover { background: #e2e8f0; }
-  .match-card.selected { border-color: var(--primary); background: #e0e7ff; }
-  .match-card.matched { visibility: hidden; pointer-events: none; }
+        .term-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
 
-  /* Prediction Styles */
-  .prediction-builder {
-      background: #f8fafc;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      text-align: left;
-  }
-  .logic-row {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-  }
-  .logic-label {
-      font-weight: 800;
-      color: var(--primary);
-      width: 60px;
-  }
-  .logic-select {
-      flex: 1;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid #cbd5e1;
-  }
-  .hypo-display {
-      font-weight: bold; 
-      margin-bottom: 1rem; 
-      padding: 1rem; 
-      background: #fffbeb; 
-      border-left: 4px solid var(--accent);
-  }
+        .memory-device {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+            display: inline-block;
+        }
 
-</style>
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .icon-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.4rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #cbd5e1;
+        }
+
+        .icon-btn.record-active {
+            background: var(--danger);
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- Scenario Styles (Including Selection Screen) --- */
+
+        /* COMPACT LIST FIX START */
+        .scenario-list {
+            text-align: left;
+            /* Grid Layout for Compactness */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Two columns */
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 0;
+        }
+
+        /* Make single column on very small phones */
+        @media (max-width: 600px) {
+            .scenario-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scenario-item {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #f8fafc;
+            transition: all 0.2s;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            /* Smaller font */
+            line-height: 1.3;
+        }
+
+        .scenario-item:hover {
+            background: #e0e7ff;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .scenario-item span.time {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.85em;
+            white-space: nowrap;
+            margin-left: 8px;
+        }
+
+        /* COMPACT LIST FIX END */
+
+        .scenario-text {
+            background: #fffbeb;
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            text-align: left;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .scenario-options button {
+            display: block;
+            width: 100%;
+            margin: 0.4rem 0;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .scenario-options button:hover {
+            background: #f8fafc;
+            border-color: var(--primary);
+        }
+
+        .completion-message {
+            padding: 1.5rem;
+            background: #ecfdf5;
+            border: 2px solid var(--secondary);
+            border-radius: 12px;
+            margin-top: 1rem;
+        }
+
+        /* --- MODAL STYLES (Fixed Task 1) --- */
+        .modal {
+            display: none;
+            /* HIDDEN BY DEFAULT */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            /* 15% from the top and centered */
+            padding: 2rem;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .trophy {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Match Styles */
+        .match-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .match-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .match-card {
+            background: #f1f5f9;
+            border: 2px solid #cbd5e1;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .match-card:hover {
+            background: #e2e8f0;
+        }
+
+        .match-card.selected {
+            border-color: var(--primary);
+            background: #e0e7ff;
+        }
+
+        .match-card.matched {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Prediction Styles */
+        .prediction-builder {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .logic-row {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logic-label {
+            font-weight: 800;
+            color: var(--primary);
+            width: 60px;
+        }
+
+        .logic-select {
+            flex: 1;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .hypo-display {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #fffbeb;
+            border-left: 4px solid var(--accent);
+        }
+    </style>
 </head>
+
 <body>
-
-<header>
-  <h1>🧬 PreMed Scientific Process Arcade</h1>
-  <div class="subtitle">Master the logic of experimental design</div>
-</header>
-
-<div class="nav-scroller">
-  <button class="tab-btn active" onclick="switchTab('study', this)">📚 Study</button>
-  <button class="tab-btn" onclick="switchTab('match', this)">⚡ Speed Match</button>
-  <button class="tab-btn" onclick="switchTab('scenario', this)">🧪 Lab Scenarios</button>
-  <button class="tab-btn" onclick="switchTab('prediction', this)">🔮 Prediction Engine</button>
-</div>
-
-<main>
-  
-  <section id="study-view" class="section-view active">
-    <div class="grid-container" id="cards-container">
-      </div>
-  </section>
-
-  <section id="match-view" class="section-view">
-    <div class="game-area">
-      <div id="match-start-screen" class="intro-screen">
-        <h2>⚡ Speed Match</h2>
-        <div class="instruction-box">
-          <h3>How to Play:</h3>
-          <ul>
-            <li>You have **60 seconds**.</li>
-            <li>Tap a **Term** on the left (e.g., "Hypothesis").</li>
-            <li>Tap the matching **Definition** or "Memory Device" on the right.</li>
-            <li>Clear the board to win!</li>
-          </ul>
+    <header>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="../index.html" style="color:black; text-decoration:none;">← Back to Hub</a>
+            <h2 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);">🧬 PreMed Scientific
+                Process Arcade</h2>
+            <div></div>
         </div>
-        <button class="btn-primary" onclick="startMatchGame()">Start Timer</button>
-      </div>
+        <p class="subtitle">Master the logic of experimental design</p>
 
-      <div id="match-game-board" style="display:none;">
-        <div class="timer-box" id="match-timer">60</div>
-        <div class="match-grid">
-          <div class="match-col" id="col-terms"></div>
-          <div class="match-col" id="col-defs"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="scenario-view" class="section-view">
-    <div class="game-area">
-      
-      <div id="scenario-select-screen" class="intro-screen">
-        <h2>🧪 Choose Your Experiment</h2>
-        <p>Select a real-world scenario to analyze its IV, DV, and Control/Constant.</p>
-        <div class="scenario-list" id="scenario-list">
-          </div>
-      </div>
-
-      <div id="scenario-board" style="display:none;">
-        <div class="timer-box" id="scenario-timer">00:00</div>
-        <div id="scenario-content">
-          <div class="scenario-text" id="story-text"></div>
-          <h3 id="question-text"></h3>
-          <div class="scenario-options" id="scenario-options"></div>
-        </div>
-      </div>
-
-      <div id="scenario-completion" style="display:none;">
-        <div class="completion-message">
-          <h3>Experiment Complete! 🎉</h3>
-          <p>Time Taken: <strong id="final-scenario-time"></strong></p>
-          <p style="color: var(--danger); font-weight: bold; margin-top: 1rem; font-size: 0.9rem;">
-             ⚠️ Score Reminder: Your time is saved only on this screen!
-          </p>
-        </div>
-        <button class="btn-primary" onclick="showScenarioSelection()">Choose Another Experiment</button>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="prediction-view" class="section-view">
-    <div class="game-area">
-      <div id="prediction-start-screen" class="intro-screen">
-        <h2>🔮 The Prediction Engine</h2>
-        <div class="instruction-box">
-          <h3>How to Play:</h3>
-          <ul>
-            <li>You will see a scientific **Hypothesis**.</li>
-            <li>Build a logical **Prediction** using the "IF / THEN" structure.</li>
-            <li>**Note:** There may be more than one correct path!</li>
-          </ul>
-        </div>
-        <button class="btn-primary" onclick="startPredictionGame()">Start Engine</button>
-      </div>
-
-      <div id="prediction-board" style="display:none;">
-        <div class="hypo-display" id="hypo-display">Hypothesis: ...</div>
-        
-        <div class="prediction-builder">
-          <div class="logic-row">
-            <span class="logic-label">IF...</span> 
-            <select id="select-if" class="logic-select"><option value="-1">Select Action (IV)</option></select>
-          </div>
-          <div class="logic-row">
-            <span class="logic-label">THEN...</span> 
-            <select id="select-then" class="logic-select"><option value="-1">Select Outcome (DV)</option></select>
-          </div>
+        <div class="nav-scroller">
+            <button class="tab-btn active" onclick="switchTab('study', this)">📚 Study</button>
+            <button class="tab-btn" onclick="switchTab('match', this)">⚡ Speed Match</button>
+            <button class="tab-btn" onclick="switchTab('scenario', this)">🧪 Lab Scenarios</button>
+            <button class="tab-btn" onclick="switchTab('prediction', this)">🔮 Prediction Engine</button>
         </div>
 
-        <button class="btn-primary" onclick="checkPrediction()">Test Prediction</button>
-        <div id="pred-feedback" style="margin-top:1.5rem; font-weight:bold; min-height: 1.5em; font-size:0.9rem;"></div>
-        <button id="next-pred-btn" class="btn-primary" style="display:none; background-color:var(--dark);" onclick="nextPrediction()">Next Challenge ➡</button>
-      </div>
-    </div>
-  </section>
+        <main>
 
-</main>
+            <section id="study-view" class="section-view active">
+                <div class="grid-container" id="cards-container">
+                </div>
+            </section>
 
-<div id="prize-modal" class="modal">
-  <div class="modal-content">
-    <div class="trophy">🏆</div>
-    <h2>Congratulations!</h2>
-    <p>You mastered the scientific process!</p>
-    <button class="btn-primary" onclick="closeModal()">Collect Prize</button>
-  </div>
-</div>
+            <section id="match-view" class="section-view">
+                <div class="game-area">
+                    <div id="match-start-screen" class="intro-screen">
+                        <h2>⚡ Speed Match</h2>
+                        <div class="instruction-box">
+                            <h3>How to Play:</h3>
+                            <ul>
+                                <li>You have **60 seconds**.</li>
+                                <li>Tap a **Term** on the left (e.g., "Hypothesis").</li>
+                                <li>Tap the matching **Definition** or "Memory Device" on the right.</li>
+                                <li>Clear the board to win!</li>
+                            </ul>
+                        </div>
+                        <button class="btn-primary" onclick="startMatchGame()">Start Timer</button>
+                    </div>
 
-<script>
-  /* --- DATA: Terms (Including all 7 steps + 3 variables) --- */
-  const terms = [
-    { t: "Observation", m: "The 'Huh?' Moment", d: "Noticing something interesting." },
-    { t: "Question", m: "The Big Ask", d: "Defining what you want to learn." },
-    { t: "Hypothesis", m: "The Possible Answer", d: "A proposed explanation or tentative answer to a scientific question." },
-    { t: "Experiment", m: "The Test Drive", d: "A procedure carried out under controlled conditions to test the hypothesis." },
-    { t: "Data Analysis", m: "The Number Crunch", d: "Organizing and interpreting the measurements to find patterns." },
-    { t: "Conclusion", m: "The Verdict", d: "Deciding if the data supports or refutes your hypothesis." },
-    { t: "Share Results", m: "The Gossip", d: "Publishing or presenting findings so others can learn." },
-    { t: "Repeat", m: "The Remix", d: "Doing the experiment again to ensure results weren't a fluke." },
-    { t: "Independent Variable", m: "The Cause", d: "The factor you manipulate." },
-    { t: "Dependent Variable", m: "The Effect", d: "The factor you measure." },
-    { t: "Control Group", m: "The Baseline", d: "Group with no treatment." },
-    { t: "Constants", m: "The Fair Rules", d: "Factors kept exactly the same." }
-  ];
+                    <div id="match-game-board" style="display:none;">
+                        <div class="timer-box" id="match-timer">60</div>
+                        <div class="match-grid">
+                            <div class="match-col" id="col-terms"></div>
+                            <div class="match-col" id="col-defs"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  /* --- DATA: SCENARIOS (20 Student Life Experiments) --- */
-  const scenarios = [
-    {
-      title: "1. Digital vs. Paper Notes",
-      text: "You suspect that the physical act of writing helps your brain encode information better than typing. You want to test if a low-tech approach can beat a modern digital one. For your next two identical biology lectures, you randomly assign yourself to either take notes by hand in a notebook or type them on your laptop. Two days later, you take a 50-question recall quiz on the lecture material.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The biology lecture content", "The method of note-taking (Digital vs. Paper)", "The final score on the recall quiz"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The time spent studying notes", "The type of notebook used", "The final score on the recall quiz"], ans: 2 },
-        { q: "What is a major Constant that must be maintained?", options: ["Using different color pens for each lecture", "The time interval between the lecture and the quiz", "Taking notes for a chemistry lecture"], ans: 1 }
-      ]
-    },
-    {
-      title: "2. Spaced Repetition vs. Cramming",
-      text: "You notice that while cramming helps you pass the next day's quiz, you forget everything quickly. You hypothesize that spreading out your study sessions over several days will lead to better long-term retention. You take two equivalent chapters in your anatomy textbook. For Chapter A, you study 8 hours the night before the test. For Chapter B, you study 2 hours a night for 4 consecutive nights. You test both with an equivalent quiz 14 days later.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The chapter's difficulty level", "The distribution of study time (Massed vs. Spaced)", "Your score 14 days later"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The total hours studied (8 hours)", "Your score on the retention quiz 14 days later", "The number of days between quizzes"], ans: 1 },
-        { q: "What serves as a Control Group/Baseline for memory retention?", options: ["Studying neither chapter and taking the quiz anyway", "The 8-hour massed study session", "Studying for 2 hours once"], ans: 1 }
-      ]
-    },
-    {
-      title: "3. Music Genre and Concentration",
-      text: "As a PreMed student, you have countless hours of reading. You want to determine which background environment is most efficient for deep reading. You select three equivalent research articles. You read one article while listening to lyrical pop music, the second while listening to instrumental classical music, and the third in complete silence. You record the time it takes to accurately summarize each article.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The genre of background sound (Lyrical, Classical, Silence)", "The length of the research article", "Your ability to focus"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The time required to accurately summarize the articles", "Your mood after reading", "The complexity of the subject matter"], ans: 0 },
-        { q: "What is a major Constant?", options: ["The type of background noise", "The difficulty/length of the research articles", "Reading a novel instead of a research article"], ans: 1 }
-      ]
-    },
-    {
-      title: "4. The Effect of 'Self-Quiz' Timing",
-      text: "You wonder if you are overconfident in your knowledge immediately after studying a topic. You divide your study material into two parts. After studying Part A, you quiz yourself immediately. After studying Part B, you wait 24 hours before quizzing yourself. You use a Metacognitive Accuracy measure: how closely your predicted quiz score matches your actual score.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The time delay before self-quizzing (Immediate vs. Delayed)", "The difficulty of the quiz questions", "The final score on the quiz"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The size of the study material", "The self-reported level of fatigue", "The difference between predicted and actual quiz score"], ans: 2 },
-        { q: "This experiment investigates your ability to...", options: ["Memorize quickly", "Focus without distractions", "Monitor your own learning (Metacognition)"], ans: 2 } 
-      ]
-    },
-    {
-      title: "5. Exercise as a Study Break",
-      text: "You decide to test if physical activity improves your post-break concentration more than passive rest. During a long study session, you take two distinct 15-minute breaks. On Break A, you do 15 minutes of light cardio (jumping jacks). On Break B, you spend 15 minutes scrolling social media. You measure the number of practice problems (of equivalent difficulty) you complete in the hour immediately following each break.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The duration of the study break", "The activity performed during the study break", "The total number of problems completed"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The type of social media used", "The number of problems completed in the hour following the break", "The amount of sugar consumed"], ans: 1 },
-        { q: "What is a Control Group/Baseline?", options: ["The social media break", "The cardio break", "A long 3-hour study session with no break"], ans: 0 }
-      ]
-    },
-    {
-      title: "6. The Highlighter Illusion",
-      text: "Many students rely heavily on highlighting, but you wonder if this passive activity actually improves comprehension. You select two identical-length research papers. For Paper 1, you highlight every key sentence. For Paper 2, you only underline key terms and write two questions in the margins per paragraph. You then measure the time it takes to verbally explain the main findings of each paper to a peer.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The annotation style (Heavy Highlighting vs. Active Annotation)", "The total time spent reading", "The complexity of the research findings"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The color of the highlighter used", "The time required to accurately explain the paper's findings", "The length of the paper in pages"], ans: 1 },
-        { q: "The illusion this experiment tests is confusing passive reading with...", options: ["Deep sleep", "Active comprehension/mastery", "Social networking"], ans: 1 }
-      ]
-    },
-    {
-      title: "7. Sleep and Problem Solving",
-      text: "As a future doctor, sleep deprivation is a risk. You want to see how lack of sleep affects high-level cognitive tasks. On one Saturday night, you ensure you get 8 hours of sleep. On the next Saturday night, you deliberately limit yourself to 5 hours of sleep. On Sunday morning after each night, you take an equivalent, standardized test involving complex, novel Organic Chemistry synthesis problems.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The difficulty of the synthesis problems", "The amount of sleep (8 hours vs. 5 hours)", "Your breakfast choice on Sunday morning"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The score on the complex problem-solving test", "The number of alarms you set", "The time spent studying during the week"], ans: 0 },
-        { q: "The 8-hour sleep night serves as the...", options: ["Experimental Group", "Control Condition (Optimal Baseline)", "Confounding Variable"], ans: 1 }
-      ]
-    },
-    {
-      title: "8. The Teaching Effect",
-      text: "It is often said that the best way to learn is to teach. To test this, you take two equivalent chapters from your physiology class. For Chapter A, you study normally. For Chapter B, you spend the final hour preparing a presentation to teach the chapter's content to a friend. You then take a multiple-choice quiz on both chapters, which is graded by a TA.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The method of learning (Independent Study vs. Preparing to Teach)", "The TA who grades the quiz", "The difficulty of the quiz questions"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The complexity of the diagrams used in the teaching session", "The score received on each chapter's multiple-choice quiz", "The time spent socializing with the peer"], ans: 1 },
-        { q: "Why is teaching a concept better for learning?", options: ["It is less stressful", "It forces you to reorganize the knowledge for clear communication", "It allows you to get help from a peer"], ans: 1 }
-      ]
-    },
-    {
-      title: "9. Caffeine and Vigilance",
-      text: "You are preparing for an intensive medical exam that requires long periods of unbroken attention (vigilance). You conduct a quick study to see if caffeine helps or hurts your sustained focus. On Day 1, you consume a large coffee before reading a dense research article. On Day 2, you consume only water. You then measure your Error Rate—the number of small grammatical or factual errors you miss—when proofreading a complex 10-page text.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The time of day the article is read", "Caffeine consumption (Caffeinated vs. Water)", "The density of the text"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The error rate (number of missed errors) during proofreading", "The source of the research article", "The feeling of alertness"], ans: 0 },
-        { q: "Which condition is the Control Condition?", options: ["Consuming the large coffee", "Consuming only water (Baseline)", "Consuming an energy drink"], ans: 1 }
-      ]
-    },
-    {
-      title: "10. The Environment Swap",
-      text: "You notice you often get distracted when studying on your couch. You hypothesize that your study location is a key trigger for procrastination. For your weekly review sessions, you alternate between two locations: your designated, uncluttered study desk and your comfortable bedroom couch. You track the total time spent procrastinating (checking phone, browsing) during the first two hours of each session.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The study topic (e.g., Physics vs. Biology)", "The study location (Desk vs. Couch)", "The self-reported mood"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The total time spent procrastinating", "The color of the couch", "The time of day the session occurred"], ans: 0 },
-        { q: "The goal of this experiment is to link environmental cues to:", options: ["Physical comfort", "Self-control and learning behavior", "The number of apps on your phone"], ans: 1 }
-      ]
-    },
-    // --- 10 NEW Learning Styles Experiments ---
-    {
-      title: "11. The Visual Learner's Map",
-      text: "You are covering a complex metabolic pathway in biochemistry. You decide to test if a highly visual study tool is more effective than a traditional outline. You study half the pathway using a large, color-coded mind map you drew. You study the other half using a standard, text-based linear outline. You then take a conceptual quiz covering the entire pathway.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The complexity of the metabolic pathway", "The study tool used (Mind Map vs. Outline)", "The score on the conceptual quiz"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The time spent drawing the map", "The conceptual quiz score", "Your overall GPA"], ans: 1 },
-        { q: "What is a major Constant?", options: ["The type of paper used", "The total amount of study time for each half", "The brand of pencils"], ans: 1 }
-      ]
-    },
-    {
-      title: "12. Auditory vs. Reading Input",
-      text: "You wonder if you retain information better when you hear it vs. when you read it. You take a full 60-minute recorded lecture. You listen to the recording for 60 minutes for one topic. For an equivalent topic, you read the verbatim transcript for 60 minutes. You then take a quiz focused on recalling specific facts and definitions for both topics.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The input method (Listening vs. Reading)", "The length of the lecture", "The number of facts recalled"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The speed of audio playback", "The score on the factual recall quiz", "The volume of the recording"], ans: 1 },
-        { q: "What is a Control Group/Baseline?", options: ["Listening to the lecture on 2x speed", "Reading the transcript silently", "Reading the transcript out loud"], ans: 1 } 
-      ]
-    },
-    {
-      title: "13. Kinesthetic - Flashcards",
-      text: "You believe the movement involved in shuffling, organizing, and physically flipping paper flashcards aids your motor memory more than tapping on a digital app. You prepare 50 cards physically and 50 equivalent cards digitally. You study each set for 30 minutes. You then test your speed and accuracy in matching the terms and definitions.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The term difficulty", "The format of the flashcards (Physical vs. Digital)", "The number of cards"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["Your test speed and accuracy in matching terms", "The color of the paper cards", "The type of digital app used"], ans: 0 },
-        { q: "What is the metacognitive process being tested?", options: ["Auditory processing", "Motor memory's influence on retrieval", "Visual acuity"], ans: 1 }
-      ]
-    },
-    {
-      title: "14. The Color Coding Effect",
-      text: "As a highly organized student, you meticulously color-code your lecture notes (e.g., definitions in blue, examples in green). You want to see if this structure truly improves information retrieval speed. You use your color-coded notes for Topic A. For Topic B, you use notes where the colors were randomly assigned. You time how quickly you can locate 10 specific pieces of information in each note set.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The content of the notes", "The color-coding system (Consistent vs. Random)", "The time to find the information"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The number of highlighters used", "The total time required to locate all 10 facts", "The aesthetic appeal of the notes"], ans: 1 },
-        { q: "What is a major Constant?", options: ["The time of day the notes were created", "The physical length of the two sets of notes", "The color of the highlighters"], ans: 1 }
-      ]
-    },
-    {
-      title: "15. Explaining Out Loud",
-      text: "You believe that hearing yourself verbally explain a complex concept forces you to use precise language, leading to better clarity. You study Topic A using only silent rehearsal (reading and thinking). You study Topic B by explaining the entire concept out loud to an empty room. You then write an equivalent essay on both topics, which is scored for clarity and precision.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The level of detail in the textbook", "The method of rehearsal (Silent vs. Verbal)", "The essay score"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The clarity and precision score on the essay", "The volume of your voice", "The time taken to write the essay"], ans: 0 },
-        { q: "The Control Group/Condition is:", options: ["Writing the essay with background music", "The silent rehearsal method", "Explaining the concept to a mirror"], ans: 1 }
-      ]
-    },
-    {
-      title: "16. Drawing vs. Describing",
-      text: "To consolidate a concept in cell biology, you use two different methods. For Concept A, you draw a detailed diagram of the process. For Concept B, you write a detailed 500-word description. A week later, you are given a transfer test—a new, complex problem that requires applying the conceptual knowledge from A and B.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The consolidation method (Drawing vs. Writing)", "The score on the transfer test", "The complexity of the new problem"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The quality of the drawings/writing", "The score on the new problem-solving transfer test", "The number of hours you slept"], ans: 1 },
-        { q: "Why is the transfer test a good measure?", options: ["It requires simple recall", "It tests the ability to apply and synthesize knowledge", "It is easier to grade"], ans: 1 }
-      ]
-    },
-    {
-      title: "17. Background Imagery Boost",
-      text: "You wonder if your study environment needs to be inspiring to keep you motivated. You track two equivalent 3-hour study sessions. Session A is done in a sterile, blank study room. Session B is done in a room decorated with motivational posters, medical imagery, and plants. You track the total time spent actively engaged in the task (before the first major distraction).",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The decorative content of the study environment", "The difficulty of the study material", "The student's mood"], ans: 0 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The time spent actively engaged before distraction", "The number of breaks taken", "The cost of the decorations"], ans: 0 },
-        { q: "The metacognitive focus here is:", options: ["Self-efficacy and goal-setting", "Kinesthetic learning", "Auditory recall"], ans: 0 }
-      ]
-    },
-    {
-      title: "18. Group Study vs. Solo Study",
-      text: "You want to find out if the efficiency gained from peer-quizzing outweighs the time lost to discussion. You study two equivalent subjects for 4 hours each. For Subject A, you study completely alone. For Subject B, you spend the entire 4 hours in a structured study group focused on peer-quizzing and concept clarification. You then take a standardized conceptual test on both subjects.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The total study time (4 hours)", "The study partner condition (Solo vs. Group)", "The test score"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The conceptual test score for each subject", "The number of people in the group", "The subject matter itself"], ans: 0 },
-        { q: "What is a major Constant?", options: ["The subject matter (e.g., Organic vs. Inorganic)", "The total time allocated for studying (4 hours)", "The time of day the test is taken"], ans: 1 }
-      ]
-    },
-    {
-      title: "19. The Fidget Factor",
-      text: "You notice you often get distracted during lectures. You wonder if this kinesthetic outlet helps or hinders your attention. You listen to two equivalent 30-minute lectures. During Lecture A, you use a small, non-distracting fidget cube. During Lecture B, you keep your hands completely still. Immediately after each, you take a surprise quiz on the lecture's content.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The lecture topic", "The availability of a kinesthetic outlet (Fidget vs. Still)", "The quiz score"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The number of times you yawned", "The score on the lecture content quiz", "The type of fidget object used"], ans: 1 },
-        { q: "The Control Group/Condition is:", options: ["Using a very distracting fidget toy", "Keeping your hands still (No kinesthetic input)", "Using a fidget toy and listening to music"], ans: 1 }
-      ]
-    },
-    {
-      title: "20. Using Mnemonics",
-      text: "Memorizing lists (like cranial nerves or amino acids) is crucial. You want to see if memory devices work. You use a standard mnemonic device (e.g., a sentence) to memorize List A. For List B (of equivalent length), you use simple rote memorization. You then measure the time it takes to accurately recall the sequence of each list.",
-      questions: [
-        { q: "What is the Independent Variable (IV)?", options: ["The type of list being memorized", "The memorization tool (Mnemonic vs. Rote)", "The time to recall the list"], ans: 1 },
-        { q: "What is the Dependent Variable (DV)?", options: ["The length of the lists", "The time required for accurate sequential recall", "The complexity of the mnemonic"], ans: 1 },
-        { q: "This experiment investigates the power of:", options: ["Auditory processing", "Encoding strategies and retrieval cues", "Peripheral vision"], ans: 1 }
-      ]
-    }
-  ];
+            <section id="scenario-view" class="section-view">
+                <div class="game-area">
 
-  /* --- DATA: PREDICTION DATA --- */
-  const predictions = [
-    // 1. Digital vs Paper
-    {
-      hypo: "Hypothesis: The physical act of writing aids encoding more than typing.",
-      ifOptions: ["I take notes by hand", "I type notes on a laptop"],
-      thenOptions: ["my recall score will be higher", "my recall score will be lower"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 2. Spaced Repetition
-    {
-      hypo: "Hypothesis: Spacing study sessions allows for memory consolidation.",
-      ifOptions: ["I cram for 8 hours one night", "I study 2 hours for 4 nights"],
-      thenOptions: ["I will forget the content quickly", "I will retain the content longer"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 3. Music & Focus
-    {
-      hypo: "Hypothesis: Lyrical music competes with language processing in the brain.",
-      ifOptions: ["I read while listening to lyrics", "I read in silence"],
-      thenOptions: ["my reading speed will decrease", "my reading speed will increase"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 4. Metacognition (Self-Quiz)
-    {
-      hypo: "Hypothesis: Delayed self-quizzing provides a more accurate measure of true learning.",
-      ifOptions: ["I quiz myself immediately after reading", "I quiz myself 24 hours later"],
-      thenOptions: ["I will be overconfident in my knowledge", "my predicted score will match my actual score"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 5. Exercise Breaks
-    {
-      hypo: "Hypothesis: Aerobic activity increases blood flow to the brain, resetting focus.",
-      ifOptions: ["I scroll social media on my break", "I do jumping jacks on my break"],
-      thenOptions: ["my subsequent focus will remain low", "my subsequent focus will improve"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 6. Active Annotation
-    {
-      hypo: "Hypothesis: Active processing (writing questions) creates stronger neural paths than passive highlighting.",
-      ifOptions: ["I highlight every sentence", "I write margin questions"],
-      thenOptions: ["my understanding will be superficial", "I will be able to explain the concept clearly"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 7. Sleep
-    {
-      hypo: "Hypothesis: Sleep deprivation impairs the brain's ability to solve novel problems.",
-      ifOptions: ["I sleep 5 hours before the test", "I sleep 8 hours before the test"],
-      thenOptions: ["my complex problem-solving score will drop", "my complex problem-solving score will be optimal"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 8. The Teaching Effect
-    {
-      hypo: "Hypothesis: Preparing to teach material forces you to organize information more logically.",
-      ifOptions: ["I study to teach a friend", "I study just to pass a quiz"],
-      thenOptions: ["my mastery of the topic will be deeper", "my mastery of the topic will be shallower"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 9. Caffeine & Vigilance
-    {
-      hypo: "Hypothesis: Moderate caffeine intake blocks adenosine, temporarily improving vigilance.",
-      ifOptions: ["I drink water only", "I drink coffee before the task"],
-      thenOptions: ["I might miss small details due to fatigue", "I will catch more small errors"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 10. Environment Cues
-    {
-      hypo: "Hypothesis: The brain associates specific locations (like a couch) with relaxation, not work.",
-      ifOptions: ["I study on my comfortable couch", "I study at a dedicated desk"],
-      thenOptions: ["I will procrastinate more", "I will procrastinate less"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 11. Visual Maps
-    {
-      hypo: "Hypothesis: Visualizing relationships (Mind Mapping) aids in understanding complex pathways.",
-      ifOptions: ["I use a linear text outline", "I draw a color-coded mind map"],
-      thenOptions: ["my conceptual understanding will be weaker", "my conceptual understanding will be stronger"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 12. Input Methods
-    {
-      hypo: "Hypothesis: Reading allows for self-paced regression, improving factual recall over audio.",
-      ifOptions: ["I listen to a lecture once", "I read the transcript at my own pace"],
-      thenOptions: ["I may miss specific facts", "my factual recall will be higher"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 13. Kinesthetic Flashcards
-    {
-      hypo: "Hypothesis: Physical manipulation of cards adds a motor-memory trace to learning.",
-      ifOptions: ["I use physical paper flashcards", "I tap a screen app"],
-      thenOptions: ["my retrieval speed will improve", "my retrieval speed will be slower"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 14. Structure & Color
-    {
-      hypo: "Hypothesis: Consistent color-coding reduces cognitive load during information retrieval.",
-      ifOptions: ["I color-code notes randomly", "I color-code definitions consistently"],
-      thenOptions: ["finding facts will take longer", "finding facts will be faster"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 15. Verbal Processing
-    {
-      hypo: "Hypothesis: Verbalizing a concept out loud identifies gaps in logic.",
-      ifOptions: ["I explain the concept to an empty room", "I read the concept silently"],
-      thenOptions: ["my essay will be clearer and more precise", "my essay might lack precision"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 16. Drawing vs Describing
-    {
-      hypo: "Hypothesis: Drawing requires spatial synthesis, aiding transfer to new problems.",
-      ifOptions: ["I write a paragraph description", "I draw a detailed diagram"],
-      thenOptions: ["I will struggle with the transfer test", "I will excel at the transfer test"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 17. Environment Aesthetics
-    {
-      hypo: "Hypothesis: An inspiring environment maintains motivation longer than a sterile one.",
-      ifOptions: ["I study in a decorated, inspiring room", "I study in a blank, sterile room"],
-      thenOptions: ["my engagement time will be longer", "my engagement time will be shorter"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 18. Social Learning
-    {
-      hypo: "Hypothesis: Active peer-quizzing outweighs the efficiency loss of socializing.",
-      ifOptions: ["I study solo", "I study in a structured quiz group"],
-      thenOptions: ["I miss the benefit of peer-correction", "I will score higher on the concept test"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 19. The Fidget Factor
-    {
-      hypo: "Hypothesis: Controlled motor activity (fidgeting) frees up attention resources.",
-      ifOptions: ["I sit completely still", "I use a non-distracting fidget cube"],
-      thenOptions: ["my mind may wander more", "my retention of the lecture will improve"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    },
-    // 20. Mnemonics
-    {
-      hypo: "Hypothesis: Mnemonic devices provide retrieval cues that rote memory lacks.",
-      ifOptions: ["I use a specific acronym", "I use rote memorization"],
-      thenOptions: ["I will recall the list sequence accurately", "I may mix up the list sequence"],
-      validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
-    }
-  ];
+                    <div id="scenario-select-screen" class="intro-screen">
+                        <h2>🧪 Choose Your Experiment</h2>
+                        <p>Select a real-world scenario to analyze its IV, DV, and Control/Constant.</p>
+                        <div class="scenario-list" id="scenario-list">
+                        </div>
+                    </div>
 
-  /* --- GLOBAL STATE --- */
-  let matchTimerInt, scenarioTimerInt;
-  let matchesFound = 0;
-  let currentScenarioQ = 0;
-  let currentPredIdx = 0;
-  let scenarioStartTime = 0; // Time in ms when scenario started
-  let currentScenarioIndex = -1; // Tracks the selected experiment
-  
-  // Audio state
-  let mediaRecorder = null;
-  let audioChunks = [];
-  let currentRecordingIndex = null;
-  
-  // Storage for best times (local storage simulation)
-  let bestTimes = JSON.parse(localStorage.getItem('scenarioBestTimes')) || {};
+                    <div id="scenario-board" style="display:none;">
+                        <div class="timer-box" id="scenario-timer">00:00</div>
+                        <div id="scenario-content">
+                            <div class="scenario-text" id="story-text"></div>
+                            <h3 id="question-text"></h3>
+                            <div class="scenario-options" id="scenario-options"></div>
+                        </div>
+                    </div>
 
-  /* --- INIT & TAB SWITCHING --- */
-  document.addEventListener('DOMContentLoaded', () => {
-    renderStudyCards();
-    showScenarioSelection(); 
-  });
+                    <div id="scenario-completion" style="display:none;">
+                        <div class="completion-message">
+                            <h3>Experiment Complete! 🎉</h3>
+                            <p>Time Taken: <strong id="final-scenario-time"></strong></p>
+                            <p style="color: var(--danger); font-weight: bold; margin-top: 1rem; font-size: 0.9rem;">
+                                ⚠️ Score Reminder: Your time is saved only on this screen!
+                            </p>
+                        </div>
+                        <button class="btn-primary" onclick="showScenarioSelection()">Choose Another Experiment</button>
+                    </div>
 
-  function switchTab(tab, btn) {
-    document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById(tab + '-view').classList.add('active');
-    btn.classList.add('active');
-  }
+                </div>
+            </section>
 
-  /* --- 1. STUDY VIEW (Audio Recording) --- */
-  function renderStudyCards() {
-    const container = document.getElementById('cards-container');
-    container.innerHTML = '';
-    
-    terms.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'term-card';
-      card.innerHTML = `
+            <section id="prediction-view" class="section-view">
+                <div class="game-area">
+                    <div id="prediction-start-screen" class="intro-screen">
+                        <h2>🔮 The Prediction Engine</h2>
+                        <div class="instruction-box">
+                            <h3>How to Play:</h3>
+                            <ul>
+                                <li>You will see a scientific **Hypothesis**.</li>
+                                <li>Build a logical **Prediction** using the "IF / THEN" structure.</li>
+                                <li>**Note:** There may be more than one correct path!</li>
+                            </ul>
+                        </div>
+                        <button class="btn-primary" onclick="startPredictionGame()">Start Engine</button>
+                    </div>
+
+                    <div id="prediction-board" style="display:none;">
+                        <div class="hypo-display" id="hypo-display">Hypothesis: ...</div>
+
+                        <div class="prediction-builder">
+                            <div class="logic-row">
+                                <span class="logic-label">IF...</span>
+                                <select id="select-if" class="logic-select">
+                                    <option value="-1">Select Action (IV)</option>
+                                </select>
+                            </div>
+                            <div class="logic-row">
+                                <span class="logic-label">THEN...</span>
+                                <select id="select-then" class="logic-select">
+                                    <option value="-1">Select Outcome (DV)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary" onclick="checkPrediction()">Test Prediction</button>
+                        <div id="pred-feedback"
+                            style="margin-top:1.5rem; font-weight:bold; min-height: 1.5em; font-size:0.9rem;"></div>
+                        <button id="next-pred-btn" class="btn-primary"
+                            style="display:none; background-color:var(--dark);" onclick="nextPrediction()">Next
+                            Challenge ➡</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <div id="prize-modal" class="modal">
+            <div class="modal-content">
+                <div class="trophy">🏆</div>
+                <h2>Congratulations!</h2>
+                <p>You mastered the scientific process!</p>
+                <button class="btn-primary" onclick="closeModal()">Collect Prize</button>
+            </div>
+        </div>
+
+        <script>
+            /* --- DATA: Terms (Including all 7 steps + 3 variables) --- */
+            const terms = [
+                { t: "Observation", m: "The 'Huh?' Moment", d: "Noticing something interesting." },
+                { t: "Question", m: "The Big Ask", d: "Defining what you want to learn." },
+                { t: "Hypothesis", m: "The Possible Answer", d: "A proposed explanation or tentative answer to a scientific question." },
+                { t: "Experiment", m: "The Test Drive", d: "A procedure carried out under controlled conditions to test the hypothesis." },
+                { t: "Data Analysis", m: "The Number Crunch", d: "Organizing and interpreting the measurements to find patterns." },
+                { t: "Conclusion", m: "The Verdict", d: "Deciding if the data supports or refutes your hypothesis." },
+                { t: "Share Results", m: "The Gossip", d: "Publishing or presenting findings so others can learn." },
+                { t: "Repeat", m: "The Remix", d: "Doing the experiment again to ensure results weren't a fluke." },
+                { t: "Independent Variable", m: "The Cause", d: "The factor you manipulate." },
+                { t: "Dependent Variable", m: "The Effect", d: "The factor you measure." },
+                { t: "Control Group", m: "The Baseline", d: "Group with no treatment." },
+                { t: "Constants", m: "The Fair Rules", d: "Factors kept exactly the same." }
+            ];
+
+            /* --- DATA: SCENARIOS (20 Student Life Experiments) --- */
+            const scenarios = [
+                {
+                    title: "1. Digital vs. Paper Notes",
+                    text: "You suspect that the physical act of writing helps your brain encode information better than typing. You want to test if a low-tech approach can beat a modern digital one. For your next two identical biology lectures, you randomly assign yourself to either take notes by hand in a notebook or type them on your laptop. Two days later, you take a 50-question recall quiz on the lecture material.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The biology lecture content", "The method of note-taking (Digital vs. Paper)", "The final score on the recall quiz"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The time spent studying notes", "The type of notebook used", "The final score on the recall quiz"], ans: 2 },
+                        { q: "What is a major Constant that must be maintained?", options: ["Using different color pens for each lecture", "The time interval between the lecture and the quiz", "Taking notes for a chemistry lecture"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "2. Spaced Repetition vs. Cramming",
+                    text: "You notice that while cramming helps you pass the next day's quiz, you forget everything quickly. You hypothesize that spreading out your study sessions over several days will lead to better long-term retention. You take two equivalent chapters in your anatomy textbook. For Chapter A, you study 8 hours the night before the test. For Chapter B, you study 2 hours a night for 4 consecutive nights. You test both with an equivalent quiz 14 days later.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The chapter's difficulty level", "The distribution of study time (Massed vs. Spaced)", "Your score 14 days later"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The total hours studied (8 hours)", "Your score on the retention quiz 14 days later", "The number of days between quizzes"], ans: 1 },
+                        { q: "What serves as a Control Group/Baseline for memory retention?", options: ["Studying neither chapter and taking the quiz anyway", "The 8-hour massed study session", "Studying for 2 hours once"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "3. Music Genre and Concentration",
+                    text: "As a PreMed student, you have countless hours of reading. You want to determine which background environment is most efficient for deep reading. You select three equivalent research articles. You read one article while listening to lyrical pop music, the second while listening to instrumental classical music, and the third in complete silence. You record the time it takes to accurately summarize each article.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The genre of background sound (Lyrical, Classical, Silence)", "The length of the research article", "Your ability to focus"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The time required to accurately summarize the articles", "Your mood after reading", "The complexity of the subject matter"], ans: 0 },
+                        { q: "What is a major Constant?", options: ["The type of background noise", "The difficulty/length of the research articles", "Reading a novel instead of a research article"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "4. The Effect of 'Self-Quiz' Timing",
+                    text: "You wonder if you are overconfident in your knowledge immediately after studying a topic. You divide your study material into two parts. After studying Part A, you quiz yourself immediately. After studying Part B, you wait 24 hours before quizzing yourself. You use a Metacognitive Accuracy measure: how closely your predicted quiz score matches your actual score.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The time delay before self-quizzing (Immediate vs. Delayed)", "The difficulty of the quiz questions", "The final score on the quiz"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The size of the study material", "The self-reported level of fatigue", "The difference between predicted and actual quiz score"], ans: 2 },
+                        { q: "This experiment investigates your ability to...", options: ["Memorize quickly", "Focus without distractions", "Monitor your own learning (Metacognition)"], ans: 2 }
+                    ]
+                },
+                {
+                    title: "5. Exercise as a Study Break",
+                    text: "You decide to test if physical activity improves your post-break concentration more than passive rest. During a long study session, you take two distinct 15-minute breaks. On Break A, you do 15 minutes of light cardio (jumping jacks). On Break B, you spend 15 minutes scrolling social media. You measure the number of practice problems (of equivalent difficulty) you complete in the hour immediately following each break.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The duration of the study break", "The activity performed during the study break", "The total number of problems completed"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The type of social media used", "The number of problems completed in the hour following the break", "The amount of sugar consumed"], ans: 1 },
+                        { q: "What is a Control Group/Baseline?", options: ["The social media break", "The cardio break", "A long 3-hour study session with no break"], ans: 0 }
+                    ]
+                },
+                {
+                    title: "6. The Highlighter Illusion",
+                    text: "Many students rely heavily on highlighting, but you wonder if this passive activity actually improves comprehension. You select two identical-length research papers. For Paper 1, you highlight every key sentence. For Paper 2, you only underline key terms and write two questions in the margins per paragraph. You then measure the time it takes to verbally explain the main findings of each paper to a peer.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The annotation style (Heavy Highlighting vs. Active Annotation)", "The total time spent reading", "The complexity of the research findings"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The color of the highlighter used", "The time required to accurately explain the paper's findings", "The length of the paper in pages"], ans: 1 },
+                        { q: "The illusion this experiment tests is confusing passive reading with...", options: ["Deep sleep", "Active comprehension/mastery", "Social networking"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "7. Sleep and Problem Solving",
+                    text: "As a future doctor, sleep deprivation is a risk. You want to see how lack of sleep affects high-level cognitive tasks. On one Saturday night, you ensure you get 8 hours of sleep. On the next Saturday night, you deliberately limit yourself to 5 hours of sleep. On Sunday morning after each night, you take an equivalent, standardized test involving complex, novel Organic Chemistry synthesis problems.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The difficulty of the synthesis problems", "The amount of sleep (8 hours vs. 5 hours)", "Your breakfast choice on Sunday morning"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The score on the complex problem-solving test", "The number of alarms you set", "The time spent studying during the week"], ans: 0 },
+                        { q: "The 8-hour sleep night serves as the...", options: ["Experimental Group", "Control Condition (Optimal Baseline)", "Confounding Variable"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "8. The Teaching Effect",
+                    text: "It is often said that the best way to learn is to teach. To test this, you take two equivalent chapters from your physiology class. For Chapter A, you study normally. For Chapter B, you spend the final hour preparing a presentation to teach the chapter's content to a friend. You then take a multiple-choice quiz on both chapters, which is graded by a TA.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The method of learning (Independent Study vs. Preparing to Teach)", "The TA who grades the quiz", "The difficulty of the quiz questions"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The complexity of the diagrams used in the teaching session", "The score received on each chapter's multiple-choice quiz", "The time spent socializing with the peer"], ans: 1 },
+                        { q: "Why is teaching a concept better for learning?", options: ["It is less stressful", "It forces you to reorganize the knowledge for clear communication", "It allows you to get help from a peer"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "9. Caffeine and Vigilance",
+                    text: "You are preparing for an intensive medical exam that requires long periods of unbroken attention (vigilance). You conduct a quick study to see if caffeine helps or hurts your sustained focus. On Day 1, you consume a large coffee before reading a dense research article. On Day 2, you consume only water. You then measure your Error Rate—the number of small grammatical or factual errors you miss—when proofreading a complex 10-page text.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The time of day the article is read", "Caffeine consumption (Caffeinated vs. Water)", "The density of the text"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The error rate (number of missed errors) during proofreading", "The source of the research article", "The feeling of alertness"], ans: 0 },
+                        { q: "Which condition is the Control Condition?", options: ["Consuming the large coffee", "Consuming only water (Baseline)", "Consuming an energy drink"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "10. The Environment Swap",
+                    text: "You notice you often get distracted when studying on your couch. You hypothesize that your study location is a key trigger for procrastination. For your weekly review sessions, you alternate between two locations: your designated, uncluttered study desk and your comfortable bedroom couch. You track the total time spent procrastinating (checking phone, browsing) during the first two hours of each session.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The study topic (e.g., Physics vs. Biology)", "The study location (Desk vs. Couch)", "The self-reported mood"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The total time spent procrastinating", "The color of the couch", "The time of day the session occurred"], ans: 0 },
+                        { q: "The goal of this experiment is to link environmental cues to:", options: ["Physical comfort", "Self-control and learning behavior", "The number of apps on your phone"], ans: 1 }
+                    ]
+                },
+                // --- 10 NEW Learning Styles Experiments ---
+                {
+                    title: "11. The Visual Learner's Map",
+                    text: "You are covering a complex metabolic pathway in biochemistry. You decide to test if a highly visual study tool is more effective than a traditional outline. You study half the pathway using a large, color-coded mind map you drew. You study the other half using a standard, text-based linear outline. You then take a conceptual quiz covering the entire pathway.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The complexity of the metabolic pathway", "The study tool used (Mind Map vs. Outline)", "The score on the conceptual quiz"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The time spent drawing the map", "The conceptual quiz score", "Your overall GPA"], ans: 1 },
+                        { q: "What is a major Constant?", options: ["The type of paper used", "The total amount of study time for each half", "The brand of pencils"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "12. Auditory vs. Reading Input",
+                    text: "You wonder if you retain information better when you hear it vs. when you read it. You take a full 60-minute recorded lecture. You listen to the recording for 60 minutes for one topic. For an equivalent topic, you read the verbatim transcript for 60 minutes. You then take a quiz focused on recalling specific facts and definitions for both topics.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The input method (Listening vs. Reading)", "The length of the lecture", "The number of facts recalled"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The speed of audio playback", "The score on the factual recall quiz", "The volume of the recording"], ans: 1 },
+                        { q: "What is a Control Group/Baseline?", options: ["Listening to the lecture on 2x speed", "Reading the transcript silently", "Reading the transcript out loud"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "13. Kinesthetic - Flashcards",
+                    text: "You believe the movement involved in shuffling, organizing, and physically flipping paper flashcards aids your motor memory more than tapping on a digital app. You prepare 50 cards physically and 50 equivalent cards digitally. You study each set for 30 minutes. You then test your speed and accuracy in matching the terms and definitions.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The term difficulty", "The format of the flashcards (Physical vs. Digital)", "The number of cards"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["Your test speed and accuracy in matching terms", "The color of the paper cards", "The type of digital app used"], ans: 0 },
+                        { q: "What is the metacognitive process being tested?", options: ["Auditory processing", "Motor memory's influence on retrieval", "Visual acuity"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "14. The Color Coding Effect",
+                    text: "As a highly organized student, you meticulously color-code your lecture notes (e.g., definitions in blue, examples in green). You want to see if this structure truly improves information retrieval speed. You use your color-coded notes for Topic A. For Topic B, you use notes where the colors were randomly assigned. You time how quickly you can locate 10 specific pieces of information in each note set.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The content of the notes", "The color-coding system (Consistent vs. Random)", "The time to find the information"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The number of highlighters used", "The total time required to locate all 10 facts", "The aesthetic appeal of the notes"], ans: 1 },
+                        { q: "What is a major Constant?", options: ["The time of day the notes were created", "The physical length of the two sets of notes", "The color of the highlighters"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "15. Explaining Out Loud",
+                    text: "You believe that hearing yourself verbally explain a complex concept forces you to use precise language, leading to better clarity. You study Topic A using only silent rehearsal (reading and thinking). You study Topic B by explaining the entire concept out loud to an empty room. You then write an equivalent essay on both topics, which is scored for clarity and precision.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The level of detail in the textbook", "The method of rehearsal (Silent vs. Verbal)", "The essay score"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The clarity and precision score on the essay", "The volume of your voice", "The time taken to write the essay"], ans: 0 },
+                        { q: "The Control Group/Condition is:", options: ["Writing the essay with background music", "The silent rehearsal method", "Explaining the concept to a mirror"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "16. Drawing vs. Describing",
+                    text: "To consolidate a concept in cell biology, you use two different methods. For Concept A, you draw a detailed diagram of the process. For Concept B, you write a detailed 500-word description. A week later, you are given a transfer test—a new, complex problem that requires applying the conceptual knowledge from A and B.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The consolidation method (Drawing vs. Writing)", "The score on the transfer test", "The complexity of the new problem"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The quality of the drawings/writing", "The score on the new problem-solving transfer test", "The number of hours you slept"], ans: 1 },
+                        { q: "Why is the transfer test a good measure?", options: ["It requires simple recall", "It tests the ability to apply and synthesize knowledge", "It is easier to grade"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "17. Background Imagery Boost",
+                    text: "You wonder if your study environment needs to be inspiring to keep you motivated. You track two equivalent 3-hour study sessions. Session A is done in a sterile, blank study room. Session B is done in a room decorated with motivational posters, medical imagery, and plants. You track the total time spent actively engaged in the task (before the first major distraction).",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The decorative content of the study environment", "The difficulty of the study material", "The student's mood"], ans: 0 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The time spent actively engaged before distraction", "The number of breaks taken", "The cost of the decorations"], ans: 0 },
+                        { q: "The metacognitive focus here is:", options: ["Self-efficacy and goal-setting", "Kinesthetic learning", "Auditory recall"], ans: 0 }
+                    ]
+                },
+                {
+                    title: "18. Group Study vs. Solo Study",
+                    text: "You want to find out if the efficiency gained from peer-quizzing outweighs the time lost to discussion. You study two equivalent subjects for 4 hours each. For Subject A, you study completely alone. For Subject B, you spend the entire 4 hours in a structured study group focused on peer-quizzing and concept clarification. You then take a standardized conceptual test on both subjects.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The total study time (4 hours)", "The study partner condition (Solo vs. Group)", "The test score"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The conceptual test score for each subject", "The number of people in the group", "The subject matter itself"], ans: 0 },
+                        { q: "What is a major Constant?", options: ["The subject matter (e.g., Organic vs. Inorganic)", "The total time allocated for studying (4 hours)", "The time of day the test is taken"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "19. The Fidget Factor",
+                    text: "You notice you often get distracted during lectures. You wonder if this kinesthetic outlet helps or hinders your attention. You listen to two equivalent 30-minute lectures. During Lecture A, you use a small, non-distracting fidget cube. During Lecture B, you keep your hands completely still. Immediately after each, you take a surprise quiz on the lecture's content.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The lecture topic", "The availability of a kinesthetic outlet (Fidget vs. Still)", "The quiz score"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The number of times you yawned", "The score on the lecture content quiz", "The type of fidget object used"], ans: 1 },
+                        { q: "The Control Group/Condition is:", options: ["Using a very distracting fidget toy", "Keeping your hands still (No kinesthetic input)", "Using a fidget toy and listening to music"], ans: 1 }
+                    ]
+                },
+                {
+                    title: "20. Using Mnemonics",
+                    text: "Memorizing lists (like cranial nerves or amino acids) is crucial. You want to see if memory devices work. You use a standard mnemonic device (e.g., a sentence) to memorize List A. For List B (of equivalent length), you use simple rote memorization. You then measure the time it takes to accurately recall the sequence of each list.",
+                    questions: [
+                        { q: "What is the Independent Variable (IV)?", options: ["The type of list being memorized", "The memorization tool (Mnemonic vs. Rote)", "The time to recall the list"], ans: 1 },
+                        { q: "What is the Dependent Variable (DV)?", options: ["The length of the lists", "The time required for accurate sequential recall", "The complexity of the mnemonic"], ans: 1 },
+                        { q: "This experiment investigates the power of:", options: ["Auditory processing", "Encoding strategies and retrieval cues", "Peripheral vision"], ans: 1 }
+                    ]
+                }
+            ];
+
+            /* --- DATA: PREDICTION DATA --- */
+            const predictions = [
+                // 1. Digital vs Paper
+                {
+                    hypo: "Hypothesis: The physical act of writing aids encoding more than typing.",
+                    ifOptions: ["I take notes by hand", "I type notes on a laptop"],
+                    thenOptions: ["my recall score will be higher", "my recall score will be lower"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 2. Spaced Repetition
+                {
+                    hypo: "Hypothesis: Spacing study sessions allows for memory consolidation.",
+                    ifOptions: ["I cram for 8 hours one night", "I study 2 hours for 4 nights"],
+                    thenOptions: ["I will forget the content quickly", "I will retain the content longer"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 3. Music & Focus
+                {
+                    hypo: "Hypothesis: Lyrical music competes with language processing in the brain.",
+                    ifOptions: ["I read while listening to lyrics", "I read in silence"],
+                    thenOptions: ["my reading speed will decrease", "my reading speed will increase"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 4. Metacognition (Self-Quiz)
+                {
+                    hypo: "Hypothesis: Delayed self-quizzing provides a more accurate measure of true learning.",
+                    ifOptions: ["I quiz myself immediately after reading", "I quiz myself 24 hours later"],
+                    thenOptions: ["I will be overconfident in my knowledge", "my predicted score will match my actual score"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 5. Exercise Breaks
+                {
+                    hypo: "Hypothesis: Aerobic activity increases blood flow to the brain, resetting focus.",
+                    ifOptions: ["I scroll social media on my break", "I do jumping jacks on my break"],
+                    thenOptions: ["my subsequent focus will remain low", "my subsequent focus will improve"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 6. Active Annotation
+                {
+                    hypo: "Hypothesis: Active processing (writing questions) creates stronger neural paths than passive highlighting.",
+                    ifOptions: ["I highlight every sentence", "I write margin questions"],
+                    thenOptions: ["my understanding will be superficial", "I will be able to explain the concept clearly"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 7. Sleep
+                {
+                    hypo: "Hypothesis: Sleep deprivation impairs the brain's ability to solve novel problems.",
+                    ifOptions: ["I sleep 5 hours before the test", "I sleep 8 hours before the test"],
+                    thenOptions: ["my complex problem-solving score will drop", "my complex problem-solving score will be optimal"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 8. The Teaching Effect
+                {
+                    hypo: "Hypothesis: Preparing to teach material forces you to organize information more logically.",
+                    ifOptions: ["I study to teach a friend", "I study just to pass a quiz"],
+                    thenOptions: ["my mastery of the topic will be deeper", "my mastery of the topic will be shallower"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 9. Caffeine & Vigilance
+                {
+                    hypo: "Hypothesis: Moderate caffeine intake blocks adenosine, temporarily improving vigilance.",
+                    ifOptions: ["I drink water only", "I drink coffee before the task"],
+                    thenOptions: ["I might miss small details due to fatigue", "I will catch more small errors"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 10. Environment Cues
+                {
+                    hypo: "Hypothesis: The brain associates specific locations (like a couch) with relaxation, not work.",
+                    ifOptions: ["I study on my comfortable couch", "I study at a dedicated desk"],
+                    thenOptions: ["I will procrastinate more", "I will procrastinate less"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 11. Visual Maps
+                {
+                    hypo: "Hypothesis: Visualizing relationships (Mind Mapping) aids in understanding complex pathways.",
+                    ifOptions: ["I use a linear text outline", "I draw a color-coded mind map"],
+                    thenOptions: ["my conceptual understanding will be weaker", "my conceptual understanding will be stronger"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 12. Input Methods
+                {
+                    hypo: "Hypothesis: Reading allows for self-paced regression, improving factual recall over audio.",
+                    ifOptions: ["I listen to a lecture once", "I read the transcript at my own pace"],
+                    thenOptions: ["I may miss specific facts", "my factual recall will be higher"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 13. Kinesthetic Flashcards
+                {
+                    hypo: "Hypothesis: Physical manipulation of cards adds a motor-memory trace to learning.",
+                    ifOptions: ["I use physical paper flashcards", "I tap a screen app"],
+                    thenOptions: ["my retrieval speed will improve", "my retrieval speed will be slower"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 14. Structure & Color
+                {
+                    hypo: "Hypothesis: Consistent color-coding reduces cognitive load during information retrieval.",
+                    ifOptions: ["I color-code notes randomly", "I color-code definitions consistently"],
+                    thenOptions: ["finding facts will take longer", "finding facts will be faster"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 15. Verbal Processing
+                {
+                    hypo: "Hypothesis: Verbalizing a concept out loud identifies gaps in logic.",
+                    ifOptions: ["I explain the concept to an empty room", "I read the concept silently"],
+                    thenOptions: ["my essay will be clearer and more precise", "my essay might lack precision"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 16. Drawing vs Describing
+                {
+                    hypo: "Hypothesis: Drawing requires spatial synthesis, aiding transfer to new problems.",
+                    ifOptions: ["I write a paragraph description", "I draw a detailed diagram"],
+                    thenOptions: ["I will struggle with the transfer test", "I will excel at the transfer test"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 17. Environment Aesthetics
+                {
+                    hypo: "Hypothesis: An inspiring environment maintains motivation longer than a sterile one.",
+                    ifOptions: ["I study in a decorated, inspiring room", "I study in a blank, sterile room"],
+                    thenOptions: ["my engagement time will be longer", "my engagement time will be shorter"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 18. Social Learning
+                {
+                    hypo: "Hypothesis: Active peer-quizzing outweighs the efficiency loss of socializing.",
+                    ifOptions: ["I study solo", "I study in a structured quiz group"],
+                    thenOptions: ["I miss the benefit of peer-correction", "I will score higher on the concept test"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 19. The Fidget Factor
+                {
+                    hypo: "Hypothesis: Controlled motor activity (fidgeting) frees up attention resources.",
+                    ifOptions: ["I sit completely still", "I use a non-distracting fidget cube"],
+                    thenOptions: ["my mind may wander more", "my retention of the lecture will improve"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                },
+                // 20. Mnemonics
+                {
+                    hypo: "Hypothesis: Mnemonic devices provide retrieval cues that rote memory lacks.",
+                    ifOptions: ["I use a specific acronym", "I use rote memorization"],
+                    thenOptions: ["I will recall the list sequence accurately", "I may mix up the list sequence"],
+                    validPairs: [{ i: 0, t: 0 }, { i: 1, t: 1 }]
+                }
+            ];
+
+            /* --- GLOBAL STATE --- */
+            let matchTimerInt, scenarioTimerInt;
+            let matchesFound = 0;
+            let currentScenarioQ = 0;
+            let currentPredIdx = 0;
+            let scenarioStartTime = 0; // Time in ms when scenario started
+            let currentScenarioIndex = -1; // Tracks the selected experiment
+
+            // Audio state
+            let mediaRecorder = null;
+            let audioChunks = [];
+            let currentRecordingIndex = null;
+
+            // Storage for best times (local storage simulation)
+            let bestTimes = JSON.parse(localStorage.getItem('scenarioBestTimes')) || {};
+
+            /* --- INIT & TAB SWITCHING --- */
+            document.addEventListener('DOMContentLoaded', () => {
+                renderStudyCards();
+                showScenarioSelection();
+            });
+
+            function switchTab(tab, btn) {
+                document.querySelectorAll('.section-view').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+                document.getElementById(tab + '-view').classList.add('active');
+                btn.classList.add('active');
+            }
+
+            /* --- 1. STUDY VIEW (Audio Recording) --- */
+            function renderStudyCards() {
+                const container = document.getElementById('cards-container');
+                container.innerHTML = '';
+
+                terms.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'term-card';
+                    card.innerHTML = `
         <span class="memory-device">${item.m}</span>
         <div class="term-title">${item.t}</div>
         <p>${item.d}</p>
@@ -893,365 +996,366 @@
         </div>
         <audio id="audio-storage-${index}" style="display:none;"></audio>
       `;
-      container.appendChild(card);
-    });
-  }
+                    container.appendChild(card);
+                });
+            }
 
-  function speak(text) {
-    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
-  }
-  
-  async function toggleRecord(index) {
-    const recBtn = document.getElementById(`rec-btn-${index}`);
-    
-    // Stop recording if active
-    if (mediaRecorder && mediaRecorder.state === 'recording') {
-      mediaRecorder.stop();
-      document.querySelectorAll('.icon-btn.record-active').forEach(b => b.classList.remove('record-active'));
-      if (currentRecordingIndex === index) {
-        recBtn.innerHTML = '🎤';
-        return; 
-      }
-    }
-    
-    // START RECORDING
-    if (!recBtn.classList.contains('record-active')) {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        alert("Microphone access not supported in this browser.");
-        return;
-      }
+            function speak(text) {
+                window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+            }
 
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorder = new MediaRecorder(stream);
-        audioChunks = [];
-        currentRecordingIndex = index;
+            async function toggleRecord(index) {
+                const recBtn = document.getElementById(`rec-btn-${index}`);
 
-        mediaRecorder.ondataavailable = e => {
-          audioChunks.push(e.data);
-        };
+                // Stop recording if active
+                if (mediaRecorder && mediaRecorder.state === 'recording') {
+                    mediaRecorder.stop();
+                    document.querySelectorAll('.icon-btn.record-active').forEach(b => b.classList.remove('record-active'));
+                    if (currentRecordingIndex === index) {
+                        recBtn.innerHTML = '🎤';
+                        return;
+                    }
+                }
 
-        mediaRecorder.onstop = () => {
-          const blob = new Blob(audioChunks, { type: 'audio/webm' });
-          const audioUrl = URL.createObjectURL(blob);
-          
-          const audioEl = document.getElementById(`audio-storage-${currentRecordingIndex}`);
-          const playBtn = document.getElementById(`play-btn-${currentRecordingIndex}`);
-          const stopBtn = document.getElementById(`rec-btn-${currentRecordingIndex}`);
+                // START RECORDING
+                if (!recBtn.classList.contains('record-active')) {
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        alert("Microphone access not supported in this browser.");
+                        return;
+                    }
 
-          if (audioEl && playBtn && stopBtn) {
-              audioEl.src = audioUrl;
-              playBtn.disabled = false;
-              stopBtn.classList.remove('record-active');
-              stopBtn.innerHTML = '🎤';
-          }
-          currentRecordingIndex = null;
-        };
+                    try {
+                        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                        mediaRecorder = new MediaRecorder(stream);
+                        audioChunks = [];
+                        currentRecordingIndex = index;
 
-        mediaRecorder.start();
-        recBtn.classList.add('record-active');
-        recBtn.innerHTML = '⏹'; 
+                        mediaRecorder.ondataavailable = e => {
+                            audioChunks.push(e.data);
+                        };
 
-      } catch (err) {
-        console.error(err);
-        alert("Could not access microphone.");
-        recBtn.classList.remove('record-active');
-        recBtn.innerHTML = '🎤';
-      }
-    }
-  }
+                        mediaRecorder.onstop = () => {
+                            const blob = new Blob(audioChunks, { type: 'audio/webm' });
+                            const audioUrl = URL.createObjectURL(blob);
 
-  function playUserAudio(index) {
-    const audioEl = document.getElementById(`audio-storage-${index}`);
-    if (audioEl && audioEl.src) {
-      audioEl.play();
-    }
-  }
+                            const audioEl = document.getElementById(`audio-storage-${currentRecordingIndex}`);
+                            const playBtn = document.getElementById(`play-btn-${currentRecordingIndex}`);
+                            const stopBtn = document.getElementById(`rec-btn-${currentRecordingIndex}`);
+
+                            if (audioEl && playBtn && stopBtn) {
+                                audioEl.src = audioUrl;
+                                playBtn.disabled = false;
+                                stopBtn.classList.remove('record-active');
+                                stopBtn.innerHTML = '🎤';
+                            }
+                            currentRecordingIndex = null;
+                        };
+
+                        mediaRecorder.start();
+                        recBtn.classList.add('record-active');
+                        recBtn.innerHTML = '⏹';
+
+                    } catch (err) {
+                        console.error(err);
+                        alert("Could not access microphone.");
+                        recBtn.classList.remove('record-active');
+                        recBtn.innerHTML = '🎤';
+                    }
+                }
+            }
+
+            function playUserAudio(index) {
+                const audioEl = document.getElementById(`audio-storage-${index}`);
+                if (audioEl && audioEl.src) {
+                    audioEl.play();
+                }
+            }
 
 
-  /* --- 3. LAB SCENARIOS (Count-Up Timer & Selection) --- */
-  
-  function showScenarioSelection() {
-    // Hide all scenario game/completion elements
-    document.getElementById('scenario-board').style.display = 'none';
-    document.getElementById('scenario-completion').style.display = 'none';
-    
-    // Show selection screen
-    document.getElementById('scenario-select-screen').style.display = 'block';
-    
-    const listContainer = document.getElementById('scenario-list');
-    listContainer.innerHTML = '';
-    
-    scenarios.forEach((scen, index) => {
-        const bestTime = bestTimes[index] || 'N/A';
-        const item = document.createElement('div');
-        item.className = 'scenario-item';
-        item.dataset.index = index;
-        item.innerHTML = `
+            /* --- 3. LAB SCENARIOS (Count-Up Timer & Selection) --- */
+
+            function showScenarioSelection() {
+                // Hide all scenario game/completion elements
+                document.getElementById('scenario-board').style.display = 'none';
+                document.getElementById('scenario-completion').style.display = 'none';
+
+                // Show selection screen
+                document.getElementById('scenario-select-screen').style.display = 'block';
+
+                const listContainer = document.getElementById('scenario-list');
+                listContainer.innerHTML = '';
+
+                scenarios.forEach((scen, index) => {
+                    const bestTime = bestTimes[index] || 'N/A';
+                    const item = document.createElement('div');
+                    item.className = 'scenario-item';
+                    item.dataset.index = index;
+                    item.innerHTML = `
             ${scen.title}
             <span class="time">BEST: ${bestTime}</span>
         `;
-        item.onclick = () => startScenarioGame(index);
-        listContainer.appendChild(item);
-    });
-  }
+                    item.onclick = () => startScenarioGame(index);
+                    listContainer.appendChild(item);
+                });
+            }
 
-  function startScenarioGame(index) {
-    currentScenarioIndex = index;
-    currentScenarioQ = 0;
-    
-    document.getElementById('scenario-select-screen').style.display = 'none';
-    document.getElementById('scenario-board').style.display = 'block';
-    
-    loadScenarioQuestion();
-    startCountUpTimer();
-  }
-  
-  function startCountUpTimer() {
-    scenarioStartTime = Date.now();
-    const timerDisplay = document.getElementById('scenario-timer');
-    
-    clearInterval(scenarioTimerInt);
-    scenarioTimerInt = setInterval(() => {
-        const elapsedSeconds = Math.floor((Date.now() - scenarioStartTime) / 1000);
-        const minutes = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
-        const seconds = String(elapsedSeconds % 60).padStart(2, '0');
-        timerDisplay.textContent = `${minutes}:${seconds}`;
-    }, 1000);
-  }
+            function startScenarioGame(index) {
+                currentScenarioIndex = index;
+                currentScenarioQ = 0;
 
-  function stopCountUpTimer() {
-    clearInterval(scenarioTimerInt);
-    const timeTakenMs = Date.now() - scenarioStartTime;
-    const elapsedSeconds = Math.floor(timeTakenMs / 1000);
-    const minutes = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
-    const seconds = String(elapsedSeconds % 60).padStart(2, '0');
-    
-    const finalTime = `${minutes}:${seconds}`;
+                document.getElementById('scenario-select-screen').style.display = 'none';
+                document.getElementById('scenario-board').style.display = 'block';
 
-    // Update local storage (simulated backend)
-    const currentBest = bestTimes[currentScenarioIndex];
-    if (!currentBest || elapsedSeconds < parseTime(currentBest)) {
-        bestTimes[currentScenarioIndex] = finalTime;
-        localStorage.setItem('scenarioBestTimes', JSON.stringify(bestTimes));
-    }
+                loadScenarioQuestion();
+                startCountUpTimer();
+            }
 
-    document.getElementById('final-scenario-time').textContent = finalTime;
-    document.getElementById('scenario-board').style.display = 'none';
-    document.getElementById('scenario-completion').style.display = 'block';
-  }
+            function startCountUpTimer() {
+                scenarioStartTime = Date.now();
+                const timerDisplay = document.getElementById('scenario-timer');
 
-  // Helper function to convert MM:SS string to seconds
-  function parseTime(timeStr) {
-      if (!timeStr || timeStr === 'N/A') return Infinity;
-      const parts = timeStr.split(':');
-      return parseInt(parts[0]) * 60 + parseInt(parts[1]);
-  }
+                clearInterval(scenarioTimerInt);
+                scenarioTimerInt = setInterval(() => {
+                    const elapsedSeconds = Math.floor((Date.now() - scenarioStartTime) / 1000);
+                    const minutes = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
+                    const seconds = String(elapsedSeconds % 60).padStart(2, '0');
+                    timerDisplay.textContent = `${minutes}:${seconds}`;
+                }, 1000);
+            }
 
+            function stopCountUpTimer() {
+                clearInterval(scenarioTimerInt);
+                const timeTakenMs = Date.now() - scenarioStartTime;
+                const elapsedSeconds = Math.floor(timeTakenMs / 1000);
+                const minutes = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
+                const seconds = String(elapsedSeconds % 60).padStart(2, '0');
 
-  function loadScenarioQuestion() {
-    const scen = scenarios[currentScenarioIndex];
-    const q = scen.questions[currentScenarioQ];
-    
-    document.getElementById('story-text').innerHTML = `<strong>${scen.title}:</strong> ${scen.text}`;
-    document.getElementById('question-text').textContent = q.q;
-    
-    const optContainer = document.getElementById('scenario-options');
-    optContainer.innerHTML = '';
-    
-    q.options.forEach((opt, idx) => {
-      let btn = document.createElement('button');
-      btn.textContent = opt;
-      btn.onclick = (e) => {
-        document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = true);
-        if(idx === q.ans) {
-          btn.style.background = "#dcfce7";
-          setTimeout(nextScenarioStep, 500);
-        } else {
-          btn.style.background = "#fee2e2";
-          setTimeout(() => {
-            document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = false);
-            btn.style.background = "white"; 
-          }, 1000);
-        }
-      };
-      optContainer.appendChild(btn);
-    });
-  }
+                const finalTime = `${minutes}:${seconds}`;
 
-  function nextScenarioStep() {
-    currentScenarioQ++;
-    if(currentScenarioQ >= scenarios[currentScenarioIndex].questions.length) {
-      stopCountUpTimer();
-    } else {
-        // Re-enable options for the next question
-        document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = false);
-        loadScenarioQuestion(); 
-    }
-  }
-  
-  /* --- 2. MATCHING GAME --- */
-  function startMatchGame() {
-    document.getElementById('match-start-screen').style.display = 'none';
-    document.getElementById('match-game-board').style.display = 'block';
-    
-    // Prep Data
-    let gameTerms = [...terms].sort(() => Math.random() - 0.5).slice(0, 5); // Take 5 random
-    let definitions = [...gameTerms].sort(() => Math.random() - 0.5);
-    
-    // Render Columns
-    const colTerms = document.getElementById('col-terms');
-    const colDefs = document.getElementById('col-defs');
-    colTerms.innerHTML = ''; colDefs.innerHTML = '';
-    
-    gameTerms.forEach(item => {
-      let btn = document.createElement('div');
-      btn.className = 'match-card';
-      btn.textContent = item.t;
-      btn.dataset.val = item.t;
-      btn.onclick = (e) => handleMatchClick(e, 'term');
-      colTerms.appendChild(btn);
-    });
+                // Update local storage (simulated backend)
+                const currentBest = bestTimes[currentScenarioIndex];
+                if (!currentBest || elapsedSeconds < parseTime(currentBest)) {
+                    bestTimes[currentScenarioIndex] = finalTime;
+                    localStorage.setItem('scenarioBestTimes', JSON.stringify(bestTimes));
+                }
 
-    definitions.forEach(item => {
-      let btn = document.createElement('div');
-      btn.className = 'match-card';
-      btn.innerHTML = `<strong>${item.m}</strong><br><small>${item.d}</small>`;
-      btn.dataset.val = item.t;
-      btn.onclick = (e) => handleMatchClick(e, 'def');
-      colDefs.appendChild(btn);
-    });
+                document.getElementById('final-scenario-time').textContent = finalTime;
+                document.getElementById('scenario-board').style.display = 'none';
+                document.getElementById('scenario-completion').style.display = 'block';
+            }
 
-    // Start Timer
-    let time = 60;
-    matchesFound = 0;
-    document.getElementById('match-timer').textContent = time;
-    clearInterval(matchTimerInt);
-    matchTimerInt = setInterval(() => {
-      time--;
-      document.getElementById('match-timer').textContent = time;
-      if(time <= 0) {
-        clearInterval(matchTimerInt);
-        alert("Time's up! Try again.");
-        resetMatchGame();
-      }
-    }, 1000);
-  }
-
-  function handleMatchClick(e, type) {
-    const el = e.currentTarget;
-    if(el.classList.contains('matched')) return;
-
-    if(type === 'term') {
-      document.querySelectorAll('#col-terms .match-card').forEach(b => b.classList.remove('selected'));
-    } else {
-      document.querySelectorAll('#col-defs .match-card').forEach(b => b.classList.remove('selected'));
-    }
-    el.classList.add('selected');
-
-    const selTerm = document.querySelector('#col-terms .selected');
-    const selDef = document.querySelector('#col-defs .selected');
-
-    if(selTerm && selDef) {
-      if(selTerm.dataset.val === selDef.dataset.val) {
-        selTerm.classList.add('matched');
-        selDef.classList.add('matched');
-        selTerm.classList.remove('selected');
-        selDef.classList.remove('selected');
-        matchesFound++;
-        if(matchesFound === 5) {
-          clearInterval(matchTimerInt);
-          showPrize();
-        }
-      } else {
-        setTimeout(() => {
-          selTerm.classList.remove('selected');
-          selDef.classList.remove('selected');
-        }, 500);
-      }
-    }
-  }
-
-  function resetMatchGame() {
-    document.getElementById('match-start-screen').style.display = 'block';
-    document.getElementById('match-game-board').style.display = 'none';
-  }
-  
-
-  /* --- 4. PREDICTION ENGINE --- */
-  function startPredictionGame() {
-    document.getElementById('prediction-start-screen').style.display = 'none';
-    document.getElementById('prediction-board').style.display = 'block';
-    currentPredIdx = 0;
-    loadPrediction();
-  }
-
-  function loadPrediction() {
-    const p = predictions[currentPredIdx];
-    document.getElementById('hypo-display').textContent = p.hypo;
-    document.getElementById('pred-feedback').textContent = "";
-    document.getElementById('next-pred-btn').style.display = 'none';
-    document.querySelector('.game-area button[onclick="checkPrediction()"]').disabled = false;
-    
-    const selIf = document.getElementById('select-if');
-    const selThen = document.getElementById('select-then');
-    
-    selIf.innerHTML = '<option value="-1">Select Action (IV)</option>';
-    selThen.innerHTML = '<option value="-1">Select Outcome (DV)</option>';
-    
-    p.ifOptions.forEach((opt, i) => selIf.add(new Option(opt, i)));
-    p.thenOptions.forEach((opt, i) => selThen.add(new Option(opt, i)));
-  }
-
-  function checkPrediction() {
-    const p = predictions[currentPredIdx];
-    const userIf = parseInt(document.getElementById('select-if').value);
-    const userThen = parseInt(document.getElementById('select-then').value);
-    const fb = document.getElementById('pred-feedback');
-
-    if(userIf === -1 || userThen === -1) {
-      fb.style.color = "orange";
-      fb.textContent = "Please select both options!";
-      return;
-    }
-
-    const isValid = p.validPairs.some(pair => pair.i === userIf && pair.t === userThen);
-
-    if(isValid) {
-      fb.style.color = "green";
-      fb.textContent = "✅ Correct! That is a logically valid prediction.";
-      document.getElementById('next-pred-btn').style.display = 'inline-block';
-      document.querySelector('.game-area button[onclick="checkPrediction()"]').disabled = true;
-    } else {
-      fb.style.color = "#ef4444";
-      fb.textContent = "❌ Logic Flaw. This outcome doesn't strictly follow from the hypothesis/action.";
-    }
-  }
-
-  function nextPrediction() {
-    currentPredIdx++;
-    if(currentPredIdx >= predictions.length) {
-      showPrize();
-    } else {
-      loadPrediction();
-    }
-  }
+            // Helper function to convert MM:SS string to seconds
+            function parseTime(timeStr) {
+                if (!timeStr || timeStr === 'N/A') return Infinity;
+                const parts = timeStr.split(':');
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            }
 
 
-  /* --- MODAL --- */
-  function showPrize() {
-    document.getElementById('prize-modal').style.display = 'flex';
-  }
-  function closeModal() {
-    document.getElementById('prize-modal').style.display = 'none';
-    
-    // Reset views
-    resetMatchGame();
-    showScenarioSelection();
-    document.getElementById('prediction-start-screen').style.display = 'block';
-    document.getElementById('prediction-board').style.display = 'none';
-  }
+            function loadScenarioQuestion() {
+                const scen = scenarios[currentScenarioIndex];
+                const q = scen.questions[currentScenarioQ];
 
-</script>
+                document.getElementById('story-text').innerHTML = `<strong>${scen.title}:</strong> ${scen.text}`;
+                document.getElementById('question-text').textContent = q.q;
+
+                const optContainer = document.getElementById('scenario-options');
+                optContainer.innerHTML = '';
+
+                q.options.forEach((opt, idx) => {
+                    let btn = document.createElement('button');
+                    btn.textContent = opt;
+                    btn.onclick = (e) => {
+                        document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = true);
+                        if (idx === q.ans) {
+                            btn.style.background = "#dcfce7";
+                            setTimeout(nextScenarioStep, 500);
+                        } else {
+                            btn.style.background = "#fee2e2";
+                            setTimeout(() => {
+                                document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = false);
+                                btn.style.background = "white";
+                            }, 1000);
+                        }
+                    };
+                    optContainer.appendChild(btn);
+                });
+            }
+
+            function nextScenarioStep() {
+                currentScenarioQ++;
+                if (currentScenarioQ >= scenarios[currentScenarioIndex].questions.length) {
+                    stopCountUpTimer();
+                } else {
+                    // Re-enable options for the next question
+                    document.querySelectorAll('.scenario-options button').forEach(b => b.disabled = false);
+                    loadScenarioQuestion();
+                }
+            }
+
+            /* --- 2. MATCHING GAME --- */
+            function startMatchGame() {
+                document.getElementById('match-start-screen').style.display = 'none';
+                document.getElementById('match-game-board').style.display = 'block';
+
+                // Prep Data
+                let gameTerms = [...terms].sort(() => Math.random() - 0.5).slice(0, 5); // Take 5 random
+                let definitions = [...gameTerms].sort(() => Math.random() - 0.5);
+
+                // Render Columns
+                const colTerms = document.getElementById('col-terms');
+                const colDefs = document.getElementById('col-defs');
+                colTerms.innerHTML = ''; colDefs.innerHTML = '';
+
+                gameTerms.forEach(item => {
+                    let btn = document.createElement('div');
+                    btn.className = 'match-card';
+                    btn.textContent = item.t;
+                    btn.dataset.val = item.t;
+                    btn.onclick = (e) => handleMatchClick(e, 'term');
+                    colTerms.appendChild(btn);
+                });
+
+                definitions.forEach(item => {
+                    let btn = document.createElement('div');
+                    btn.className = 'match-card';
+                    btn.innerHTML = `<strong>${item.m}</strong><br><small>${item.d}</small>`;
+                    btn.dataset.val = item.t;
+                    btn.onclick = (e) => handleMatchClick(e, 'def');
+                    colDefs.appendChild(btn);
+                });
+
+                // Start Timer
+                let time = 60;
+                matchesFound = 0;
+                document.getElementById('match-timer').textContent = time;
+                clearInterval(matchTimerInt);
+                matchTimerInt = setInterval(() => {
+                    time--;
+                    document.getElementById('match-timer').textContent = time;
+                    if (time <= 0) {
+                        clearInterval(matchTimerInt);
+                        alert("Time's up! Try again.");
+                        resetMatchGame();
+                    }
+                }, 1000);
+            }
+
+            function handleMatchClick(e, type) {
+                const el = e.currentTarget;
+                if (el.classList.contains('matched')) return;
+
+                if (type === 'term') {
+                    document.querySelectorAll('#col-terms .match-card').forEach(b => b.classList.remove('selected'));
+                } else {
+                    document.querySelectorAll('#col-defs .match-card').forEach(b => b.classList.remove('selected'));
+                }
+                el.classList.add('selected');
+
+                const selTerm = document.querySelector('#col-terms .selected');
+                const selDef = document.querySelector('#col-defs .selected');
+
+                if (selTerm && selDef) {
+                    if (selTerm.dataset.val === selDef.dataset.val) {
+                        selTerm.classList.add('matched');
+                        selDef.classList.add('matched');
+                        selTerm.classList.remove('selected');
+                        selDef.classList.remove('selected');
+                        matchesFound++;
+                        if (matchesFound === 5) {
+                            clearInterval(matchTimerInt);
+                            showPrize();
+                        }
+                    } else {
+                        setTimeout(() => {
+                            selTerm.classList.remove('selected');
+                            selDef.classList.remove('selected');
+                        }, 500);
+                    }
+                }
+            }
+
+            function resetMatchGame() {
+                document.getElementById('match-start-screen').style.display = 'block';
+                document.getElementById('match-game-board').style.display = 'none';
+            }
+
+
+            /* --- 4. PREDICTION ENGINE --- */
+            function startPredictionGame() {
+                document.getElementById('prediction-start-screen').style.display = 'none';
+                document.getElementById('prediction-board').style.display = 'block';
+                currentPredIdx = 0;
+                loadPrediction();
+            }
+
+            function loadPrediction() {
+                const p = predictions[currentPredIdx];
+                document.getElementById('hypo-display').textContent = p.hypo;
+                document.getElementById('pred-feedback').textContent = "";
+                document.getElementById('next-pred-btn').style.display = 'none';
+                document.querySelector('.game-area button[onclick="checkPrediction()"]').disabled = false;
+
+                const selIf = document.getElementById('select-if');
+                const selThen = document.getElementById('select-then');
+
+                selIf.innerHTML = '<option value="-1">Select Action (IV)</option>';
+                selThen.innerHTML = '<option value="-1">Select Outcome (DV)</option>';
+
+                p.ifOptions.forEach((opt, i) => selIf.add(new Option(opt, i)));
+                p.thenOptions.forEach((opt, i) => selThen.add(new Option(opt, i)));
+            }
+
+            function checkPrediction() {
+                const p = predictions[currentPredIdx];
+                const userIf = parseInt(document.getElementById('select-if').value);
+                const userThen = parseInt(document.getElementById('select-then').value);
+                const fb = document.getElementById('pred-feedback');
+
+                if (userIf === -1 || userThen === -1) {
+                    fb.style.color = "orange";
+                    fb.textContent = "Please select both options!";
+                    return;
+                }
+
+                const isValid = p.validPairs.some(pair => pair.i === userIf && pair.t === userThen);
+
+                if (isValid) {
+                    fb.style.color = "green";
+                    fb.textContent = "✅ Correct! That is a logically valid prediction.";
+                    document.getElementById('next-pred-btn').style.display = 'inline-block';
+                    document.querySelector('.game-area button[onclick="checkPrediction()"]').disabled = true;
+                } else {
+                    fb.style.color = "#ef4444";
+                    fb.textContent = "❌ Logic Flaw. This outcome doesn't strictly follow from the hypothesis/action.";
+                }
+            }
+
+            function nextPrediction() {
+                currentPredIdx++;
+                if (currentPredIdx >= predictions.length) {
+                    showPrize();
+                } else {
+                    loadPrediction();
+                }
+            }
+
+
+            /* --- MODAL --- */
+            function showPrize() {
+                document.getElementById('prize-modal').style.display = 'flex';
+            }
+            function closeModal() {
+                document.getElementById('prize-modal').style.display = 'none';
+
+                // Reset views
+                resetMatchGame();
+                showScenarioSelection();
+                document.getElementById('prediction-start-screen').style.display = 'block';
+                document.getElementById('prediction-board').style.display = 'none';
+            }
+
+        </script>
 </body>
+
 </html>
