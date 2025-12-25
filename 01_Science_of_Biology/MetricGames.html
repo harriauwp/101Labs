@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: white;
@@ -21,7 +22,7 @@
             align-items: center;
             padding: 15px;
         }
-        
+
         .container {
             max-width: 100%;
             width: 100%;
@@ -31,7 +32,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
-        
+
         h1 {
             font-size: 2rem;
             margin-bottom: 8px;
@@ -40,13 +41,13 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .subtitle {
             font-size: 1rem;
             margin-bottom: 20px;
             opacity: 0.9;
         }
-        
+
         /* Game Selection Screen */
         .game-selection {
             display: grid;
@@ -54,7 +55,7 @@
             gap: 15px;
             margin-top: 20px;
         }
-        
+
         .game-card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -63,35 +64,35 @@
             transition: all 0.3s;
             border: 2px solid transparent;
         }
-        
+
         .game-card:hover {
             transform: translateY(-5px);
             border-color: #ffcc00;
             background: rgba(255, 255, 255, 0.15);
         }
-        
+
         .game-icon {
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
-        
+
         .game-title {
             font-size: 1.2rem;
             font-weight: bold;
             margin-bottom: 8px;
             color: #ffcc00;
         }
-        
+
         .game-desc {
             font-size: 0.9rem;
             opacity: 0.9;
         }
-        
+
         /* Common Game Styles */
         .game-screen {
             display: none;
         }
-        
+
         .game-info {
             display: flex;
             justify-content: space-between;
@@ -101,45 +102,45 @@
             margin-bottom: 20px;
             font-size: 0.9rem;
         }
-        
+
         .info-box {
             text-align: center;
         }
-        
+
         .info-label {
             font-size: 0.8rem;
             opacity: 0.8;
             margin-bottom: 3px;
         }
-        
+
         .info-value {
             font-size: 1.4rem;
             font-weight: bold;
         }
-        
+
         .level {
             color: #ffcc00;
         }
-        
+
         .score {
             color: #4cd964;
         }
-        
+
         .timer {
             color: #ff3b30;
         }
-        
+
         .lives {
             color: #ff9500;
         }
-        
+
         .controls {
             display: flex;
             justify-content: center;
             gap: 12px;
             margin-top: 15px;
         }
-        
+
         button {
             padding: 10px 20px;
             border: none;
@@ -150,47 +151,47 @@
             transition: all 0.3s;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         .primary-btn {
             background: linear-gradient(135deg, #4cd964, #2ecc71);
             color: white;
         }
-        
+
         .secondary-btn {
             background: linear-gradient(135deg, #ff3b30, #e74c3c);
             color: white;
         }
-        
+
         .accent-btn {
             background: linear-gradient(135deg, #5ac8fa, #007aff);
             color: white;
         }
-        
+
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
         }
-        
+
         button:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
-        
+
         .feedback {
             margin-top: 15px;
             font-size: 1rem;
             min-height: 25px;
         }
-        
+
         .correct {
             color: #4cd964;
         }
-        
+
         .incorrect {
             color: #ff3b30;
         }
-        
+
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -199,14 +200,14 @@
             margin: 15px 0;
             overflow: hidden;
         }
-        
+
         .progress {
             height: 100%;
             background: linear-gradient(90deg, #ff7e5f, #feb47b);
             width: 0%;
             transition: width 0.5s;
         }
-        
+
         /* Back to Menu Button */
         .back-btn {
             position: absolute;
@@ -224,9 +225,9 @@
             cursor: pointer;
             font-size: 1.2rem;
         }
-        
+
         /* Specific Game Styles */
-        
+
         /* Match Challenge */
         .game-area {
             display: flex;
@@ -234,21 +235,23 @@
             gap: 15px;
             margin-bottom: 20px;
         }
-        
-        .prefix-container, .exponent-container {
+
+        .prefix-container,
+        .exponent-container {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 15px;
             min-height: 180px;
         }
-        
+
         .container-title {
             font-size: 1.1rem;
             margin-bottom: 12px;
             color: #ffcc00;
         }
-        
-        .prefix-item, .exponent-item {
+
+        .prefix-item,
+        .exponent-item {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 6px;
             padding: 10px;
@@ -259,32 +262,34 @@
             font-weight: bold;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         .prefix-item {
             background: linear-gradient(135deg, #3498db, #2980b9);
         }
-        
+
         .exponent-item {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
-        .prefix-item:hover, .exponent-item:hover {
+
+        .prefix-item:hover,
+        .exponent-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
         }
-        
-        .prefix-item.dragging, .exponent-item.dragging {
+
+        .prefix-item.dragging,
+        .exponent-item.dragging {
             opacity: 0.7;
             transform: scale(1.03);
         }
-        
+
         .match-area {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
             margin-top: 15px;
         }
-        
+
         .match-slot {
             height: 70px;
             background: rgba(255, 255, 255, 0.1);
@@ -296,12 +301,12 @@
             transition: all 0.3s;
             font-size: 0.9rem;
         }
-        
+
         .match-slot.highlight {
             border-color: #ffcc00;
             background: rgba(255, 204, 0, 0.1);
         }
-        
+
         .matched-pair {
             display: flex;
             align-items: center;
@@ -310,7 +315,7 @@
             padding: 0 10px;
             font-size: 0.9rem;
         }
-        
+
         /* Speed Sort */
         .falling-items-container {
             position: relative;
@@ -320,7 +325,7 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
-        
+
         .falling-item {
             position: absolute;
             padding: 10px 15px;
@@ -331,21 +336,21 @@
             transition: transform 0.1s;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
         }
-        
+
         .falling-item.prefix {
             background: linear-gradient(135deg, #3498db, #2980b9);
         }
-        
+
         .falling-item.exponent {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
+
         .bins-container {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
         }
-        
+
         .bin {
             width: 120px;
             height: 100px;
@@ -357,7 +362,7 @@
             justify-content: center;
             font-weight: bold;
         }
-        
+
         /* Memory Match */
         .memory-grid {
             display: grid;
@@ -366,7 +371,7 @@
             margin: 20px auto;
             max-width: 500px;
         }
-        
+
         .memory-card {
             height: 80px;
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
@@ -380,17 +385,18 @@
             transition: all 0.3s;
             transform-style: preserve-3d;
         }
-        
+
         .memory-card.flipped {
             background: linear-gradient(135deg, #3498db, #2980b9);
-            transform: scale(1.05); /* Removed rotateY(180deg) to fix backwards text */
+            transform: scale(1.05);
+            /* Removed rotateY(180deg) to fix backwards text */
         }
-        
+
         .memory-card.matched {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             cursor: default;
         }
-        
+
         /* Prefix Ladder */
         .ladder-container {
             display: flex;
@@ -400,7 +406,7 @@
             max-height: 400px;
             overflow-y: auto;
         }
-        
+
         .ladder-slot {
             background: rgba(255, 255, 255, 0.1);
             border: 2px dashed rgba(255, 255, 255, 0.3);
@@ -413,17 +419,17 @@
             font-size: 1.1rem;
             font-weight: bold;
         }
-        
+
         .ladder-slot.correct {
             border-color: #4cd964;
             background: rgba(76, 217, 100, 0.2);
         }
-        
+
         .ladder-slot.incorrect {
             border-color: #ff3b30;
             background: rgba(255, 59, 48, 0.2);
         }
-        
+
         .ladder-items {
             display: flex;
             flex-wrap: wrap;
@@ -431,7 +437,7 @@
             justify-content: center;
             margin-top: 15px;
         }
-        
+
         .ladder-item {
             background: linear-gradient(135deg, #3498db, #2980b9);
             padding: 12px 20px;
@@ -440,7 +446,7 @@
             font-weight: bold;
             box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
         }
-        
+
         /* Word Challenge */
         .word-challenge-container {
             background: rgba(255, 255, 255, 0.1);
@@ -448,19 +454,19 @@
             padding: 20px;
             margin: 20px 0;
         }
-        
+
         .word-prompt {
             font-size: 1.3rem;
             margin-bottom: 20px;
             font-weight: bold;
         }
-        
+
         .word-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
         }
-        
+
         .word-option {
             background: linear-gradient(135deg, #9b59b6, #8e44ad);
             padding: 15px;
@@ -469,20 +475,20 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-        
+
         .word-option:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
-        
+
         .word-option.correct {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
         }
-        
+
         .word-option.incorrect {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
+
         /* Conversion Master */
         .conversion-container {
             background: rgba(255, 255, 255, 0.1);
@@ -490,13 +496,13 @@
             padding: 20px;
             margin: 20px 0;
         }
-        
+
         .conversion-problem {
             font-size: 1.3rem;
             margin-bottom: 20px;
             font-weight: bold;
         }
-        
+
         .conversion-input {
             width: 100%;
             padding: 12px;
@@ -508,13 +514,13 @@
             background: rgba(255, 255, 255, 0.9);
             color: #333;
         }
-        
+
         .conversion-options {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
         }
-        
+
         .conversion-option {
             background: linear-gradient(135deg, #3498db, #2980b9);
             padding: 12px;
@@ -523,40 +529,41 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-        
+
         .conversion-option:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
         }
-        
+
         .conversion-option.selected {
             background: linear-gradient(135deg, #ffcc00, #ff9500);
         }
-        
+
         /* Tablet and larger screens */
         @media (min-width: 768px) {
             .container {
                 max-width: 700px;
             }
-            
+
             .game-area {
                 flex-direction: row;
             }
-            
-            .prefix-container, .exponent-container {
+
+            .prefix-container,
+            .exponent-container {
                 min-height: 300px;
                 flex: 1;
             }
-            
+
             h1 {
                 font-size: 2.4rem;
             }
-            
+
             .memory-grid {
                 grid-template-columns: repeat(6, 1fr);
             }
         }
-        
+
         @media (min-width: 1024px) {
             .game-selection {
                 grid-template-columns: repeat(3, 1fr);
@@ -564,1589 +571,1595 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div id="gameSelection">
-            <h1>Metric Master Games</h1>
-            <p class="subtitle">Choose your learning adventure!</p>
-            
-            <div class="game-selection">
-                <div class="game-card" onclick="startGame('match')">
-                    <div class="game-icon">🧩</div>
-                    <div class="game-title">Match Challenge</div>
-                    <div class="game-desc">Drag and drop prefixes to match their powers of 10</div>
-                </div>
-                
-                <div class="game-card" onclick="startGame('speed')">
-                    <div class="game-icon">⚡</div>
-                    <div class="game-title">Speed Sort</div>
-                    <div class="game-desc">Catch falling prefixes before they disappear</div>
-                </div>
-                
-                <div class="game-card" onclick="startGame('memory')">
-                    <div class="game-icon">🎴</div>
-                    <div class="game-title">Memory Match</div>
-                    <div class="game-desc">Find matching prefix/power pairs</div>
-                </div>
-                
-                <div class="game-card" onclick="startGame('ladder')">
-                    <div class="game-icon">📊</div>
-                    <div class="game-title">Prefix Ladder</div>
-                    <div class="game-desc">Arrange prefixes in correct order</div>
-                </div>
-                
-                <div class="game-card" onclick="startGame('words')">
-                    <div class="game-icon">🔤</div>
-                    <div class="game-title">Word Challenge</div>
-                    <div class="game-desc">Match full word names with prefixes</div>
-                </div>
-                
-                <div class="game-card" onclick="startGame('conversion')">
-                    <div class="game-icon">🔄</div>
-                    <div class="game-title">Conversion Master</div>
-                    <div class="game-desc">Solve metric conversion problems</div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="matchGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Match Challenge</h1>
-            <p class="subtitle">Drag prefixes to match their powers of 10</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="matchLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="matchScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">TIME</div>
-                    <div class="info-value timer" id="matchTimer">60</div>
-                </div>
-            </div>
-            
-            <div class="progress-bar">
-                <div class="progress" id="matchProgress"></div>
-            </div>
-            
-            <div class="game-area">
-                <div class="prefix-container">
-                    <div class="container-title">PREFIXES</div>
-                    <div id="prefixesList"></div>
-                </div>
-                
-                <div class="exponent-container">
-                    <div class="container-title">POWERS</div>
-                    <div id="exponentsList"></div>
-                </div>
-            </div>
-            
-            <div class="match-area" id="matchArea"></div>
-            
-            <div class="feedback" id="matchFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="matchStartBtn">Start Game</button>
-                <button class="secondary-btn" id="matchResetBtn">Reset</button>
-                <button class="accent-btn" id="matchNextBtn" style="display:none">Next Level</button>
-            </div>
-        </div>
-        
-        <div id="wordsGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Word Challenge</h1>
-            <p class="subtitle">Match full word names with metric prefixes</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="wordsLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="wordsScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">LIVES</div>
-                    <div class="info-value lives" id="wordsLives">3</div>
-                </div>
-            </div>
-            
-            <div class="word-challenge-container">
-                <div class="word-prompt" id="wordPrompt">What is the prefix for "Million"?</div>
-                <div class="word-options" id="wordOptions">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px;">
+                <a href="index.html" style="color: white; text-decoration: none; font-size: 1em;">← Back to Hub</a>
+                <h3 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);"> Metric Master Games</h3>
+                    <div style="width: 100px;"></div>
+                    <p class="subtitle">Choose your learning adventure!</p>
+
+                    <div class="game-selection">
+                        <div class="game-card" onclick="startGame('match')">
+                            <div class="game-icon">🧩</div>
+                            <div class="game-title">Match Challenge</div>
+                            <div class="game-desc">Drag and drop prefixes to match their powers of 10</div>
+                        </div>
+
+                        <div class="game-card" onclick="startGame('speed')">
+                            <div class="game-icon">⚡</div>
+                            <div class="game-title">Speed Sort</div>
+                            <div class="game-desc">Catch falling prefixes before they disappear</div>
+                        </div>
+
+                        <div class="game-card" onclick="startGame('memory')">
+                            <div class="game-icon">🎴</div>
+                            <div class="game-title">Memory Match</div>
+                            <div class="game-desc">Find matching prefix/power pairs</div>
+                        </div>
+
+                        <div class="game-card" onclick="startGame('ladder')">
+                            <div class="game-icon">📊</div>
+                            <div class="game-title">Prefix Ladder</div>
+                            <div class="game-desc">Arrange prefixes in correct order</div>
+                        </div>
+
+                        <div class="game-card" onclick="startGame('words')">
+                            <div class="game-icon">🔤</div>
+                            <div class="game-title">Word Challenge</div>
+                            <div class="game-desc">Match full word names with prefixes</div>
+                        </div>
+
+                        <div class="game-card" onclick="startGame('conversion')">
+                            <div class="game-icon">🔄</div>
+                            <div class="game-title">Conversion Master</div>
+                            <div class="game-desc">Solve metric conversion problems</div>
+                        </div>
                     </div>
             </div>
-            
-            <div class="feedback" id="wordsFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="wordsStartBtn">Start Game</button>
-                <button class="secondary-btn" id="wordsResetBtn">Reset</button>
-                <button class="accent-btn" id="wordsNextBtn" style="display:none">Next Level</button>
-            </div>
-        </div>
-        
-        <div id="speedGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Speed Sort</h1>
-            <p class="subtitle">Catch falling prefixes and drag them to the correct bins</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="speedLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="speedScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">LIVES</div>
-                    <div class="info-value lives" id="speedLives">3</div>
-                </div>
-            </div>
-            
-            <div class="falling-items-container" id="fallingContainer">
-                </div>
-            
-            <div class="bins-container" id="binsContainer">
-                </div>
-            
-            <div class="feedback" id="speedFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="speedStartBtn">Start Game</button>
-                <button class="secondary-btn" id="speedResetBtn">Reset</button>
-                <button class="accent-btn" id="speedNextBtn" style="display:none">Next Level</button>
-            </div>
-        </div>
-        
-        <div id="memoryGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Memory Match</h1>
-            <p class="subtitle">Find matching prefix/power pairs</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="memoryLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="memoryScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">MOVES</div>
-                    <div class="info-value timer" id="memoryMoves">0</div>
-                </div>
-            </div>
-            
-            <div class="memory-grid" id="memoryGrid">
-                </div>
-            
-            <div class="feedback" id="memoryFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="memoryStartBtn">Start Game</button>
-                <button class="secondary-btn" id="memoryResetBtn">Reset</button>
-                <button class="accent-btn" id="memoryNextBtn" style="display:none">Next Level</button>
-            </div>
-        </div>
-        
-        <div id="ladderGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Prefix Ladder</h1>
-            <p class="subtitle">Arrange prefixes in order from largest to smallest</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="ladderLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="ladderScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">TIME</div>
-                    <div class="info-value timer" id="ladderTimer">60</div>
-                </div>
-            </div>
-            
-            <div class="ladder-container" id="ladderContainer">
-                </div>
-            
-            <div class="ladder-items" id="ladderItems">
-                </div>
-            
-            <div class="feedback" id="ladderFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="ladderStartBtn">Start Game</button>
-                <button class="secondary-btn" id="ladderResetBtn">Reset</button>
-                <button class="accent-btn" id="ladderNextBtn" style="display:none">Next Level</button>
-            </div>
-        </div>
-        
-        <div id="conversionGame" class="game-screen">
-            <button class="back-btn" onclick="backToMenu()">←</button>
-            <h1>Conversion Master</h1>
-            <p class="subtitle">Solve metric conversion problems</p>
-            
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">LEVEL</div>
-                    <div class="info-value level" id="conversionLevel">1</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">SCORE</div>
-                    <div class="info-value score" id="conversionScore">0</div>
-                </div>
-                <div class="info-box">
-                    <div class="info-label">LIVES</div>
-                    <div class="info-value lives" id="conversionLives">3</div>
-                </div>
-            </div>
-            
-            <div class="conversion-container">
-                <div class="conversion-problem" id="conversionProblem">Convert 5.2 km to m</div>
-                <input type="number" class="conversion-input" id="conversionInput" placeholder="Enter your answer">
-                <div class="conversion-options" id="conversionOptions">
+
+            <div id="matchGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Match Challenge</h1>
+                <p class="subtitle">Drag prefixes to match their powers of 10</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="matchLevel">1</div>
                     </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="matchScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">TIME</div>
+                        <div class="info-value timer" id="matchTimer">60</div>
+                    </div>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress" id="matchProgress"></div>
+                </div>
+
+                <div class="game-area">
+                    <div class="prefix-container">
+                        <div class="container-title">PREFIXES</div>
+                        <div id="prefixesList"></div>
+                    </div>
+
+                    <div class="exponent-container">
+                        <div class="container-title">POWERS</div>
+                        <div id="exponentsList"></div>
+                    </div>
+                </div>
+
+                <div class="match-area" id="matchArea"></div>
+
+                <div class="feedback" id="matchFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="matchStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="matchResetBtn">Reset</button>
+                    <button class="accent-btn" id="matchNextBtn" style="display:none">Next Level</button>
+                </div>
             </div>
-            
-            <div class="feedback" id="conversionFeedback"></div>
-            
-            <div class="controls">
-                <button class="primary-btn" id="conversionStartBtn">Start Game</button>
-                <button class="secondary-btn" id="conversionResetBtn">Reset</button>
-                <button class="accent-btn" id="conversionNextBtn" style="display:none">Next Level</button>
+
+            <div id="wordsGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Word Challenge</h1>
+                <p class="subtitle">Match full word names with metric prefixes</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="wordsLevel">1</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="wordsScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">LIVES</div>
+                        <div class="info-value lives" id="wordsLives">3</div>
+                    </div>
+                </div>
+
+                <div class="word-challenge-container">
+                    <div class="word-prompt" id="wordPrompt">What is the prefix for "Million"?</div>
+                    <div class="word-options" id="wordOptions">
+                    </div>
+                </div>
+
+                <div class="feedback" id="wordsFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="wordsStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="wordsResetBtn">Reset</button>
+                    <button class="accent-btn" id="wordsNextBtn" style="display:none">Next Level</button>
+                </div>
+            </div>
+
+            <div id="speedGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Speed Sort</h1>
+                <p class="subtitle">Catch falling prefixes and drag them to the correct bins</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="speedLevel">1</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="speedScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">LIVES</div>
+                        <div class="info-value lives" id="speedLives">3</div>
+                    </div>
+                </div>
+
+                <div class="falling-items-container" id="fallingContainer">
+                </div>
+
+                <div class="bins-container" id="binsContainer">
+                </div>
+
+                <div class="feedback" id="speedFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="speedStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="speedResetBtn">Reset</button>
+                    <button class="accent-btn" id="speedNextBtn" style="display:none">Next Level</button>
+                </div>
+            </div>
+
+            <div id="memoryGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Memory Match</h1>
+                <p class="subtitle">Find matching prefix/power pairs</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="memoryLevel">1</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="memoryScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">MOVES</div>
+                        <div class="info-value timer" id="memoryMoves">0</div>
+                    </div>
+                </div>
+
+                <div class="memory-grid" id="memoryGrid">
+                </div>
+
+                <div class="feedback" id="memoryFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="memoryStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="memoryResetBtn">Reset</button>
+                    <button class="accent-btn" id="memoryNextBtn" style="display:none">Next Level</button>
+                </div>
+            </div>
+
+            <div id="ladderGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Prefix Ladder</h1>
+                <p class="subtitle">Arrange prefixes in order from largest to smallest</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="ladderLevel">1</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="ladderScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">TIME</div>
+                        <div class="info-value timer" id="ladderTimer">60</div>
+                    </div>
+                </div>
+
+                <div class="ladder-container" id="ladderContainer">
+                </div>
+
+                <div class="ladder-items" id="ladderItems">
+                </div>
+
+                <div class="feedback" id="ladderFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="ladderStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="ladderResetBtn">Reset</button>
+                    <button class="accent-btn" id="ladderNextBtn" style="display:none">Next Level</button>
+                </div>
+            </div>
+
+            <div id="conversionGame" class="game-screen">
+                <button class="back-btn" onclick="backToMenu()">←</button>
+                <h1>Conversion Master</h1>
+                <p class="subtitle">Solve metric conversion problems</p>
+
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-label">LEVEL</div>
+                        <div class="info-value level" id="conversionLevel">1</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">SCORE</div>
+                        <div class="info-value score" id="conversionScore">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-label">LIVES</div>
+                        <div class="info-value lives" id="conversionLives">3</div>
+                    </div>
+                </div>
+
+                <div class="conversion-container">
+                    <div class="conversion-problem" id="conversionProblem">Convert 5.2 km to m</div>
+                    <input type="number" class="conversion-input" id="conversionInput" placeholder="Enter your answer">
+                    <div class="conversion-options" id="conversionOptions">
+                    </div>
+                </div>
+
+                <div class="feedback" id="conversionFeedback"></div>
+
+                <div class="controls">
+                    <button class="primary-btn" id="conversionStartBtn">Start Game</button>
+                    <button class="secondary-btn" id="conversionResetBtn">Reset</button>
+                    <button class="accent-btn" id="conversionNextBtn" style="display:none">Next Level</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        // Game data - metric prefixes and their powers of 10
-        const metricPrefixes = [
-            { prefix: "Giga", symbol: "G", power: 9, word: "Billion", example: "Gigabyte" },
-            { prefix: "Mega", symbol: "M", power: 6, word: "Million", example: "Megagram" },
-            { prefix: "Kilo", symbol: "k", power: 3, word: "Thousand", example: "Kilogram" },
-            { prefix: "Hecto", symbol: "h", power: 2, word: "Hundred", example: "Hectoliter" },
-            { prefix: "Deka", symbol: "da", power: 1, word: "Ten", example: "Dekameter" },
-            { prefix: "Base", symbol: "", power: 0, word: "One", example: "Meter, Gram, Liter" },
-            { prefix: "Deci", symbol: "d", power: -1, word: "Tenth", example: "Deciliter" },
-            { prefix: "Centi", symbol: "c", power: -2, word: "Hundredth", example: "Centimeter" },
-            { prefix: "Milli", symbol: "m", power: -3, word: "Thousandth", example: "Milligram" },
-            { prefix: "Micro", symbol: "μ", power: -6, word: "Millionth", example: "Micrometer" },
-            { prefix: "Nano", symbol: "n", power: -9, word: "Billionth", example: "Nanometer" },
-            { prefix: "Pico", symbol: "p", power: -12, word: "Trillionth", example: "Picogram" }
-        ];
+        <script>
+            // Game data - metric prefixes and their powers of 10
+            const metricPrefixes = [
+                { prefix: "Giga", symbol: "G", power: 9, word: "Billion", example: "Gigabyte" },
+                { prefix: "Mega", symbol: "M", power: 6, word: "Million", example: "Megagram" },
+                { prefix: "Kilo", symbol: "k", power: 3, word: "Thousand", example: "Kilogram" },
+                { prefix: "Hecto", symbol: "h", power: 2, word: "Hundred", example: "Hectoliter" },
+                { prefix: "Deka", symbol: "da", power: 1, word: "Ten", example: "Dekameter" },
+                { prefix: "Base", symbol: "", power: 0, word: "One", example: "Meter, Gram, Liter" },
+                { prefix: "Deci", symbol: "d", power: -1, word: "Tenth", example: "Deciliter" },
+                { prefix: "Centi", symbol: "c", power: -2, word: "Hundredth", example: "Centimeter" },
+                { prefix: "Milli", symbol: "m", power: -3, word: "Thousandth", example: "Milligram" },
+                { prefix: "Micro", symbol: "μ", power: -6, word: "Millionth", example: "Micrometer" },
+                { prefix: "Nano", symbol: "n", power: -9, word: "Billionth", example: "Nanometer" },
+                { prefix: "Pico", symbol: "p", power: -12, word: "Trillionth", example: "Picogram" }
+            ];
 
-        // Game state for Match Challenge
-        const matchState = {
-            level: 1,
-            score: 0,
-            timeLeft: 60,
-            timer: null,
-            isPlaying: false,
-            currentPrefixes: [],
-            currentExponents: [],
-            matchedPairs: [],
-            slots: []
-        };
+            // Game state for Match Challenge
+            const matchState = {
+                level: 1,
+                score: 0,
+                timeLeft: 60,
+                timer: null,
+                isPlaying: false,
+                currentPrefixes: [],
+                currentExponents: [],
+                matchedPairs: [],
+                slots: []
+            };
 
-        // Game state for Word Challenge
-        const wordsState = {
-            level: 1,
-            score: 0,
-            lives: 3,
-            currentQuestion: null,
-            isPlaying: false,
-            questionsAnswered: 0
-        };
+            // Game state for Word Challenge
+            const wordsState = {
+                level: 1,
+                score: 0,
+                lives: 3,
+                currentQuestion: null,
+                isPlaying: false,
+                questionsAnswered: 0
+            };
 
-        // Game state for Speed Sort
-        const speedState = {
-            level: 1,
-            score: 0,
-            lives: 3,
-            isPlaying: false,
-            fallingItems: [],
-            timer: null,
-            spawnRate: 2000,
-            speed: 2
-        };
+            // Game state for Speed Sort
+            const speedState = {
+                level: 1,
+                score: 0,
+                lives: 3,
+                isPlaying: false,
+                fallingItems: [],
+                timer: null,
+                spawnRate: 2000,
+                speed: 2
+            };
 
-        // Game state for Memory Match
-        const memoryState = {
-            level: 1,
-            score: 0,
-            moves: 0,
-            isPlaying: false,
-            cards: [],
-            flippedCards: [],
-            matchedPairs: 0
-        };
+            // Game state for Memory Match
+            const memoryState = {
+                level: 1,
+                score: 0,
+                moves: 0,
+                isPlaying: false,
+                cards: [],
+                flippedCards: [],
+                matchedPairs: 0
+            };
 
-        // Game state for Prefix Ladder
-        const ladderState = {
-            level: 1,
-            score: 0,
-            timeLeft: 60,
-            timer: null,
-            isPlaying: false,
-            currentPrefixes: [],
-            slots: []
-        };
+            // Game state for Prefix Ladder
+            const ladderState = {
+                level: 1,
+                score: 0,
+                timeLeft: 60,
+                timer: null,
+                isPlaying: false,
+                currentPrefixes: [],
+                slots: []
+            };
 
-        // Game state for Conversion Master
-        const conversionState = {
-            level: 1,
-            score: 0,
-            lives: 3,
-            isPlaying: false,
-            currentProblem: null,
-            questionsAnswered: 0
-        };
+            // Game state for Conversion Master
+            const conversionState = {
+                level: 1,
+                score: 0,
+                lives: 3,
+                isPlaying: false,
+                currentProblem: null,
+                questionsAnswered: 0
+            };
 
-        // Level configurations
-        const levelConfigs = {
-            1: { prefixes: 4, time: 60, pointsPerMatch: 100 },
-            2: { prefixes: 6, time: 50, pointsPerMatch: 150 },
-            3: { prefixes: 8, time: 45, pointsPerMatch: 200 },
-            4: { prefixes: 10, time: 40, pointsPerMatch: 250 },
-            5: { prefixes: 12, time: 35, pointsPerMatch: 300 }
-        };
+            // Level configurations
+            const levelConfigs = {
+                1: { prefixes: 4, time: 60, pointsPerMatch: 100 },
+                2: { prefixes: 6, time: 50, pointsPerMatch: 150 },
+                3: { prefixes: 8, time: 45, pointsPerMatch: 200 },
+                4: { prefixes: 10, time: 40, pointsPerMatch: 250 },
+                5: { prefixes: 12, time: 35, pointsPerMatch: 300 }
+            };
 
-        // Initialize the game
-        function initGame() {
-            setupEventListeners();
-        }
+            // Initialize the game
+            function initGame() {
+                setupEventListeners();
+            }
 
-        // Set up event listeners
-        function setupEventListeners() {
-            // Match Challenge events
-            document.getElementById('matchStartBtn').addEventListener('click', startMatchGame);
-            document.getElementById('matchResetBtn').addEventListener('click', resetMatchGame);
-            document.getElementById('matchNextBtn').addEventListener('click', nextMatchLevel);
-            
-            // Word Challenge events
-            document.getElementById('wordsStartBtn').addEventListener('click', startWordsGame);
-            document.getElementById('wordsResetBtn').addEventListener('click', resetWordsGame);
-            document.getElementById('wordsNextBtn').addEventListener('click', nextWordsLevel);
-            
-            // Speed Sort events
-            document.getElementById('speedStartBtn').addEventListener('click', startSpeedGame);
-            document.getElementById('speedResetBtn').addEventListener('click', resetSpeedGame);
-            document.getElementById('speedNextBtn').addEventListener('click', nextSpeedLevel);
-            
-            // Memory Match events
-            document.getElementById('memoryStartBtn').addEventListener('click', startMemoryGame);
-            document.getElementById('memoryResetBtn').addEventListener('click', resetMemoryGame);
-            document.getElementById('memoryNextBtn').addEventListener('click', nextMemoryLevel);
-            
-            // Prefix Ladder events
-            document.getElementById('ladderStartBtn').addEventListener('click', startLadderGame);
-            document.getElementById('ladderResetBtn').addEventListener('click', resetLadderGame);
-            document.getElementById('ladderNextBtn').addEventListener('click', nextLadderLevel);
-            
-            // Conversion Master events
-            document.getElementById('conversionStartBtn').addEventListener('click', startConversionGame);
-            document.getElementById('conversionResetBtn').addEventListener('click', resetConversionGame);
-            document.getElementById('conversionNextBtn').addEventListener('click', nextConversionLevel);
-            
-            // Drag and drop events for Match Challenge
-            document.getElementById('matchArea').addEventListener('dragover', handleDragOver);
-            document.getElementById('matchArea').addEventListener('drop', handleDrop);
-            
-            // Conversion input event
-            document.getElementById('conversionInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkConversionAnswer();
+            // Set up event listeners
+            function setupEventListeners() {
+                // Match Challenge events
+                document.getElementById('matchStartBtn').addEventListener('click', startMatchGame);
+                document.getElementById('matchResetBtn').addEventListener('click', resetMatchGame);
+                document.getElementById('matchNextBtn').addEventListener('click', nextMatchLevel);
+
+                // Word Challenge events
+                document.getElementById('wordsStartBtn').addEventListener('click', startWordsGame);
+                document.getElementById('wordsResetBtn').addEventListener('click', resetWordsGame);
+                document.getElementById('wordsNextBtn').addEventListener('click', nextWordsLevel);
+
+                // Speed Sort events
+                document.getElementById('speedStartBtn').addEventListener('click', startSpeedGame);
+                document.getElementById('speedResetBtn').addEventListener('click', resetSpeedGame);
+                document.getElementById('speedNextBtn').addEventListener('click', nextSpeedLevel);
+
+                // Memory Match events
+                document.getElementById('memoryStartBtn').addEventListener('click', startMemoryGame);
+                document.getElementById('memoryResetBtn').addEventListener('click', resetMemoryGame);
+                document.getElementById('memoryNextBtn').addEventListener('click', nextMemoryLevel);
+
+                // Prefix Ladder events
+                document.getElementById('ladderStartBtn').addEventListener('click', startLadderGame);
+                document.getElementById('ladderResetBtn').addEventListener('click', resetLadderGame);
+                document.getElementById('ladderNextBtn').addEventListener('click', nextLadderLevel);
+
+                // Conversion Master events
+                document.getElementById('conversionStartBtn').addEventListener('click', startConversionGame);
+                document.getElementById('conversionResetBtn').addEventListener('click', resetConversionGame);
+                document.getElementById('conversionNextBtn').addEventListener('click', nextConversionLevel);
+
+                // Drag and drop events for Match Challenge
+                document.getElementById('matchArea').addEventListener('dragover', handleDragOver);
+                document.getElementById('matchArea').addEventListener('drop', handleDrop);
+
+                // Conversion input event
+                document.getElementById('conversionInput').addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        checkConversionAnswer();
+                    }
+                });
+            }
+
+            // Navigation functions
+            function startGame(gameType) {
+                document.getElementById('gameSelection').style.display = 'none';
+                document.getElementById(gameType + 'Game').style.display = 'block';
+            }
+
+            function backToMenu() {
+                // Hide all game screens
+                document.querySelectorAll('.game-screen').forEach(screen => {
+                    screen.style.display = 'none';
+                });
+
+                // Show game selection
+                document.getElementById('gameSelection').style.display = 'block';
+
+                // Reset any active games
+                resetMatchGame();
+                resetWordsGame();
+                resetSpeedGame();
+                resetMemoryGame();
+                resetLadderGame();
+                resetConversionGame();
+            }
+
+            // Match Challenge Game Functions
+            function startMatchGame() {
+                if (matchState.isPlaying) return;
+
+                matchState.isPlaying = true;
+                document.getElementById('matchStartBtn').disabled = true;
+                document.getElementById('matchNextBtn').style.display = 'none';
+                document.getElementById('matchFeedback').textContent = "Match the prefixes with their powers!";
+                document.getElementById('matchFeedback').className = "feedback";
+
+                // Set up current level
+                setupMatchLevel();
+
+                // Start the timer
+                startMatchTimer();
+            }
+
+            function setupMatchLevel() {
+                const config = levelConfigs[matchState.level];
+                matchState.timeLeft = config.time;
+                document.getElementById('matchTimer').textContent = matchState.timeLeft;
+
+                // Select random prefixes for this level
+                matchState.currentPrefixes = getRandomPrefixes(config.prefixes);
+                matchState.currentExponents = [...matchState.currentPrefixes].map(p => p.power);
+
+                // Shuffle exponents
+                shuffleArray(matchState.currentExponents);
+
+                // Clear previous state
+                matchState.matchedPairs = [];
+                matchState.slots = [];
+                document.getElementById('prefixesList').innerHTML = '';
+                document.getElementById('exponentsList').innerHTML = '';
+                document.getElementById('matchArea').innerHTML = '';
+
+                // Create prefix and exponent items
+                matchState.currentPrefixes.forEach(prefix => {
+                    const prefixElement = createDraggableItem(prefix.prefix, 'prefix', prefix.power);
+                    document.getElementById('prefixesList').appendChild(prefixElement);
+                });
+
+                matchState.currentExponents.forEach(power => {
+                    const exponentElement = createDraggableItem(`10${formatPower(power)}`, 'exponent', power);
+                    document.getElementById('exponentsList').appendChild(exponentElement);
+                });
+
+                // Create match slots
+                for (let i = 0; i < config.prefixes; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'match-slot';
+                    slot.dataset.index = i;
+                    document.getElementById('matchArea').appendChild(slot);
+                    matchState.slots.push({ prefix: null, exponent: null });
                 }
-            });
-        }
 
-        // Navigation functions
-        function startGame(gameType) {
-            document.getElementById('gameSelection').style.display = 'none';
-            document.getElementById(gameType + 'Game').style.display = 'block';
-        }
-
-        function backToMenu() {
-            // Hide all game screens
-            document.querySelectorAll('.game-screen').forEach(screen => {
-                screen.style.display = 'none';
-            });
-            
-            // Show game selection
-            document.getElementById('gameSelection').style.display = 'block';
-            
-            // Reset any active games
-            resetMatchGame();
-            resetWordsGame();
-            resetSpeedGame();
-            resetMemoryGame();
-            resetLadderGame();
-            resetConversionGame();
-        }
-
-        // Match Challenge Game Functions
-        function startMatchGame() {
-            if (matchState.isPlaying) return;
-            
-            matchState.isPlaying = true;
-            document.getElementById('matchStartBtn').disabled = true;
-            document.getElementById('matchNextBtn').style.display = 'none';
-            document.getElementById('matchFeedback').textContent = "Match the prefixes with their powers!";
-            document.getElementById('matchFeedback').className = "feedback";
-            
-            // Set up current level
-            setupMatchLevel();
-            
-            // Start the timer
-            startMatchTimer();
-        }
-
-        function setupMatchLevel() {
-            const config = levelConfigs[matchState.level];
-            matchState.timeLeft = config.time;
-            document.getElementById('matchTimer').textContent = matchState.timeLeft;
-            
-            // Select random prefixes for this level
-            matchState.currentPrefixes = getRandomPrefixes(config.prefixes);
-            matchState.currentExponents = [...matchState.currentPrefixes].map(p => p.power);
-            
-            // Shuffle exponents
-            shuffleArray(matchState.currentExponents);
-            
-            // Clear previous state
-            matchState.matchedPairs = [];
-            matchState.slots = [];
-            document.getElementById('prefixesList').innerHTML = '';
-            document.getElementById('exponentsList').innerHTML = '';
-            document.getElementById('matchArea').innerHTML = '';
-            
-            // Create prefix and exponent items
-            matchState.currentPrefixes.forEach(prefix => {
-                const prefixElement = createDraggableItem(prefix.prefix, 'prefix', prefix.power);
-                document.getElementById('prefixesList').appendChild(prefixElement);
-            });
-            
-            matchState.currentExponents.forEach(power => {
-                const exponentElement = createDraggableItem(`10${formatPower(power)}`, 'exponent', power);
-                document.getElementById('exponentsList').appendChild(exponentElement);
-            });
-            
-            // Create match slots
-            for (let i = 0; i < config.prefixes; i++) {
-                const slot = document.createElement('div');
-                slot.className = 'match-slot';
-                slot.dataset.index = i;
-                document.getElementById('matchArea').appendChild(slot);
-                matchState.slots.push({ prefix: null, exponent: null });
+                // Update progress bar
+                updateMatchProgressBar();
             }
-            
-            // Update progress bar
-            updateMatchProgressBar();
-        }
 
-        function createDraggableItem(text, type, power) {
-            const item = document.createElement('div');
-            item.className = `${type}-item`;
-            // FIX: Changed textContent to innerHTML to render superscripts correctly
-            item.innerHTML = text; 
-            item.draggable = true;
-            item.dataset.type = type;
-            item.dataset.power = power;
-            
-            item.addEventListener('dragstart', handleDragStart);
-            item.addEventListener('dragend', handleDragEnd);
-            
-            return item;
-        }
+            function createDraggableItem(text, type, power) {
+                const item = document.createElement('div');
+                item.className = `${type}-item`;
+                // FIX: Changed textContent to innerHTML to render superscripts correctly
+                item.innerHTML = text;
+                item.draggable = true;
+                item.dataset.type = type;
+                item.dataset.power = power;
 
-        function handleDragStart(e) {
-            e.dataTransfer.setData('text/plain', JSON.stringify({
-                type: e.target.dataset.type,
-                power: e.target.dataset.power,
-                text: e.target.innerHTML // FIX: Changed textContent to innerHTML
-            }));
-            
-            e.target.classList.add('dragging');
-            
-            // Highlight available slots
-            document.querySelectorAll('.match-slot').forEach(slot => {
-                slot.classList.add('highlight');
-            });
-        }
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragend', handleDragEnd);
 
-        function handleDragEnd(e) {
-            e.target.classList.remove('dragging');
-            
-            // Remove highlights
-            document.querySelectorAll('.match-slot').forEach(slot => {
-                slot.classList.remove('highlight');
-            });
-        }
-
-        function handleDragOver(e) {
-            e.preventDefault();
-        }
-
-        function handleDrop(e) {
-            e.preventDefault();
-            
-            if (!matchState.isPlaying) return;
-            
-            const slot = e.target.closest('.match-slot');
-            if (!slot) return;
-            
-            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-            const slotIndex = parseInt(slot.dataset.index);
-            
-            // Check if this type is already in the slot
-            if (matchState.slots[slotIndex][data.type] !== null) {
-                document.getElementById('matchFeedback').textContent = "This slot already has a " + data.type;
-                document.getElementById('matchFeedback').className = "feedback incorrect";
-                return;
+                return item;
             }
-            
-            // Add to slot
-            matchState.slots[slotIndex][data.type] = data;
-            
-            // Update slot display
-            updateSlotDisplay(slot, slotIndex);
-            
-            // Check for matches
-            checkForMatches();
-        }
 
-        function updateSlotDisplay(slot, index) {
-            const slotData = matchState.slots[index];
-            let content = '';
-            
-            if (slotData.prefix && slotData.exponent) {
-                content = `
+            function handleDragStart(e) {
+                e.dataTransfer.setData('text/plain', JSON.stringify({
+                    type: e.target.dataset.type,
+                    power: e.target.dataset.power,
+                    text: e.target.innerHTML // FIX: Changed textContent to innerHTML
+                }));
+
+                e.target.classList.add('dragging');
+
+                // Highlight available slots
+                document.querySelectorAll('.match-slot').forEach(slot => {
+                    slot.classList.add('highlight');
+                });
+            }
+
+            function handleDragEnd(e) {
+                e.target.classList.remove('dragging');
+
+                // Remove highlights
+                document.querySelectorAll('.match-slot').forEach(slot => {
+                    slot.classList.remove('highlight');
+                });
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+
+                if (!matchState.isPlaying) return;
+
+                const slot = e.target.closest('.match-slot');
+                if (!slot) return;
+
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                const slotIndex = parseInt(slot.dataset.index);
+
+                // Check if this type is already in the slot
+                if (matchState.slots[slotIndex][data.type] !== null) {
+                    document.getElementById('matchFeedback').textContent = "This slot already has a " + data.type;
+                    document.getElementById('matchFeedback').className = "feedback incorrect";
+                    return;
+                }
+
+                // Add to slot
+                matchState.slots[slotIndex][data.type] = data;
+
+                // Update slot display
+                updateSlotDisplay(slot, slotIndex);
+
+                // Check for matches
+                checkForMatches();
+            }
+
+            function updateSlotDisplay(slot, index) {
+                const slotData = matchState.slots[index];
+                let content = '';
+
+                if (slotData.prefix && slotData.exponent) {
+                    content = `
                     <div class="matched-pair">
                         <span>${slotData.prefix.text}</span>
                         <span>→</span>
                         <span>${slotData.exponent.text}</span>
                     </div>
                 `;
-                
-                // Check if this is a correct match
-                if (parseInt(slotData.prefix.power) === parseInt(slotData.exponent.power)) {
-                    slot.style.borderColor = '#4cd964';
-                    slot.style.background = 'rgba(76, 217, 100, 0.2)';
-                } else {
-                    slot.style.borderColor = '#ff3b30';
-                    slot.style.background = 'rgba(255, 59, 48, 0.2)';
-                }
-            } else if (slotData.prefix) {
-                content = slotData.prefix.text;
-            } else if (slotData.exponent) {
-                content = slotData.exponent.text;
-            }
-            
-            slot.innerHTML = content;
-        }
 
-        function checkForMatches() {
-            let correctMatches = 0;
-            let totalMatches = 0;
-            
-            matchState.slots.forEach(slot => {
-                if (slot.prefix && slot.exponent) {
-                    totalMatches++;
-                    
-                    if (parseInt(slot.prefix.power) === parseInt(slot.exponent.power)) {
+                    // Check if this is a correct match
+                    if (parseInt(slotData.prefix.power) === parseInt(slotData.exponent.power)) {
+                        slot.style.borderColor = '#4cd964';
+                        slot.style.background = 'rgba(76, 217, 100, 0.2)';
+                    } else {
+                        slot.style.borderColor = '#ff3b30';
+                        slot.style.background = 'rgba(255, 59, 48, 0.2)';
+                    }
+                } else if (slotData.prefix) {
+                    content = slotData.prefix.text;
+                } else if (slotData.exponent) {
+                    content = slotData.exponent.text;
+                }
+
+                slot.innerHTML = content;
+            }
+
+            function checkForMatches() {
+                let correctMatches = 0;
+                let totalMatches = 0;
+
+                matchState.slots.forEach(slot => {
+                    if (slot.prefix && slot.exponent) {
+                        totalMatches++;
+
+                        if (parseInt(slot.prefix.power) === parseInt(slot.exponent.power)) {
+                            correctMatches++;
+                        }
+                    }
+                });
+
+                // Update progress bar
+                updateMatchProgressBar();
+
+                // Check if level is complete
+                if (correctMatches === matchState.currentPrefixes.length) {
+                    matchLevelCompleted();
+                } else if (totalMatches > 0) {
+                    document.getElementById('matchFeedback').textContent = `${correctMatches} correct out of ${totalMatches} matches`;
+                    document.getElementById('matchFeedback').className = "feedback";
+                }
+            }
+
+            function updateMatchProgressBar() {
+                let correctMatches = 0;
+
+                matchState.slots.forEach(slot => {
+                    if (slot.prefix && slot.exponent &&
+                        parseInt(slot.prefix.power) === parseInt(slot.exponent.power)) {
                         correctMatches++;
                     }
-                }
-            });
-            
-            // Update progress bar
-            updateMatchProgressBar();
-            
-            // Check if level is complete
-            if (correctMatches === matchState.currentPrefixes.length) {
-                matchLevelCompleted();
-            } else if (totalMatches > 0) {
-                document.getElementById('matchFeedback').textContent = `${correctMatches} correct out of ${totalMatches} matches`;
-                document.getElementById('matchFeedback').className = "feedback";
+                });
+
+                const progress = (correctMatches / matchState.currentPrefixes.length) * 100;
+                document.getElementById('matchProgress').style.width = `${progress}%`;
             }
-        }
 
-        function updateMatchProgressBar() {
-            let correctMatches = 0;
-            
-            matchState.slots.forEach(slot => {
-                if (slot.prefix && slot.exponent && 
-                    parseInt(slot.prefix.power) === parseInt(slot.exponent.power)) {
-                    correctMatches++;
+            function matchLevelCompleted() {
+                matchState.isPlaying = false;
+                clearInterval(matchState.timer);
+
+                const config = levelConfigs[matchState.level];
+                const timeBonus = Math.floor(matchState.timeLeft * 5);
+                const levelPoints = (config.pointsPerMatch * matchState.currentPrefixes.length) + timeBonus;
+
+                matchState.score += levelPoints;
+
+                document.getElementById('matchFeedback').textContent = `Perfect! You earned ${levelPoints} points!`;
+                document.getElementById('matchFeedback').className = "feedback correct";
+
+                document.getElementById('matchNextBtn').style.display = 'block';
+
+                updateMatchDisplay();
+            }
+
+            function nextMatchLevel() {
+                if (matchState.level < 5) {
+                    matchState.level++;
+                } else {
+                    matchState.level = 1;
+                    matchState.score = 0;
                 }
-            });
-            
-            const progress = (correctMatches / matchState.currentPrefixes.length) * 100;
-            document.getElementById('matchProgress').style.width = `${progress}%`;
-        }
 
-        function matchLevelCompleted() {
-            matchState.isPlaying = false;
-            clearInterval(matchState.timer);
-            
-            const config = levelConfigs[matchState.level];
-            const timeBonus = Math.floor(matchState.timeLeft * 5);
-            const levelPoints = (config.pointsPerMatch * matchState.currentPrefixes.length) + timeBonus;
-            
-            matchState.score += levelPoints;
-            
-            document.getElementById('matchFeedback').textContent = `Perfect! You earned ${levelPoints} points!`;
-            document.getElementById('matchFeedback').className = "feedback correct";
-            
-            document.getElementById('matchNextBtn').style.display = 'block';
-            
-            updateMatchDisplay();
-        }
+                updateMatchDisplay();
+                startMatchGame();
+            }
 
-        function nextMatchLevel() {
-            if (matchState.level < 5) {
-                matchState.level++;
-            } else {
+            function startMatchTimer() {
+                matchState.timer = setInterval(() => {
+                    matchState.timeLeft--;
+                    document.getElementById('matchTimer').textContent = matchState.timeLeft;
+
+                    if (matchState.timeLeft <= 0) {
+                        clearInterval(matchState.timer);
+                        matchTimeUp();
+                    }
+                }, 1000);
+            }
+
+            function matchTimeUp() {
+                matchState.isPlaying = false;
+                document.getElementById('matchFeedback').textContent = "Time's up! Try again.";
+                document.getElementById('matchFeedback').className = "feedback incorrect";
+                document.getElementById('matchStartBtn').disabled = false;
+            }
+
+            function resetMatchGame() {
+                clearInterval(matchState.timer);
+
                 matchState.level = 1;
                 matchState.score = 0;
-            }
-            
-            updateMatchDisplay();
-            startMatchGame();
-        }
+                matchState.timeLeft = 60;
+                matchState.isPlaying = false;
+                matchState.currentPrefixes = [];
+                matchState.currentExponents = [];
+                matchState.matchedPairs = [];
+                matchState.slots = [];
 
-        function startMatchTimer() {
-            matchState.timer = setInterval(() => {
-                matchState.timeLeft--;
+                document.getElementById('prefixesList').innerHTML = '';
+                document.getElementById('exponentsList').innerHTML = '';
+                document.getElementById('matchArea').innerHTML = '';
+                document.getElementById('matchFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('matchFeedback').className = 'feedback';
+                document.getElementById('matchProgress').style.width = '0%';
+                document.getElementById('matchStartBtn').disabled = false;
+                document.getElementById('matchNextBtn').style.display = 'none';
+
+                updateMatchDisplay();
+            }
+
+            function updateMatchDisplay() {
+                document.getElementById('matchLevel').textContent = matchState.level;
+                document.getElementById('matchScore').textContent = matchState.score;
                 document.getElementById('matchTimer').textContent = matchState.timeLeft;
-                
-                if (matchState.timeLeft <= 0) {
-                    clearInterval(matchState.timer);
-                    matchTimeUp();
-                }
-            }, 1000);
-        }
-
-        function matchTimeUp() {
-            matchState.isPlaying = false;
-            document.getElementById('matchFeedback').textContent = "Time's up! Try again.";
-            document.getElementById('matchFeedback').className = "feedback incorrect";
-            document.getElementById('matchStartBtn').disabled = false;
-        }
-
-        function resetMatchGame() {
-            clearInterval(matchState.timer);
-            
-            matchState.level = 1;
-            matchState.score = 0;
-            matchState.timeLeft = 60;
-            matchState.isPlaying = false;
-            matchState.currentPrefixes = [];
-            matchState.currentExponents = [];
-            matchState.matchedPairs = [];
-            matchState.slots = [];
-            
-            document.getElementById('prefixesList').innerHTML = '';
-            document.getElementById('exponentsList').innerHTML = '';
-            document.getElementById('matchArea').innerHTML = '';
-            document.getElementById('matchFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('matchFeedback').className = 'feedback';
-            document.getElementById('matchProgress').style.width = '0%';
-            document.getElementById('matchStartBtn').disabled = false;
-            document.getElementById('matchNextBtn').style.display = 'none';
-            
-            updateMatchDisplay();
-        }
-
-        function updateMatchDisplay() {
-            document.getElementById('matchLevel').textContent = matchState.level;
-            document.getElementById('matchScore').textContent = matchState.score;
-            document.getElementById('matchTimer').textContent = matchState.timeLeft;
-        }
-
-        // Word Challenge Game Functions
-        function startWordsGame() {
-            if (wordsState.isPlaying) return;
-            
-            wordsState.isPlaying = true;
-            document.getElementById('wordsStartBtn').disabled = true;
-            document.getElementById('wordsNextBtn').style.display = 'none';
-            
-            // Set up first question
-            generateWordQuestion();
-        }
-
-        function generateWordQuestion() {
-            // Select a random prefix
-            const randomPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
-            
-            // Create wrong options (other prefixes)
-            const wrongOptions = metricPrefixes
-                .filter(p => p.prefix !== randomPrefix.prefix)
-                .sort(() => 0.5 - Math.random())
-                .slice(0, 3);
-            
-            // Combine options and shuffle
-            const options = [randomPrefix, ...wrongOptions].sort(() => 0.5 - Math.random());
-            
-            // Set current question
-            wordsState.currentQuestion = {
-                correctPrefix: randomPrefix,
-                options: options
-            };
-            
-            // Update UI
-            document.getElementById('wordPrompt').textContent = `What is the prefix for "${randomPrefix.word}"?`;
-            
-            const optionsContainer = document.getElementById('wordOptions');
-            optionsContainer.innerHTML = '';
-            
-            options.forEach(option => {
-                const optionElement = document.createElement('div');
-                optionElement.className = 'word-option';
-                optionElement.textContent = option.prefix;
-                optionElement.addEventListener('click', () => checkWordAnswer(option));
-                optionsContainer.appendChild(optionElement);
-            });
-            
-            document.getElementById('wordsFeedback').textContent = '';
-            document.getElementById('wordsFeedback').className = 'feedback';
-        }
-
-        function checkWordAnswer(selectedPrefix) {
-            if (!wordsState.isPlaying) return;
-            
-            const correct = selectedPrefix.prefix === wordsState.currentQuestion.correctPrefix.prefix;
-            const options = document.querySelectorAll('.word-option');
-            
-            options.forEach(option => {
-                option.style.pointerEvents = 'none'; // Disable further clicks
-                
-                if (option.textContent === wordsState.currentQuestion.correctPrefix.prefix) {
-                    option.classList.add('correct');
-                } else if (option.textContent === selectedPrefix.prefix && !correct) {
-                    option.classList.add('incorrect');
-                }
-            });
-            
-            if (correct) {
-                wordsState.score += 100;
-                document.getElementById('wordsFeedback').textContent = 'Correct! +100 points';
-                document.getElementById('wordsFeedback').className = 'feedback correct';
-            } else {
-                wordsState.lives--;
-                document.getElementById('wordsFeedback').textContent = `Incorrect! The answer was ${wordsState.currentQuestion.correctPrefix.prefix}`;
-                document.getElementById('wordsFeedback').className = 'feedback incorrect';
-                
-                if (wordsState.lives <= 0) {
-                    wordsGameOver();
-                    return;
-                }
             }
-            
-            wordsState.questionsAnswered++;
-            
-            // Update display
-            updateWordsDisplay();
-            
-            // Next question after a delay
-            setTimeout(() => {
-                if (wordsState.isPlaying) {
-                    generateWordQuestion();
-                }
-            }, 2000);
-        }
 
-        function wordsGameOver() {
-            wordsState.isPlaying = false;
-            document.getElementById('wordsFeedback').textContent = `Game Over! Final Score: ${wordsState.score}`;
-            document.getElementById('wordsStartBtn').disabled = false;
-        }
+            // Word Challenge Game Functions
+            function startWordsGame() {
+                if (wordsState.isPlaying) return;
 
-        function resetWordsGame() {
-            wordsState.level = 1;
-            wordsState.score = 0;
-            wordsState.lives = 3;
-            wordsState.currentQuestion = null;
-            wordsState.isPlaying = false;
-            wordsState.questionsAnswered = 0;
-            
-            document.getElementById('wordOptions').innerHTML = '';
-            document.getElementById('wordsFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('wordsFeedback').className = 'feedback';
-            document.getElementById('wordsStartBtn').disabled = false;
-            document.getElementById('wordsNextBtn').style.display = 'none';
-            
-            updateWordsDisplay();
-        }
+                wordsState.isPlaying = true;
+                document.getElementById('wordsStartBtn').disabled = true;
+                document.getElementById('wordsNextBtn').style.display = 'none';
 
-        function nextWordsLevel() {
-            // For simplicity, just reset for now
-            resetWordsGame();
-            startWordsGame();
-        }
-
-        function updateWordsDisplay() {
-            document.getElementById('wordsLevel').textContent = wordsState.level;
-            document.getElementById('wordsScore').textContent = wordsState.score;
-            document.getElementById('wordsLives').textContent = wordsState.lives;
-        }
-
-        // Speed Sort Game Functions
-        function startSpeedGame() {
-            if (speedState.isPlaying) return;
-            
-            speedState.isPlaying = true;
-            document.getElementById('speedStartBtn').disabled = true;
-            document.getElementById('speedNextBtn').style.display = 'none';
-            document.getElementById('speedFeedback').textContent = "Catch the falling prefixes!";
-            document.getElementById('speedFeedback').className = "feedback";
-            
-            // Set up bins
-            setupSpeedBins();
-            
-            // Start spawning items
-            startSpeedSpawning();
-        }
-
-        function setupSpeedBins() {
-            const binsContainer = document.getElementById('binsContainer');
-            binsContainer.innerHTML = '';
-            
-            // Create bins for prefixes and exponents
-            const prefixes = getRandomPrefixes(4);
-            
-            prefixes.forEach(prefix => {
-                const bin = document.createElement('div');
-                bin.className = 'bin';
-                bin.textContent = prefix.prefix;
-                bin.dataset.power = prefix.power;
-                bin.dataset.type = 'prefix';
-                
-                bin.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                });
-                
-                bin.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    handleSpeedDrop(e, this);
-                });
-                
-                binsContainer.appendChild(bin);
-            });
-            
-            // Add exponent bins
-            const powers = prefixes.map(p => p.power);
-            powers.forEach(power => {
-                const bin = document.createElement('div');
-                bin.className = 'bin';
-                // FIX: Changed textContent to innerHTML to render superscripts correctly
-                bin.innerHTML = `10${formatPower(power)}`;
-                bin.dataset.power = power;
-                bin.dataset.type = 'exponent';
-                
-                bin.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                });
-                
-                bin.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    handleSpeedDrop(e, this);
-                });
-                
-                binsContainer.appendChild(bin);
-            });
-        }
-
-        function startSpeedSpawning() {
-            // Clear any existing items
-            speedState.fallingItems = [];
-            document.getElementById('fallingContainer').innerHTML = '';
-            
-            // Start spawning items
-            speedState.timer = setInterval(() => {
-                spawnFallingItem();
-            }, speedState.spawnRate);
-            
-            // Start animation loop
-            requestAnimationFrame(updateSpeedGame);
-        }
-
-        function spawnFallingItem() {
-            const container = document.getElementById('fallingContainer');
-            const prefixes = getRandomPrefixes(4);
-            const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-            
-            // Randomly decide if we spawn a prefix or exponent
-            const spawnType = Math.random() > 0.5 ? 'prefix' : 'exponent';
-            const text = spawnType === 'prefix' ? randomPrefix.prefix : `10${formatPower(randomPrefix.power)}`;
-            
-            const item = document.createElement('div');
-            item.className = `falling-item ${spawnType}`;
-            // FIX: Changed textContent to innerHTML to render superscripts correctly
-            item.innerHTML = text;
-            item.dataset.power = randomPrefix.power;
-            item.dataset.type = spawnType;
-            item.style.left = `${Math.random() * (container.offsetWidth - 80)}px`;
-            item.style.top = '0px';
-            
-            item.draggable = true;
-            item.addEventListener('dragstart', handleSpeedDragStart);
-            
-            container.appendChild(item);
-            
-            speedState.fallingItems.push({
-                element: item,
-                y: 0,
-                power: randomPrefix.power,
-                type: spawnType
-            });
-        }
-
-        function handleSpeedDragStart(e) {
-            e.dataTransfer.setData('text/plain', JSON.stringify({
-                type: e.target.dataset.type,
-                power: e.target.dataset.power
-            }));
-        }
-
-        function handleSpeedDrop(e, bin) {
-            if (!speedState.isPlaying) return;
-            
-            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-            const itemPower = parseInt(data.power);
-            const binPower = parseInt(bin.dataset.power);
-            const itemType = data.type;
-            const binType = bin.dataset.type;
-            
-            // Check if the types match and powers match
-            if (itemType === binType && itemPower === binPower) {
-                // Correct match
-                speedState.score += 50;
-                document.getElementById('speedFeedback').textContent = 'Correct! +50 points';
-                document.getElementById('speedFeedback').className = 'feedback correct';
-                
-                // Remove the item from the falling items array
-                const itemIndex = speedState.fallingItems.findIndex(item => 
-                    item.element === e.target);
-                if (itemIndex !== -1) {
-                    speedState.fallingItems.splice(itemIndex, 1);
-                }
-                
-                // Remove the element from DOM
-                e.target.remove();
-            } else {
-                // Incorrect match
-                speedState.lives--;
-                document.getElementById('speedFeedback').textContent = 'Incorrect! Try again.';
-                document.getElementById('speedFeedback').className = 'feedback incorrect';
-                
-                if (speedState.lives <= 0) {
-                    speedGameOver();
-                }
+                // Set up first question
+                generateWordQuestion();
             }
-            
-            updateSpeedDisplay();
-        }
 
-        function updateSpeedGame() {
-            if (!speedState.isPlaying) return;
-            
-            const container = document.getElementById('fallingContainer');
-            const containerHeight = container.offsetHeight;
-            
-            // Update positions of all falling items
-            for (let i = speedState.fallingItems.length - 1; i >= 0; i--) {
-                const item = speedState.fallingItems[i];
-                item.y += speedState.speed;
-                item.element.style.top = `${item.y}px`;
-                
-                // Check if item has fallen out of view
-                if (item.y > containerHeight) {
-                    // Item missed - lose a life
-                    speedState.lives--;
-                    item.element.remove();
-                    speedState.fallingItems.splice(i, 1);
-                    
-                    document.getElementById('speedFeedback').textContent = 'Missed! -1 life';
-                    document.getElementById('speedFeedback').className = 'feedback incorrect';
-                    
-                    if (speedState.lives <= 0) {
-                        speedGameOver();
+            function generateWordQuestion() {
+                // Select a random prefix
+                const randomPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
+
+                // Create wrong options (other prefixes)
+                const wrongOptions = metricPrefixes
+                    .filter(p => p.prefix !== randomPrefix.prefix)
+                    .sort(() => 0.5 - Math.random())
+                    .slice(0, 3);
+
+                // Combine options and shuffle
+                const options = [randomPrefix, ...wrongOptions].sort(() => 0.5 - Math.random());
+
+                // Set current question
+                wordsState.currentQuestion = {
+                    correctPrefix: randomPrefix,
+                    options: options
+                };
+
+                // Update UI
+                document.getElementById('wordPrompt').textContent = `What is the prefix for "${randomPrefix.word}"?`;
+
+                const optionsContainer = document.getElementById('wordOptions');
+                optionsContainer.innerHTML = '';
+
+                options.forEach(option => {
+                    const optionElement = document.createElement('div');
+                    optionElement.className = 'word-option';
+                    optionElement.textContent = option.prefix;
+                    optionElement.addEventListener('click', () => checkWordAnswer(option));
+                    optionsContainer.appendChild(optionElement);
+                });
+
+                document.getElementById('wordsFeedback').textContent = '';
+                document.getElementById('wordsFeedback').className = 'feedback';
+            }
+
+            function checkWordAnswer(selectedPrefix) {
+                if (!wordsState.isPlaying) return;
+
+                const correct = selectedPrefix.prefix === wordsState.currentQuestion.correctPrefix.prefix;
+                const options = document.querySelectorAll('.word-option');
+
+                options.forEach(option => {
+                    option.style.pointerEvents = 'none'; // Disable further clicks
+
+                    if (option.textContent === wordsState.currentQuestion.correctPrefix.prefix) {
+                        option.classList.add('correct');
+                    } else if (option.textContent === selectedPrefix.prefix && !correct) {
+                        option.classList.add('incorrect');
+                    }
+                });
+
+                if (correct) {
+                    wordsState.score += 100;
+                    document.getElementById('wordsFeedback').textContent = 'Correct! +100 points';
+                    document.getElementById('wordsFeedback').className = 'feedback correct';
+                } else {
+                    wordsState.lives--;
+                    document.getElementById('wordsFeedback').textContent = `Incorrect! The answer was ${wordsState.currentQuestion.correctPrefix.prefix}`;
+                    document.getElementById('wordsFeedback').className = 'feedback incorrect';
+
+                    if (wordsState.lives <= 0) {
+                        wordsGameOver();
                         return;
                     }
-                    
-                    updateSpeedDisplay();
                 }
+
+                wordsState.questionsAnswered++;
+
+                // Update display
+                updateWordsDisplay();
+
+                // Next question after a delay
+                setTimeout(() => {
+                    if (wordsState.isPlaying) {
+                        generateWordQuestion();
+                    }
+                }, 2000);
             }
-            
-            // Continue animation
-            requestAnimationFrame(updateSpeedGame);
-        }
 
-        function speedGameOver() {
-            speedState.isPlaying = false;
-            clearInterval(speedState.timer);
-            document.getElementById('speedFeedback').textContent = `Game Over! Final Score: ${speedState.score}`;
-            document.getElementById('speedStartBtn').disabled = false;
-        }
+            function wordsGameOver() {
+                wordsState.isPlaying = false;
+                document.getElementById('wordsFeedback').textContent = `Game Over! Final Score: ${wordsState.score}`;
+                document.getElementById('wordsStartBtn').disabled = false;
+            }
 
-        function resetSpeedGame() {
-            clearInterval(speedState.timer);
-            
-            speedState.level = 1;
-            speedState.score = 0;
-            speedState.lives = 3;
-            speedState.isPlaying = false;
-            speedState.fallingItems = [];
-            speedState.spawnRate = 2000;
-            speedState.speed = 2;
-            
-            document.getElementById('fallingContainer').innerHTML = '';
-            document.getElementById('binsContainer').innerHTML = '';
-            document.getElementById('speedFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('speedFeedback').className = 'feedback';
-            document.getElementById('speedStartBtn').disabled = false;
-            document.getElementById('speedNextBtn').style.display = 'none';
-            
-            updateSpeedDisplay();
-        }
+            function resetWordsGame() {
+                wordsState.level = 1;
+                wordsState.score = 0;
+                wordsState.lives = 3;
+                wordsState.currentQuestion = null;
+                wordsState.isPlaying = false;
+                wordsState.questionsAnswered = 0;
 
-        function nextSpeedLevel() {
-            if (speedState.level < 5) {
-                speedState.level++;
-                speedState.spawnRate = Math.max(500, speedState.spawnRate - 300);
-                speedState.speed += 0.5;
-            } else {
+                document.getElementById('wordOptions').innerHTML = '';
+                document.getElementById('wordsFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('wordsFeedback').className = 'feedback';
+                document.getElementById('wordsStartBtn').disabled = false;
+                document.getElementById('wordsNextBtn').style.display = 'none';
+
+                updateWordsDisplay();
+            }
+
+            function nextWordsLevel() {
+                // For simplicity, just reset for now
+                resetWordsGame();
+                startWordsGame();
+            }
+
+            function updateWordsDisplay() {
+                document.getElementById('wordsLevel').textContent = wordsState.level;
+                document.getElementById('wordsScore').textContent = wordsState.score;
+                document.getElementById('wordsLives').textContent = wordsState.lives;
+            }
+
+            // Speed Sort Game Functions
+            function startSpeedGame() {
+                if (speedState.isPlaying) return;
+
+                speedState.isPlaying = true;
+                document.getElementById('speedStartBtn').disabled = true;
+                document.getElementById('speedNextBtn').style.display = 'none';
+                document.getElementById('speedFeedback').textContent = "Catch the falling prefixes!";
+                document.getElementById('speedFeedback').className = "feedback";
+
+                // Set up bins
+                setupSpeedBins();
+
+                // Start spawning items
+                startSpeedSpawning();
+            }
+
+            function setupSpeedBins() {
+                const binsContainer = document.getElementById('binsContainer');
+                binsContainer.innerHTML = '';
+
+                // Create bins for prefixes and exponents
+                const prefixes = getRandomPrefixes(4);
+
+                prefixes.forEach(prefix => {
+                    const bin = document.createElement('div');
+                    bin.className = 'bin';
+                    bin.textContent = prefix.prefix;
+                    bin.dataset.power = prefix.power;
+                    bin.dataset.type = 'prefix';
+
+                    bin.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                    });
+
+                    bin.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        handleSpeedDrop(e, this);
+                    });
+
+                    binsContainer.appendChild(bin);
+                });
+
+                // Add exponent bins
+                const powers = prefixes.map(p => p.power);
+                powers.forEach(power => {
+                    const bin = document.createElement('div');
+                    bin.className = 'bin';
+                    // FIX: Changed textContent to innerHTML to render superscripts correctly
+                    bin.innerHTML = `10${formatPower(power)}`;
+                    bin.dataset.power = power;
+                    bin.dataset.type = 'exponent';
+
+                    bin.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                    });
+
+                    bin.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        handleSpeedDrop(e, this);
+                    });
+
+                    binsContainer.appendChild(bin);
+                });
+            }
+
+            function startSpeedSpawning() {
+                // Clear any existing items
+                speedState.fallingItems = [];
+                document.getElementById('fallingContainer').innerHTML = '';
+
+                // Start spawning items
+                speedState.timer = setInterval(() => {
+                    spawnFallingItem();
+                }, speedState.spawnRate);
+
+                // Start animation loop
+                requestAnimationFrame(updateSpeedGame);
+            }
+
+            function spawnFallingItem() {
+                const container = document.getElementById('fallingContainer');
+                const prefixes = getRandomPrefixes(4);
+                const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+
+                // Randomly decide if we spawn a prefix or exponent
+                const spawnType = Math.random() > 0.5 ? 'prefix' : 'exponent';
+                const text = spawnType === 'prefix' ? randomPrefix.prefix : `10${formatPower(randomPrefix.power)}`;
+
+                const item = document.createElement('div');
+                item.className = `falling-item ${spawnType}`;
+                // FIX: Changed textContent to innerHTML to render superscripts correctly
+                item.innerHTML = text;
+                item.dataset.power = randomPrefix.power;
+                item.dataset.type = spawnType;
+                item.style.left = `${Math.random() * (container.offsetWidth - 80)}px`;
+                item.style.top = '0px';
+
+                item.draggable = true;
+                item.addEventListener('dragstart', handleSpeedDragStart);
+
+                container.appendChild(item);
+
+                speedState.fallingItems.push({
+                    element: item,
+                    y: 0,
+                    power: randomPrefix.power,
+                    type: spawnType
+                });
+            }
+
+            function handleSpeedDragStart(e) {
+                e.dataTransfer.setData('text/plain', JSON.stringify({
+                    type: e.target.dataset.type,
+                    power: e.target.dataset.power
+                }));
+            }
+
+            function handleSpeedDrop(e, bin) {
+                if (!speedState.isPlaying) return;
+
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                const itemPower = parseInt(data.power);
+                const binPower = parseInt(bin.dataset.power);
+                const itemType = data.type;
+                const binType = bin.dataset.type;
+
+                // Check if the types match and powers match
+                if (itemType === binType && itemPower === binPower) {
+                    // Correct match
+                    speedState.score += 50;
+                    document.getElementById('speedFeedback').textContent = 'Correct! +50 points';
+                    document.getElementById('speedFeedback').className = 'feedback correct';
+
+                    // Remove the item from the falling items array
+                    const itemIndex = speedState.fallingItems.findIndex(item =>
+                        item.element === e.target);
+                    if (itemIndex !== -1) {
+                        speedState.fallingItems.splice(itemIndex, 1);
+                    }
+
+                    // Remove the element from DOM
+                    e.target.remove();
+                } else {
+                    // Incorrect match
+                    speedState.lives--;
+                    document.getElementById('speedFeedback').textContent = 'Incorrect! Try again.';
+                    document.getElementById('speedFeedback').className = 'feedback incorrect';
+
+                    if (speedState.lives <= 0) {
+                        speedGameOver();
+                    }
+                }
+
+                updateSpeedDisplay();
+            }
+
+            function updateSpeedGame() {
+                if (!speedState.isPlaying) return;
+
+                const container = document.getElementById('fallingContainer');
+                const containerHeight = container.offsetHeight;
+
+                // Update positions of all falling items
+                for (let i = speedState.fallingItems.length - 1; i >= 0; i--) {
+                    const item = speedState.fallingItems[i];
+                    item.y += speedState.speed;
+                    item.element.style.top = `${item.y}px`;
+
+                    // Check if item has fallen out of view
+                    if (item.y > containerHeight) {
+                        // Item missed - lose a life
+                        speedState.lives--;
+                        item.element.remove();
+                        speedState.fallingItems.splice(i, 1);
+
+                        document.getElementById('speedFeedback').textContent = 'Missed! -1 life';
+                        document.getElementById('speedFeedback').className = 'feedback incorrect';
+
+                        if (speedState.lives <= 0) {
+                            speedGameOver();
+                            return;
+                        }
+
+                        updateSpeedDisplay();
+                    }
+                }
+
+                // Continue animation
+                requestAnimationFrame(updateSpeedGame);
+            }
+
+            function speedGameOver() {
+                speedState.isPlaying = false;
+                clearInterval(speedState.timer);
+                document.getElementById('speedFeedback').textContent = `Game Over! Final Score: ${speedState.score}`;
+                document.getElementById('speedStartBtn').disabled = false;
+            }
+
+            function resetSpeedGame() {
+                clearInterval(speedState.timer);
+
                 speedState.level = 1;
                 speedState.score = 0;
+                speedState.lives = 3;
+                speedState.isPlaying = false;
+                speedState.fallingItems = [];
+                speedState.spawnRate = 2000;
+                speedState.speed = 2;
+
+                document.getElementById('fallingContainer').innerHTML = '';
+                document.getElementById('binsContainer').innerHTML = '';
+                document.getElementById('speedFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('speedFeedback').className = 'feedback';
+                document.getElementById('speedStartBtn').disabled = false;
+                document.getElementById('speedNextBtn').style.display = 'none';
+
+                updateSpeedDisplay();
             }
-            
-            updateSpeedDisplay();
-            startSpeedGame();
-        }
 
-        function updateSpeedDisplay() {
-            document.getElementById('speedLevel').textContent = speedState.level;
-            document.getElementById('speedScore').textContent = speedState.score;
-            document.getElementById('speedLives').textContent = speedState.lives;
-        }
-
-        // Memory Match Game Functions
-        function startMemoryGame() {
-            if (memoryState.isPlaying) return;
-            
-            memoryState.isPlaying = true;
-            document.getElementById('memoryStartBtn').disabled = true;
-            document.getElementById('memoryNextBtn').style.display = 'none';
-            document.getElementById('memoryFeedback').textContent = "Find matching pairs!";
-            document.getElementById('memoryFeedback').className = "feedback";
-            
-            // Set up the memory grid
-            setupMemoryGrid();
-        }
-
-        function setupMemoryGrid() {
-            const grid = document.getElementById('memoryGrid');
-            grid.innerHTML = '';
-            
-            // Select random prefixes for this level
-            const prefixes = getRandomPrefixes(6);
-            memoryState.cards = [];
-            
-            // Create card pairs
-            prefixes.forEach(prefix => {
-                // Prefix card
-                memoryState.cards.push({
-                    type: 'prefix',
-                    content: prefix.prefix,
-                    power: prefix.power,
-                    matched: false
-                });
-                
-                // Exponent card
-                memoryState.cards.push({
-                    type: 'exponent',
-                    content: `10${formatPower(prefix.power)}`,
-                    power: prefix.power,
-                    matched: false
-                });
-            });
-            
-            // Shuffle the cards
-            shuffleArray(memoryState.cards);
-            
-            // Create card elements
-            memoryState.cards.forEach((card, index) => {
-                const cardElement = document.createElement('div');
-                cardElement.className = 'memory-card';
-                cardElement.dataset.index = index;
-                cardElement.textContent = '?';
-                
-                cardElement.addEventListener('click', () => flipMemoryCard(index));
-                
-                grid.appendChild(cardElement);
-            });
-            
-            // Reset game state
-            memoryState.flippedCards = [];
-            memoryState.matchedPairs = 0;
-            memoryState.moves = 0;
-            updateMemoryDisplay();
-        }
-
-        function flipMemoryCard(index) {
-            if (!memoryState.isPlaying) return;
-            
-            const card = memoryState.cards[index];
-            const cardElement = document.querySelector(`.memory-card[data-index="${index}"]`);
-            
-            // If card is already flipped or matched, do nothing
-            if (cardElement.classList.contains('flipped') || cardElement.classList.contains('matched')) {
-                return;
-            }
-            
-            // Flip the card
-            cardElement.classList.add('flipped');
-            // FIX: Changed textContent to innerHTML to render superscripts correctly
-            cardElement.innerHTML = card.content;
-            
-            // Add to flipped cards
-            memoryState.flippedCards.push(index);
-            
-            // Check for match if two cards are flipped
-            if (memoryState.flippedCards.length === 2) {
-                memoryState.moves++;
-                updateMemoryDisplay();
-                
-                const card1 = memoryState.cards[memoryState.flippedCards[0]];
-                const card2 = memoryState.cards[memoryState.flippedCards[1]];
-                
-                // Check if cards match (same power, different types)
-                if (card1.power === card2.power && card1.type !== card2.type) {
-                    // Match found
-                    setTimeout(() => {
-                        memoryState.flippedCards.forEach(cardIndex => {
-                            const matchedCard = document.querySelector(`.memory-card[data-index="${cardIndex}"]`);
-                            matchedCard.classList.add('matched');
-                            memoryState.cards[cardIndex].matched = true;
-                        });
-                        
-                        memoryState.flippedCards = [];
-                        memoryState.matchedPairs++;
-                        
-                        // Check if all pairs are matched
-                        if (memoryState.matchedPairs === 6) {
-                            memoryGameCompleted();
-                        }
-                    }, 500);
+            function nextSpeedLevel() {
+                if (speedState.level < 5) {
+                    speedState.level++;
+                    speedState.spawnRate = Math.max(500, speedState.spawnRate - 300);
+                    speedState.speed += 0.5;
                 } else {
-                    // No match - flip cards back
-                    setTimeout(() => {
-                        memoryState.flippedCards.forEach(cardIndex => {
-                            const flippedCard = document.querySelector(`.memory-card[data-index="${cardIndex}"]`);
-                            flippedCard.classList.remove('flipped');
-                            flippedCard.textContent = '?';
-                        });
-                        
-                        memoryState.flippedCards = [];
-                    }, 1000);
+                    speedState.level = 1;
+                    speedState.score = 0;
                 }
+
+                updateSpeedDisplay();
+                startSpeedGame();
             }
-        }
 
-        function memoryGameCompleted() {
-            memoryState.isPlaying = false;
-            const points = 1000 - (memoryState.moves * 10);
-            memoryState.score += Math.max(100, points);
-            
-            document.getElementById('memoryFeedback').textContent = `Congratulations! You earned ${points} points!`;
-            document.getElementById('memoryFeedback').className = 'feedback correct';
-            
-            document.getElementById('memoryNextBtn').style.display = 'block';
-            
-            updateMemoryDisplay();
-        }
-
-        function resetMemoryGame() {
-            memoryState.level = 1;
-            memoryState.score = 0;
-            memoryState.moves = 0;
-            memoryState.isPlaying = false;
-            memoryState.cards = [];
-            memoryState.flippedCards = [];
-            memoryState.matchedPairs = 0;
-            
-            document.getElementById('memoryGrid').innerHTML = '';
-            document.getElementById('memoryFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('memoryFeedback').className = 'feedback';
-            document.getElementById('memoryStartBtn').disabled = false;
-            document.getElementById('memoryNextBtn').style.display = 'none';
-            
-            updateMemoryDisplay();
-        }
-
-        function nextMemoryLevel() {
-            if (memoryState.level < 5) {
-                memoryState.level++;
-            } else {
-                memoryState.level = 1;
-                memoryState.score = 0;
+            function updateSpeedDisplay() {
+                document.getElementById('speedLevel').textContent = speedState.level;
+                document.getElementById('speedScore').textContent = speedState.score;
+                document.getElementById('speedLives').textContent = speedState.lives;
             }
-            
-            updateMemoryDisplay();
-            startMemoryGame();
-        }
 
-        function updateMemoryDisplay() {
-            document.getElementById('memoryLevel').textContent = memoryState.level;
-            document.getElementById('memoryScore').textContent = memoryState.score;
-            document.getElementById('memoryMoves').textContent = memoryState.moves;
-        }
+            // Memory Match Game Functions
+            function startMemoryGame() {
+                if (memoryState.isPlaying) return;
 
-        // Prefix Ladder Game Functions
-        function startLadderGame() {
-            if (ladderState.isPlaying) return;
-            
-            ladderState.isPlaying = true;
-            document.getElementById('ladderStartBtn').disabled = true;
-            document.getElementById('ladderNextBtn').style.display = 'none';
-            document.getElementById('ladderFeedback').textContent = "Arrange prefixes from largest to smallest!";
-            document.getElementById('ladderFeedback').className = "feedback";
-            
-            // Set up the ladder
-            setupLadder();
-            
-            // Start the timer
-            startLadderTimer();
-        }
+                memoryState.isPlaying = true;
+                document.getElementById('memoryStartBtn').disabled = true;
+                document.getElementById('memoryNextBtn').style.display = 'none';
+                document.getElementById('memoryFeedback').textContent = "Find matching pairs!";
+                document.getElementById('memoryFeedback').className = "feedback";
 
-        function setupLadder() {
-            const container = document.getElementById('ladderContainer');
-            const itemsContainer = document.getElementById('ladderItems');
-            container.innerHTML = '';
-            itemsContainer.innerHTML = '';
-            
-            // Select random prefixes for this level
-            ladderState.currentPrefixes = getRandomPrefixes(6);
-            
-            // Create ladder slots
-            for (let i = 0; i < 6; i++) {
-                const slot = document.createElement('div');
-                slot.className = 'ladder-slot';
-                slot.dataset.index = i;
-                slot.dataset.power = '';
-                
-                slot.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                });
-                
-                slot.addEventListener('drop', function(e) {
-                    e.preventDefault();
-                    handleLadderDrop(e, this);
-                });
-                
-                container.appendChild(slot);
-                ladderState.slots.push({ prefix: null, power: '' });
+                // Set up the memory grid
+                setupMemoryGrid();
             }
-            
-            // Create draggable prefix items
-            ladderState.currentPrefixes.forEach(prefix => {
-                const item = document.createElement('div');
-                item.className = 'ladder-item';
-                item.textContent = prefix.prefix;
-                item.draggable = true;
-                item.dataset.power = prefix.power;
-                
-                item.addEventListener('dragstart', function(e) {
-                    e.dataTransfer.setData('text/plain', JSON.stringify({
+
+            function setupMemoryGrid() {
+                const grid = document.getElementById('memoryGrid');
+                grid.innerHTML = '';
+
+                // Select random prefixes for this level
+                const prefixes = getRandomPrefixes(6);
+                memoryState.cards = [];
+
+                // Create card pairs
+                prefixes.forEach(prefix => {
+                    // Prefix card
+                    memoryState.cards.push({
+                        type: 'prefix',
+                        content: prefix.prefix,
                         power: prefix.power,
-                        prefix: prefix.prefix
-                    }));
+                        matched: false
+                    });
+
+                    // Exponent card
+                    memoryState.cards.push({
+                        type: 'exponent',
+                        content: `10${formatPower(prefix.power)}`,
+                        power: prefix.power,
+                        matched: false
+                    });
                 });
-                
-                itemsContainer.appendChild(item);
-            });
-        }
 
-        function handleLadderDrop(e, slot) {
-            if (!ladderState.isPlaying) return;
-            
-            const data = JSON.parse(e.dataTransfer.getData('text/plain'));
-            const slotIndex = parseInt(slot.dataset.index);
-            
-            // Check if slot is already occupied
-            if (ladderState.slots[slotIndex].prefix !== null) {
-                document.getElementById('ladderFeedback').textContent = "This slot is already occupied!";
-                document.getElementById('ladderFeedback').className = "feedback incorrect";
-                return;
+                // Shuffle the cards
+                shuffleArray(memoryState.cards);
+
+                // Create card elements
+                memoryState.cards.forEach((card, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'memory-card';
+                    cardElement.dataset.index = index;
+                    cardElement.textContent = '?';
+
+                    cardElement.addEventListener('click', () => flipMemoryCard(index));
+
+                    grid.appendChild(cardElement);
+                });
+
+                // Reset game state
+                memoryState.flippedCards = [];
+                memoryState.matchedPairs = 0;
+                memoryState.moves = 0;
+                updateMemoryDisplay();
             }
-            
-            // Add prefix to slot
-            ladderState.slots[slotIndex].prefix = data.prefix;
-            ladderState.slots[slotIndex].power = data.power;
-            slot.textContent = data.prefix;
-            
-            // Check if ladder is complete
-            checkLadderCompletion();
-        }
 
-        function checkLadderCompletion() {
-            // Check if all slots are filled
-            const allFilled = ladderState.slots.every(slot => slot.prefix !== null);
-            
-            if (allFilled) {
-                // Check if prefixes are in correct order (largest to smallest power)
-                let correctOrder = true;
-                for (let i = 0; i < ladderState.slots.length - 1; i++) {
-                    if (parseInt(ladderState.slots[i].power) < parseInt(ladderState.slots[i + 1].power)) {
-                        correctOrder = false;
-                        break;
-                    }
-                }
-                
-                if (correctOrder) {
-                    ladderGameCompleted();
-                } else {
-                    document.getElementById('ladderFeedback').textContent = "Not quite right! Try again.";
-                    document.getElementById('ladderFeedback').className = "feedback incorrect";
-                }
-            }
-        }
+            function flipMemoryCard(index) {
+                if (!memoryState.isPlaying) return;
 
-        function ladderGameCompleted() {
-            ladderState.isPlaying = false;
-            clearInterval(ladderState.timer);
-            
-            const timeBonus = Math.floor(ladderState.timeLeft * 5);
-            const levelPoints = 500 + timeBonus;
-            ladderState.score += levelPoints;
-            
-            document.getElementById('ladderFeedback').textContent = `Perfect! You earned ${levelPoints} points!`;
-            document.getElementById('ladderFeedback').className = "feedback correct";
-            
-            document.getElementById('ladderNextBtn').style.display = 'block';
-            
-            updateLadderDisplay();
-        }
+                const card = memoryState.cards[index];
+                const cardElement = document.querySelector(`.memory-card[data-index="${index}"]`);
 
-        function startLadderTimer() {
-            ladderState.timer = setInterval(() => {
-                ladderState.timeLeft--;
-                document.getElementById('ladderTimer').textContent = ladderState.timeLeft;
-                
-                if (ladderState.timeLeft <= 0) {
-                    clearInterval(ladderState.timer);
-                    ladderTimeUp();
-                }
-            }, 1000);
-        }
-
-        function ladderTimeUp() {
-            ladderState.isPlaying = false;
-            document.getElementById('ladderFeedback').textContent = "Time's up! Try again.";
-            document.getElementById('ladderFeedback').className = "feedback incorrect";
-            document.getElementById('ladderStartBtn').disabled = false;
-        }
-
-        function resetLadderGame() {
-            clearInterval(ladderState.timer);
-            
-            ladderState.level = 1;
-            ladderState.score = 0;
-            ladderState.timeLeft = 60;
-            ladderState.isPlaying = false;
-            ladderState.currentPrefixes = [];
-            ladderState.slots = [];
-            
-            document.getElementById('ladderContainer').innerHTML = '';
-            document.getElementById('ladderItems').innerHTML = '';
-            document.getElementById('ladderFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('ladderFeedback').className = 'feedback';
-            document.getElementById('ladderStartBtn').disabled = false;
-            document.getElementById('ladderNextBtn').style.display = 'none';
-            
-            updateLadderDisplay();
-        }
-
-        function nextLadderLevel() {
-            if (ladderState.level < 5) {
-                ladderState.level++;
-                ladderState.timeLeft = Math.max(30, 60 - (ladderState.level * 5));
-            } else {
-                ladderState.level = 1;
-                ladderState.score = 0;
-            }
-            
-            updateLadderDisplay();
-            startLadderGame();
-        }
-
-        function updateLadderDisplay() {
-            document.getElementById('ladderLevel').textContent = ladderState.level;
-            document.getElementById('ladderScore').textContent = ladderState.score;
-            document.getElementById('ladderTimer').textContent = ladderState.timeLeft;
-        }
-
-        // Conversion Master Game Functions
-        function startConversionGame() {
-            if (conversionState.isPlaying) return;
-            
-            conversionState.isPlaying = true;
-            document.getElementById('conversionStartBtn').disabled = true;
-            document.getElementById('conversionNextBtn').style.display = 'none';
-            
-            // Set up first problem
-            generateConversionProblem();
-        }
-
-        function generateConversionProblem() {
-            // Select random prefixes
-            const fromPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
-            let toPrefix;
-            
-            do {
-                toPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
-            } while (toPrefix.power === fromPrefix.power);
-            
-            // Generate a random value
-            const value = (Math.random() * 100).toFixed(1);
-            
-            // Calculate the correct answer
-            const powerDifference = fromPrefix.power - toPrefix.power;
-            const correctAnswer = value * Math.pow(10, powerDifference);
-            
-            // Set current problem
-            conversionState.currentProblem = {
-                fromPrefix: fromPrefix,
-                toPrefix: toPrefix,
-                value: value,
-                correctAnswer: correctAnswer
-            };
-            
-            // Update UI
-            document.getElementById('conversionProblem').textContent = 
-                `Convert ${value} ${fromPrefix.prefix}meters to ${toPrefix.prefix}meters`;
-            
-            document.getElementById('conversionInput').value = '';
-            document.getElementById('conversionInput').focus();
-            
-            document.getElementById('conversionFeedback').textContent = '';
-            document.getElementById('conversionFeedback').className = 'feedback';
-        }
-
-        function checkConversionAnswer() {
-            if (!conversionState.isPlaying) return;
-            
-            const userAnswer = parseFloat(document.getElementById('conversionInput').value);
-            const correctAnswer = conversionState.currentProblem.correctAnswer;
-            const tolerance = 0.01; // Allow for small rounding errors
-            
-            if (Math.abs(userAnswer - correctAnswer) < tolerance) {
-                // Correct answer
-                conversionState.score += 100;
-                document.getElementById('conversionFeedback').textContent = 'Correct! +100 points';
-                document.getElementById('conversionFeedback').className = 'feedback correct';
-                
-                conversionState.questionsAnswered++;
-                
-                // Next problem after a delay
-                setTimeout(() => {
-                    if (conversionState.isPlaying) {
-                        generateConversionProblem();
-                    }
-                }, 1500);
-            } else {
-                // Incorrect answer
-                conversionState.lives--;
-                document.getElementById('conversionFeedback').textContent = 
-                    `Incorrect! The answer is ${correctAnswer.toFixed(4)}`;
-                document.getElementById('conversionFeedback').className = 'feedback incorrect';
-                
-                if (conversionState.lives <= 0) {
-                    conversionGameOver();
+                // If card is already flipped or matched, do nothing
+                if (cardElement.classList.contains('flipped') || cardElement.classList.contains('matched')) {
                     return;
                 }
-                
-                // Allow another attempt
+
+                // Flip the card
+                cardElement.classList.add('flipped');
+                // FIX: Changed textContent to innerHTML to render superscripts correctly
+                cardElement.innerHTML = card.content;
+
+                // Add to flipped cards
+                memoryState.flippedCards.push(index);
+
+                // Check for match if two cards are flipped
+                if (memoryState.flippedCards.length === 2) {
+                    memoryState.moves++;
+                    updateMemoryDisplay();
+
+                    const card1 = memoryState.cards[memoryState.flippedCards[0]];
+                    const card2 = memoryState.cards[memoryState.flippedCards[1]];
+
+                    // Check if cards match (same power, different types)
+                    if (card1.power === card2.power && card1.type !== card2.type) {
+                        // Match found
+                        setTimeout(() => {
+                            memoryState.flippedCards.forEach(cardIndex => {
+                                const matchedCard = document.querySelector(`.memory-card[data-index="${cardIndex}"]`);
+                                matchedCard.classList.add('matched');
+                                memoryState.cards[cardIndex].matched = true;
+                            });
+
+                            memoryState.flippedCards = [];
+                            memoryState.matchedPairs++;
+
+                            // Check if all pairs are matched
+                            if (memoryState.matchedPairs === 6) {
+                                memoryGameCompleted();
+                            }
+                        }, 500);
+                    } else {
+                        // No match - flip cards back
+                        setTimeout(() => {
+                            memoryState.flippedCards.forEach(cardIndex => {
+                                const flippedCard = document.querySelector(`.memory-card[data-index="${cardIndex}"]`);
+                                flippedCard.classList.remove('flipped');
+                                flippedCard.textContent = '?';
+                            });
+
+                            memoryState.flippedCards = [];
+                        }, 1000);
+                    }
+                }
+            }
+
+            function memoryGameCompleted() {
+                memoryState.isPlaying = false;
+                const points = 1000 - (memoryState.moves * 10);
+                memoryState.score += Math.max(100, points);
+
+                document.getElementById('memoryFeedback').textContent = `Congratulations! You earned ${points} points!`;
+                document.getElementById('memoryFeedback').className = 'feedback correct';
+
+                document.getElementById('memoryNextBtn').style.display = 'block';
+
+                updateMemoryDisplay();
+            }
+
+            function resetMemoryGame() {
+                memoryState.level = 1;
+                memoryState.score = 0;
+                memoryState.moves = 0;
+                memoryState.isPlaying = false;
+                memoryState.cards = [];
+                memoryState.flippedCards = [];
+                memoryState.matchedPairs = 0;
+
+                document.getElementById('memoryGrid').innerHTML = '';
+                document.getElementById('memoryFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('memoryFeedback').className = 'feedback';
+                document.getElementById('memoryStartBtn').disabled = false;
+                document.getElementById('memoryNextBtn').style.display = 'none';
+
+                updateMemoryDisplay();
+            }
+
+            function nextMemoryLevel() {
+                if (memoryState.level < 5) {
+                    memoryState.level++;
+                } else {
+                    memoryState.level = 1;
+                    memoryState.score = 0;
+                }
+
+                updateMemoryDisplay();
+                startMemoryGame();
+            }
+
+            function updateMemoryDisplay() {
+                document.getElementById('memoryLevel').textContent = memoryState.level;
+                document.getElementById('memoryScore').textContent = memoryState.score;
+                document.getElementById('memoryMoves').textContent = memoryState.moves;
+            }
+
+            // Prefix Ladder Game Functions
+            function startLadderGame() {
+                if (ladderState.isPlaying) return;
+
+                ladderState.isPlaying = true;
+                document.getElementById('ladderStartBtn').disabled = true;
+                document.getElementById('ladderNextBtn').style.display = 'none';
+                document.getElementById('ladderFeedback').textContent = "Arrange prefixes from largest to smallest!";
+                document.getElementById('ladderFeedback').className = "feedback";
+
+                // Set up the ladder
+                setupLadder();
+
+                // Start the timer
+                startLadderTimer();
+            }
+
+            function setupLadder() {
+                const container = document.getElementById('ladderContainer');
+                const itemsContainer = document.getElementById('ladderItems');
+                container.innerHTML = '';
+                itemsContainer.innerHTML = '';
+
+                // Select random prefixes for this level
+                ladderState.currentPrefixes = getRandomPrefixes(6);
+
+                // Create ladder slots
+                for (let i = 0; i < 6; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'ladder-slot';
+                    slot.dataset.index = i;
+                    slot.dataset.power = '';
+
+                    slot.addEventListener('dragover', function (e) {
+                        e.preventDefault();
+                    });
+
+                    slot.addEventListener('drop', function (e) {
+                        e.preventDefault();
+                        handleLadderDrop(e, this);
+                    });
+
+                    container.appendChild(slot);
+                    ladderState.slots.push({ prefix: null, power: '' });
+                }
+
+                // Create draggable prefix items
+                ladderState.currentPrefixes.forEach(prefix => {
+                    const item = document.createElement('div');
+                    item.className = 'ladder-item';
+                    item.textContent = prefix.prefix;
+                    item.draggable = true;
+                    item.dataset.power = prefix.power;
+
+                    item.addEventListener('dragstart', function (e) {
+                        e.dataTransfer.setData('text/plain', JSON.stringify({
+                            power: prefix.power,
+                            prefix: prefix.prefix
+                        }));
+                    });
+
+                    itemsContainer.appendChild(item);
+                });
+            }
+
+            function handleLadderDrop(e, slot) {
+                if (!ladderState.isPlaying) return;
+
+                const data = JSON.parse(e.dataTransfer.getData('text/plain'));
+                const slotIndex = parseInt(slot.dataset.index);
+
+                // Check if slot is already occupied
+                if (ladderState.slots[slotIndex].prefix !== null) {
+                    document.getElementById('ladderFeedback').textContent = "This slot is already occupied!";
+                    document.getElementById('ladderFeedback').className = "feedback incorrect";
+                    return;
+                }
+
+                // Add prefix to slot
+                ladderState.slots[slotIndex].prefix = data.prefix;
+                ladderState.slots[slotIndex].power = data.power;
+                slot.textContent = data.prefix;
+
+                // Check if ladder is complete
+                checkLadderCompletion();
+            }
+
+            function checkLadderCompletion() {
+                // Check if all slots are filled
+                const allFilled = ladderState.slots.every(slot => slot.prefix !== null);
+
+                if (allFilled) {
+                    // Check if prefixes are in correct order (largest to smallest power)
+                    let correctOrder = true;
+                    for (let i = 0; i < ladderState.slots.length - 1; i++) {
+                        if (parseInt(ladderState.slots[i].power) < parseInt(ladderState.slots[i + 1].power)) {
+                            correctOrder = false;
+                            break;
+                        }
+                    }
+
+                    if (correctOrder) {
+                        ladderGameCompleted();
+                    } else {
+                        document.getElementById('ladderFeedback').textContent = "Not quite right! Try again.";
+                        document.getElementById('ladderFeedback').className = "feedback incorrect";
+                    }
+                }
+            }
+
+            function ladderGameCompleted() {
+                ladderState.isPlaying = false;
+                clearInterval(ladderState.timer);
+
+                const timeBonus = Math.floor(ladderState.timeLeft * 5);
+                const levelPoints = 500 + timeBonus;
+                ladderState.score += levelPoints;
+
+                document.getElementById('ladderFeedback').textContent = `Perfect! You earned ${levelPoints} points!`;
+                document.getElementById('ladderFeedback').className = "feedback correct";
+
+                document.getElementById('ladderNextBtn').style.display = 'block';
+
+                updateLadderDisplay();
+            }
+
+            function startLadderTimer() {
+                ladderState.timer = setInterval(() => {
+                    ladderState.timeLeft--;
+                    document.getElementById('ladderTimer').textContent = ladderState.timeLeft;
+
+                    if (ladderState.timeLeft <= 0) {
+                        clearInterval(ladderState.timer);
+                        ladderTimeUp();
+                    }
+                }, 1000);
+            }
+
+            function ladderTimeUp() {
+                ladderState.isPlaying = false;
+                document.getElementById('ladderFeedback').textContent = "Time's up! Try again.";
+                document.getElementById('ladderFeedback').className = "feedback incorrect";
+                document.getElementById('ladderStartBtn').disabled = false;
+            }
+
+            function resetLadderGame() {
+                clearInterval(ladderState.timer);
+
+                ladderState.level = 1;
+                ladderState.score = 0;
+                ladderState.timeLeft = 60;
+                ladderState.isPlaying = false;
+                ladderState.currentPrefixes = [];
+                ladderState.slots = [];
+
+                document.getElementById('ladderContainer').innerHTML = '';
+                document.getElementById('ladderItems').innerHTML = '';
+                document.getElementById('ladderFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('ladderFeedback').className = 'feedback';
+                document.getElementById('ladderStartBtn').disabled = false;
+                document.getElementById('ladderNextBtn').style.display = 'none';
+
+                updateLadderDisplay();
+            }
+
+            function nextLadderLevel() {
+                if (ladderState.level < 5) {
+                    ladderState.level++;
+                    ladderState.timeLeft = Math.max(30, 60 - (ladderState.level * 5));
+                } else {
+                    ladderState.level = 1;
+                    ladderState.score = 0;
+                }
+
+                updateLadderDisplay();
+                startLadderGame();
+            }
+
+            function updateLadderDisplay() {
+                document.getElementById('ladderLevel').textContent = ladderState.level;
+                document.getElementById('ladderScore').textContent = ladderState.score;
+                document.getElementById('ladderTimer').textContent = ladderState.timeLeft;
+            }
+
+            // Conversion Master Game Functions
+            function startConversionGame() {
+                if (conversionState.isPlaying) return;
+
+                conversionState.isPlaying = true;
+                document.getElementById('conversionStartBtn').disabled = true;
+                document.getElementById('conversionNextBtn').style.display = 'none';
+
+                // Set up first problem
+                generateConversionProblem();
+            }
+
+            function generateConversionProblem() {
+                // Select random prefixes
+                const fromPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
+                let toPrefix;
+
+                do {
+                    toPrefix = metricPrefixes[Math.floor(Math.random() * metricPrefixes.length)];
+                } while (toPrefix.power === fromPrefix.power);
+
+                // Generate a random value
+                const value = (Math.random() * 100).toFixed(1);
+
+                // Calculate the correct answer
+                const powerDifference = fromPrefix.power - toPrefix.power;
+                const correctAnswer = value * Math.pow(10, powerDifference);
+
+                // Set current problem
+                conversionState.currentProblem = {
+                    fromPrefix: fromPrefix,
+                    toPrefix: toPrefix,
+                    value: value,
+                    correctAnswer: correctAnswer
+                };
+
+                // Update UI
+                document.getElementById('conversionProblem').textContent =
+                    `Convert ${value} ${fromPrefix.prefix}meters to ${toPrefix.prefix}meters`;
+
                 document.getElementById('conversionInput').value = '';
                 document.getElementById('conversionInput').focus();
+
+                document.getElementById('conversionFeedback').textContent = '';
+                document.getElementById('conversionFeedback').className = 'feedback';
             }
-            
-            updateConversionDisplay();
-        }
 
-        function conversionGameOver() {
-            conversionState.isPlaying = false;
-            document.getElementById('conversionFeedback').textContent = `Game Over! Final Score: ${conversionState.score}`;
-            document.getElementById('conversionStartBtn').disabled = false;
-        }
+            function checkConversionAnswer() {
+                if (!conversionState.isPlaying) return;
 
-        function resetConversionGame() {
-            conversionState.level = 1;
-            conversionState.score = 0;
-            conversionState.lives = 3;
-            conversionState.isPlaying = false;
-            conversionState.currentProblem = null;
-            conversionState.questionsAnswered = 0;
-            
-            document.getElementById('conversionInput').value = '';
-            document.getElementById('conversionFeedback').textContent = 'Click Start to begin the game!';
-            document.getElementById('conversionFeedback').className = 'feedback';
-            document.getElementById('conversionStartBtn').disabled = false;
-            document.getElementById('conversionNextBtn').style.display = 'none';
-            
-            updateConversionDisplay();
-        }
+                const userAnswer = parseFloat(document.getElementById('conversionInput').value);
+                const correctAnswer = conversionState.currentProblem.correctAnswer;
+                const tolerance = 0.01; // Allow for small rounding errors
 
-        function nextConversionLevel() {
-            // For simplicity, just reset for now
-            resetConversionGame();
-            startConversionGame();
-        }
+                if (Math.abs(userAnswer - correctAnswer) < tolerance) {
+                    // Correct answer
+                    conversionState.score += 100;
+                    document.getElementById('conversionFeedback').textContent = 'Correct! +100 points';
+                    document.getElementById('conversionFeedback').className = 'feedback correct';
 
-        function updateConversionDisplay() {
-            document.getElementById('conversionLevel').textContent = conversionState.level;
-            document.getElementById('conversionScore').textContent = conversionState.score;
-            document.getElementById('conversionLives').textContent = conversionState.lives;
-        }
+                    conversionState.questionsAnswered++;
 
-        // Helper functions
-        function getRandomPrefixes(count) {
-            const shuffled = [...metricPrefixes].sort(() => 0.5 - Math.random());
-            return shuffled.slice(0, count);
-        }
+                    // Next problem after a delay
+                    setTimeout(() => {
+                        if (conversionState.isPlaying) {
+                            generateConversionProblem();
+                        }
+                    }, 1500);
+                } else {
+                    // Incorrect answer
+                    conversionState.lives--;
+                    document.getElementById('conversionFeedback').textContent =
+                        `Incorrect! The answer is ${correctAnswer.toFixed(4)}`;
+                    document.getElementById('conversionFeedback').className = 'feedback incorrect';
 
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+                    if (conversionState.lives <= 0) {
+                        conversionGameOver();
+                        return;
+                    }
+
+                    // Allow another attempt
+                    document.getElementById('conversionInput').value = '';
+                    document.getElementById('conversionInput').focus();
+                }
+
+                updateConversionDisplay();
             }
-            return array;
-        }
 
-        function formatPower(power) {
-            if (power >= 0) {
-                return `<sup>${power}</sup>`;
-            } else {
-                return `<sup>-${Math.abs(power)}</sup>`;
+            function conversionGameOver() {
+                conversionState.isPlaying = false;
+                document.getElementById('conversionFeedback').textContent = `Game Over! Final Score: ${conversionState.score}`;
+                document.getElementById('conversionStartBtn').disabled = false;
             }
-        }
 
-        // Initialize the game when page loads
-        window.addEventListener('DOMContentLoaded', initGame);
-    </script>
+            function resetConversionGame() {
+                conversionState.level = 1;
+                conversionState.score = 0;
+                conversionState.lives = 3;
+                conversionState.isPlaying = false;
+                conversionState.currentProblem = null;
+                conversionState.questionsAnswered = 0;
+
+                document.getElementById('conversionInput').value = '';
+                document.getElementById('conversionFeedback').textContent = 'Click Start to begin the game!';
+                document.getElementById('conversionFeedback').className = 'feedback';
+                document.getElementById('conversionStartBtn').disabled = false;
+                document.getElementById('conversionNextBtn').style.display = 'none';
+
+                updateConversionDisplay();
+            }
+
+            function nextConversionLevel() {
+                // For simplicity, just reset for now
+                resetConversionGame();
+                startConversionGame();
+            }
+
+            function updateConversionDisplay() {
+                document.getElementById('conversionLevel').textContent = conversionState.level;
+                document.getElementById('conversionScore').textContent = conversionState.score;
+                document.getElementById('conversionLives').textContent = conversionState.lives;
+            }
+
+            // Helper functions
+            function getRandomPrefixes(count) {
+                const shuffled = [...metricPrefixes].sort(() => 0.5 - Math.random());
+                return shuffled.slice(0, count);
+            }
+
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function formatPower(power) {
+                if (power >= 0) {
+                    return `<sup>${power}</sup>`;
+                } else {
+                    return `<sup>-${Math.abs(power)}</sup>`;
+                }
+            }
+
+            // Initialize the game when page loads
+            window.addEventListener('DOMContentLoaded', initGame);
+        </script>
 </body>
+
 </html>
