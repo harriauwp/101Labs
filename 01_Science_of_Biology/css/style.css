@@ -69,6 +69,7 @@ h3 { color: var(--uwp-dark-blue); margin-top: 0; }
 .btn:hover { background: var(--uwp-light-green); }
 .btn:disabled { background: #ccc; cursor: not-allowed; }
 .btn-back { background: #00502f; margin-bottom: 1rem; display: inline-block; text-decoration: none; font-size: 0.9rem; }
+.btn-opt { background:#8B0000; margin-bottom: 1rem; display: inline-block; text-decoration: none; font-size: 0.9rem; }
 
 /* Quizzes */
 .quiz fieldset {
@@ -90,4 +91,5 @@ h3 { color: var(--uwp-dark-blue); margin-top: 0; }
 .badge.pending { background: #999; }
 .badge.passed { background: var(--success); }
 .badge.locked { background: var(--danger); }
+
 
