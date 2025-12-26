@@ -87,17 +87,17 @@
 
         .exercise-card:nth-child(1) {
             animation-delay: 0.1s;
-            border-top: 5px solid #ff6b6b;
+            border-top: 5px solid #0000FF;
         }
 
         .exercise-card:nth-child(2) {
             animation-delay: 0.2s;
-            border-top: 5px solid #4ecdc4;
+            border-top: 5px solid #997DAB;
         }
 
         .exercise-card:nth-child(3) {
             animation-delay: 0.3s;
-            border-top: 5px solid #95e1d3;
+            border-top: 5px solid #D9D9D9;
         }
 
         .exercise-card:hover {
@@ -432,111 +432,116 @@
 <body>
     <div class="container">
         <div class="header">
-            <h3 style="margin-bottom: 15px;">Pseudoscience Investigation Hub</h3>
             <div
-                style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px;">
+                style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px; position: relative;">
                 <a href="index.html" style="color: #333; text-decoration: none; font-size: 1em;">← Back to Hub</a>
+                <h3 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap;">
+                    🔬 Pseudoscience Investigation Hub</h3>
                 <div style="width: 100px;"></div>
             </div>
             <p style="text-align: center; margin: 5px 0;">Master Critical Thinking Through Real Scientific Studies</p>
             <p class="subtitle" style="text-align: center; margin: 5px 0;">Test extraordinary claims. Distinguish fact
                 from fiction. Think like a scientist.</p>
         </div>
+        <p style="text-align: center; margin: 5px 0;">Master Critical Thinking Through Real Scientific Studies</p>
+        <p class="subtitle" style="text-align: center; margin: 5px 0;">Test extraordinary claims. Distinguish fact
+            from fiction. Think like a scientist.</p>
+    </div>
 
-        <!-- AI Prompt Instructions Box -->
-        <div
-            style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%;">
-            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
-                <!-- Prompt Box with Instructions -->
-                <div class="ai-prompt-container">
-                    <div class="ai-prompt-header" onclick="togglePrompt(this)">
-                        <span class="ai-prompt-toggle">▶</span>
-                        <span class="ai-prompt-label">📋 Click to view AI prompt</span>
-                    </div>
-                    <div class="ai-prompt-content">
-                        <p style="font-size: 0.85em; color: #555; margin: 0 0 8px 0;"><strong>Copy and paste this AI
-                                prompt into Copilot:</strong></p>
-                        <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown
-                            of the word [INSERT WORD HERE].
-
-                            Your response must include the following four sections:
-
-                            Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots,
-                            suffixes), explaining the meaning of each part.
-
-                            Etymology: Provide a detailed history of the word's origins, including the original Greek,
-                            Latin, or other linguistic roots and the approximate era it entered the English language.
-
-                            Standard Definition: Provide a clear, academic definition of the concept as it is understood
-                            today.
-
-                            Scholarly Verification: For every major claim made in the definition and etymology, provide
-                            a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or
-                            an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify
-                            the information.</div>
-                    </div>
+    <!-- AI Prompt Instructions Box -->
+    <div
+        style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%;">
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
+            <!-- Prompt Box with Instructions -->
+            <div class="ai-prompt-container">
+                <div class="ai-prompt-header" onclick="togglePrompt(this)">
+                    <span class="ai-prompt-toggle">▶</span>
+                    <span class="ai-prompt-label">📋 Click to view AI prompt</span>
                 </div>
-                <!-- Morpheme & Etymology Box -->
-                <div class="task-box">
-                    <p class="task-box-title">In your own words:</p>
-                    <p class="task-box-subtitle">Explain the morpheme and etymology</p>
-                    <textarea class="task-input" placeholder="Type your response here..."></textarea>
+                <div class="ai-prompt-content">
+                    <p style="font-size: 0.85em; color: #555; margin: 0 0 8px 0;"><strong>Copy and paste this AI
+                            prompt into Copilot:</strong></p>
+                    <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown
+                        of the word [INSERT WORD HERE].
+
+                        Your response must include the following four sections:
+
+                        Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots,
+                        suffixes), explaining the meaning of each part.
+
+                        Etymology: Provide a detailed history of the word's origins, including the original Greek,
+                        Latin, or other linguistic roots and the approximate era it entered the English language.
+
+                        Standard Definition: Provide a clear, academic definition of the concept as it is understood
+                        today.
+
+                        Scholarly Verification: For every major claim made in the definition and etymology, provide
+                        a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or
+                        an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify
+                        the information.</div>
                 </div>
-                <!-- Examples Box -->
-                <div class="task-box">
-                    <p class="task-box-title">Then provide:</p>
-                    <p class="task-box-subtitle">Examples of pseudoscience</p>
-                    <textarea class="task-input" placeholder="Type your response here..."></textarea>
-                </div>
+            </div>
+            <!-- Morpheme & Etymology Box -->
+            <div class="task-box">
+                <p class="task-box-title">In your own words:</p>
+                <p class="task-box-subtitle">Explain the morpheme and etymology</p>
+                <textarea class="task-input" placeholder="Type your response here..."></textarea>
+            </div>
+            <!-- Examples Box -->
+            <div class="task-box">
+                <p class="task-box-title">Then provide:</p>
+                <p class="task-box-subtitle">Examples of pseudoscience</p>
+                <textarea class="task-input" placeholder="Type your response here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="exercises-grid">
+        <!-- Exercise 1: Astrology -->
+        <div class="exercise-card">
+            <div class="card-number">Exercise 1</div>
+            <div class="card-icon">♈</div>
+            <h3>Astrology Under Test</h3>
+            <p>Explore Shawn Carlson's landmark 1985 study published in <em>Nature</em> that tested whether
+                professional astrologers could match birth charts to personality profiles.</p>
+            <div class="learning-objective">
+                <strong>Master:</strong> How to design controlled experiments to test extraordinary claims
+            </div>
+            <div class="card-footer">
+                <a href="01astrology.html" class="start-button">Begin Exercise →</a>
             </div>
         </div>
 
-        <div class="exercises-grid">
-            <!-- Exercise 1: Astrology -->
-            <div class="exercise-card">
-                <div class="card-number">Exercise 1</div>
-                <div class="card-icon">♈</div>
-                <h3>Astrology Under Test</h3>
-                <p>Explore Shawn Carlson's landmark 1985 study published in <em>Nature</em> that tested whether
-                    professional astrologers could match birth charts to personality profiles.</p>
-                <div class="learning-objective">
-                    <strong>Master:</strong> How to design controlled experiments to test extraordinary claims
-                </div>
-                <div class="card-footer">
-                    <a href="01astrology.html" class="start-button">Begin Exercise →</a>
-                </div>
+        <!-- Exercise 2: Emily Rosa & Therapeutic Touch -->
+        <div class="exercise-card">
+            <div class="card-number">Exercise 2</div>
+            <div class="card-icon">🧑‍🔬</div>
+            <h3>Emily Rosa's Breakthrough</h3>
+            <p>Follow the story of an 11-year-old who became the youngest person to publish in <em>JAMA</em> by
+                testing whether Therapeutic Touch practitioners could detect a human energy field.</p>
+            <div class="learning-objective">
+                <strong>Master:</strong> Testing fundamental claims before complex outcomes
             </div>
-
-            <!-- Exercise 2: Emily Rosa & Therapeutic Touch -->
-            <div class="exercise-card">
-                <div class="card-number">Exercise 2</div>
-                <div class="card-icon">🧑‍🔬</div>
-                <h3>Emily Rosa's Breakthrough</h3>
-                <p>Follow the story of an 11-year-old who became the youngest person to publish in <em>JAMA</em> by
-                    testing whether Therapeutic Touch practitioners could detect a human energy field.</p>
-                <div class="learning-objective">
-                    <strong>Master:</strong> Testing fundamental claims before complex outcomes
-                </div>
-                <div class="card-footer">
-                    <a href="02EmilyRosa.html" class="start-button">Begin Exercise →</a>
-                </div>
-            </div>
-
-            <!-- Exercise 3: Crystal Healing -->
-            <div class="exercise-card">
-                <div class="card-number">Exercise 3</div>
-                <div class="card-icon">💎</div>
-                <h3>Crystal Healing Claims</h3>
-                <p>Investigate the claims of gemstone therapy: Do crystals "balance energy"? Is this an empirical
-                    observation or an anecdote? Develop your ability to distinguish testable from untestable claims.</p>
-                <div class="learning-objective">
-                    <strong>Master:</strong> Identifying pseudoscientific patterns and goalpost-moving
-                </div>
-                <div class="card-footer">
-                    <a href="03CrystalHealing.html" class="start-button">Begin Exercise →</a>
-                </div>
+            <div class="card-footer">
+                <a href="02EmilyRosa.html" class="start-button">Begin Exercise →</a>
             </div>
         </div>
+
+        <!-- Exercise 3: Crystal Healing -->
+        <div class="exercise-card">
+            <div class="card-number">Exercise 3</div>
+            <div class="card-icon">💎</div>
+            <h3>Crystal Healing Claims</h3>
+            <p>Investigate the claims of gemstone therapy: Do crystals "balance energy"? Is this an empirical
+                observation or an anecdote? Develop your ability to distinguish testable from untestable claims.</p>
+            <div class="learning-objective">
+                <strong>Master:</strong> Identifying pseudoscientific patterns and goalpost-moving
+            </div>
+            <div class="card-footer">
+                <a href="03CrystalHealing.html" class="start-button">Begin Exercise →</a>
+            </div>
+        </div>
+    </div>
     </div>
 
     <script>
