@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,7 @@
             background: white;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
             max-width: 1300px;
             width: 100%;
         }
@@ -60,7 +61,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
         }
 
         .btn-primary {
@@ -71,7 +72,7 @@
         .btn-primary:hover {
             background: #5568d3;
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         }
 
         .btn-secondary {
@@ -82,7 +83,7 @@
         .btn-secondary:hover {
             background: #38a169;
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         }
 
         .btn-reset {
@@ -93,7 +94,7 @@
         .btn-reset:hover {
             background: #f56565;
             transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         }
 
         .game-info {
@@ -143,7 +144,7 @@
             height: auto;
             display: block;
             border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             max-height: 550px;
             object-fit: contain;
         }
@@ -160,28 +161,75 @@
         .hotspot {
             cursor: pointer;
             pointer-events: all;
-            fill: rgba(102, 126, 234, 0.25);
-            stroke: rgba(102, 126, 234, 0.8);
-            stroke-width: 1.5;
             transition: all 0.3s ease;
         }
 
-        .hotspot:hover {
+        .hotspot text {
+            font-size: 28px;
+            font-weight: bold;
+            fill: #2d3748;
+            stroke: white;
+            stroke-width: 0.5px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .hotspot path {
+            stroke: #2d3748;
+            stroke-width: 6;
+            fill: none;
+            marker-end: url(#arrowhead);
+        }
+
+        .hotspot ellipse,
+        .hotspot polygon {
+            fill: rgba(102, 126, 234, 0.2);
+            stroke: #667eea;
+            stroke-width: 3;
+        }
+
+        .hotspot:hover text {
+            fill: #667eea;
+            transform: scale(1.05);
+            transform-origin: center;
+        }
+
+        .hotspot:hover path {
+            stroke: #667eea;
+            stroke-width: 8;
+        }
+
+        .hotspot:hover ellipse,
+        .hotspot:hover polygon {
             fill: rgba(102, 126, 234, 0.4);
-            stroke: rgba(102, 126, 234, 1);
-            stroke-width: 2;
+            stroke: #5568d3;
         }
 
-        .hotspot.correct {
+        .hotspot.correct text {
+            fill: #38a169;
+        }
+
+        .hotspot.correct path {
+            stroke: #38a169;
+        }
+
+        .hotspot.correct ellipse,
+        .hotspot.correct polygon {
             fill: rgba(72, 187, 120, 0.3);
-            stroke: rgba(72, 187, 120, 1);
-            stroke-width: 2;
+            stroke: #38a169;
         }
 
-        .hotspot.incorrect {
-            fill: rgba(252, 129, 129, 0.3);
-            stroke: rgba(252, 129, 129, 1);
-            stroke-width: 2;
+        .hotspot.incorrect text {
+            fill: #e53e3e;
+        }
+
+        .hotspot.incorrect path {
+            stroke: #e53e3e;
+        }
+
+        .hotspot.incorrect ellipse,
+        .hotspot.incorrect polygon {
+            fill: rgba(229, 62, 62, 0.3);
+            stroke: #e53e3e;
         }
 
         .parts-list {
@@ -251,6 +299,7 @@
                 opacity: 0;
                 transform: translateY(-15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -277,6 +326,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>🔬 Microscope Labeling Game</h1>
@@ -289,7 +339,7 @@
         </div>
 
         <div class="game-info">
-            <div class="score">Score: <span id="score">0</span> / 10</div>
+            <div class="score">Score: <span id="score">0</span> / 8</div>
             <div class="current-task" id="currentTask">
                 Click "Explore Mode" to learn the parts or "Quiz Mode" to test yourself!
             </div>
@@ -297,44 +347,54 @@
 
         <div class="game-area">
             <div class="microscope-container">
-                <img src="https://raw.githubusercontent.com/harriauwp/Scope-Learn/main/images/image_1.png" 
-                     alt="Microscope" 
-                     class="microscope-img"
-                     id="microscopeImg"
-                     crossorigin="anonymous">
-                
-                <!-- Corrected SVG with properly positioned hotspots -->
+                <img src="https://raw.githubusercontent.com/harriauwp/Scope-Learn/main/images/image_1.png"
+                    alt="Microscope" class="microscope-img" id="microscopeImg" crossorigin="anonymous">
+
                 <svg class="hotspots-svg" id="hotspotsSvg" viewBox="0 0 1310 1195" preserveAspectRatio="xMidYMid meet">
-                    <!-- Ocular Lens (Eyepiece) - Top right -->
-                    <circle class="hotspot" data-part="ocular" cx="1110" cy="85" r="18"></circle>
-                    
-                    <!-- Revolving Nosepiece - Below ocular -->
-                    <circle class="hotspot" data-part="nosepiece" cx="1020" cy="245" r="22"></circle>
-                    
-                    <!-- Objective Lenses - Bottom of nosepiece -->
-                    <ellipse class="hotspot" data-part="objectives" cx="1015" cy="360" rx="45" ry="15"></ellipse>
-                    
-                    <!-- Stage - Platform below objectives -->
-                    <rect class="hotspot" data-part="stage" x="850" cy="420" width="330" height="50" rx="4"></rect>
-                    
-                    <!-- Stage Clips - Two small rectangles on stage -->
-                    <rect class="hotspot" data-part="clips" x="880" y="430" width="50" height="12" rx="2"></rect>
-                    <rect class="hotspot" data-part="clips" x="1100" y="430" width="50" height="12" rx="2"></rect>
-                    
-                    <!-- Iris Diaphragm - Under the stage -->
-                    <circle class="hotspot" data-part="diaphragm" cx="1020" cy="510" r="28"></circle>
-                    
-                    <!-- Light Source - Bottom of microscope -->
-                    <rect class="hotspot" data-part="light" x="880" y="820" width="260" height="70" rx="8"></rect>
-                    
-                    <!-- Coarse Adjustment Knob - Left side -->
-                    <circle class="hotspot" data-part="coarse" cx="650" cy="580" r="28"></circle>
-                    
-                    <!-- Fine Adjustment Knob - Below coarse adjustment -->
-                    <circle class="hotspot" data-part="fine" cx="690" cy="640" r="20"></circle>
-                    
-                    <!-- Light Adjustment Knob - Near light source -->
-                    <circle class="hotspot" data-part="lightadj" cx="740" cy="810" r="20"></circle>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="context-stroke" />
+                        </marker>
+                    </defs>
+
+                    <!-- Ocular Lens - no text label, just clickable area -->
+                    <ellipse class="hotspot" data-part="ocular" cx="1120" cy="85" rx="40" ry="30"
+                        style="fill: rgba(102, 126, 234, 0.2); stroke: #667eea; stroke-width: 3;" />
+
+                    <!-- Objective Lenses - correctly positioned over the actual objective lenses -->
+                    <ellipse class="hotspot" data-part="objectives" cx="500" cy="490" rx="20" ry="55"
+                        transform="rotate(35 500 490)"
+                        style="fill: rgba(102, 126, 234, 0.2); stroke: #667eea; stroke-width: 3;" />
+                    <ellipse class="hotspot" data-part="objectives" cx="560" cy="540" rx="35" ry="55"
+                        transform="rotate(35 560 540)"
+                        style="fill: rgba(102, 126, 234, 0.2); stroke: #667eea; stroke-width: 3;" />
+                    <ellipse class="hotspot" data-part="objectives" cx="650" cy="510" rx="35" ry="55"
+                        style="fill: rgba(102, 126, 234, 0.2); stroke: #667eea; stroke-width: 3;" />
+
+                    <!-- Stage -->
+                    <polygon class="hotspot" data-part="stage" points="520,625 850,625 820,585 750,585"
+                        style="fill: rgba(0, 170, 255, 0.2); stroke: #00aaff; stroke-width: 3;" />
+
+                    <!-- Coarse Adjustment Knob -->
+                    <g class="hotspot" data-part="coarse">
+                        <text x="50" y="640" data-part="coarse">Inner Knob</text>
+                        <path d="M 120 650 Q 180 670 240 720" data-part="coarse" />
+                    </g>
+
+                    <!-- Fine Adjustment Knob -->
+                    <g class="hotspot" data-part="fine">
+                        <text x="20" y="960" data-part="fine" style="fill: #0055ff;">Outer Knob</text>
+                        <path d="M 90 920 Q 150 910 220 860" data-part="fine" style="stroke: #0055ff;" />
+                    </g>
+                    <!-- Iris Diaphragm -->
+                    <g class="hotspot" data-part="diaphragm">
+                        <text x="900" y="680" data-part="diaphragm">Diaphragm</text>
+                        <path d="M 895 690 L 750 690" data-part="diaphragm" />
+                    </g>
+
+                    <!-- Light Adjustment Knob - no text label, just clickable area -->
+                    <ellipse class="hotspot" data-part="lightadj" cx="470" cy="970" rx="50" ry="30"
+                        style="fill: rgba(102, 126, 234, 0.2); stroke: #667eea; stroke-width: 3;" />
                 </svg>
             </div>
 
@@ -355,10 +415,6 @@
                 name: "Ocular Lens (Eyepiece)",
                 description: "The lens at the top that you look through. Magnifies by 10×."
             },
-            nosepiece: {
-                name: "Revolving Nosepiece",
-                description: "Rotating turret that holds objective lenses and allows switching between them."
-            },
             objectives: {
                 name: "Objective Lenses",
                 description: "Set of lenses providing bulk magnification (e.g., 4×, 10×, 40×)."
@@ -367,18 +423,6 @@
                 name: "Stage",
                 description: "Flat platform where the slide/specimen is placed for viewing."
             },
-            clips: {
-                name: "Stage Clips",
-                description: "Metal pieces that hold the glass slide firmly in place on the stage."
-            },
-            diaphragm: {
-                name: "Iris Diaphragm",
-                description: "Controls the amount of light passing through the specimen for contrast."
-            },
-            light: {
-                name: "Light Source",
-                description: "Lamp at the base that projects light up through the specimen."
-            },
             coarse: {
                 name: "Coarse Adjustment Knob",
                 description: "Larger knob that moves the stage dramatically for approximate focus."
@@ -386,6 +430,10 @@
             fine: {
                 name: "Fine Adjustment Knob",
                 description: "Smaller knob for precise adjustments to achieve sharp focus."
+            },
+            diaphragm: {
+                name: "Iris Diaphragm",
+                description: "Controls the amount of light passing through the specimen for contrast."
             },
             lightadj: {
                 name: "Light Adjustment Knob",
@@ -407,7 +455,7 @@
         function renderPartsList() {
             const listContainer = document.getElementById('partsList');
             listContainer.innerHTML = '';
-            
+
             Object.entries(parts).forEach(([key, part]) => {
                 const item = document.createElement('div');
                 item.className = 'part-item';
@@ -428,17 +476,18 @@
         }
 
         function handleHotspotClick(e) {
-            const partKey = e.target.dataset.part;
-            
+            const target = e.target.closest('.hotspot') || e.target;
+            const partKey = target.dataset.part || target.getAttribute('data-part');
+
             if (!gameMode) {
                 alert('Please select a game mode first!');
                 return;
             }
 
             if (gameMode === 'explore') {
-                handleExploreClick(partKey, e.target);
+                handleExploreClick(partKey, target);
             } else if (gameMode === 'quiz') {
-                handleQuizClick(partKey, e.target);
+                handleQuizClick(partKey, target);
             }
         }
 
@@ -447,12 +496,14 @@
                 foundParts.add(partKey);
                 score++;
                 updateScore();
-                
-                element.classList.add('correct');
+
+                const hotspot = element.closest('.hotspot');
+                if (hotspot) hotspot.classList.add('correct');
+
                 document.getElementById(`part-${partKey}`).classList.add('found');
-                
+
                 showFeedback(`✓ ${parts[partKey].name}`, true);
-                
+
                 if (foundParts.size === Object.keys(parts).length) {
                     setTimeout(showCompletion, 500);
                 }
@@ -461,26 +512,30 @@
 
         function handleQuizClick(partKey, element) {
             if (currentQuizPart === null) return;
-            
+
             if (partKey === currentQuizPart) {
                 foundParts.add(partKey);
                 score++;
                 updateScore();
-                
-                element.classList.add('correct');
+
+                const hotspot = element.closest('.hotspot');
+                if (hotspot) hotspot.classList.add('correct');
+
                 document.getElementById(`part-${partKey}`).classList.add('found');
-                
+
                 showFeedback(`✓ Correct! ${parts[partKey].name}`, true);
-                
+
                 setTimeout(() => {
                     nextQuizQuestion();
                 }, 1500);
             } else {
-                element.classList.add('incorrect');
+                const hotspot = element.closest('.hotspot');
+                if (hotspot) hotspot.classList.add('incorrect');
+
                 showFeedback(`✗ Try again! Look for the ${parts[currentQuizPart].name}`, false);
-                
+
                 setTimeout(() => {
-                    element.classList.remove('incorrect');
+                    if (hotspot) hotspot.classList.remove('incorrect');
                 }, 1000);
             }
         }
@@ -488,9 +543,9 @@
         function setMode(mode) {
             gameMode = mode;
             resetGame();
-            
+
             const taskElement = document.getElementById('currentTask');
-            
+
             if (mode === 'explore') {
                 taskElement.innerHTML = 'Explore Mode <span class="mode-indicator mode-explore">EXPLORE</span><br>Click on any part to learn about it!';
             } else if (mode === 'quiz') {
@@ -501,12 +556,12 @@
 
         function nextQuizQuestion() {
             const remaining = quizOrder.filter(key => !foundParts.has(key));
-            
+
             if (remaining.length === 0) {
                 showCompletion();
                 return;
             }
-            
+
             currentQuizPart = remaining[0];
             const taskElement = document.getElementById('currentTask');
             taskElement.innerHTML = `Quiz Mode <span class="mode-indicator mode-quiz">QUIZ</span><br>Find: <strong>${parts[currentQuizPart].name}</strong>`;
@@ -515,11 +570,11 @@
         function showFeedback(message, isCorrect) {
             const taskElement = document.getElementById('currentTask');
             const originalContent = taskElement.innerHTML;
-            
+
             taskElement.style.background = isCorrect ? '#f0fff4' : '#fff5f5';
             taskElement.style.borderColor = isCorrect ? '#48bb78' : '#fc8181';
             taskElement.innerHTML = message;
-            
+
             if (gameMode === 'explore' || !isCorrect) {
                 setTimeout(() => {
                     taskElement.style.background = '#fff';
@@ -542,17 +597,17 @@
             foundParts.clear();
             currentQuizPart = null;
             updateScore();
-            
+
             document.querySelectorAll('.hotspot').forEach(h => {
                 h.classList.remove('correct', 'incorrect');
             });
-            
+
             document.querySelectorAll('.part-item').forEach(p => {
                 p.classList.remove('found');
             });
-            
+
             document.getElementById('completionMessage').classList.remove('show');
-            
+
             if (gameMode === 'quiz') {
                 quizOrder = Object.keys(parts).sort(() => Math.random() - 0.5);
                 nextQuizQuestion();
@@ -562,4 +617,5 @@
         initGame();
     </script>
 </body>
+
 </html>
