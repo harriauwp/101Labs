@@ -15,7 +15,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #000000;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             padding: 20px;
@@ -43,21 +43,21 @@
 
         .header h1 {
             font-size: 3em;
-            color: #1a1a1a;
+            color: #000000;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .header p {
             font-size: 1.3em;
-            color: #666;
+            color: #000000;
             margin-bottom: 10px;
             max-width: 600px;
         }
 
         .subtitle {
             font-size: 1em;
-            color: #999;
+            color: #000000;
             font-style: italic;
             max-width: 700px;
             margin: 0 auto;
@@ -116,7 +116,7 @@
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.85em;
-            color: #666;
+            color: #000000;
             margin-bottom: 10px;
             align-self: flex-start;
         }
@@ -124,12 +124,12 @@
         .exercise-card h3 {
             font-size: 1.5em;
             margin-bottom: 12px;
-            color: #1a1a1a;
+            color: #000000;
             text-align: left;
         }
 
         .exercise-card p {
-            color: #666;
+            color: #000000;
             margin-bottom: 15px;
             font-size: 0.95em;
             text-align: left;
@@ -155,7 +155,6 @@
         }
 
         .start-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 12px 24px;
             border: none;
@@ -170,9 +169,21 @@
             justify-content: center;
         }
 
+        .exercise-card:nth-child(1) .start-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .exercise-card:nth-child(2) .start-button {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a6a0 100%);
+        }
+
+        .exercise-card:nth-child(3) .start-button {
+            background: linear-gradient(135deg, #95e1d3 0%, #7bc4b5 100%);
+        }
+
         .start-button:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
         /* AI Prompt Expandable Box */
@@ -280,8 +291,6 @@
             min-height: 60px;
         }
 
-        </CANVAS_NEW_STR>
-
         /* Exercise Page Styles */
         .exercise-page {
             display: none;
@@ -307,7 +316,7 @@
 
         .exercise-header h2 {
             font-size: 2em;
-            color: #1a1a1a;
+            color: #000000;
             margin: 0;
         }
 
@@ -334,7 +343,7 @@
         .exercise-content {
             font-size: 1em;
             line-height: 1.8;
-            color: #444;
+            color: #000000;
         }
 
         .exercise-content iframe {
@@ -421,156 +430,102 @@
 </head>
 
 <body>
-    <div class="header">
-        <div
-            style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px;">
-            <a href="index.html" style="color: #333; text-decoration: none; font-size: 1em;">← Back to Hub</a>
-            <h3 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);">🔬 Pseudoscience
-                Investigation Hub</h3>
-            <div style="width: 100px;"></div>
-
-            <p style="text-align: center;">Master Critical Thinking Through Real Scientific Studies</p>
-            <p style="text-align: center;">Test extraordinary claims. Distinguish fact from fiction. Think like a
-                scientist.</p>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin-bottom: 10px;">
+                <a href="index.html" style="color: #333; text-decoration: none; font-size: 1em;">← Back to Hub</a>
+                <h1 style="margin: 0; position: absolute; left: 50%; transform: translateX(-50%);">🔬 Pseudoscience Investigation Hub</h1>
+                <div style="width: 100px;"></div>
+            </div>
+            <p style="text-align: center; margin: 5px 0;">Master Critical Thinking Through Real Scientific Studies</p>
+            <p class="subtitle" style="text-align: center; margin: 5px 0;">Test extraordinary claims. Distinguish fact from fiction. Think like a scientist.</p>
         </div>
-    </div>
-    <!-- AI Prompt Instructions Box -->
-    <div
-        style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%;">
-        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
-            <!-- Prompt Box with Instructions -->
-            <div class="ai-prompt-container">
-                <div class="ai-prompt-header" onclick="togglePrompt(this)">
-                    <span class="ai-prompt-toggle">▶</span>
-                    <span class="ai-prompt-label">📋 Click to view AI prompt</span>
+
+        <!-- AI Prompt Instructions Box -->
+        <div style="background: #f0f4ff; border: 1px solid #d0e0ff; border-radius: 8px; padding: 20px; margin-bottom: 40px; width: 100%;">
+            <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px;">
+                <!-- Prompt Box with Instructions -->
+                <div class="ai-prompt-container">
+                    <div class="ai-prompt-header" onclick="togglePrompt(this)">
+                        <span class="ai-prompt-toggle">▶</span>
+                        <span class="ai-prompt-label">📋 Click to view AI prompt</span>
+                    </div>
+                    <div class="ai-prompt-content">
+                        <p style="font-size: 0.85em; color: #555; margin: 0 0 8px 0;"><strong>Copy and paste this AI prompt into Copilot:</strong></p>
+                        <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual breakdown of the word [INSERT WORD HERE].
+
+Your response must include the following four sections:
+
+Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots, suffixes), explaining the meaning of each part.
+
+Etymology: Provide a detailed history of the word's origins, including the original Greek, Latin, or other linguistic roots and the approximate era it entered the English language.
+
+Standard Definition: Provide a clear, academic definition of the concept as it is understood today.
+
+Scholarly Verification: For every major claim made in the definition and etymology, provide a direct link to a scholarly article, academic database (like JSTOR or Google Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a student can verify the information.</div>
+                    </div>
                 </div>
-                <div class="ai-prompt-content">
-                    <p style="font-size: 0.85em; color: #555; margin: 0 0 8px 0;"><strong>Copy and paste this AI
-                            prompt into Copilot:</strong></p>
-                    <div class="ai-prompt-text">Please provide a comprehensive linguistic and conceptual
-                        breakdown of the word [INSERT WORD HERE].
-
-                        Your response must include the following four sections:
-
-                        Morphemic Analysis: Break the word into its individual morphemes (prefixes, roots,
-                        suffixes), explaining the meaning of each part.
-
-                        Etymology: Provide a detailed history of the word's origins, including the original
-                        Greek, Latin, or other linguistic roots and the approximate era it entered the English
-                        language.
-
-                        Standard Definition: Provide a clear, academic definition of the concept as it is
-                        understood today.
-
-                        Scholarly Verification: For every major claim made in the definition and etymology,
-                        provide a direct link to a scholarly article, academic database (like JSTOR or Google
-                        Scholar), or an authoritative dictionary (like the OED or Merriam-Webster) so that a
-                        student can verify the information.</div>
+                <!-- Morpheme & Etymology Box -->
+                <div class="task-box">
+                    <p class="task-box-title">In your own words:</p>
+                    <p class="task-box-subtitle">Explain the morpheme and etymology</p>
+                    <textarea class="task-input" placeholder="Type your response here..."></textarea>
+                </div>
+                <!-- Examples Box -->
+                <div class="task-box">
+                    <p class="task-box-title">Then provide:</p>
+                    <p class="task-box-subtitle">Examples of pseudoscience</p>
+                    <textarea class="task-input" placeholder="Type your response here..."></textarea>
                 </div>
             </div>
-            <!-- Morpheme & Etymology Box -->
-            <div class="task-box">
-                <p class="task-box-title">In your own words:</p>
-                <p class="task-box-subtitle">Explain the morpheme and etymology</p>
-                <textarea class="task-input" placeholder="Type your response here..."></textarea>
+        </div>
+
+        <div class="exercises-grid">
+            <!-- Exercise 1: Astrology -->
+            <div class="exercise-card">
+                <div class="card-number">Exercise 1</div>
+                <div class="card-icon">♈</div>
+                <h3>Astrology Under Test</h3>
+                <p>Explore Shawn Carlson's landmark 1985 study published in <em>Nature</em> that tested whether professional astrologers could match birth charts to personality profiles.</p>
+                <div class="learning-objective">
+                    <strong>Master:</strong> How to design controlled experiments to test extraordinary claims
+                </div>
+                <div class="card-footer">
+                    <a href="01astrology.html" class="start-button">Begin Exercise →</a>
+                </div>
             </div>
-            <!-- Examples Box -->
-            <div class="task-box">
-                <p class="task-box-title">Then provide:</p>
-                <p class="task-box-subtitle">Examples of pseudoscience</p>
-                <textarea class="task-input" placeholder="Type your response here..."></textarea>
+
+            <!-- Exercise 2: Emily Rosa & Therapeutic Touch -->
+            <div class="exercise-card">
+                <div class="card-number">Exercise 2</div>
+                <div class="card-icon">🧑‍🔬</div>
+                <h3>Emily Rosa's Breakthrough</h3>
+                <p>Follow the story of an 11-year-old who became the youngest person to publish in <em>JAMA</em> by testing whether Therapeutic Touch practitioners could detect a human energy field.</p>
+                <div class="learning-objective">
+                    <strong>Master:</strong> Testing fundamental claims before complex outcomes
+                </div>
+                <div class="card-footer">
+                    <a href="02EmilyRosa.html" class="start-button">Begin Exercise →</a>
+                </div>
+            </div>
+
+            <!-- Exercise 3: Crystal Healing -->
+            <div class="exercise-card">
+                <div class="card-number">Exercise 3</div>
+                <div class="card-icon">💎</div>
+                <h3>Crystal Healing Claims</h3>
+                <p>Investigate the claims of gemstone therapy: Do crystals "balance energy"? Is this an empirical observation or an anecdote? Develop your ability to distinguish testable from untestable claims.</p>
+                <div class="learning-objective">
+                    <strong>Master:</strong> Identifying pseudoscientific patterns and goalpost-moving
+                </div>
+                <div class="card-footer">
+                    <a href="03CrystalHealing.html" class="start-button">Begin Exercise →</a>
+                </div>
             </div>
         </div>
     </div>
-
-    </CANVAS_NEW_STR>
-
-    <div class="exercises-grid">
-        <!-- Exercise 1: Astrology -->
-        <div class="exercise-card">
-            <div class="card-number">Exercise 1</div>
-            <div class="card-icon">♈</div>
-            <h3>Astrology Under Test</h3>
-            <p>Explore Shawn Carlson's landmark 1985 study published in <em>Nature</em> that tested whether
-                professional astrologers could match birth charts to personality profiles.</p>
-            <div class="learning-objective">
-                <strong>Master:</strong> How to design controlled experiments to test extraordinary claims
-            </div>
-            <div class="card-footer">
-                <a href="01astrology.html" class="start-button">Begin Exercise →</a>
-            </div>
-        </div>
-
-        <!-- Exercise 2: Emily Rosa & Therapeutic Touch -->
-        <div class="exercise-card">
-            <div class="card-number">Exercise 2</div>
-            <div class="card-icon">🧑‍🔬</div>
-            <h3>Emily Rosa's Breakthrough</h3>
-            <p>Follow the story of an 11-year-old who became the youngest person to publish in <em>JAMA</em> by
-                testing whether Therapeutic Touch practitioners could detect a human energy field.</p>
-            <div class="learning-objective">
-                <strong>Master:</strong> Testing fundamental claims before complex outcomes
-            </div>
-            <div class="card-footer">
-                <a href="02EmilyRosa.html" class="start-button">Begin Exercise →</a>
-            </div>
-        </div>
-
-        <!-- Exercise 3: Crystal Healing -->
-        <div class="exercise-card">
-            <div class="card-number">Exercise 3</div>
-            <div class="card-icon">💎</div>
-            <h3>Crystal Healing Claims</h3>
-            <p>Investigate the claims of gemstone therapy: Do crystals "balance energy"? Is this an empirical
-                observation or an anecdote? Develop your ability to distinguish testable from untestable claims.
-            </p>
-            <div class="learning-objective">
-                <strong>Master:</strong> Identifying pseudoscientific patterns and goalpost-moving
-            </div>
-            <div class="card-footer">
-                <a href="03CrystalHealing.html" class="start-button">Begin Exercise →</a>
-            </div>
-        </div>
-    </div>
-    </div>
-
 
     <script>
-        function showExercise(exerciseName) {
-            // Hide landing page
-            document.getElementById('landingPage').classList.remove('active');
-
-            // Hide all exercise pages
-            document.getElementById('astrologyPage').classList.remove('active');
-            document.getElementById('emilyPage').classList.remove('active');
-            document.getElementById('crystalsPage').classList.remove('active');
-
-            // Show selected exercise
-            if (exerciseName === 'astrology') {
-                document.getElementById('astrologyPage').classList.add('active');
-            } else if (exerciseName === 'emily') {
-                document.getElementById('emilyPage').classList.add('active');
-            } else if (exerciseName === 'crystals') {
-                document.getElementById('crystalsPage').classList.add('active');
-            }
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        function showLanding() {
-            // Show landing page
-            document.getElementById('landingPage').classList.add('active');
-
-            // Hide all exercise pages
-            document.getElementById('astrologyPage').classList.remove('active');
-            document.getElementById('emilyPage').classList.remove('active');
-            document.getElementById('crystalsPage').classList.remove('active');
-
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
         function togglePrompt(header) {
             const toggle = header.querySelector('.ai-prompt-toggle');
             const content = header.nextElementSibling;
@@ -579,8 +534,6 @@
             content.classList.toggle('open');
         }
     </script>
-
-    </CANVAS_NEW_STR>
 </body>
 
 </html>
