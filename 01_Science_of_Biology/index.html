@@ -2,100 +2,106 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 1: Hub</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1: Hub</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <header class="global">
-    <span class="home-link">🧬 Lab 1: Scientific Process</span>
-    <span style="font-size:0.9rem">UW-Parkside Biological Sciences</span>
-  </header>
+    <header class="global">
+        <span class="home-link">🧬 Lab 1: Scientific Process</span>
+        <span style="font-size:0.9rem">UW-Parkside Biological Sciences</span>
+    </header>
 
-  <div class="container">
+    <div class="container">
 
-    <div class="card" style="border-left: 5px solid var(--uwp-gold);">
-      <h3>⚙️ Lab Configuration</h3>
-      <p>Please set your lab start time to synchronize your assignments.</p>
-      <input type="datetime-local" id="labStart" style="padding:0.5rem;">
-      <span id="saveStatus" style="color:green; margin-left:1rem; opacity:0; transition:opacity 0.5s;">✓ Saved</span>
-    </div>
-
-    <div class="grid-2">
-      <div>
-        <h2 style="color:var(--uwp-red)">⏳ Pre-Lab (30 pts)</h2>
-        <p class="small">Complete these micro-modules before class.</p>
-
-        <div class="card">
-          <h3>1. Foundations</h3>
-          <ul style="list-style:none; padding:0;">
-            <li><a href="Overview.html" class="btn btn-back" style="width:40%">Terms</a></li>
-            <li><a href="ScienceDetective.html" class="btn btn-back" style="width:40%">Scientific Method</a></li>
-            <li><a href="Pseudoscience.html" class="btn btn-back" style="width:40%">Pseudoscience & Claims</a></li>
-            <li><a href="prelab/experimental_design.html" class="btn btn-back" style="width:40%">quiz</a></li>
-          </ul>
+        <div class="card" style="border-left: 5px solid var(--uwp-gold); padding: 1rem;">
+            <h3 style="margin-bottom: 0.5rem;">⚙️ Lab Configuration</h3>
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <p style="margin: 0;">Please set your lab start time to synchronize your assignments.</p>
+                <input type="datetime-local" id="labStart" style="padding:0.5rem;">
+                <span id="saveStatus" style="color:green; opacity:0; transition:opacity 0.5s;">✓ Saved</span>
+            </div>
         </div>
 
-        <div class="card">
-          <h3>2. Skills</h3>
-          <ul style="list-style:none; padding:0;">
-            <li><a href="Metric.html" class="btn btn-back" style="width:40%">Metrics Prefix</a></li>
-            <li><a href="MetricGames.html" class="btn btn-back" style="width:40%">Metrics Games</a></li>
-            <li><a href="traintrack.html" class="btn btn-back" style="width:40%">Conversions</a></li>
-            <li><a href="TrainTrackAdv.html" class="btn btn-opt" style="width:40%">Advanced Conversions</a></li>
-            <li><a href="Microscope.html" class="btn btn-back" style="width:40%">Microscopy</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div>
-        <h2 style="color:var(--uwp-light-blue)">🧪 During Lab (20 pts)</h2>
-        <div class="card">
-          <a href="during_lab/run_sheet.html" class="btn"
-            style="width:100%; text-align:center; background:var(--uwp-dark-blue)">
-            Open Digital Run Sheet
-          </a>
-          <p style="font-size:0.85rem; margin-top:0.5rem; color:#666;">
-            Includes checklists for: Safety, Focusing, Field Diameter, Wet Mounts.
-          </p>
-        </div>
-
-        <h2 style="color:var(--success)">📝 Post-Lab (25 pts)</h2>
-        <div class="card">
-          <p>Mastery retrieval practice. Unlocks after lab.</p>
-          <a href="postlab/mastery_hub.html" class="btn"
-            style="width:100%; text-align:center; background:var(--success)">
-            Go to Mastery Hub
-          </a>
-        </div>
-
-        <h2>📋 Exam & Extra</h2>
         <div class="grid-2">
-          <a href="exam/weekly_exam.html" class="btn btn-back" style="text-align:center">Weekly Exam</a>
-          <a href="extra/metacognition.html" class="btn btn-back" style="text-align:center">Metacognition</a>
+            <div>
+                <h2 style="color:var(--uwp-red)">⏳ Pre-Lab (30 pts)</h2>
+                <p class="small">Complete these micro-modules before class.</p>
+
+                <div class="card" style="padding: 1rem;">
+                    <h3 style="margin-bottom: 0.5rem;">1. Foundations</h3>
+                    <ul style="list-style:none; padding:0; margin: 0;">
+                        <li><a href="Overview.html" class="btn btn-back" style="width:40%">Terms</a></li>
+                        <li><a href="ScienceDetective.html" class="btn btn-back" style="width:40%">Scientific Method</a>
+                        </li>
+                        <li><a href="Pseudoscience.html" class="btn btn-back" style="width:40%">Pseudoscience &
+                                Claims</a></li>
+                        <li><a href="prelab/experimental_design.html" class="btn btn-back" style="width:40%">quiz</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" style="padding: 1rem;">
+                    <h3 style="margin-bottom: 0.5rem;">2. Skills</h3>
+                    <ul style="list-style:none; padding:0; margin: 0;">
+                        <li><a href="Metric.html" class="btn btn-back" style="width:40%">Metrics Prefix</a></li>
+                        <li><a href="MetricGames.html" class="btn btn-back" style="width:40%">Metrics Games</a></li>
+                        <li><a href="traintrack.html" class="btn btn-back" style="width:40%">Conversions</a></li>
+                        <li><a href="TrainTrackAdv.html" class="btn btn-opt" style="width:40%">Advanced Conversions</a>
+                        </li>
+                        <li><a href="Microscope.html" class="btn btn-back" style="width:40%">Microscopy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2 style="color:var(--uwp-light-blue)">🧪 During Lab (20 pts)</h2>
+                <div class="card" style="padding: 1rem;">
+                    <a href="during_lab/run_sheet.html" class="btn"
+                        style="width:100%; text-align:center; background:var(--uwp-dark-blue)">
+                        Open Digital Run Sheet
+                    </a>
+                    <p style="font-size:0.85rem; margin-top:0.5rem; color:#666;">
+                        Includes checklists for: Safety, Focusing, Field Diameter, Wet Mounts.
+                    </p>
+                </div>
+
+                <h2 style="color:var(--success)">📝 Post-Lab (25 pts)</h2>
+                <div class="card" style="padding: 1rem;">
+                    <p style="margin-bottom: 0.5rem;">Mastery retrieval practice. Unlocks after lab.</p>>
+                    <a href="postlab/mastery_hub.html" class="btn"
+                        style="width:100%; text-align:center; background:var(--success)">
+                        Go to Mastery Hub
+                    </a>
+                </div>
+
+                <h2>📋 Exam & Extra</h2>
+                <div class="grid-2">
+                    <a href="exam/weekly_exam.html" class="btn btn-back" style="text-align:center">Weekly Exam</a>
+                    <a href="extra/metacognition.html" class="btn btn-back" style="text-align:center">Metacognition</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <script src="js/lab_app.js"></script>
-  <script>
-    // Local logic for the date picker
-    const dateInput = document.getElementById('labStart');
-    const savedState = loadState();
+    <script src="js/lab_app.js"></script>
+    <script>
+        // Local logic for the date picker
+        const dateInput = document.getElementById('labStart');
+        const savedState = loadState();
 
-    if (savedState.labStart) dateInput.value = savedState.labStart;
+        if (savedState.labStart) dateInput.value = savedState.labStart;
 
-    dateInput.addEventListener('change', (e) => {
-      savedState.labStart = e.target.value;
-      saveState(savedState);
-      const status = document.getElementById('saveStatus');
-      status.style.opacity = '1';
-      setTimeout(() => status.style.opacity = '0', 2000);
-    });
-  </script>
+        dateInput.addEventListener('change', (e) => {
+            savedState.labStart = e.target.value;
+            saveState(savedState);
+            const status = document.getElementById('saveStatus');
+            status.style.opacity = '1';
+            setTimeout(() => status.style.opacity = '0', 2000);
+        });
+    </script>
 </body>
 
 </html>
