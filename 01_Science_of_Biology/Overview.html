@@ -32,19 +32,42 @@
       background: linear-gradient(135deg, var(--primary), #1c7902);
       color: white;
       padding: 1rem;
-      text-align: center;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
-    h1 {
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      flex: 1;
+      text-align: left;
+      transition: opacity 0.2s;
+    }
+
+    header h1 {
       margin: 0;
       font-size: 1.4rem;
+      flex: 2;
+      text-align: center;
+    }
+
+    .spacer {
+      flex: 1;
     }
 
     .subtitle {
       font-size: 0.85rem;
       opacity: 0.9;
       margin-top: 0.3rem;
+      text-align: center;
     }
 
     .nav-scroller {
@@ -461,7 +484,11 @@
 <body>
 
   <header>
-    <h1>🧬 BIOS101 Scientific Process Arcade</h1>
+    <div class="header-container">
+      <a href="index.html" class="back-link">← Back to Hub</a>
+      <h1>🧬 BIOS101 Scientific Process Arcade</h1>
+      <div class="spacer"></div>
+    </div>
     <div class="subtitle">Master the logic of experimental design</div>
   </header>
 
@@ -597,8 +624,8 @@
       { t: "Observation", m: "The 'Huh?' Moment", d: "Noticing something interesting." },
       { t: "Curiosity Question", m: "The Spark", d: "Asking a broad, open-ended question about your observation." },
       { t: "Research Question", m: "The Big Ask", d: "Defining what you want to learn in a focused, testable way." },
-      { t: "Hypothesis", m: "The Possible Answer", d: "A proposed explanation or tentative answer to a scientific question." },
-      { t: "Prediction", m: "The Logical If/Then", d: "A specific statement of what will happen in an experiment if the hypothesis is true." },
+      { t: "Hypothesis", m: "The Possible Answer", d: "A proposed explanation or tentative answer to the research question." },
+      { t: "Prediction", m: "The Logical If/Then", d: "A specific statement of what will happen in an experiment if the hypothesis is true. (IF...THEN)" },
       { t: "Experiment", m: "The Test Drive", d: "A procedure carried out under controlled conditions to test the hypothesis." },
       { t: "Data Analysis", m: "The Number Crunch", d: "Organizing and interpreting the measurements to find patterns." },
       { t: "Conclusion", m: "The Verdict", d: "Deciding if the data supports or refutes your hypothesis." },
