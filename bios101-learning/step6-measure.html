@@ -1,19 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEP6 MEASURE</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
-        nav { margin-bottom: 20px; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<title>Step 6 — Measure Learning</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:system-ui,sans-serif;
+background:#f7f9fb;
+color:#111;
+line-height:1.1;
+}
+header{
+background:#0b3d2e;
+color:#fff;
+padding:6px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+header a{
+color:#fff;
+text-decoration:none;
+font-size:0.85rem;
+}
+main{
+padding:6px;
+}
+section{
+background:#fff;
+margin-bottom:6px;
+padding:6px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+h2,h3{
+color:#0b3d2e;
+margin-bottom:4px;
+}
+p,li,label{
+font-size:0.85rem;
+}
+ul{
+padding-left:12px;
+}
+textarea{
+width:100%;
+min-height:60px;
+font-size:0.8rem;
+}
+select,input{
+font-size:0.8rem;
+}
+table{
+width:100%;
+border-collapse:collapse;
+font-size:0.8rem;
+}
+td,th{
+border:1px solid #ccc;
+padding:4px;
+}
+button{
+background:#0b3d2e;
+color:#fff;
+border:none;
+padding:6px;
+font-size:0.85rem;
+border-radius:4px;
+cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-    <nav><a href="index.html">? Back to Landing Page</a></nav>
-    <h1>STEP6 MEASURE</h1>
-    <p>Content for step6-measure.html goes here.</p>
+
+<header>
+<h2>Step 6 — Measure</h2>
+<a href="index.html">← Back to Hub</a>
+</header>
+
+<main>
+
+<section>
+<h3>Purpose</h3>
+<p>
+This step separates <strong>how studying feels</strong> from <strong>what it produces</strong>.
+Only measured outcomes guide refinement.
+</p>
+</section>
+
+<section>
+<h3>What Counts as Evidence</h3>
+<ul>
+<li>Accuracy on retrieval attempts</li>
+<li>Speed of recall without notes</li>
+<li>Error patterns on similar terms</li>
+<li>Performance on lab quizzes and exams</li>
+<li>Ability to explain processes aloud</li>
+</ul>
+</section>
+
+<section>
+<h3>Retrieval Accuracy Log</h3>
+<p>
+Estimate your accuracy when recalling without notes.
+</p>
+<table>
+<tr>
+<th>Topic</th>
+<th>Accuracy (%)</th>
+<th>Notes</th>
+</tr>
+<tr>
+<td>Metric conversions</td>
+<td><input></td>
+<td><input></td>
+</tr>
+<tr>
+<td>Experimental variables</td>
+<td><input></td>
+<td><input></td>
+</tr>
+<tr>
+<td>Cell structures</td>
+<td><input></td>
+<td><input></td>
+</tr>
+</table>
+</section>
+
+<section>
+<h3>Recall Speed Check</h3>
+<p>
+How long does it take to recall key information correctly?
+</p>
+<select>
+<option value="">Select</option>
+<option>&lt;10 seconds</option>
+<option>10–30 seconds</option>
+<option>30–60 seconds</option>
+<option>&gt;60 seconds</option>
+</select>
+</section>
+
+<section>
+<h3>Error Pattern Identification</h3>
+<p>
+Which errors are repeating?
+</p>
+<textarea placeholder="Example: Confusing independent vs dependent variables, mixing mitosis stages."></textarea>
+</section>
+
+<section>
+<h3>Exam & Lab Data</h3>
+<p>
+Record outcomes, not emotions.
+</p>
+<textarea placeholder="Quiz scores, lab checkoffs, practical mistakes, TA feedback."></textarea>
+</section>
+
+<section>
+<h3>Expectation vs Reality</h3>
+<p>
+Compare predicted outcomes from Step 4 with actual results.
+</p>
+<textarea placeholder="Where did performance match prediction? Where did it not?"></textarea>
+</section>
+
+<section>
+<h3>Signal or Noise?</h3>
+<label>
+Do these results represent a pattern or a one-time fluctuation?
+</label>
+<select>
+<option value="">Select</option>
+<option>Likely a pattern</option>
+<option>Possibly noise</option>
+<option>Insufficient data</option>
+</select>
+</section>
+
+<section>
+<h3>Evidence Summary</h3>
+<p>
+In one sentence, summarize what the data suggests.
+</p>
+<textarea placeholder="Example: Retrieval improved recall speed but not accuracy for microscopy calculations."></textarea>
+</section>
+
+<button onclick="location.href='step7-refine.html'">
+Proceed to Step 7 →
+</button>
+
+</main>
+
 </body>
 </html>
