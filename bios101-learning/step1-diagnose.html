@@ -11,11 +11,29 @@ body {
     margin: 0;
     color: #1a1a1a;
 }
-header {
-    background: #016836;
-    color: white;
-    padding: 2.5rem 1.5rem;
+.step-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 1rem;
 }
+
+.step-header h2 {
+    margin: 0;
+}
+
+.back-link {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+    font-weight: 500;
+}
+.back-link:hover,
+.back-link:focus {
+    text-decoration: underline;
+}
+
 main {
     max-width: 800px;
     margin: 2.5rem auto;
@@ -101,6 +119,7 @@ button:hover {
 
 </body>
 </html>
+
 
 
 
