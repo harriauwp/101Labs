@@ -1,19 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEP4 DESIGN</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
-        nav { margin-bottom: 20px; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<title>Step 4 — Design Your BIOS101 Strategy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:system-ui,sans-serif;
+background:#f7f9fb;
+color:#111;
+line-height:1.1;
+}
+header{
+background:#0b3d2e;
+color:#fff;
+padding:6px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+header a{
+color:#fff;
+text-decoration:none;
+font-size:0.85rem;
+}
+main{
+padding:6px;
+}
+section{
+background:#fff;
+margin-bottom:6px;
+padding:6px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+h2,h3{
+color:#0b3d2e;
+margin-bottom:4px;
+}
+p,li,label{
+font-size:0.85rem;
+}
+ul{
+padding-left:12px;
+}
+textarea{
+width:100%;
+min-height:70px;
+font-size:0.8rem;
+}
+select{
+font-size:0.8rem;
+}
+button{
+background:#0b3d2e;
+color:#fff;
+border:none;
+padding:6px;
+font-size:0.85rem;
+border-radius:4px;
+cursor:pointer;
+}
+table{
+width:100%;
+font-size:0.8rem;
+border-collapse:collapse;
+}
+td,th{
+border:1px solid #ccc;
+padding:4px;
+text-align:left;
+}
+</style>
 </head>
+
 <body>
-    <nav><a href="index.html">? Back to Landing Page</a></nav>
-    <h1>STEP4 DESIGN</h1>
-    <p>Content for step4-design.html goes here.</p>
+
+<header>
+<h2>Step 4 — Design Your Strategy</h2>
+<a href="index.html">← Back to Hub</a>
+</header>
+
+<main>
+
+<section>
+<h3>Purpose</h3>
+<p>
+You now know what BIOS101 demands.
+This step is about <strong>matching strategies to those demands</strong>.
+Guessing is replaced with hypothesis-driven design.
+</p>
+</section>
+
+<section>
+<h3>Demand → Strategy Mapping</h3>
+<table>
+<tr>
+<th>BIOS101 Demand</th>
+<th>Required Cognitive Action</th>
+</tr>
+<tr>
+<td>High vocabulary load</td>
+<td>Rapid, repeated retrieval of precise definitions</td>
+</tr>
+<tr>
+<td>Experimental design logic</td>
+<td>Active reconstruction of procedures and variable roles</td>
+</tr>
+<tr>
+<td>Microscopy & units</td>
+<td>Frequent low-stakes calculation and estimation practice</td>
+</tr>
+<tr>
+<td>Similar biological terms</td>
+<td>Compare–contrast discrimination</td>
+</tr>
+<tr>
+<td>Structure–function integration</td>
+<td>Explain cause–effect relationships verbally</td>
+</tr>
+</table>
+</section>
+
+<section>
+<h3>Strategy Selection</h3>
+<label>
+Which evidence-based strategies align with the demands above?
+</label>
+<ul>
+<li>Retrieval practice (active recall)</li>
+<li>Spaced repetition over multiple days</li>
+<li>Interleaving similar concepts</li>
+<li>Elaboration through explanation</li>
+<li>Error analysis and correction</li>
+</ul>
+</section>
+
+<section>
+<h3>Constraint Check</h3>
+<p>
+A strategy is useless if it violates your real constraints.
+Select your limiting factors.
+</p>
+<select>
+<option value="">Select</option>
+<option>Limited daily study time</option>
+<option>Irregular schedule</option>
+<option>High course load</option>
+<option>Test anxiety</option>
+<option>Group work dependence</option>
+</select>
+</section>
+
+<section>
+<h3>Hypothesis Formation</h3>
+<p>
+Write a testable statement linking strategy to outcome.
+</p>
+<textarea placeholder="Example: If I use retrieval practice for metric conversions every other day, then my lab quiz accuracy will improve within two weeks."></textarea>
+</section>
+
+<section>
+<h3>Prediction</h3>
+<p>
+What do you expect to change if this strategy is applied correctly?
+</p>
+<textarea placeholder="Be specific: speed, accuracy, confidence, retention."></textarea>
+</section>
+
+<section>
+<h3>Failure Anticipation</h3>
+<p>
+What is most likely to cause this plan to fail?
+</p>
+<textarea placeholder="Time, consistency, misunderstanding, avoidance, etc."></textarea>
+</section>
+
+<section>
+<h3>Commitment Check</h3>
+<label>
+On a scale of 1–5, how realistic is this plan?
+</label>
+<select>
+<option value="">Select</option>
+<option>1 — Unrealistic</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5 — Highly realistic</option>
+</select>
+</section>
+
+<button onclick="location.href='step5-deploy.html'">
+Proceed to Step 5 →
+</button>
+
+</main>
+
 </body>
 </html>
