@@ -5,70 +5,69 @@
 <title>BIOS101 Learning System</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    background: #f7f9fb;
-    color: #1a1a1a;
-    line-height: 1.6;
-    margin: 0;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:system-ui,sans-serif;
+background:#f7f9fb;
+color:#1a1a1a;
+line-height:1.1;
 }
-header {
-    background: #0b3d2e;
-    color: white;
-    padding: 3rem 1.5rem;
-    text-align: center;
+header{
+background:#0b3d2e;
+color:white;
+padding:6px;
+text-align:center;
 }
-header h1 {
-    font-size: 2.4rem;
-    margin-bottom: 0.5rem;
+header h1{
+font-size:1.6rem;
+margin-bottom:2px;
 }
-header p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    opacity: 0.95;
+header p{
+font-size:0.9rem;
 }
-main {
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
+main{
+padding:6px;
+max-width:900px;
+margin:auto;
 }
-section {
-    margin-bottom: 3rem;
+section{
+margin-bottom:6px;
 }
-.process {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
+.process{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:6px;
 }
-.step {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+.step{
+background:white;
+border-radius:6px;
+padding:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
-.step h3 {
-    margin-top: 0;
-    color: #0b3d2e;
+.step h3{
+color:#0b3d2e;
+font-size:0.95rem;
+margin-bottom:3px;
 }
-.step p {
-    font-size: 0.95rem;
+.step p{
+font-size:0.8rem;
 }
-.step a {
-    display: inline-block;
-    margin-top: 1rem;
-    color: #0b3d2e;
-    font-weight: 600;
-    text-decoration: none;
+.step a{
+display:inline-block;
+margin-top:4px;
+font-size:0.8rem;
+color:#0b3d2e;
+font-weight:600;
+text-decoration:none;
 }
-.step a:hover {
-    text-decoration: underline;
+.step a:hover{
+text-decoration:underline;
 }
-footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.85rem;
-    color: #666;
+footer{
+text-align:center;
+font-size:0.75rem;
+padding:6px;
+color:#666;
 }
 </style>
 </head>
@@ -76,94 +75,71 @@ footer {
 <body>
 
 <header>
-    <h1>BIOS101: Build Your Learning System</h1>
-    <p>
-        This is not a study guide.  
-        This is a <strong>scientific self-experiment</strong> designed to help you
-        discover how <em>you</em> learn biology — using evidence, not guesswork.
-    </p>
+<h1>BIOS101: Build Your Learning System</h1>
+<p>
+A scientific self-experiment to discover how <strong>you</strong> learn biology.
+</p>
 </header>
 
 <main>
 
 <section>
-    <h2>The BIOS101 Learning Cycle</h2>
-    <p>
-        Successful students don’t study harder — they run better experiments.
-        You will work through the same cycle scientists use:
-        diagnose, test, measure, and refine.
-    </p>
+<p>
+Successful students don’t study harder — they run better experiments.
+Follow the BIOS101 Learning Cycle below.
+</p>
 </section>
 
 <section class="process">
 
-    <div class="step">
-        <h3>Step 1 — Diagnose</h3>
-        <p>
-            Identify how you currently study, what you believe works,
-            and where those beliefs may be misleading.
-        </p>
-        <a href="step1-diagnose.html">Start Step 1 →</a>
-    </div>
+<div class="step">
+<h3>Step 1 — Diagnose</h3>
+<p>Identify your current study habits and assumptions.</p>
+<a href="step1-diagnose.html">Start →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 2 — Test Your Assumptions</h3>
-        <p>
-            Experience metacognition experiments that reveal how learning
-            actually works — and where intuition fails.
-        </p>
-        <a href="metacognition.html">Go to Step 2 →</a>
-    </div>
+<div class="step">
+<h3>Step 2 — Test Assumptions</h3>
+<p>Experience metacognition experiments that challenge intuition.</p>
+<a href="metacognition.html">Go →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 3 — Analyze BIOS101</h3>
-        <p>
-            Determine what this course truly demands of memory, thinking,
-            and biological reasoning.
-        </p>
-        <a href="step3-course-demands.html">Go to Step 3 →</a>
-    </div>
+<div class="step">
+<h3>Step 3 — Analyze BIOS101</h3>
+<p>Determine what this course actually demands.</p>
+<a href="step3-course-demands.html">Go →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 4 — Design Your Strategy</h3>
-        <p>
-            Match scientifically proven strategies to the actual demands
-            of BIOS101 and form a testable plan.
-        </p>
-        <a href="step4-design.html">Go to Step 4 →</a>
-    </div>
+<div class="step">
+<h3>Step 4 — Design Strategy</h3>
+<p>Match evidence-based strategies to BIOS101 demands.</p>
+<a href="step4-design.html">Go →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 5 — Deploy</h3>
-        <p>
-            Turn your plan into a realistic weekly system that fits your
-            schedule and energy.
-        </p>
-        <a href="step5-deploy.html">Go to Step 5 →</a>
-    </div>
+<div class="step">
+<h3>Step 5 — Deploy</h3>
+<p>Turn your plan into a realistic weekly system.</p>
+<a href="step5-deploy.html">Go →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 6 — Measure</h3>
-        <p>
-            Collect evidence: recall speed, error patterns, delayed performance.
-        </p>
-        <a href="step6-measure.html">Go to Step 6 →</a>
-    </div>
+<div class="step">
+<h3>Step 6 — Measure</h3>
+<p>Collect data on recall, accuracy, and performance.</p>
+<a href="step6-measure.html">Go →</a>
+</div>
 
-    <div class="step">
-        <h3>Step 7 — Refine</h3>
-        <p>
-            Adjust your system when reality pushes back — without panic or burnout.
-        </p>
-        <a href="step7-refine.html">Go to Step 7 →</a>
-    </div>
+<div class="step">
+<h3>Step 7 — Refine</h3>
+<p>Adjust your system using evidence, not emotion.</p>
+<a href="step7-refine.html">Go →</a>
+</div>
 
 </section>
 
 </main>
 
 <footer>
-    BIOS101 • Learning Science • UW-Parkside
+BIOS101 • Learning Science • UW–Parkside
 </footer>
 
 </body>
