@@ -1,19 +1,862 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METACOGNITION</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eukaryotes Goals Tracker • UW-Parkside</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
-        nav { margin-bottom: 20px; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        :root {
+            --uwp-green: #016836;
+            --uwp-light-green: #e8f5ec;
+            --accent-yellow: #FABA31;
+            --accent-light: #fef5e0;
+            --gray-50: #f9f9f9;
+            --gray-100: #f0f0f0;
+            --gray-200: #e5e5e5;
+            --gray-500: #777;
+            --gray-700: #444;
+            --gray-900: #111;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-900);
+            line-height: 1.5;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1.2rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            background: var(--uwp-green);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--uwp-green);
+        }
+
+        .subtitle {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            max-width: 500px;
+        }
+
+        /* Main layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Progress section */
+        .progress-section {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .progress-stats {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .progress-bar-container {
+            height: 10px;
+            background: var(--gray-100);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--uwp-green);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-goal {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            font-style: italic;
+            text-align: center;
+            padding-top: 0.5rem;
+        }
+
+        /* Level sections */
+        .level-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .level-header {
+            background: var(--uwp-green);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card styling */
+        .category-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            background: var(--uwp-light-green);
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--uwp-green);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-link {
+            color: var(--gray-700);
+            font-size: 0.85rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .card-link:hover {
+            color: var(--uwp-green);
+            text-decoration: underline;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .goals-list {
+            list-style: none;
+        }
+
+        .goal-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .goal-item:last-child {
+            border-bottom: none;
+        }
+
+        .goal-checkbox {
+            margin-top: 0.2rem;
+            accent-color: var(--uwp-green);
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+
+        .goal-text {
+            flex-grow: 1;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .goal-stars {
+            display: flex;
+            gap: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .star {
+            font-size: 1.2rem;
+            color: var(--gray-200);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .star:hover {
+            transform: scale(1.1);
+        }
+
+        .star.on {
+            color: var(--accent-yellow);
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--uwp-green);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #015429;
+            box-shadow: 0 4px 8px rgba(1, 104, 54, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-900);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <nav><a href="index.html">? Back to Landing Page</a></nav>
-    <h1>METACOGNITION</h1>
-    <p>Content for metacognition.html goes here.</p>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">EU</div>
+                <div class="logo-text">Eukaryotes Goals Tracker</div>
+            </div>
+            <div class="subtitle">
+                Track your progress through eukaryote concepts. Check goals as you complete them and rate your confidence.
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-header">
+                <h2 class="progress-title">Learning Progress</h2>
+                <div class="progress-stats">
+                    <span id="completed-count">0</span> of <span id="total-count">0</span> goals completed
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-goal">I understand my goal → I hit the goal → I am confident → I can move on</p>
+        </section>
+
+        <!-- Concept Tables Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">📋</span>
+                Concept Tables
+            </div>
+            <div class="cards-grid" id="concept-tables-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Plant Cells Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🌿</span>
+                Plant Cells
+            </div>
+            <div class="cards-grid" id="plant-cells-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Protists Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🦠</span>
+                Protists
+            </div>
+            <div class="cards-grid" id="protists-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Animal Cells Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🐄</span>
+                Animal Cells
+            </div>
+            <div class="cards-grid" id="animal-cells-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Animal Tissue Level -->
+        <section class="level-section">
+            <div class="level-header">
+                <span class="level-icon">🔬</span>
+                Animal Tissue
+            </div>
+            <div class="cards-grid" id="animal-tissue-cards">
+                <!-- Cards will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn btn-primary" id="next-unchecked">
+                <span>▶</span>
+                Next Unchecked Goal
+            </button>
+            <button class="btn btn-secondary" id="reset-progress">
+                <span>↺</span>
+                Reset All Progress
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <p>UW-Parkside • Biology 101 Lab • Eukaryotes Goals Tracker</p>
+        <p>Progress is saved automatically in your browser</p>
+    </footer>
+
+    <script>
+        // Data structure for all goals
+        const eukaryotesData = [
+            // Concept Tables
+            {
+                level: "Concept Tables",
+                category: "EukaryLingo",
+                link: "https://harriauwp.github.io/101Labs/02_Eukaryotes/EukaryLingo.html",
+                goals: [
+                    { id: "g_0", text: "Pronounce biological terms related to Eukaryotes" }
+                ]
+            },
+            {
+                level: "Concept Tables",
+                category: "Plastid organelles",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_0", text: "Eukaryotic cell examples that contain a type of plastid organelle (chloroplasts/chromoplasts)" }
+                ]
+            },
+            {
+                level: "Concept Tables",
+                category: "Flagella",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_1", text: "Eukaryotic cell examples that possess flagella" }
+                ]
+            },
+            {
+                level: "Concept Tables",
+                category: "Cilia",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_2", text: "Eukaryotic cell examples that possess cilia" }
+                ]
+            },
+            {
+                level: "Concept Tables",
+                category: "Pseudopodia",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote.html",
+                goals: [
+                    { id: "g_3", text: "Eukaryotic cell examples that possess pseudopodia" }
+                ]
+            },
+            // Plant Cells
+            {
+                level: "Plant Cells",
+                category: "Onion epidermal cells",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Orion.html",
+                goals: [
+                    { id: "g_4", text: "Identify cell wall" },
+                    { id: "g_5", text: "Identify plasma membrane" },
+                    { id: "g_6", text: "Identify nucleus" },
+                    { id: "g_7", text: "Identify chromatin" },
+                    { id: "g_8", text: "Identify nucleolus" },
+                    { id: "g_9", text: "Understand staining techniques for visualizing nuclei" },
+                    { id: "g_10", text: "Estimate cell size" },
+                    { id: "g_11", text: "Relate cell size to surface area-to-volume ratio" }
+                ]
+            },
+            {
+                level: "Plant Cells",
+                category: "Parenchyma cells (carrot root)",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Carrot.html",
+                goals: [
+                    { id: "g_12", text: "Recognize chromoplasts" },
+                    { id: "g_13", text: "Identify pigment type (carotene)" },
+                    { id: "g_14", text: "Understand plastid diversity" },
+                    { id: "g_15", text: "Understand pigment function" },
+                    { id: "g_16", text: "Observe cell wall" },
+                    { id: "g_17", text: "Observe plasma membrane" }
+                ]
+            },
+            {
+                level: "Plant Cells",
+                category: "Parenchyma cells (leaf)",
+                link: "#",
+                goals: [
+                    { id: "g_18", text: "Identify chloroplasts" },
+                    { id: "g_19", text: "Identify chlorophyll pigments" },
+                    { id: "g_20", text: "Estimate chloroplast number per cell" },
+                    { id: "g_21", text: "Estimate chloroplast size in micrometers" },
+                    { id: "g_22", text: "Explain cytoplasmic streaming" },
+                    { id: "g_23", text: "Explain role of cytoplasmic streaming in large plant cells" }
+                ]
+            },
+            // Protists
+            {
+                level: "Protists",
+                category: "Euglena",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Euglena.html",
+                goals: [
+                    { id: "g_24", text: "Observe chloroplasts" },
+                    { id: "g_25", text: "Observe flagellum" },
+                    { id: "g_26", text: "Compare plant-like features in protists" },
+                    { id: "g_27", text: "Compare animal-like features in protists" },
+                    { id: "g_28", text: "Understand flagellar locomotion" },
+                    { id: "g_29", text: "Understand evolutionary significance of flagella" }
+                ]
+            },
+            {
+                level: "Protists",
+                category: "Paramecium",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Paramecium.html",
+                goals: [
+                    { id: "g_33", text: "Observe cilia" },
+                    { id: "g_34", text: "Observe macronucleus" },
+                    { id: "g_35", text: "Understand ciliary locomotion" },
+                    { id: "g_36", text: "Understand feeding mechanisms" }
+                ]
+            },
+            {
+                level: "Protists",
+                category: "Stentor",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Stentor.html",
+                goals: [
+                    { id: "g_37", text: "Identify cilia" },
+                    { id: "g_38", text: "Identify macronucleus" },
+                    { id: "g_39", text: "Identify food vacuoles" },
+                    { id: "g_40", text: "Identify contractile vacuole" },
+                    { id: "g_41", text: "Explain osmoregulation in freshwater protists" },
+                    { id: "g_42", text: "Compare sessile forms" },
+                    { id: "g_43", text: "Compare motile forms" }
+                ]
+            },
+            {
+                level: "Protists",
+                category: "Vorticella",
+                link: "#",
+                goals: [
+                    { id: "g_44", text: "Recognize sessile lifestyle" },
+                    { id: "g_45", text: "Understand ciliary feeding currents" },
+                    { id: "g_46", text: "Understand contractile stalk adaptation" }
+                ]
+            },
+            {
+                level: "Protists",
+                category: "Amoeba",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Amoeba.html",
+                goals: [
+                    { id: "g_47", text: "Observe pseudopodia" },
+                    { id: "g_48", text: "Observe cytoplasmic streaming" },
+                    { id: "g_49", text: "Explain amoeboid motion" },
+                    { id: "g_50", text: "Explain phagocytosis" },
+                    { id: "g_51", text: "Compare locomotion strategies among protists" }
+                ]
+            },
+            // Animal Cells
+            {
+                level: "Animal Cells",
+                category: "Bull sperm cells",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Sperm.html",
+                goals: [
+                    { id: "g_30", text: "Identify head structure" },
+                    { id: "g_31", text: "Identify flagellum structure" },
+                    { id: "g_32", text: "Relate flagellar function to reproductive success" }
+                ]
+            },
+            {
+                level: "Animal Cells",
+                category: "Human neutrophils",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_Neutrophil.html",
+                goals: [
+                    { id: "g_52", text: "Identify lobed nucleus" },
+                    { id: "g_53", text: "Identify pseudopodia" },
+                    { id: "g_54", text: "Understand phagocytosis" },
+                    { id: "g_55", text: "Understand immune function" },
+                    { id: "g_56", text: "Compare amoeboid motion in animal cells vs protists" }
+                ]
+            },
+            // Animal Tissue
+            {
+                level: "Animal Tissue",
+                category: "Ciliated pseudostratified columnar epithelium (trachea)",
+                link: "https://harriauwp.github.io/101Labs/labs/02_Eukaryotes/Eukaryote_CPCE.html",
+                goals: [
+                    { id: "g_57", text: "Identify ciliated border" },
+                    { id: "g_58", text: "Identify mucus-secreting cells" },
+                    { id: "g_59", text: "Explain cilia function in respiratory defense" },
+                    { id: "g_60", text: "Compare cilia structure in animal tissue vs protists" }
+                ]
+            }
+        ];
+
+        // Storage key
+        const STORAGE_KEY = "eukaryotes_goals_tracker_modern_v1";
+
+        // Load saved data
+        let savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+        // Initialize the page
+        document.addEventListener("DOMContentLoaded", function() {
+            renderAllCards();
+            updateProgress();
+            setupEventListeners();
+        });
+
+        // Render all category cards
+        function renderAllCards() {
+            const levelContainers = {
+                "Concept Tables": document.getElementById("concept-tables-cards"),
+                "Plant Cells": document.getElementById("plant-cells-cards"),
+                "Protists": document.getElementById("protists-cards"),
+                "Animal Cells": document.getElementById("animal-cells-cards"),
+                "Animal Tissue": document.getElementById("animal-tissue-cards")
+            };
+
+            // Clear all containers
+            Object.values(levelContainers).forEach(container => {
+                container.innerHTML = "";
+            });
+
+            // Create and append cards
+            eukaryotesData.forEach(category => {
+                const container = levelContainers[category.level];
+                if (!container) return;
+
+                const card = createCategoryCard(category);
+                container.appendChild(card);
+            });
+        }
+
+        // Create a category card
+        function createCategoryCard(category) {
+            const card = document.createElement("div");
+            card.className = "category-card";
+            
+            // Create card header
+            const header = document.createElement("div");
+            header.className = "card-header";
+            
+            const title = document.createElement("div");
+            title.className = "card-title";
+            title.textContent = category.category;
+            
+            const link = document.createElement("a");
+            link.className = "card-link";
+            link.href = category.link;
+            link.target = "_blank";
+            link.innerHTML = `View resource <span>↗</span>`;
+            
+            header.appendChild(title);
+            if (category.link !== "#") {
+                header.appendChild(link);
+            }
+            
+            // Create card content with goals
+            const content = document.createElement("div");
+            content.className = "card-content";
+            
+            const goalsList = document.createElement("ul");
+            goalsList.className = "goals-list";
+            
+            category.goals.forEach(goal => {
+                const goalItem = document.createElement("li");
+                goalItem.className = "goal-item";
+                
+                // Checkbox
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = goal.id;
+                checkbox.className = "goal-checkbox";
+                checkbox.checked = savedData[goal.id] ? savedData[goal.id].checked : false;
+                
+                // Goal text
+                const goalText = document.createElement("div");
+                goalText.className = "goal-text";
+                goalText.textContent = goal.text;
+                
+                // Stars container
+                const starsContainer = document.createElement("div");
+                starsContainer.className = "goal-stars";
+                starsContainer.dataset.goalId = goal.id;
+                
+                // Create 5 stars
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement("span");
+                    star.className = "star";
+                    star.dataset.value = i;
+                    star.textContent = "★";
+                    
+                    // Check if this star should be "on"
+                    const rating = savedData[goal.id] ? savedData[goal.id].rating : 0;
+                    if (i <= rating) {
+                        star.classList.add("on");
+                    }
+                    
+                    starsContainer.appendChild(star);
+                }
+                
+                goalItem.appendChild(checkbox);
+                goalItem.appendChild(goalText);
+                goalItem.appendChild(starsContainer);
+                goalsList.appendChild(goalItem);
+            });
+            
+            content.appendChild(goalsList);
+            
+            // Assemble card
+            card.appendChild(header);
+            card.appendChild(content);
+            
+            return card;
+        }
+
+        // Update progress bar and counters
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll(".goal-checkbox");
+            const total = checkboxes.length;
+            const completed = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+            
+            // Update progress bar
+            const progressBar = document.getElementById("progress-bar");
+            progressBar.style.width = `${percentage}%`;
+            
+            // Update counters
+            document.getElementById("completed-count").textContent = completed;
+            document.getElementById("total-count").textContent = total;
+            
+            // Update next button state
+            const nextButton = document.getElementById("next-unchecked");
+            const firstUnchecked = findFirstUnchecked();
+            nextButton.disabled = !firstUnchecked;
+        }
+
+        // Find first unchecked goal
+        function findFirstUnchecked() {
+            const checkboxes = document.querySelectorAll(".goal-checkbox");
+            for (let i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) {
+                    return checkboxes[i];
+                }
+            }
+            return null;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Checkbox changes
+            document.addEventListener("change", function(e) {
+                if (e.target.classList.contains("goal-checkbox")) {
+                    const goalId = e.target.id;
+                    savedData[goalId] = savedData[goalId] || {};
+                    savedData[goalId].checked = e.target.checked;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+                    updateProgress();
+                }
+            });
+            
+            // Star rating clicks
+            document.addEventListener("click", function(e) {
+                if (e.target.classList.contains("star")) {
+                    const star = e.target;
+                    const starsContainer = star.parentElement;
+                    const goalId = starsContainer.dataset.goalId;
+                    const rating = parseInt(star.dataset.value);
+                    
+                    // Update star display
+                    const stars = starsContainer.querySelectorAll(".star");
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add("on");
+                        } else {
+                            s.classList.remove("on");
+                        }
+                    });
+                    
+                    // Save rating
+                    savedData[goalId] = savedData[goalId] || {};
+                    savedData[goalId].rating = rating;
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+                }
+            });
+            
+            // Next unchecked button
+            document.getElementById("next-unchecked").addEventListener("click", function() {
+                const firstUnchecked = findFirstUnchecked();
+                if (firstUnchecked) {
+                    firstUnchecked.scrollIntoView({ behavior: "smooth", block: "center" });
+                    // Highlight the card
+                    const card = firstUnchecked.closest(".category-card");
+                    card.style.boxShadow = "0 0 0 3px rgba(1, 104, 54, 0.3)";
+                    setTimeout(() => {
+                        card.style.boxShadow = "";
+                    }, 2000);
+                }
+            });
+            
+            // Reset progress button
+            document.getElementById("reset-progress").addEventListener("click", function() {
+                if (confirm("Are you sure you want to reset all progress? This cannot be undone.")) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    savedData = {};
+                    renderAllCards();
+                    updateProgress();
+                }
+            });
+        }
+    </script>
 </body>
 </html>
