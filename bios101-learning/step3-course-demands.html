@@ -1,246 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Step 3 — What BIOS101 Actually Demands</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  <meta charset="UTF-8">
+  <title>Step 3 — What BIOS101 Actually Demands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-    font-family: system-ui, sans-serif;
-    background: #f7f9fb;
-    color: #1a1a1a;
-    line-height: 1.4; /* Improved for readability */
-}
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f7f9fb;
+      color: #1a1a1a;
+      line-height: 1.4;
+      /* Improved for readability */
+    }
 
-/* REPAIRED HEADER LOGIC */
-header {
-    background: #0b3d2e;
-    color: #fff;
-    padding: 2.5rem 1.5rem; /* Increased padding to ensure visibility */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers the H2 */
-    position: relative; /* Anchor for absolute positioning */
-}
+    /* REPAIRED HEADER LOGIC */
+    header {
+      background: #0b3d2e;
+      color: #fff;
+      padding: 2.5rem 1.5rem;
+      /* Increased padding to ensure visibility */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Centers the H2 */
+      position: relative;
+      /* Anchor for absolute positioning */
+    }
 
-header h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    text-align: center;
-}
+    header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      text-align: center;
+    }
 
-header a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    position: absolute; /* Takes link out of flow so H2 stays centered */
-    left: 1.5rem; /* Forces link to the left */
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      position: absolute;
+      /* Takes link out of flow so H2 stays centered */
+      left: 1.5rem;
+      /* Forces link to the left */
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
 
-header a:hover {
-    opacity: 0.8;
-    transform: translateX(-4px); /* Subtle nudge effect */
-}
+    header a:hover {
+      opacity: 0.8;
+      transform: translateX(-4px);
+      /* Subtle nudge effect */
+    }
 
-main {
-    max-width: 800px; /* Constrains width for better reading */
-    margin: 0 auto;
-    padding: 1.5rem;
-}
+    main {
+      max-width: 800px;
+      /* Constrains width for better reading */
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
 
-section {
-    background: #fff;
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
+    section {
+      background: #fff;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
-h3 {
-    color: #0b3d2e;
-    margin-bottom: 0.75rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.5rem;
-}
+    h3 {
+      color: #0b3d2e;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.5rem;
+    }
 
-p, li, label {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-}
+    p,
+    li,
+    label {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
 
-ul {
-    padding-left: 1.5rem;
-}
+    ul {
+      padding-left: 1.5rem;
+    }
 
-li {
-    margin-bottom: 0.4rem;
-}
+    li {
+      margin-bottom: 0.4rem;
+    }
 
-textarea {
-    width: 100%;
-    min-height: 100px;
-    font-size: 1rem;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    margin-top: 0.5rem;
-}
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      font-size: 1rem;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
 
-select {
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    margin-top: 0.5rem;
-}
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-top: 0.5rem;
+    }
 
-button {
-    background: #0b3d2e;
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    width: 100%;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 3rem;
-    transition: background 0.2s;
-}
+    button {
+      background: #0b3d2e;
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      width: 100%;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 3rem;
+      transition: background 0.2s;
+    }
 
-button:hover {
-    background: #165c48;
-}
+    button:hover {
+      background: #165c48;
+    }
 
-strong {
-    color: #0b3d2e;
-}
-</style>
+    strong {
+      color: #0b3d2e;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <a href="index.html">← Back to Hub</a>
-  <h2>Step 3 — Analyze BIOS101</h2>
-</header>
+  <header>
+    <a href="index.html">← Back to Hub</a>
+    <h2>Step 3 — Analyze BIOS101</h2>
+  </header>
 
-<main>
+  <main>
 
-<section>
-<h3>Purpose</h3>
-<p>
-This step identifies what BIOS101 <strong>actually measures</strong>. 
-Difficulty here is not about intelligence — it is about mismatched preparation.
-</p>
-</section>
+    <section>
+      <h3>Purpose</h3>
+      <p>
+        This step identifies what BIOS101 <strong>actually measures</strong>.
+        Difficulty here is not about intelligence — it is about mismatched preparation.
+      </p>
+    </section>
 
-<section>
-<h3>Core Course Themes</h3>
-<ul>
-<li>Scientific Method & Experimental Design</li>
-<li>Cell Structure & Function</li>
-<li>Biochemistry Basics</li>
-<li>Genetics</li>
-<li>Photosynthesis</li>
-<li>Mitosis & Meiosis</li>
-</ul>
-</section>
+    <section>
+      <h3>Core Course Themes</h3>
+      <ul>
+        <li>Scientific Method & Experimental Design</li>
+        <li>Cellular Structures & Function</li>
+        <li>Macromolecules & Biochemistry Basics</li>
+        <li>Photosynthesis</li>
+        <li>Mitosis & Meiosis</li>
+        <li>Genetics</li>
+      </ul>
+    </section>
 
-<section>
-<h3>Skill Emphasis</h3>
-<ul>
-<li>Conceptual understanding of hypothesis testing, variables, replication</li>
-<li>Metric conversions and microscope size estimation</li>
-<li>Structure–function relationships</li>
-<li>Interpretation of diagrams, tables, and experimental data</li>
-</ul>
-</section>
+    <section>
+      <h3>Skill Emphasis</h3>
+      <ul>
+        <li>Applying the scientific process</li>
+        <li>Converting metric measurements</li>
+        <li>Structure–function relationships</li>
+        <li>Recognizing macromolecules</li>
+        <li>Following biochemical and cellular processes</li>
+        <li>Chromosomal analysis</li>
+      </ul>
+    </section>
 
-<section>
-<h3>Vocabulary Load</h3>
-<p>
-High-frequency technical terms appear repeatedly and are assumed to be recalled quickly:
-</p>
-<ul>
-<li>hypothesis, independent variable, dependent variable</li>
-<li>chromatin, osmosis, glycosidic linkage</li>
-<li>control group, experimental group</li>
-</ul>
-</section>
+    <section>
+      <h3>Learn the Lexicon: Master the Building Blocks of Biological Language.</h3>
+      <p>Systematically identify parts of and compound biological words:</p>
+      <div class="vocab-decoder">
+        <p><strong>e.g. Suffixes (Endings)</strong></p>
+        <div class="vocab-row">
+          ‑ase (enzyme) | ‑ose (sugar/carbohydrate) | ‑lysis (breakdown) | ‑plast (organelle) | ‑phyll (leaf/pigment) |
+          ‑logy (study of)
+        </div>
 
-<section>
-<h3>Identify Likely Failure Points</h3>
-<ul>
-<li><strong>Units & Conversions:</strong> nano, micro, milli; exponential notation</li>
-<li><strong>Variables:</strong> independent vs dependent vs control</li>
-<li><strong>Similar Terms:</strong>
-  <ul>
-    <li>hypothesis vs theory vs law</li>
-    <li>qualitative vs quantitative</li>
-    <li>prokaryotic vs eukaryotic</li>
-    <li>mitosis vs meiosis</li>
-  </ul>
-</li>
-<li><strong>Microscopy:</strong> magnification vs resolution vs contrast</li>
-<li><strong>Biochemistry:</strong> dehydration vs hydrolysis</li>
-</ul>
-</section>
+        <p><strong>e.g. Prefixes (Beginnings)</strong></p>
+        <div class="vocab-row">
+          chloro‑ (green) | cyto‑ (cell) | endo‑ (inside) | exo‑ (outside) | hyper‑ (above/excess) | hypo‑ (below/less)
+          | iso‑ (equal) | poly‑ (many) | mono‑ (one)
+        </div>
 
-<section>
-<h3>What BIOS101 Actually Tests</h3>
-<ul>
-<li><strong>Recall + Application:</strong> definitions AND lab-based use</li>
-<li><strong>Procedural Thinking:</strong> logic of experimental design</li>
-<li><strong>Analytical Skills:</strong> graphs, ratios, predictions</li>
-<li><strong>Data Handling:</strong> metric conversions, Punnett squares</li>
-<li><strong>Integration:</strong> structure → function across levels</li>
-</ul>
-</section>
+        <p><strong>e.g. Roots (Base Words)</strong></p>
+        <div class="vocab-row">
+          bio (life) | spectro (light spectrum) | chrom (color) | nucleo (nucleus) | glyco (sugar)
+        </div>
+      </div>
+    </section>
 
-<section>
-<h3>Memory & Thinking Demands</h3>
-<ul>
-<li><strong>Encoding:</strong> organized categories and visual anchors</li>
-<li><strong>Retrieval:</strong> rapid recall under time pressure</li>
-<li><strong>Higher-Order Thinking:</strong> compare, explain, synthesize</li>
-</ul>
-</section>
+    <section>
+      <h3>Identify Likely Failure Points</h3>
+      <ul>
+        <li><strong>Units & Conversions:</strong> nano, micro, milli; exponential notation</li>
+        <li><strong>Variables:</strong> independent vs dependent vs control</li>
+        <li><strong>Similar Terms:</strong>
+          <ul>
+            <li>hypothesis vs theory vs law</li>
+            <li>qualitative vs quantitative</li>
+            <li>prokaryotic vs eukaryotic</li>
+            <li>hydrolysis vs dehydration</li>
+            <li>mono vs di vs poly</li>
+            <li>primary vs secondary vs tertiary vs quaternay</li>
+            <li>subunits vs macromolecules</li>
+            <li>mitosis vs meiosis</li>
+            <li>meiosis I vs meiosis II</li>
+          </ul>
+        </li>
+        <li><strong>Microscopy:</strong> magnification vs resolution vs contrast</li>
+        <li><strong>Biochemistry:</strong> dehydration vs hydrolysis</li>
+      </ul>
+    </section>
 
-<section>
-<h3>Self-Assessment Check</h3>
-<label>Which of the following has caused you difficulty before?</label>
-<select>
-    <option value="">Select an option</option>
-    <option>Metric conversions</option>
-    <option>Variables & controls</option>
-    <option>Similar biological terms</option>
-    <option>Microscopy calculations</option>
-    <option>Applying definitions</option>
-</select>
-</section>
+    <section>
+      <h3>What BIOS101 Actually Tests</h3>
+      <ul>
+        <li><strong>Recall + Application:</strong> definitions AND lab-based use</li>
+        <li><strong>Procedural Thinking:</strong> logic of experimental design</li>
+        <li><strong>Analytical Skills:</strong> graphs, ratios, predictions</li>
+        <li><strong>Data Handling:</strong> metric conversions, Punnett squares</li>
+        <li><strong>Integration:</strong> structure → function across levels</li>
+      </ul>
+    </section>
 
-<section>
-<h3>Reflection (Data Collection)</h3>
-<p>
-Which BIOS101 demands require a change in how you currently study?
-</p>
-<textarea placeholder="Be specific. This will inform your strategy design."></textarea>
-</section>
+    <section>
+      <h3>Memory & Thinking Demands</h3>
+      <ul>
+        <li><strong>Encoding:</strong> organized categories and visual anchors</li>
+        <li><strong>Retrieval:</strong> rapid recall under time pressure</li>
+        <li><strong>Higher-Order Thinking:</strong> compare, explain, synthesize</li>
+      </ul>
+    </section>
 
-<button onclick="location.href='step4-design.html'">
-Proceed to Step 4 →
-</button>
+    <section>
+      <h3>Self-Assessment Check</h3>
+      <label>Which of the following has caused you difficulty before?</label>
+      <select>
+        <option value="">Select an option</option>
+        <option>Metric conversions</option>
+        <option>Variables & controls</option>
+        <option>Similar biological terms</option>
+        <option>Microscopy calculations</option>
+        <option>Applying definitions</option>
+      </select>
+    </section>
 
-</main>
+    <section>
+      <h3>Reflection (Data Collection)</h3>
+      <p>
+        Which BIOS101 demands require a change in how you currently study?
+      </p>
+      <textarea placeholder="Be specific. This will inform your strategy design."></textarea>
+    </section>
+
+    <button onclick="location.href='step4-design.html'">
+      Proceed to Step 4 →
+    </button>
+
+  </main>
 
 </body>
+
 </html>
