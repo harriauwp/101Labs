@@ -5,62 +5,123 @@
 <title>Step 3 — What BIOS101 Actually Demands</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-font-family:system-ui,sans-serif;
-background:#f7f9fb;
-color:#111;
-line-height:1.1;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-header{
-background:#0b3d2e;
-color:#fff;
-padding:6px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+
+body {
+    font-family: system-ui, sans-serif;
+    background: #f7f9fb;
+    color: #1a1a1a;
+    line-height: 1.4; /* Improved for readability */
 }
-header a{
-color:#fff;
-text-decoration:none;
-font-size:0.85rem;
+
+/* REPAIRED HEADER LOGIC */
+header {
+    background: #0b3d2e;
+    color: #fff;
+    padding: 2.5rem 1.5rem; /* Increased padding to ensure visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the H2 */
+    position: relative; /* Anchor for absolute positioning */
 }
-main{
-padding:6px;
+
+header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
 }
-section{
-background:#fff;
-margin-bottom:6px;
-padding:6px;
-border-radius:6px;
-box-shadow:0 2px 6px rgba(0,0,0,0.08);
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    position: absolute; /* Takes link out of flow so H2 stays centered */
+    left: 1.5rem; /* Forces link to the left */
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
-h2,h3{
-color:#0b3d2e;
-margin-bottom:4px;
+
+header a:hover {
+    opacity: 0.8;
+    transform: translateX(-4px); /* Subtle nudge effect */
 }
-p,li,label{
-font-size:0.85rem;
+
+main {
+    max-width: 800px; /* Constrains width for better reading */
+    margin: 0 auto;
+    padding: 1.5rem;
 }
-ul{
-padding-left:12px;
+
+section {
+    background: #fff;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-textarea{
-width:100%;
-min-height:70px;
-font-size:0.8rem;
+
+h3 {
+    color: #0b3d2e;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
 }
-select{
-font-size:0.8rem;
+
+p, li, label {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
 }
-button{
-background:#0b3d2e;
-color:#fff;
-border:none;
-padding:6px;
-font-size:0.85rem;
-border-radius:4px;
-cursor:pointer;
+
+ul {
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.4rem;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 0.5rem;
+}
+
+button {
+    background: #0b3d2e;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 3rem;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #165c48;
+}
+
+strong {
+    color: #0b3d2e;
 }
 </style>
 </head>
@@ -68,8 +129,8 @@ cursor:pointer;
 <body>
 
 <header>
-  <h2>Step 3 — Analyze BIOS101</h2>
   <a href="index.html">← Back to Hub</a>
+  <h2>Step 3 — Analyze BIOS101</h2>
 </header>
 
 <main>
@@ -77,7 +138,7 @@ cursor:pointer;
 <section>
 <h3>Purpose</h3>
 <p>
-This step identifies what BIOS101 <strong>actually measures</strong>.
+This step identifies what BIOS101 <strong>actually measures</strong>. 
 Difficulty here is not about intelligence — it is about mismatched preparation.
 </p>
 </section>
@@ -156,16 +217,14 @@ High-frequency technical terms appear repeatedly and are assumed to be recalled 
 
 <section>
 <h3>Self-Assessment Check</h3>
-<label>
-Which of the following has caused you difficulty before?
-</label>
+<label>Which of the following has caused you difficulty before?</label>
 <select>
-<option value="">Select</option>
-<option>Metric conversions</option>
-<option>Variables & controls</option>
-<option>Similar biological terms</option>
-<option>Microscopy calculations</option>
-<option>Applying definitions</option>
+    <option value="">Select an option</option>
+    <option>Metric conversions</option>
+    <option>Variables & controls</option>
+    <option>Similar biological terms</option>
+    <option>Microscopy calculations</option>
+    <option>Applying definitions</option>
 </select>
 </section>
 
