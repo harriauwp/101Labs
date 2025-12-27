@@ -1,19 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEP5 DEPLOY</title>
-    <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 40px; max-width: 800px; margin: auto; }
-        nav { margin-bottom: 20px; }
-        a { color: #007bff; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<title>Step 5 — Deploy Your Strategy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:system-ui,sans-serif;
+background:#f7f9fb;
+color:#111;
+line-height:1.1;
+}
+header{
+background:#0b3d2e;
+color:#fff;
+padding:6px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+header a{
+color:#fff;
+text-decoration:none;
+font-size:0.85rem;
+}
+main{
+padding:6px;
+}
+section{
+background:#fff;
+margin-bottom:6px;
+padding:6px;
+border-radius:6px;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+h2,h3{
+color:#0b3d2e;
+margin-bottom:4px;
+}
+p,li,label{
+font-size:0.85rem;
+}
+ul{
+padding-left:12px;
+}
+textarea{
+width:100%;
+min-height:60px;
+font-size:0.8rem;
+}
+select,input{
+font-size:0.8rem;
+}
+table{
+width:100%;
+border-collapse:collapse;
+font-size:0.8rem;
+}
+td,th{
+border:1px solid #ccc;
+padding:4px;
+}
+button{
+background:#0b3d2e;
+color:#fff;
+border:none;
+padding:6px;
+font-size:0.85rem;
+border-radius:4px;
+cursor:pointer;
+}
+</style>
 </head>
+
 <body>
-    <nav><a href="index.html">? Back to Landing Page</a></nav>
-    <h1>STEP5 DEPLOY</h1>
-    <p>Content for step5-deploy.html goes here.</p>
+
+<header>
+<h2>Step 5 — Deploy</h2>
+<a href="index.html">← Back to Hub</a>
+</header>
+
+<main>
+
+<section>
+<h3>Purpose</h3>
+<p>
+A good strategy fails without execution.
+This step converts your hypothesis into a <strong>repeatable weekly system</strong>.
+</p>
+</section>
+
+<section>
+<h3>Minimum Viable Week</h3>
+<p>
+Design the smallest version of your plan that still tests your hypothesis.
+</p>
+<table>
+<tr>
+<th>Activity</th>
+<th>Frequency</th>
+<th>Time (min)</th>
+</tr>
+<tr>
+<td>Retrieval practice</td>
+<td><input></td>
+<td><input></td>
+</tr>
+<tr>
+<td>Concept comparison</td>
+<td><input></td>
+<td><input></td>
+</tr>
+<tr>
+<td>Calculation practice</td>
+<td><input></td>
+<td><input></td>
+</tr>
+</table>
+</section>
+
+<section>
+<h3>Time Anchoring</h3>
+<p>
+Attach study actions to existing commitments.
+</p>
+<textarea placeholder="Example: Retrieval practice immediately after BIOS101 lecture on Mon/Wed."></textarea>
+</section>
+
+<section>
+<h3>Friction Reduction</h3>
+<p>
+What will you prepare in advance to lower resistance?
+</p>
+<ul>
+<li>Flashcards ready before session</li>
+<li>Problem sets printed</li>
+<li>Study location predetermined</li>
+</ul>
+<textarea placeholder="List what you will pre-decide so effort goes into thinking, not setup."></textarea>
+</section>
+
+<section>
+<h3>Study Group Integration (Optional)</h3>
+<p>
+If working with others, define roles to prevent passive sessions.
+</p>
+<textarea placeholder="Example: One person quizzes, one explains, one checks accuracy."></textarea>
+</section>
+
+<section>
+<h3>Failure Plan</h3>
+<p>
+Assume a bad week will happen. Decide now what continues anyway.
+</p>
+<textarea placeholder="Example: Even during exams week, I will do 10 minutes of retrieval per topic."></textarea>
+</section>
+
+<section>
+<h3>Consistency Threshold</h3>
+<label>
+How many sessions per week are required for this plan to count as ‘executed’?
+</label>
+<select>
+<option value="">Select</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4+</option>
+</select>
+</section>
+
+<section>
+<h3>Execution Confidence</h3>
+<label>
+On a scale of 1–5, how confident are you that you can run this system for two weeks?
+</label>
+<select>
+<option value="">Select</option>
+<option>1 — Very low</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5 — Very high</option>
+</select>
+</section>
+
+<button onclick="location.href='step6-measure.html'">
+Proceed to Step 6 →
+</button>
+
+</main>
+
 </body>
 </html>
